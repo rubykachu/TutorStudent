@@ -1,352 +1,254 @@
 # Review: Hình bình hành. Hình thang cân (`hinh-binh-hanh-hinh-thang-can`)
 
 - Bài: `content/math/kntt/hinh-binh-hanh-hinh-thang-can/lesson.json`
-- Vòng: 1 - toàn bài của bài chưa tách `hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can` (3 reviewer song song + tổng hợp, commit `38c726d`, nhóm 1: phần 1–6; nhóm 2: phần 7–15; nhóm 3: phần 16–18 và phần bài tập sách bài tập; tệp nhóm ở `.shots/review/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/nhom-<n>.md`, ngoài git). Bài này là phần 2 của Bài 19 sau khi tách; vòng kế là vòng 2, toàn bài, Opus.
-- Nguồn đã đọc: `sources/math/hinh-binh-hanh-hinh-thang-can/` - sbt-p67, sbt-p68, sbt-p69, sbt-p115 (bản sao của `sources/math/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/`)
-- Kết luận vòng 1: chưa đạt, 21 Nghiêm trọng, 32 Nên sửa, 15 Góp ý cho cả bài chưa tách; đã sửa hết Nghiêm trọng (commit `36ff39a`, `cabb254`). Sau đó chủ dự án quyết tách bài. Bài giữ `draft`, chưa ghi `reviewedHash`, chưa `content:lock`; vòng 2 chưa chạy.
+- Vòng: 2 - toàn bài (4 reviewer Opus song song + tổng hợp); nhóm 1: `$.sections[0]`–`[2]`; nhóm 2: `$.sections[3]`–`[5]`; nhóm 3: `$.sections[6]`–`[8]`; nhóm 4: section bài tập sách bài tập `$.sections[9]` và `overview`; tệp nhóm `.shots/review/hinh-binh-hanh-hinh-thang-can/nhom-{1,2,3,4}.md` (ngoài git)
+- Nguồn đã đọc: `sources/math/hinh-binh-hanh-hinh-thang-can/` - sbt-p67, sbt-p68, sbt-p69, sbt-p115; bài phần 1 `content/math/kntt/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/lesson.json` (chỉ đọc, để biết đã dạy gì)
+- `content:check`: 0 lỗi, chỉ cảnh báo id chưa khoá
+- Đọc hiểu (Haiku, lượt 1): không chạy (chạy sau khi hết Nghiêm trọng, trước `--approve`)
+- `lesson:walk`: 0 FAIL, 0 cảnh báo, ba thiết bị (iPad, điện thoại, iPad ngang), ảnh trong `.shots/walk/hinh-binh-hanh-hinh-thang-can/`
+- Kết luận: Chưa đạt: còn 6 lỗi Nghiêm trọng (15 Nên sửa, 15 Góp ý); đã chạy `pnpm content:hash hinh-binh-hanh-hinh-thang-can --root content --mark`, bài giữ `draft`
+- Bản đã review: `da1386e447618096070e2f67b0401d17dc1b36c9934cd676a28490fd5e07aeb3` (`pnpm content:diff` so với bản này)
 
-## Tách bài
+## Lịch sử: vòng 1 và tách bài
 
-Bài 19 chưa tách (19 phần, 118 câu, 112 phút) quá dài cho bé chậm, nên chủ dự án tách theo hình thành hai bài của app (`part` 1 và 2, cùng `number` 19 và `chapter`; `order` 19 và 19.1):
-- Phần 1, `hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can`, "Hình chữ nhật. Hình thoi": 9 phần dạy và phần bài tập sách bài tập, 9 thẻ, 56 câu, 55 phút; bài tập SBT: 4.8, 4.10, 4.11, 4.14, 4.15.
-- Phần 2, `hinh-binh-hanh-hinh-thang-can`, "Hình bình hành. Hình thang cân": 9 phần dạy và phần bài tập sách bài tập, 9 thẻ, 60 câu, 58 phút; bài tập SBT: 4.9, 4.12, 4.13, 4.16, 4.17, 4.18, 4.19.
-
-Mỗi bài tập SBT thuộc bài có hình của nó; bài cần hình của cả hai bài thì thuộc phần 2. Bài này (phần 2) giữ: 4.9, 4.12, 4.13, 4.16, 4.17, 4.18, 4.19. Phần bài tập sách bài tập của bài này là 7 câu sách và 8 câu dẫn.
-
-Phần của bài chưa tách và nơi chúng ở bây giờ (`<phần cũ>` theo thứ tự của bài chưa tách):
-
-| Phần cũ | Id | Bài mới |
-|---|---|---|
-| 1 | `hinh-quanh-ta` | viết lại thành "Hai hình quanh ta" ở phần 1; phần 2 không có mở đầu riêng (mỗi phần dạy hình mới đã mở bằng vật quanh nhà) |
-| 2 | `hinh-chu-nhat` | phần 1 |
-| 3 | `cheo-hinh-chu-nhat` | phần 1 |
-| 4 | `song-song` | phần 1 |
-| 5 | `hinh-thoi` | phần 1 |
-| 6 | `cheo-hinh-thoi` | phần 1 |
-| 7 | `hinh-binh-hanh` | phần 2 |
-| 8 | `cheo-hinh-binh-hanh` | phần 2 |
-| 9 | `hinh-thang-can` | phần 2 |
-| 10 | `cheo-hinh-thang-can` | phần 2 |
-| 11 | `so-sanh-bon-hinh` | phần 2 |
-| 12 | `ve-hinh-chu-nhat` | phần 1 |
-| 13 | `ve-hinh-thoi` | phần 1 |
-| 14 | `ve-hinh-binh-hanh` | phần 2 |
-| 15 | `ve-binh-hanh-cheo` | phần 2 |
-| 16 | `kiem-thoi-chu-nhat` | phần 1 |
-| 17 | `kiem-binh-hanh` | phần 2 |
-| 18 | `ghep-hinh` | phần 2 |
-| 19 | `bai-tap-sach-bai-tap` | chia: phần 1 giữ SBT 4.8, 4.10, 4.11, 4.14, 4.15; phần 2 giữ SBT 4.9, 4.12, 4.13, 4.16 đến 4.19 |
-
-Điểm tách đổi nội dung (soát ở vòng 2):
-- Không còn phần mở đầu "Bốn hình quanh ta"; phần `so-sanh-bon-hinh` (so sánh bốn hình, cần cả hai bài) ở lại làm phần tổng kết.
-- `overview` viết lại cho hai hình (chào bạn ở câu đầu); phần bài tập sách bài tập có bốn khối "Nhắc lại" (4.9; 4.12 và 4.13; 4.16 và 4.17, nhắc cả quy tắc hình thoi, hình chữ nhật của phần 1; 4.18 và 4.19), recap là câu quy tắc kiểm tra hình bình hành, hình thang cân.
-- Bài này dùng từ `song song`, `tứ giác`, `đường chéo`, `góc vuông` và hai hình của phần 1 mà không dạy lại (đã dạy ở phần 1, bài học trước theo `order`): Reviewer xét theo luật dùng thuật ngữ đã dạy (LL-09) với phần 1 là bài trước.
-
-Tiêu chí cho điểm ngoài trang sách (như Bài 18, LL-09): được giữ khi điều đó cần để làm một bài tập trên các trang đã nạp và lần được về một dòng in (dòng "Kĩ năng giải toán" tr.67, chữ trong đề, lời giải tr.115). Các bước vẽ không in trong SBT nhưng là cách vẽ chuẩn SGK KNTT 6 được giữ nếu đúng (đã quyết với Bài 18). Không giữ: dấu hiệu "đường chéo bằng nhau thì là hình chữ nhật" (Nghiêm trọng 1), "hình thoi góc 60° có đường chéo ngắn bằng cạnh" (Nghiêm trọng 2), từ "tia" (Nghiêm trọng 7), "tâm" của hình lục giác (Nghiêm trọng 21).
-
-Phát hiện của vòng 1 thuộc bài này ở dưới, giữ số thứ tự của báo cáo gốc (`git show 38c726d:content/math/kntt/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/review.md`). Vị trí `$.…[n]` đã đổi sang vị trí trong `lesson.json` của bài này; vị trí thuộc bài kia ghi `[phần n] $.…` (vị trí trong bài phần n); vị trí đã bỏ khi sửa vòng 1 ghi `[đã bỏ khi sửa vòng 1]`; số phần trong lời phát hiện ("phần 12", "phần 14") là số thứ tự trong bài chưa tách (bảng trên cho biết phần đó ở bài nào); "Tình trạng" là kết quả sửa sau vòng 1, vòng 2 kiểm lại từng mục.
+Vòng 1 chạy trên bài chưa tách `hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can` (19 phần, 112 phút): 21 Nghiêm trọng, 32 Nên sửa, 15 Góp ý, báo cáo đầy đủ ở commit `38c726d` (`git show 38c726d:content/math/kntt/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/review.md`); đã sửa ở `36ff39a`, `cabb254`. Sau đó chủ dự án tách theo hình thành hai bài (`part` 1 và 2): bài này giữ 9 section dạy (`hinh-binh-hanh` đến `ghep-hinh`) và SBT 4.9, 4.12, 4.13, 4.16–4.19 (bài cần hình của cả hai bài thuộc phần 2); phần 1 giữ SBT 4.8, 4.10, 4.11, 4.14, 4.15. Vòng 2 kiểm lại mọi mục vòng 1 thuộc bài này (bảng trong từng tệp nhóm): đã sửa đúng, trừ ba chỗ bản sửa sinh lỗi mới hay sót chỗ cùng kiểu (Nghiêm trọng 1, 3, 4).
 
 ## Nghiêm trọng
 
-### 1. Mẹo "Kiểm tra khung" và `whyItMatters` dạy dấu hiệu nhận biết hình chữ nhật bằng đường chéo (lớp 8) (cũng thuộc bài `hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can`)
+### 1. Hai câu kho ôn "vật này có dạng hình gì" có thêm đáp án đúng, lời giải đi từ hình sang tính chất
 
-- Vị trí: `[phần 1] $.sections[2].blocks[2]` (`tip` kiểm khung); `$.overview.whyItMatters` - LL-09
-- Nguồn: tr.67, `sbt-p67.png` (chỉ có chiều "hình chữ nhật thì hai đường chéo bằng nhau")
-- Vấn đề: "Hai đường chéo bằng nhau thì khung là hình chữ nhật" là chiều đảo, lớp 8; không bài nào từ 4.8 đến 4.19 cần (4.16 kiểm bằng êke bốn góc). `whyItMatters` lặp đúng ý đó ở màn đầu bài.
-- Sửa: mẹo theo chiều sách có: "Khung hình chữ nhật thì hai đường chéo bằng nhau. Đo thấy hai đường chéo khác nhau là khung bị lệch." `whyItMatters` cùng ý. Có thể đổi `kind` sang tránh sai.
-- Tình trạng sau vòng 1: đã sửa (cả 21 Nghiêm trọng, commit `36ff39a` hình và `cabb254` nội dung)
+- Vị trí: `$.exercises[23]` (`ex.tam-bia-bon-canh`), `$.exercises[24]` (`ex.khung-anh-bon-goc`): đề, `options`, `explain` - LL-01, LL-17
+- Nguồn: tr.69 bài 4.16 và lời giải tr.115 (tứ giác bốn cạnh bằng nhau EFPQ được gọi là "hình bình hành")
+- Vấn đề: tấm bìa bốn cạnh bằng nhau, hai đường chéo vuông góc cũng là hình bình hành (theo chính câu quy tắc `$.sections[7]` và câu sách 4.16 của bài); khung bốn góc vuông cũng là hình bình hành và, theo định nghĩa của bài ("hình thang là tứ giác có hai cạnh đối song song", "hình thang có hai góc kề một đáy bằng nhau là hình thang cân"), cũng là hình thang cân. Bé chọn các lựa chọn đó bị chấm sai. Hai `explain` nói "chỉ hình thoi/hình chữ nhật luôn có…", đi từ hình sang tính chất, trong khi đề cho tính chất và hỏi hình (cùng kiểu lỗi đảo chiều vòng 1 đã sửa ở mẹo "Kiểm tra khung").
+- Sửa: dùng câu nhận biết của phần 1 (đã nhắc ở `$.sections[9].blocks[2].children[1]`) và bỏ lựa chọn rộng hơn:
+  - `tam-bia-bon-canh`: đề "Một tấm bìa có bốn cạnh bằng nhau và không có góc vuông nào. Tấm bìa này có dạng hình gì?"; lựa chọn Hình thoi, Hình vuông, Hình chữ nhật; `explain` "Tứ giác có bốn cạnh bằng nhau là hình thoi. Tấm bìa không có góc vuông nên không phải hình vuông."; `wrong` cho Hình vuông và Hình chữ nhật nói "cần bốn góc vuông, tấm bìa thì không có góc vuông nào".
+  - `khung-anh-bon-goc`: đề "Một khung ảnh có bốn góc vuông, hai cạnh dài 30 cm và hai cạnh dài 20 cm. Khung ảnh này có dạng hình gì?"; lựa chọn Hình chữ nhật, Hình vuông, Hình thoi; `explain` "Tứ giác có bốn góc vuông là hình chữ nhật. Bốn cạnh không bằng nhau nên không phải hình vuông."
+  - Hình vuông (học ở Bài 18) đứng được ở đây vì đề đã loại nó bằng điều kiện, nên không trái giả định "câu chọn hình không đưa hình vuông" của handover.
 
-### 5. Đỉnh bị gọi là "góc" trong định nghĩa đường chéo, câu quy tắc vẽ và lời giải (cũng thuộc bài `hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can`)
+### 2. Lời `wrong` "Hình thang cân chỉ có một cặp cạnh song song" trái định nghĩa của bài; `ve-bh-cheo-hinh-gi` thiếu "chắc chắn"
 
-- Vị trí: `$.overview.goals[1]`; `[phần 1] $.sections[2].blocks[0].children[0].text` ("đường nối hai góc không kề nhau"); `[phần 1] $.exercises[14].explain` và hai `wrong` (`ex.chon-duong-cheo`); câu quy tắc `$.sections[6].blocks[1].children[0]` ("để tìm góc còn lại") cùng `$.sections[6].recap.caption`, `$.cards[6].recap.caption`, `$.sections[9].blocks[1].children[4]`; `[phần 1] $.exercises[35].explain.text` (`ex.ve-thoi-quy-trinh`); `$.exercises[41].explain.text` (`ex.dem-thoi-luc-giac`: "nối O với một góc của lục giác", trong khi đề cùng câu viết "chung đỉnh O") - LL-05, LL-17
-- Nguồn: tr.67; Bài 18 dạy "Đường chéo là đoạn thẳng nối hai đỉnh không nằm cạnh nhau", glossary có `đỉnh`
-- Vấn đề: góc không phải một điểm; thứ tìm bằng hai cung là đỉnh. Cả bài không dùng chữ "đỉnh" lần nào trong phần dạy, nên một khái niệm có hai định nghĩa trong cùng chương và bé nhớ "góc" là một điểm, trái "góc 60°" ngay trong bài. Nhóm 1, 2, 3 cùng gặp.
-- Sửa: dùng lại câu Bài 18 ở định nghĩa và `goals[1]`: "Đường chéo là đoạn thẳng nối hai đỉnh không nằm cạnh nhau." `chon-duong-cheo`: "Đường chéo nối hai đỉnh không nằm cạnh nhau: A với C, B với D." / "A và B nằm cạnh nhau, nên AB là cạnh." Quy tắc phần 15 và `ve-thoi-quy-trinh`: "để tìm đỉnh còn lại" (đổi recap, thẻ, "Nhắc lại" nguyên văn). `dem-thoi-luc-giac`: "nối O với một đỉnh của lục giác". Soát lại bằng tìm "góc còn lại", "góc không kề", "góc kề nhau", "một góc của".
-- Tình trạng sau vòng 1: đã sửa (cả 21 Nghiêm trọng, commit `36ff39a` hình và `cabb254` nội dung)
+- Vị trí: `$.exercises[2].explain.wrong[0].text` (`ex.chon-hinh-binh-hanh`), `$.exercises[34].explain.wrong[2].text` và `$.exercises[34].prompt[1].text` (`ex.ve-bh-cheo-hinh-gi`) - LL-17, LL-10
+- Nguồn: định nghĩa của bài `$.sections[2].blocks[0].children[0]`, quy tắc `$.sections[7].blocks[2].children[0]`
+- Vấn đề: hai nhóm (1 và 3) cùng nêu câu này; gộp và giữ mức Nghiêm trọng. Theo hai câu của chính bài, hình chữ nhật là hình thang (hai cạnh đối song song) có hai góc kề một đáy bằng nhau, tức là hình thang cân có hai cặp cạnh song song. Câu `wrong` là một quy tắc sai về hình thang cân mà bé sẽ phải bỏ ở lớp 8, và mâu thuẫn với Nghiêm trọng 1 (khung bốn góc vuông). Ở `$.exercises[34]`, đề "là hình gì?" với A, B, C bất kỳ: nếu góc B vuông thì ABCD là hình chữ nhật; lời `wrong` "đề không nói vậy" chỉ đúng với câu hỏi "chắc chắn".
+- Sửa: `$.exercises[2].explain.wrong[0]` nói về hình bé đang thấy: "Hình này chỉ có hai cạnh đáy song song, hai cạnh bên thì không, nên không phải hình bình hành." `$.exercises[34]`: đề "Tứ giác ABCD chắc chắn là hình gì?"; `wrong[2]`: "Hình thang cân cần hai góc kề một đáy bằng nhau, mà đề không nói vậy." Tìm cả bài cụm "chỉ có một cặp".
 
-### 7. Từ "tia" chưa dạy, không có trong sách và glossary (cũng thuộc bài `hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can`)
+### 3. Lời giải nhận hình thang cân vì "hai cạnh bên bằng nhau"
 
-- Vị trí: định nghĩa `[phần 1] $.sections[7].blocks[1].children[0]`; câu quy tắc `[phần 1] $.sections[7].blocks[1].children[1]`, `[phần 1] $.sections[7].recap.caption`, `[phần 1] $.cards[7].recap.caption`, `$.sections[9].blocks[1].children[2]`; mục `order` `[phần 1] $.exercises[35].items[1]`, `$.exercises[25].items[1]`, `$.exercises[25].items[2]`; `explain` của `[phần 1] $.exercises[35]`, `[62]`, `[63]`, `[65]`, `[67]`, `[68]`, `[96]`–`[99]`, `[103]`, `[104]`; chữ bước bảng vẽ `construction.ts:91`, `:123`, `:151`; chú thích khung `catalog-drawing.ts:110`, `:114`, `:174`, `:178`, `catalog-book.ts:165`, `:169`, `:199`, `:203`, `:270`, `:274` - LL-09
-- Nguồn: tr.67–69 không có chữ "tia"; glossary chỉ có "tia số"
-- Vấn đề: tia là khái niệm của chương hình học cơ bản (học sau), không phải kiến thức nền. Một câu định nghĩa không đủ để bé phân biệt tia với đoạn thẳng. Lượt Haiku 1 xếp mơ hồ khoảng 16 mục vì "tia là gì". Cùng kiểu "tâm" ở Bài 18 vòng 1.
-- Sửa: bỏ khái niệm tia, dùng "đường kẻ": "Dùng thước đo góc kẻ đường AD tạo với AB một góc 75°", "Lấy D trên đường đó". Xoá câu định nghĩa tia, giữ câu "Độ mở compa là ...". Đổi đồng loạt trong `lesson.json` và ba tệp hình.
-- Tình trạng sau vòng 1: đã sửa (cả 21 Nghiêm trọng, commit `36ff39a` hình và `cabb254` nội dung)
+- Vị trí: `$.exercises[43].explain.text` (`ex.luc-giac-gom-thang-can`), `$.exercises[46].explain.text` (`ex.sbt-4-9`), `$.exercises[12].explain` (`ex.chon-hinh-thang-can-hai-ben`) - LL-17, LL-20
+- Nguồn: tr.67 (hai cạnh bên bằng nhau là tính chất); quy tắc nhận biết của bài `$.sections[7].blocks[2].children[0]` ("hai góc kề một đáy bằng nhau")
+- Vấn đề: nhóm 3 nêu `[43]` (Nghiêm trọng) và gợi ý xét `[46]`, `[12]`; giữ Nghiêm trọng và gộp cả ba vì cùng một lập luận: "có hai đáy song song và hai cạnh bên bằng nhau nên là hình thang cân". Hình bình hành cũng có một cặp cạnh song song và hai cạnh còn lại bằng nhau, nên lý do này dạy một dấu hiệu sai, trái câu quy tắc bé học ở `kiem-binh-hanh`. Ở 4.9 lập luận đó áp được cả vào Hình 4.12c (hình bình hành). Vòng 1 Nghiêm trọng 19 đã bắt đúng lỗi này ở 4.17 và chỉ sửa chỗ đó.
+- Sửa (mỗi `explain` ≤ 3 câu):
+  - `[43]`: "Mỗi nửa gồm ba tam giác đều. Đáy lớn song song với đáy nhỏ, hai góc kề đáy lớn đều là góc của tam giác đều nên cùng bằng 60°. Vậy mỗi nửa là hình thang cân."
+  - `[46]`: "Hình 4.12c có hai cặp cạnh đối song song: đó là hình bình hành. Hình 4.12b là hình thang có hai góc kề một đáy bằng nhau, nên là hình thang cân. Hình 4.12a có hai góc kề một đáy khác nhau, hình 4.12d có năm cạnh."
+  - `[12]` (section 3, trước khi dạy dấu hiệu): `text` "Hình thang cân có hai cạnh bên bằng nhau và hai góc kề một đáy bằng nhau. Chỉ hình này có đủ cả hai điều đó." (không gọi "hình thang kia", LL-26); thêm `wrong` cho `b`: "Hình này không có cặp cạnh nào song song, nên không phải hình thang."
+  - Tìm cả `lesson.json` và `catalog-*.ts` cụm "hai cạnh bên bằng nhau, nên" / "bằng nhau nên là hình thang cân".
 
-### 8. Quy tắc vẽ hình thoi thiếu điều kiện compa (độ mở bằng cạnh, tâm ở hai đầu) (cũng thuộc bài `hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can`)
+### 4. Lời `wrong` "Hình thoi chỉ chắc chắn có bốn cạnh bằng nhau" sai
 
-- Vị trí: `[phần 1] $.sections[7].blocks[1].children[1]`, `[phần 1] $.sections[7].recap.caption`, `[phần 1] $.cards[7].recap.caption`, `$.sections[9].blocks[1].children[2]`; mục `s4` của `[phần 1] $.exercises[35]` ("Vẽ hai cung tròn từ Q và từ N, cùng độ mở.") và `explain` - LL-17
-- Nguồn: bài 4.11, 4.14 tr.68
-- Vấn đề: làm đúng chữ với hai cung cùng độ mở khác cạnh (cạnh 4 cm, cung 5 cm) ra hình hai cạnh 4 cm, hai cạnh 5 cm, không phải hình thoi; câu cũng không nói tâm cung. Bảng vẽ tự giữ độ mở nên trên màn không lộ, nhưng bé vẽ 4.11, 4.14 và bài kiểm tra trên giấy chỉ nhờ câu này. Các `explain` (vd `[62]`, `[96]`) đã nói đủ "cùng độ mở 2 cm từ H và từ F"; chỉ câu nhớ thiếu. Cùng kiểu Nghiêm trọng 5 vòng 1 Bài 18.
-- Sửa (tách hai câu cho vừa `[rule-sentence]`, recap lặp nguyên văn): "Vẽ một cạnh, kẻ một đường từ đầu cạnh, lấy trên đó cạnh thứ hai bằng cạnh đầu. Mở compa bằng cạnh, đặt kim ở hai đầu mút còn lại vẽ hai cung." Mục `s4`: "Mở compa bằng MN, vẽ cung tâm Q và cung tâm N."
-- Tình trạng sau vòng 1: đã sửa (cả 21 Nghiêm trọng, commit `36ff39a` hình và `cabb254` nội dung)
+- Vị trí: `$.exercises[21].explain.wrong[0].text` (`ex.so-sanh-bon-goc-vuong`, lựa chọn `thoi`) - LL-20, LL-17
+- Nguồn: tr.67 (hình thoi: bốn cạnh bằng nhau, hai đường chéo vuông góc, cạnh đối song song, góc đối bằng nhau)
+- Vấn đề: "chỉ" nói hình thoi chắc chắn có đúng một tính chất, trong khi câu quy tắc ở màn trước của cùng section nói hai đường chéo hình thoi vuông góc. Câu này là câu "Sửa" của chính review vòng 1 (Nghiêm trọng 12), tác giả chép nguyên văn.
+- Sửa: "Hình thoi có bốn cạnh bằng nhau, nhưng góc của nó thường không phải góc vuông."
 
-### 9. Quy tắc vẽ hình bình hành biết đường chéo thiếu điều kiện compa và điểm đi qua (cũng thuộc bài `hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can`)
+### 5. Tên điểm bị nét của hình cắt ngang (C, P, Q, O)
 
-- Vị trí: `$.sections[6].blocks[1].children[0]`, `$.sections[6].recap.caption`, `$.cards[6].recap.caption`, `$.sections[9].blocks[1].children[4]` - LL-17
-- Nguồn: bài 4.13 tr.68
-- Vấn đề: "Vẽ tam giác bằng compa" không nói tam giác nào, không nói cung tâm A bán kính AC và tâm B bán kính BC; bài chưa dạy vẽ tam giác biết ba cạnh ở chỗ nào khác. Hai đường song song không nói qua điểm nào, song song với cạnh nào. Chỉ nhớ câu này bé không vẽ được 4.13 trên giấy.
-- Sửa (hai câu, recap lặp nguyên văn, rút cho vừa `[length]`): "Vẽ AB, rồi vẽ cung tâm B bán kính BC và cung tâm A bán kính AC, gặp nhau tại C. Dùng êke vẽ qua C đường song song với AB, qua A đường song song với BC, gặp nhau tại D."
-- Tình trạng sau vòng 1: đã sửa (cả 21 Nghiêm trọng, commit `36ff39a` hình và `cabb254` nội dung)
+- Vị trí: (a) bảng vẽ hình bình hành `visual.ve-binh-hanh-abcd` (`$.exercises[27]`), cùng hàm `parallelogramFigure` ở `src/visuals/shared/quadrilaterals/construction.ts` mà `ve-binh-hanh-tap-lam` và bảng 4.12 `ve-binh-hanh-efhk` dùng: nét đứt qua C cắt ngang chữ "C" (walk `090`, `091`); (b) bảng vẽ biết đường chéo `visual.ve-bh-cheo-tap-lam` (`$.sections[6].blocks[2].children[1]`), `visual.ve-bh-cheo-mnpq` (`$.exercises[32]`) và mọi bảng `parallelogram-diagonal`: cung và nét đi qua chữ "P", nét đứt đâm vào "Q" (walk `098`, `104`); (c) `visual.binh-hanh-cheo-ghik` (`$.exercises[7].prompt[2]`): đường chéo HK chạy qua chữ "O", đúng điểm câu hỏi hỏi (walk `031`); (d) `visual.so-sanh-cheo` (`$.sections[4].blocks[1].children[1]`, recap section và thẻ): "O" nằm trên cạnh hình thoi và sát vạch "‖" ở hình bình hành, đọc thành "o‖", mà section không nói O là gì (walk `063`, `072`); (e) hình chạm đo 4.16 `visual.sbt-hinh-4-14` (`$.exercises[53]`): ô "?" che chữ O ("?O?", walk `166`) - LL-12, LL-21
+- Nguồn: —
+- Vấn đề: ba nhóm nêu cùng kiểu với ba mức (nhóm 2 Nghiêm trọng cho C; nhóm 1, 3, 4 Nên sửa cho O, P, Q). Chọn chung mức Nghiêm trọng: checklist trục 5 xếp chữ bị cắt do nội dung bài (hình của bài, không phải bố cục app) là Nghiêm trọng, và các chữ bị cắt là đúng điểm bé phải đọc (O là điểm của đề `[7]`; C, P, Q là đỉnh bé vừa dựng, nút bước gọi tên chúng). Gộp một mục vì gốc là cách đặt nhãn đỉnh trong hai hàm dựng dùng chung; sửa một chỗ chữa mọi bảng.
+- Sửa: trong `construction.ts`, đặt nhãn đỉnh thứ ba, thứ tư ra ngoài hình theo hướng từ tâm hình ra đỉnh, xa đầu cung, và cho nét đứt kéo dài dừng trước ô nhãn; `binh-hanh-cheo-ghik` thêm `nameShift` cho O (như O của `binh-hanh-cheo-ten`); `so-sanh-cheo` bỏ tên giao điểm ở hình thu nhỏ (giữ chấm); `sbt-hinh-4-14` dời ô "?" khỏi O (xem Nên sửa 13). Chụp lại `pnpm visual:shot` mọi bảng hình bình hành ở ba góc 45°, 60°, 75° và ba thiết bị, tự xem.
 
-### 10. Quy tắc vẽ hình chữ nhật và hình bình hành thiếu "cùng một phía", "bằng cạnh kia", "qua đầu cạnh" (cũng thuộc bài `hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can`)
+### 6. Hình gợi ý nấc 2 của 4.18 là trọn lời giải
 
-- Vị trí: `[phần 1] $.sections[6].blocks[1].children[0]`, recap phần 12, `[phần 1] $.cards[6].recap.caption`, `$.sections[9].blocks[1].children[1]`, mục `s3` của `ex.ve-cn-quy-trinh`; `$.sections[5].blocks[1].children[0]`, recap phần 14, `$.cards[5].recap.caption`, `$.sections[9].blocks[1].children[3]`, mục `s4` của `$.exercises[25]` ("vẽ qua F và qua K hai đường song song" không nói song song với gì) - LL-17
-- Nguồn: cách vẽ SGK KNTT 6; bài 4.10, 4.12 tr.68
-- Vấn đề: "lấy hai đoạn bằng nhau rồi nối" không nói bằng cạnh nào (ra hình chữ nhật sai kích thước của 4.10) và không nói cùng phía; "vẽ hai đường song song với hai cạnh đó" không nói đi qua đâu, hình không khép. Nhóm 2 ghi Nên sửa vì bảng vẽ làm đúng; nhóm 3 ghi Nghiêm trọng vì đây là chữ bé đọc ngay trước 4.10, 4.12 và mang ra bài làm trên giấy. Giữ mức cao hơn.
-- Sửa: "Vẽ một cạnh, kẻ hai đường vuông góc ở hai đầu cạnh. Về cùng một phía, lấy hai đoạn bằng cạnh kia rồi nối." "Vẽ hai cạnh liền nhau. Dùng êke vẽ qua đầu mỗi cạnh một đường song song với cạnh kia." Mục `s4`: "Dùng êke vẽ qua F đường song song với EK, qua K đường song song với EF." Đổi recap, thẻ, "Nhắc lại" nguyên văn.
-- Tình trạng sau vòng 1: đã sửa (cả 21 Nghiêm trọng, commit `36ff39a` hình và `cabb254` nội dung)
-
-### 12. Lời `wrong` dạy "hình thoi thường có các góc 60° và 120°"
-
-- Vị trí: `$.exercises[21].explain.wrong[0].text` (`ex.so-sanh-bon-goc-vuong`) - LL-17
-- Nguồn: tr.67 chỉ nói các góc đối bằng nhau
-- Vấn đề: góc hình thoi có thể là số đo bất kỳ; mọi hình thoi của các phần dạy đều vẽ 60° và 120°, nên câu này củng cố điều sai, trái ngay 4.11 (bé chọn 45°, 75°).
-- Sửa: "Hình thoi chỉ chắc chắn có bốn cạnh bằng nhau; góc của nó thường không phải góc vuông." Thêm ít nhất một hình thoi góc khác 60° ở phần 5.
-- Tình trạng sau vòng 1: đã sửa (cả 21 Nghiêm trọng, commit `36ff39a` hình và `cabb254` nội dung)
-
-### 13. Nhãn nửa đường chéo nằm sát cạnh AB, đọc thành độ dài cạnh (phần 8 và phần 17)
-
-- Vị trí: `visual.do-cheo-binh-hanh` (`catalog-binh-hanh-thang-can.ts:230–274`, bốn `seg` không `at`/`textAt`), `$.sections[1].blocks[2].children[1]`, walk `118-s8-03-block-shown.png`; `visual.do-kiem-binh-hanh` (`catalog-check.ts:292`), `$.sections[7].blocks[3].children[1]`, walk `249-s17-04-block-shown.png` (iPad, điện thoại) - LL-12, LL-15
-- Vấn đề: "4 cm", "3 cm" của hai nửa đường chéo trên nằm ngay dưới AB, nét AB chạm hoặc cắt chữ; bé đọc "AB = 4 cm". Đây là hai màn bé "thấy" O là trung điểm. Nhóm 2 và 3 cùng gặp; cùng kiểu Nghiêm trọng 2 vòng 2 Bài 18.
-- Sửa: như bản sửa `do-duong-cheo-vuong` của Bài 18: ghi dòng dưới hình "OA = OC = ... cm", "OB = OD = ... cm" (tăng `h`), hoặc `at` nhỏ gần O; sửa cả hai hình cùng lúc, chụp lại ba thiết bị.
-- Tình trạng sau vòng 1: đã sửa (cả 21 Nghiêm trọng, commit `36ff39a` hình và `cabb254` nội dung)
-
-### 14. Nhãn "7 cm 7 cm" ở "Cùng làm" phần 10 nằm trên cạnh đáy AB
-
-- Vị trí: `visual.do-cheo-thang-can` (`catalog-binh-hanh-thang-can.ts:420–452`, `at: 0.2`), `$.sections[3].blocks[2].children[1]`; walk `145-s10-03-block-shown.png` - LL-12, LL-15
-- Vấn đề: hai nhãn đứng liền nhau, nét AB đi ngang qua chữ; bé đọc "AB = 7 cm".
-- Sửa: dòng dưới hình "AC = 7 cm", "BD = 7 cm", hoặc `at` khoảng 0,7. Chụp lại và tự xem.
-- Tình trạng sau vòng 1: đã sửa (cả 21 Nghiêm trọng, commit `36ff39a` hình và `cabb254` nội dung)
-
-### 15. Bảng vẽ cạnh 2 cm: nhãn "60°" đè cạnh, cung và tên điểm (cũng thuộc bài `hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can`)
-
-- Vị trí: `visual.ve-thoi-efgh` (`[phần 1] $.exercises[37]`), `visual.ve-binh-hanh-tap-lam` (`$.sections[5].blocks[3].children[1]`), `visual.ve-binh-hanh-abcd` (`$.exercises[27]`); `construction.ts:459–467`, `:519–527` (`textDistance: 46` lớn hơn cạnh 2 cm = 36 đơn vị); walk `199-s13-07-…`, `207-s14-04-block-shown.png`, `213-s14-07-…-correct.png` - LL-12
-- Vấn đề: chữ số đo góc nằm ngoài hình, trên cạnh đối diện; hình rộng khoảng 45 điểm trên iPad; câu luyện có chấm và màn "Cùng làm".
-- Sửa: (a) cạnh từ 3 cm trở lên cho bảng có góc, soát lại bảng số tách nhau trong `task.md`; (b) `textDistance` theo cạnh ngắn (vd `Math.min(46, 0.6 * min(len, side) * UNIT)`). Chụp lại và tự xem.
-- Tình trạng sau vòng 1: đã sửa (cả 21 Nghiêm trọng, commit `36ff39a` hình và `cabb254` nội dung)
-
-### 16. Quy tắc ghép hình phần 18 thiếu "bằng nhau" và điều kiện để ra lục giác đều (cũng thuộc bài `hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can`)
-
-- Vị trí: `$.sections[8].blocks[1].children[0]`, `$.sections[8].recap.caption`, `$.cards[8].recap.caption`, `$.sections[9].blocks[3].children[1]`; note `$.sections[8].blocks[0].children[0]` ("Ba hình tam giác đều cạnh nhau"); đề và `explain` của `$.exercises[42]` (`ex.ghep-hai-thang-can-thanh`), `[đã bỏ khi sửa vòng 1] $.exercises[116]` (`ex.dan-4-19-hai-ghep`) - LL-17
-- Nguồn: tr.69 bài 4.18 ("ba hình tam giác đều có cạnh 4 cm"), 4.19
-- Vấn đề: hai hình thang cân đáy nhỏ = cạnh bên = 3 cm, đáy lớn 4 cm ghép theo đáy lớn ra hình sáu cạnh bằng nhau nhưng góc khoảng 161° và 100°, không phải lục giác đều. Cần đáy lớn gấp đôi đáy nhỏ (ghép từ ba tam giác đều bằng nhau). Ba tam giác đều khác cỡ không ghép được.
-- Sửa (recap, thẻ, "Nhắc lại" nguyên văn): "Ba hình tam giác đều bằng nhau ghép thành một hình thang cân. Hai hình thang cân như thế ghép thành một hình lục giác đều." Đề `ghep-hai-thang-can-thanh`: "Hai hình thang cân, mỗi hình ghép từ ba tam giác đều bằng nhau, ghép theo đáy lớn. Chúng ghép thành hình gì?"; `explain`: "Ba tam giác đều là một nửa hình lục giác đều, nên hai hình thang cân này ghép thành hình lục giác đều." Note đầu phần: "Ba hình tam giác đều bằng nhau, đặt sát nhau, ghép được thành ...". Câu dẫn 4.19 đổi theo Nên sửa 23.
-- Tình trạng sau vòng 1: đã sửa (cả 21 Nghiêm trọng, commit `36ff39a` hình và `cabb254` nội dung)
-
-### 17. "Cùng làm" thứ hai của phần 18 là khay Hình 4.16 của bài 4.19, dừng ở 2/8 miếng
-
-- Vị trí: `$.sections[8].blocks[3].children[1]` (`visual.ghep-hai-thang-can-cung-lam`, `catalog-check.ts:340`, `which: "tray"`, `goal: 2`); walk `263-s18-04-block.png`, `264-s18-04-block-shown.png` - LL-08
-- Nguồn: tr.69 Hình 4.16
-- Vấn đề: chép hình sách vào màn "Cùng làm" (kiểu Nghiêm trọng 8 vòng 1 Bài 18); màn báo xong ở "2/8", bé tưởng mình làm thiếu; bài 4.19 về sau là đúng bảng này.
-- Sửa: bảng ghép riêng hai miếng (lục giác đều nét đứt cắt theo một đường chéo chính, "0/2 miếng"), hướng cắt khác khay; không dùng `which: "tray"` ở phần dạy.
-- Tình trạng sau vòng 1: đã sửa (cả 21 Nghiêm trọng, commit `36ff39a` hình và `cabb254` nội dung)
-
-### 19. Lời giải 4.17 nhận BEDC là hình thang cân vì "hai cạnh bên bằng nhau"
-
-- Vị trí: `$.exercises[56].explain.text`, `.explain.wrong[0].text` (`ex.sbt-4-17`); hình `visual.sbt-4-17-giai` (`catalog-book.ts:330`) - LL-17, LL-05
-- Nguồn: tr.69 bài 4.17; tr.115 chỉ ghi kết luận
-- Vấn đề: không phải dấu hiệu bài dạy (phần 17: hai góc kề một đáy bằng nhau), và sai như quy tắc chung (hai cạnh đối song song, hai cạnh kia bằng nhau có thể là hình bình hành). Câu dẫn và hình gợi ý dạy kiểm góc rồi lời giải dùng cách khác; lý do OABC là hình thoi không nói vì sao các đoạn bằng nhau.
-- Sửa: "OA, AB, BC, CO đều bằng cạnh của các tam giác đều chung đỉnh O, nên OABC là hình thoi; OCDE cũng vậy. BEDC có BE song song CD, góc B và góc E đều là góc của tam giác đều nên bằng 60°. Vậy BEDC là hình thang cân." `wrong[0]` theo cùng lý do; hình lời giải thêm cung 60° ở B, E.
-- Tình trạng sau vòng 1: đã sửa (cả 21 Nghiêm trọng, commit `36ff39a` hình và `cabb254` nội dung)
-
-### 20. Lời `wrong` của câu dẫn 4.17 nói hai góc kề một đáy của hình bình hành không bằng nhau
-
-- Vị trí: `$.exercises[55].explain.wrong[1].text` và đề `$.exercises[55].prompt` (`ex.dan-4-17-thang-can`) - LL-17, LL-01
-- Vấn đề: sai với hình chữ nhật (hình bình hành có bốn góc vuông); đề "Tứ giác này là hình gì?" khi tứ giác là hình chữ nhật thì "Hình bình hành" cũng đúng.
-- Sửa: đề "Tứ giác này chắc chắn là hình gì?"; `wrong[1]`: "Hai góc kề một đáy của hình bình hành chỉ bằng nhau khi chúng là góc vuông; đề không nói vậy."
-- Tình trạng sau vòng 1: đã sửa (cả 21 Nghiêm trọng, commit `36ff39a` hình và `cabb254` nội dung)
-
-### 21. Câu dẫn 4.17 dùng "tâm O" của hình lục giác đều
-
-- Vị trí: `$.exercises[54].prompt[0].text` (`ex.dan-4-17-thoi`); nhãn `visual.sbt-hinh-4-15` "hình có tâm O" (`catalog-book.ts:74`) - LL-09
-- Nguồn: tr.69 Hình 4.15 chỉ ghi điểm O; Bài 18 đã bỏ "tâm" của lục giác ở vòng 1
-- Vấn đề: "tâm" ở bài này chỉ là chỗ đặt kim compa (phần 15); "tâm của hình lục giác" chưa dạy. Câu dẫn không có hình.
-- Sửa: "Hình lục giác đều UVWXYZ cạnh 5 cm được chia thành sáu tam giác đều có chung đỉnh O, nên OU, OV, OW cũng dài 5 cm." kèm hình có tên U…Z; nhãn hình: "Hình 4.15: các điểm A, B, C, D, E và O".
-- Tình trạng sau vòng 1: đã sửa (cả 21 Nghiêm trọng, commit `36ff39a` hình và `cabb254` nội dung)
+- Vị trí: `$.exercises[57].hints.hintVisualId` (`visual.ghep-thang-can-cac-buoc`, khung cuối `count: 3, finished: true`) so với `solutionVisualId` (`visual.sbt-4-18-giai`) (`ex.sbt-4-18`) - LL-02
+- Nguồn: tr.69 bài 4.18
+- Vấn đề: nhóm 4 ghi Nên sửa vì bảng ghép đã có viền nét đứt của dải ba tam giác. Nâng lên Nghiêm trọng: "Luật gợi ý 3 nấc" là luật cố định, nấc 2 hiện kết quả của đề là Nghiêm trọng; hình này ghép xong đúng việc 4.18 bắt làm, nên nấc 2 trùng nấc 3 và bé mất một nấc gợi ý. Viền đích của bảng không thay được việc nấc 2 dừng ở "?".
+- Sửa: nấc 2 dừng ở khung hai tam giác (xuôi rồi ngược) kèm dòng "Thêm hình thứ ba đặt thế nào?", hoặc một hình gợi ý riêng không có khung xong; nấc 3 giữ `sbt-4-18-giai`.
 
 ## Nên sửa
 
-### 2. Câu kiểm tra lặp số của hình quy tắc, màn mẫu hay "Cùng làm" (cũng thuộc bài `hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can`)
+### 7. Từ nền của phần 1 ("song song", "cạnh đối", "góc đối", "vuông góc", "êke", "độ mở compa") dùng mà không có câu nhắc ở chỗ đầu tiên cần đến
 
-- Vị trí: `[đã bỏ khi sửa vòng 1] $.exercises[21]` (`thoi-goc-c`: góc A = 60° như hình quy tắc và recap); `ex.binh-hanh-canh-cd`, `ex.binh-hanh-goc-c` (số của `do-binh-hanh`); `ex.ve-thoi-abcd` (6 cm, 45° như `ve-thoi-tap-lam`); `ex.ve-bh-canh-dc` (số của `ve-binh-hanh-cac-buoc`) - LL-07
-- Sửa: đổi số (vd thoi góc B 110° hỏi góc D; bình hành 7 và 5 cm, góc A 110°; kho ôn thoi 5 cm 75°; DC: AB = 6, AD = 4); soát lại bảng số trong `task.md`.
-- Tình trạng sau vòng 1: đã sửa
+- Vị trí: (a) `$.sections[0].blocks[0]` (màn đầu bài, hình `binh-hanh-cac-buoc` khung 3 "Các cạnh đối song song" có dấu mũi tên) và câu quy tắc `$.sections[0].blocks[1].children[0]`; (b) cùng câu quy tắc ("cạnh đối", "góc đối"); (c) `$.sections[4].blocks[0]` (chỗ đầu tiên dùng "hình chữ nhật", "hình thoi", "vuông góc"); (d) `$.sections[5].blocks[0].children[0]` (chỗ đầu tiên dùng "êke"); (e) `$.sections[6].blocks[0].children[0]` ("bán kính là độ mở compa"); (f) `$.sections[9].blocks[2]` (Nhắc lại cho 4.16, 4.17: câu dẫn hỏi "dùng êke kiểm tra", "khít góc vuông"; quy tắc hình thang cân cần biết BEDC là hình thang) - LL-09
+- Nguồn: bài phần 1: `$.sections[3].blocks[1].children[0]` (song song), `$.sections[1].blocks[1].children[0]` (cạnh đối), `$.sections[4].blocks[1].children[0]` (góc đối), `$.sections[5].blocks[1].children[0]` (vuông góc), `$.sections[6].blocks[0].children[0]` (êke), `$.sections[7].blocks[1].children[0]` (độ mở compa)
+- Vấn đề: gộp nhóm 1 (Nên sửa 1, 2), nhóm 2 (Nên sửa 4), nhóm 3 (Nên sửa 1), nhóm 4 (Nên sửa 3, 4). Bài dùng "song song" khoảng 60 lần mà không câu nào nói nghĩa hay nói dấu mũi tên trên hình là gì; câu quy tắc đầu tiên của bài dựa trọn vào "cạnh đối", "góc đối", "song song". Dùng lại điều phần 1 đã dạy là đúng luật tách bài (nên không Nghiêm trọng), nhưng bé nhanh quên (`docs/learner.md`) và có thể mở phần 2 ở ngày khác. Cần một câu nhắc ngắn ở chỗ đầu tiên mỗi từ được dùng, lặp nguyên văn câu phần 1 (LL-05), không dạy lại section nào.
+- Sửa (không thêm màn, không thêm section; mỗi `note` ≤ 2 câu, không `rule`):
+  - (a) Thêm `note` thành `$.sections[0].blocks[0].children[1]` (sau câu "Gạch lát nghiêng…", trước hình): "Nhắc lại: hai đường thẳng song song là hai đường không bao giờ cắt nhau. Trên hình, hai cạnh song song có cùng dấu mũi tên." Các section sau không nhắc lại "song song".
+  - (b) Thêm `note` thành `$.sections[0].blocks[1].children[0]`, trước câu quy tắc (như màn quy tắc của `hinh-thang-can`): "Hai cạnh nằm đối diện nhau gọi là cạnh đối. Hai góc nằm đối diện nhau gọi là góc đối."
+  - (c) Thêm `note` thành `$.sections[4].blocks[0].children[0]`: "Nhắc lại: hình chữ nhật có bốn góc vuông, hình thoi có bốn cạnh bằng nhau. Vuông góc nghĩa là cắt nhau tạo thành góc vuông."
+  - (d) Sửa câu thứ hai của `$.sections[5].blocks[0].children[0]`: "Êke là thước có một góc vuông, giúp ta kẻ các đường song song."
+  - (e) Sửa câu thứ hai của `$.sections[6].blocks[0].children[0]`: "Compa vẽ cung tròn: tâm là chỗ đặt kim, bán kính là độ mở compa (khoảng cách giữa kim và đầu bút)." (khoảng 24 âm tiết; `[length]` báo thì tách thành note riêng "Độ mở compa là khoảng cách giữa kim và đầu bút.").
+  - (f) Thêm `note` vào `$.sections[9].blocks[2]`, trước câu quy tắc: "Êke có một góc vuông: đặt êke khít vào góc thì góc đó là góc vuông. Hình thang là tứ giác có hai cạnh đối song song." (câu sau lặp nguyên văn `$.sections[2].blocks[0].children[0]`).
+  - Chụp lại walk điện thoại các màn (a), (c), (f) để chắc màn không dài quá.
 
-### 5. Nhiễu Có/Không trái ngay dữ kiện đề (cũng thuộc bài `hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can`)
+### 8. Hình chạy từng bước của hình thang cân dùng "cạnh đáy", "cạnh bên", "góc kề đáy" trước câu định nghĩa
 
-- Vị trí: `[phần 1] $.exercises[12].options` (`khung-anh-cheo`: đề 30 và 34 cm, nhiễu "Có, vì hai đường chéo bằng nhau"); `$.exercises[17].options[0]` (`khung-go-cheo`, 40 và 42 cm); nhiễu `khong` của `[phần 1] $.exercises[40]`, `co` của `[phần 1] $.exercises[53]`, `co` của `$.exercises[36]` - LL-14
-- Sửa: nhiễu nêu lỗi thật: "Có, vì khung có bốn cạnh và bốn góc"; "Có, vì nó có hai cạnh đáy song song" (`wrong`: "Hình thang nào cũng có hai đáy song song; hình thang cân còn cần ..."); "Chưa biết, phải đo thêm các góc".
-- Tình trạng sau vòng 1: đã sửa
+- Vị trí: `visual.thang-can-cac-buoc` (`catalog-binh-hanh-thang-can.ts`, khoá `thang-can-cac-buoc`) ở `$.sections[2].blocks[0].children[2]`; định nghĩa ở màn sau `$.sections[2].blocks[1].children[0]`; walk `036`, `037` - LL-09
+- Nguồn: tr.67
+- Vấn đề: ba khung nói "Hai cạnh đáy…", "Hai cạnh bên…", "Hai góc kề đáy DC bằng nhau" khi bé chưa đọc nghĩa các từ.
+- Sửa: chữ khung tự giải nghĩa: "AB và DC song song: đó là hai cạnh đáy"; "AD và BC là hai cạnh bên, chúng bằng nhau"; "Góc D và góc C ở hai đầu đáy DC, chúng bằng nhau"; tiêu đề "Hình thang cân ABCD". Chụp lại ba thiết bị.
 
-### 7. Lời giải nhận hình theo dáng hay hướng nằm, không theo tính chất (cũng thuộc bài `hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can`)
+### 9. Lời giải các câu đường chéo hình bình hành không nêu câu quy tắc
 
-- Vị trí: `[đã bỏ khi sửa vòng 1] $.exercises[1].explain.text` (`ten-hinh-binh-hanh`: "nghiêng sang một bên và có hai cặp cạnh giống nhau"); `[phần 1] $.exercises[45].explain.text` ("nằm như một viên kim cương"); `$.exercises[46].explain.text` và `$.exercises[12].explain.text`, `.wrong[0].text` ("một cạnh bên thẳng đứng") - LL-17
-- Sửa: nêu tính chất: "các cạnh đối bằng nhau và song song, nhưng không có góc vuông và bốn cạnh không bằng nhau"; "Hình thoi có bốn cạnh bằng nhau."; "hai cạnh bên dài khác nhau". Dùng "bằng nhau", không "giống nhau".
-- Tình trạng sau vòng 1: đã sửa
+- Vị trí: `$.exercises[7].explain.text` (`cheo-bh-trung-diem`), `$.exercises[5]`, `[6]`, `[8]`, `[9]` (`cheo-bh-oc`, `cheo-bh-ao`, `cheo-bh-oq`, `cheo-bh-mo`) - LL-17
+- Nguồn: tr.67
+- Vấn đề: `cheo-bh-trung-diem` "O nằm chính giữa mỗi đường chéo, nên O là trung điểm" lặp định nghĩa trung điểm, không nói vì sao; bốn câu số bắt đầu bằng "O là trung điểm của AC" không lý do. Bé chậm cần thấy câu quy tắc được dùng.
+- Sửa: mở mỗi `explain` bằng câu quy tắc nguyên văn: `cheo-bh-trung-diem` "Hai đường chéo của hình bình hành cắt nhau tại trung điểm của mỗi đường. Vậy O là trung điểm của GI và của HK. GH và HI là cạnh, O không nằm trên chúng."; `cheo-bh-oc` "Hai đường chéo của hình bình hành cắt nhau tại trung điểm của mỗi đường. Vậy O là trung điểm của AC, nên OC = OA = 4 cm."; ba câu còn lại cùng khuôn (giữ `tex`).
 
-### 10. Bảng vẽ báo "Bạn đã làm xong mọi bước." khi chọn sai số (cũng thuộc bài `hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can`)
+### 10. Câu luyện `chon-hinh-thang-can-hai-ben` dùng lại ba hình của Hình 4.12 cùng dáng, cùng hướng
 
-- Vị trí: `board-visual.tsx:66–87` (không truyền `finished`); walk `179-s12-06-exercise-ve-cn-abcd-wrong1.png`
-- Sửa: truyền `finished` ("Bạn đã bấm đủ các bước. Hãy bấm Kiểm tra."); ở màn có `goal`, `warning` khi số khác `goal`. Thêm test.
-- Tình trạng sau vòng 1: đã sửa
+- Vị trí: `$.exercises[12].options` (`th-thang-vuong`, `th-thang-can`, `th-ngu-giac`); walk `045` - LL-07, LL-08
+- Nguồn: tr.68 Hình 4.12a, b, d
+- Vấn đề: giải trước một nửa bài 4.9 (`$.exercises[46]`); vòng 1 Nên sửa 24 đã đổi hướng hình ở câu dẫn 4.9 vì lý do này, câu luyện chưa đổi.
+- Sửa: lật hình thang vuông (cạnh vuông góc bên phải, đáy dài ở trên), thay ngũ giác bằng hình khác (tam giác hay lục giác không đều). Không đưa hình bình hành hay hình chữ nhật vào câu này. Sửa cùng lúc với Nghiêm trọng 3.
 
-### 11. Bảng vẽ, hình mẫu từng bước và hình "Nhắc lại" quá nhỏ trên iPad (cũng thuộc bài `hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can`)
+### 11. "Tứ giác lệch" trông gần như có hai cạnh song song và hai cạnh bên gần bằng nhau
 
-- Vị trí: `construction.ts:31` (`UNIT = 18`), `board.tsx` `DEFAULT_MAX_HEIGHT = 188`; hình `ve-*-cac-buoc`, hình quy tắc phần 12–15, mọi bảng; `visual.ve-ba-hinh` (`$.sections[9].blocks[1].children[5]`, ba hình cao khoảng 30 px); walk `167`, `168`, `178`, `186`, `204`, `218`, `274-s19-02`, `305-s19-17` - LL-12
-- Sửa: hình quy tắc cắt khung theo hình thật; bảng tính khung theo số lớn nhất của đề hoặc nâng `maxHeight` trên iPad; `ve-ba-hinh` xếp một cột.
-- Tình trạng sau vòng 1: làm một phần: hình quy tắc to hơn; bảng vẽ vẫn nhỏ trên iPad (muốn to hơn phải đổi bố cục `src/visuals/shared/plane/board.tsx`)
+- Vị trí: `th-tu-giac-lech` (`src/visuals/shared/quadrilaterals/other-shapes.ts`, `looseQuadrilateral` ở `figures.ts`) ở `$.exercises[2].options[2]`, `$.exercises[12].options[1]`; walk `015`, `045` - LL-10, LL-14
+- Vấn đề: AB và DC chỉ lệch nhau khoảng 4°, hai cạnh còn lại dài 102 và 92 đơn vị; bé dễ thấy "hình thang cân hơi lệch", và `wrong` "không có cặp cạnh nào song song" trái điều bé nhìn thấy.
+- Sửa: hình dùng chung với bài phần 1 (năm chỗ) nên không sửa hình chung; thêm một hình riêng trong `catalog-thumbs.ts` của bài này, hai cạnh trên dưới nghiêng ngược chiều rõ (vd D(50, 170), C(250, 140)), hai cạnh bên khác hẳn nhau, cho hai câu trên.
 
-### 12. Hai nhãn "120°" đứng liền nhau giữa hình ở "Cùng làm" phần 7
+### 12. Câu quy tắc của `so-sanh-bon-hinh` mở bằng "Hai đường chéo bằng nhau", dễ nhớ thành chiều đảo, và nói khác câu quy tắc `cheo-hinh-thang-can`
 
-- Vị trí: `visual.do-binh-hanh` (`catalog-binh-hanh-thang-can.ts:113–141`); walk `105-s7-03-block-shown.png` - LL-12
-- Sửa: `textDistance` nhỏ hơn cho góc tù hoặc đặt nhãn sát đỉnh (như bản sửa hình thoi ở commit `b85bac6`).
-- Tình trạng sau vòng 1: đã sửa
+- Vị trí: `$.sections[4].blocks[1].children[0]` (`rule`), `$.sections[4].recap.caption`, `$.cards[4].recap.caption` - LL-10, LL-05
+- Nguồn: tr.67
+- Vấn đề: "Hai đường chéo bằng nhau ở hình chữ nhật và hình thang cân" đặt tính chất lên đầu, cùng note "So sánh giúp bạn không nhầm hình…", nên bé dễ nhớ "đường chéo bằng nhau thì là hình chữ nhật hay hình thang cân" (chiều vòng 1 Nghiêm trọng 1 đã loại); `$.sections[3]` lại nói "Hai đường chéo của hình thang cân bằng nhau" (chủ ngữ là hình).
+- Sửa (recap và thẻ lặp nguyên văn): "Hình chữ nhật và hình thang cân có hai đường chéo bằng nhau. Hai đường chéo của hình thoi vuông góc với nhau."
 
-### 13. "Góc kề một đáy" chưa được giải nghĩa
+### 13. Hình chạm đo của 4.16: ô chạm chồng nhau và màn không nói phải chạm
 
-- Vị trí: `$.sections[2].blocks[1].children[0]` - LL-10
-- Sửa: thêm "Hai góc ở hai đầu một đáy gọi là hai góc kề đáy đó."
-- Tình trạng sau vòng 1: đã sửa
+- Vị trí: `$.exercises[53].prompt[1]` (`visual.sbt-hinh-4-14`, `catalog-book.ts`; `figure414` ở `figures.ts`); walk `166` (iPad, iPad ngang) - LL-22
+- Nguồn: tr.69 Hình 4.14
+- Vấn đề: tám ô "?" dồn trong ABCD cao 64 đơn vị, ô góc chạm ô nửa đường chéo (phần che chữ O: Nghiêm trọng 5); bé dễ chạm nhầm. Màn chỉ có lời sách và "Chọn đáp án đúng.", không câu nào bảo chạm để đo.
+- Sửa: phóng hình, ô góc đặt ra ngoài góc, ô nửa đường chéo đặt trên phần đường chéo ngoài ABCD; thêm khối app trước "Chọn đáp án đúng.": "Chạm từng nửa đường chéo và từng góc của ABCD để đo." Chụp lại ba thiết bị.
 
-### 14. "Cắt nhau ở giữa", "O ở giữa" bên cạnh câu quy tắc "cắt nhau tại trung điểm"
+### 14. 4.17: bé không kiểm được trên màn điều lời giải dựa vào
 
-- Vị trí: `$.sections[7].blocks[0].children[0].text`; chú thích "Hình bình hành: cắt nhau ở giữa" (`catalog-binh-hanh-thang-can.ts:61–64`, hình `so-sanh-cheo`, recap phần 11); `$.exercises[20].explain.wrong[1].text`; `$.exercises[35].explain.wrong[0].text`, `[đã bỏ khi sửa vòng 1] $.exercises[108].explain.wrong[0].text` ("O ở giữa mỗi đường chéo") - LL-05
-- Sửa: dùng một cách nói: "cắt nhau tại trung điểm của mỗi đường", "O là trung điểm của mỗi đường chéo".
-- Tình trạng sau vòng 1: đã sửa
+- Vị trí: `$.exercises[56].prompt[1]` (`visual.sbt-hinh-4-15`), `$.exercises[56].explain.text` (`ex.sbt-4-17`); walk `175` - LL-22
+- Nguồn: tr.69 Hình 4.15; lời giải tr.115
+- Vấn đề: hình tĩnh không số đo; `explain` dựa vào các đoạn bằng nhau, BE song song CD, hai góc 60° mà màn không cho cách thấy (OD không vẽ). Vòng 1 Nên sửa 22 đã làm cho 4.16, chưa làm cho 4.17.
+- Sửa: đổi thành hình chạm để đo (`kind: "probe"`) như `sbt-hinh-4-14`: OA, AB, BC, CO, CD, DE, EO cùng số đo, góc B, góc E "60°"; thêm khối app "Chạm từng đoạn và hai góc B, E để đo." trước "Chọn đáp án đúng."; ô chạm không chồng nhau.
 
-### 15. Kho ôn `ve-bh-cheo-efgh` (EF = FG = 4, EG = 6) ra hình thoi
+### 15. Câu dẫn `dan-4-17-thoi` tự trả lời trong đề
 
-- Vị trí: `$.exercises[33]`
-- Sửa: EF = 3, FG = 4, EG = 6 (soát bất đẳng thức tam giác, khác số đã dùng).
-- Tình trạng sau vòng 1: đã sửa
+- Vị trí: `$.exercises[54].prompt[0].text`, `.options`, `.explain` (`ex.dan-4-17-thoi`); walk `171` - LL-14
+- Vấn đề: đề nói sẵn "Vậy OU, OV, OW cũng dài 5 cm" rồi hỏi bốn cạnh có bằng nhau không; nhiễu "có cạnh dài hơn 5 cm" trái đề. Câu không tập bước 4.17 cần.
+- Sửa: bỏ câu "Vậy OU, OV, OW cũng dài 5 cm"; hỏi "Tứ giác OUVW là hình gì?" với Hình thoi, Hình chữ nhật, Hình thang cân; `explain` "OU, UV, VW, WO đều là cạnh của các tam giác đều có cạnh 5 cm, nên OUVW có bốn cạnh bằng nhau. Vậy OUVW là hình thoi."; `wrong` cho hai nhiễu.
 
-### 16. Hình mẫu phần 15 không nêu số đề, không nói vì sao mở compa 3 cm
+### 16. Mẹo "Vẽ hai đường song song" thiếu bước đặt cạnh êke trùng cạnh đã có
 
-- Vị trí: `$.sections[6].blocks[0].children[1]`; chú thích khung `catalog-drawing.ts` - LL-16
-- Sửa: "… ABCD có AB = 4 cm, BC = 3 cm và AC = 6 cm."; "Mở compa bằng BC = 3 cm, đặt kim ở B vẽ cung".
-- Tình trạng sau vòng 1: đã sửa
+- Vị trí: `$.sections[5].blocks[2]` (`tip.truot-eke`), hình `visual.truot-eke` (`catalog-drawing.ts`) - LL-24
+- Nguồn: cách vẽ SGK Toán 6 (thước và êke)
+- Vấn đề: nhóm 2 thử sáu đầu vào (bảng trong `nhom-2.md`): lời mẹo đúng ("các đường kẻ theo một cạnh êke khi trượt dọc thước thì song song"), nhưng không nói kẻ theo cạnh không áp vào thước, và không nói phải đặt cạnh đó trùng cạnh cần song song trước khi trượt; thiếu bước này thì đường qua B không song song với AD. Mẹo đúng như đã viết nên không Nghiêm trọng; nó là chỗ duy nhất của hai bài nói cách đặt êke.
+- Sửa: `text` "Đặt một cạnh êke trùng với cạnh đã có, áp thước vào cạnh khác của êke. Giữ thước yên, trượt êke tới điểm cần vẽ rồi kẻ theo cạnh đã đặt: đường mới song song với cạnh đã có."; hình thêm đoạn AD trùng cạnh êke lúc đầu và điểm B lúc sau.
 
-### 17. Bước "dùng thước đo góc, chọn 45°, 60° hay 75°" khi vẽ hình thoi, hình bình hành (cũng thuộc bài `hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can`)
+### 17. Câu quy tắc đường chéo hình bình hành nói nhiều cách
 
-- Vị trí: bước `angle` (`construction.ts:86–92`), note đầu phần 13, 14, mục `s2` của `[phần 1] $.exercises[35]`, `$.exercises[25]`; câu app của 4.11, 4.12
-- Vấn đề: SGK KNTT vẽ bằng "một đường thẳng bất kỳ qua A", không đo góc; 4.11, 4.12 không cho góc. Đo góc học ở tiểu học, nhưng vẽ góc cho trước bằng thước đo góc chưa có trên trang. Chấm 4.11 (mọi góc trong ba góc đều đúng) là hợp lý.
-- Sửa: xem "Cần chủ dự án quyết", mục 2.
-- Tình trạng sau vòng 1: giữ bước chọn góc theo phương án (a): quy tắc nói "tạo góc cho trước", mục thước đo góc trong note và `overview.goals`
+- Vị trí: `$.sections[7].blocks[0].children[0]` ("Hình bình hành có hai đường chéo cắt nhau tại trung điểm…"); chú thích `COMPARE_DIAGONALS["binh-hanh"].caption` và `facts` của thẻ hình bình hành trong `visual.so-sanh-the` (`catalog-binh-hanh-thang-can.ts`: "cắt nhau tại trung điểm"); `aria-label` của `kiem-hinh-quy-tac` (`catalog-check.ts`) và `sbt-4-16-giai` (`catalog-book.ts`) còn "cắt nhau ở giữa" - LL-05
+- Vấn đề: câu quy tắc `$.sections[1].blocks[1].children[0]` là "Hai đường chéo của hình bình hành cắt nhau tại trung điểm của mỗi đường."; các chỗ trên đảo chủ ngữ, bỏ "của mỗi đường", hay còn "ở giữa" (vòng 1 Nên sửa 14 đã thống nhất bỏ). Gộp nhóm 2 Góp ý 1, nhóm 3 Góp ý 6, nhóm 4 Góp ý 4 và phát hiện của Tổng hợp.
+- Sửa: dùng đúng câu quy tắc ở `$.sections[7].blocks[0].children[0]` (câu đầu) và ở `facts`; chú thích "Hình bình hành: cắt nhau tại trung điểm của mỗi đường"; hai `aria-label` đổi "ở giữa" thành "tại trung điểm của mỗi đường".
 
-### 19. Câu kho ôn phần 11 dùng chữ "dấu hiệu" trước phần 16
+### 18. "Điểm riêng", "dấu riêng" gọi các tính chất mà hình khác cũng có
 
-- Vị trí: `$.exercises[23].explain.text`, `$.exercises[24].explain.text` - LL-09
-- Sửa: "Trong bốn hình, chỉ hình thoi luôn có bốn cạnh bằng nhau và hai đường chéo vuông góc." (tương tự hình chữ nhật).
-- Tình trạng sau vòng 1: đã sửa
+- Vị trí: `$.sections[4].blocks[0].children[0]`, `$.sections[4].blocks[2].children[0]`; nhãn và `facts` của `visual.so-sanh-the`, nhãn `visual.so-sanh-bon-hinh` - LL-10
+- Vấn đề: thẻ hình chữ nhật ghi "Các cạnh đối bằng nhau" (hình bình hành cũng có), "Hai đường chéo bằng nhau" (hình thang cân cũng có); gọi là "điểm riêng" dạy bé nhận hình bằng chúng.
+- Sửa: "Cùng làm: chạm vào từng hình để đọc tính chất của nó."; note đầu "Xem bốn hình đặt cạnh nhau, mỗi hình với dấu trên hình của nó."; nhãn hình "Bốn hình và tính chất của mỗi hình", `done` "Bạn đã xem tính chất của cả bốn hình."
 
-### 20. Phần 11 `so-sanh-bon-hinh` lặp lại phần 3, 6, 8, 10
+### 19. Hai section không có ví dụ đời sống
 
-- Vị trí: `$.sections[4]`. Đề xuất ở mục "Độ dài".
-- Tình trạng sau vòng 1: đã sửa
+- Vị trí: `$.sections[4]` (`so-sanh-bon-hinh`), `$.sections[5]` (`ve-hinh-binh-hanh`) - LL-16
+- Sửa: một câu trong note mở đầu, vd `so-sanh-bon-hinh` "Cánh cửa, khung diều, viên gạch lát nghiêng và chiếc thang chữ A có bốn hình khác nhau."; `ve-hinh-binh-hanh` "Muốn cắt một viên gạch hình bình hành bằng giấy, ta vẽ nó trước." (gộp vào note của Nên sửa 7 (c), (d) sao cho mỗi note ≤ 2 câu).
 
-### 21. Câu dùng lại hình hay tên điểm của màn mẫu hoặc câu khác cùng phần (cũng thuộc bài `hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can`)
+### 20. `explain` của `ve-bh-cheo-hinh-gi` lập luận bằng định nghĩa bài không dạy
 
-- Vị trí: `visual.binh-hanh-cheo-ten` ở `$.exercises[5]`–`[37]`; `[phần 1] $.exercises[40]` dùng tứ giác XYZT của `visual.kiem-cac-buoc`; `$.exercises[19]` dùng hình `thang-can-cheo-ten` của `$.exercises[15]` - LL-07
-- Sửa: câu luyện và kho ôn dùng tên khác (MNPQ, GHIK, giao điểm I) hoặc hình nghiêng khác.
-- Tình trạng sau vòng 1: đã sửa
+- Vị trí: `$.exercises[34].explain.text` - LL-09
+- Vấn đề: "ABCD có hai cặp cạnh đối song song. Vậy ABCD là hình bình hành" dùng chiều định nghĩa lớp 8; bài chỉ dạy chiều "hình bình hành thì cạnh đối song song" và dấu hiệu đường chéo.
+- Sửa: "Đây đúng là các bước vẽ hình bình hành ở phần trước: hai đường song song vẽ bằng êke gặp nhau tại D. Vậy ABCD là hình bình hành." (sửa cùng Nghiêm trọng 2).
 
-### 22. Đề 4.15, 4.16 là hình tĩnh, lời giải nêu số đo bé không thấy (cũng thuộc bài `hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can`)
+### 21. Nhiễu "Không, vì hai góc kề đáy khác nhau" trái ngay dữ kiện đề
 
-- Vị trí: `[phần 1] $.exercises[55]` (`explain` "đều dài 5 cm"), `$.exercises[53]` (hình không vẽ EP, FQ mà `explain` dựa vào) - LL-22
-- Sửa: hình đề thành hình chạm để đo (`kind: "probe"`): 4.15 chạm bốn cạnh; 4.16 chạm hai nửa EP, FQ và bốn góc ABCD. Lời đề giữ nguyên.
-- Tình trạng sau vòng 1: đã sửa
-
-### 23. Câu dẫn trùng câu phần dạy (cũng thuộc bài `hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can`)
-
-- Vị trí: `dan-4-16-cheo` (`[đã bỏ khi sửa vòng 1] $.exercises[108]`) trùng `kiem-bh-cheo-co` (`[80]`); `dan-4-19-hai-ghep` (`[116]`) trùng nguyên văn `ghep-hai-thang-can-thanh` (`[87]`); `dan-4-18-day-lon` (`[114]`) gần trùng `ghep-day-lon` (`[85]`); `dan-4-16-eke` (`[109]`) gần trùng `ba-goc-khit` (`[79]`) - LL-07
-- Sửa: bỏ `dan-4-16-cheo`, `dan-4-18-day-lon`; `dan-4-19-hai-ghep` thành câu đếm ("Hai miếng ghép thành hình lục giác giữa khay. Còn mấy miếng xếp quanh?", đáp án 6); đổi tên và cách hỏi của `dan-4-16-eke`.
-- Tình trạng sau vòng 1: đã sửa
-
-### 24. Câu dẫn 4.8, 4.9 dùng đúng bộ bốn hình của Hình 4.11, 4.12 (cũng thuộc bài `hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can`)
-
-- Vị trí: `[phần 1] $.exercises[45].right`, `$.exercises[45].right` - LL-02
-- Sửa: đổi nhiễu và hướng (hình chữ nhật xoay nghiêng, hình thang cân lộn ngược).
-- Tình trạng sau vòng 1: đã sửa
-
-### 25. "Hình thang" định nghĩa muộn và sai ("hình có hai cạnh song song")
-
-- Vị trí: `$.sections[7].blocks[1].children[0].text`; `$.exercises[39].explain.wrong[2].text`; phần 9 (`$.sections[2]`) dạy hình thang cân mà chưa nói hình thang là gì - LL-17, LL-05
-- Sửa: định nghĩa một lần ở note đầu phần 9: "Hình thang là tứ giác có hai cạnh đối song song." (phần 9 cần thêm "tứ giác là hình có bốn cạnh", hiện chỉ có ở phần 16); phần 17 nhắc đúng câu đó; `wrong[2]`: "Tứ giác có một cặp cạnh song song là hình thang, chưa chắc là hình bình hành."
-- Tình trạng sau vòng 1: đã sửa
-
-### 27. Kho ôn `luc-giac-gom-thang-can` có đáp án trong đề
-
-- Vị trí: `$.exercises[43]` - LL-14
-- Sửa: "Cắt một hình lục giác đều theo một đường chéo chính. Mỗi phần là hình gì?"
-- Tình trạng sau vòng 1: đã sửa
-
-### 29. Lời giải 4.12 nhảy từ FH = 4 sang EK = 4 không nói lý do
-
-- Vị trí: `$.exercises[48].explain.text` (`ex.sbt-4-12`)
-- Sửa: "FH và EK là hai cạnh đối nên bằng nhau: lấy EK = 4 cm."
-- Tình trạng sau vòng 1: đã sửa
-
-### 31. Màu teal vừa là hình chữ nhật vừa là miếng tam giác đều (cũng thuộc bài `hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can`)
-
-- Vị trí: `figures.ts:29` (`"chu-nhat": "teal"`), `figures.ts:1079` (miếng tam giác của dải ghép), `board-visual.tsx:116` (`strip`, `color: "teal"`); glossary `hình chữ nhật` và `hình tam giác đều` cùng `teal` (tương tự `hình thoi`/`hình vuông` cùng `pink`, `hình bình hành`/`hình lục giác đều` cùng `lime`) - LL-05
-- Vấn đề: trong bài này teal là màu hình chữ nhật ở phần 1–17, rồi phần 18 và 4.18 tô tam giác đều cũng bằng teal; bài liền trước dạy teal là tam giác đều.
-- Sửa: tác giả chọn cho bốn hình của bài các màu chưa dùng cho hình của Bài 18 (sửa glossary và `figures.ts` cùng lúc), hoặc tô miếng ghép bằng màu trung tính.
-- Tình trạng sau vòng 1: làm một phần: miếng tam giác đều tô xám; màu glossary của bốn hình không đổi
+- Vị trí: `$.exercises[37].options[1]`, `explain.wrong[0]` (`ex.kiem-thang-can-goc`) - LL-14
+- Sửa: nhiễu "Chưa biết, phải đo hai cạnh bên"; `wrong` "Hai góc kề một đáy bằng nhau là đủ để biết hình thang là hình thang cân, không cần đo cạnh bên."
 
 ## Góp ý
 
-### 2. Chữ O chạm nét ở các hình đường chéo hình thoi và `hex-ten` (cũng thuộc bài `hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can`)
+### 1. Mũi tên song song trên BC chạm cung góc 60° ở hình quy tắc
 
-- Vị trí: `cheo-thoi-cac-buoc`, `cheo-thoi-quy-tac`, `thoi-cheo-o` (walk `085`, `086`, `090`); `visual.hex-ten` (walk `267-s18-06`). Sửa: nhích nhãn O, cùng lúc với Nghiêm trọng 6.
-- Tình trạng sau vòng 1: đã làm
+- Vị trí: `visual.binh-hanh-quy-tac` ở `$.sections[0].blocks[1].children[1]`, recap section và thẻ; walk `005`, `020` - LL-12
+- Sửa: đặt mũi tên song song giữa cạnh hoặc lùi xa đỉnh khi hình có cung góc.
 
-### 4. "Cắt nhau nghiêng" mơ hồ
+### 2. Câu hỏi về đường chéo mà hình đề không vẽ đường chéo
 
-- Vị trí: `$.exercises[20].explain.wrong[0].text`, `explain.text` ("không luôn như vậy"). Sửa: "cắt nhau không thành góc vuông"; "thì không chắc chắn như vậy".
-- Tình trạng sau vòng 1: đã làm
+- Vị trí: `$.exercises[16]` (`ex.cheo-tc-cap-bang-nhau`, hình `thang-can-ten`)
+- Sửa: dùng hình có hai đường chéo nét thường, khác hình của câu ngay trước.
 
-### 5. `ve-bh-cheo-hinh-gi` không loại ba điểm thẳng hàng và dùng chiều ngược
+### 3. Câu kho ôn của thẻ "Vẽ hình bình hành" hỏi tính chất cạnh đối
 
-- Vị trí: `$.exercises[34]`. Sửa: "Ba điểm A, B, C không thẳng hàng"; `explain` dựa vào chính cách vẽ phần 14.
-- Tình trạng sau vòng 1: đã làm
+- Vị trí: `$.exercises[29]` (`ex.ve-bh-canh-dc`)
+- Sửa: hỏi theo bước vẽ, hoặc gắn câu sang thẻ `hinh-binh-hanh`.
 
-### 7. Câu đề thiếu chủ ngữ
+### 4. Chú thích bước cuối để chữ "C" đứng một mình ở dòng dưới
 
-- Vị trí: `$.exercises[16].prompt[0]`, `$.exercises[19].prompt[0]`. Sửa: "Cho hình thang cân ABCD."
-- Tình trạng sau vòng 1: đã làm
+- Vị trí: `visual.ve-binh-hanh-cac-buoc` khung cuối (`catalog-drawing.ts`); walk `075`
+- Sửa: "Hai đường gặp nhau tại C. Nối C với D và với B."
 
-### 8. 4.14: EFPQ cũng có bốn cạnh bằng nhau
+### 5. Nấc 1 của hai câu kiểm tra section 7 tô câu hỏi, không tô dữ kiện
 
-- Vị trí: `$.exercises[53].explain`. Có thể thêm "EFPQ còn có bốn cạnh bằng nhau; hình thoi cũng là hình bình hành."
-- Tình trạng sau vòng 1: bỏ
+- Vị trí: `$.exercises[30].hints.highlight[0]`, `$.exercises[31].hints.highlight[0]`
+- Sửa: `index: 0` (khối dữ kiện AB, BC, AC).
 
-### 9. `thang-can-ba-canh-4` dùng đúng 4 cm của 4.18 và nói "cạnh trên, đáy dưới" khi không có hình (cũng thuộc bài `hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can`)
+### 6. `ve-bh-cheo-do-mo` dùng đúng BC = 5 cm, AC = 6 cm của bài 4.13
 
-- Vị trí: `[đã bỏ khi sửa vòng 1] $.exercises[89]` - LL-07. Sửa: 7 cm; dùng "đáy nhỏ", "đáy lớn".
-- Tình trạng sau vòng 1: đã làm
+- Vị trí: `$.exercises[31].prompt[0]` - LL-07
+- Sửa: bộ số chưa dùng, vd AB = 3 cm, BC = 6 cm, AC = 7 cm.
 
-### 10. `dem-thoi-luc-giac` dùng đúng tên OABC của 4.17
+### 7. Câu luyện `ve-bh-cheo-mnpq` trùng tên MNPQ với "Cùng làm" cùng section
 
-- Vị trí: `$.exercises[41]`. Sửa: đổi tên (OMNP).
-- Tình trạng sau vòng 1: đã làm
+- Vị trí: `$.exercises[32]`, `$.sections[6].blocks[2]` - LL-07
+- Sửa: đổi tên điểm câu luyện (vd GHIK).
 
-### 11. "Cùng làm" ghép ba tam giác làm đúng việc của 4.18
+### 8. `dem-thoi-luc-giac` dùng lại Hình 4.10 với đúng tên đỉnh
 
-- Vị trí: `$.sections[8].blocks[2]`, `$.exercises[57]`. Có thể đổi nhãn, cỡ tam giác ở "Cùng làm".
-- Tình trạng sau vòng 1: bỏ
+- Vị trí: `$.exercises[41]`, `visual.hex-ten` (`catalog-check.ts`), `visual.ghep-quy-tac` - LL-08
+- Nguồn: tr.68 ví dụ 2
+- Sửa: đổi tên đỉnh (vd MNPQRS) và xoay lục giác.
 
-### 12. Hình 4.16 vẽ lại cắt lục giác giữa theo đường ngang, sách cắt nghiêng (cũng thuộc bài `hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can`)
+### 9. "Cùng làm" section 8 lặp đúng hình và số của hình chạy từng bước
 
-- Vị trí: `figures.ts:1103` (cắt `i0-i3`). Nếu muốn khớp sách thì cắt `i1-i4`.
-- Tình trạng sau vòng 1: đã làm
+- Vị trí: `visual.do-kiem-binh-hanh` (`$.sections[7].blocks[3].children[1]`) và `visual.kiem-bh-cac-buoc` - LL-07
+- Sửa: hình bình hành khác dáng, khác số (vd nửa đường chéo 5 và 2).
 
-### 15. `overview.goals[2]` không kể thước đo góc mà bài dùng (cũng thuộc bài `hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can`)
+### 10. "Đáy lớn", "đáy nhỏ" dùng mà chưa nói
 
-- Vị trí: `$.overview.goals[2]` ("bằng thước, êke và compa"). Sửa theo quyết định ở "Cần chủ dự án quyết", mục 2.
-- Tình trạng sau vòng 1: đã làm
+- Vị trí: `$.exercises[40].prompt[1]`, `$.exercises[42].prompt[0]`; `$.sections[8]`
+- Sửa: thêm vào note đầu `$.sections[8].blocks[0]`: "Đáy dài hơn gọi là đáy lớn, đáy ngắn hơn gọi là đáy nhỏ." (giữ ≤ 2 câu).
+
+### 11. "Thẳng hàng", "dấu hiệu" chưa có trong glossary hay phần dạy
+
+- Vị trí: `$.exercises[34].prompt[0]`; `$.exercises[39].explain.text`
+- Sửa: "ba điểm A, B, C không nằm trên một đường thẳng"; `explain` của `kiem-chac-chan-binh-hanh` lặp câu quy tắc thay cho "là dấu hiệu của hình bình hành".
+
+### 12. `whyItMatters` chỉ nói hình thang cân "trông thế nào"
+
+- Vị trí: `$.overview.whyItMatters`
+- Sửa (gợi ý): "Khi đóng khung hay cắt miếng ghép khay mứt Tết, bạn đo cạnh, góc và đường chéo để biết miếng đó có đúng là hình bình hành hay hình thang cân không."
+
+### 13. Câu dẫn `dan-4-19-xep-quanh` chỉ là phép trừ, không có hình
+
+- Vị trí: `$.exercises[58]`
+- Sửa (gợi ý): thêm hình khay nét đứt không tô để đếm, hoặc hỏi hai hình thang cân có đáy nhỏ bằng cạnh bên ghép theo đáy lớn thành hình gì (khác lời `ghep-hai-thang-can-thanh`).
+
+### 14. `dan-4-17-thang-can` gọi "cạnh đáy" cho một tứ giác chưa biết là hình thang
+
+- Vị trí: `$.exercises[55].prompt[0].text`
+- Sửa: "Một hình thang có hai góc kề một đáy bằng nhau." hoặc "Một tứ giác có hai cạnh đối song song…".
+
+### 15. 4.12: thêm một câu cho bé khỏi lo chọn góc sai
+
+- Vị trí: `$.exercises[48].explain` (điểm nghi của handover: cách chấm nhận mọi góc trong ba góc là đúng với đề)
+- Sửa: thêm "Sách không cho góc, nên góc nào bạn chọn cũng đúng."
 
 ## Cần chủ dự án quyết
 
-1. Tách bài: đã quyết (xem "Tách bài").
-2. Bước chọn góc 45°, 60°, 75° bằng thước đo góc khi vẽ hình bình hành (SBT 4.12): đang giữ theo phương án (a) như bài chưa tách; chấp nhận mọi góc trong ba góc cho.
-3. SBT 4.12, 4.13, 4.18, 4.19 sách không in lời giải; Reviewer vòng 1 đã tự giải và thấy khớp. Chủ dự án ghi nhận.
+1. Section `so-sanh-bon-hinh`: nhóm 2 đề xuất giữ (chỗ duy nhất của phần dạy nhắc hình chữ nhật, hình thoi trước 4.16, 4.17; hình của nó là gợi ý nấc 2 của 4.9; bài 58 phút, dưới mức tách), sau khi sửa Nghiêm trọng 1, 4, 5 và Nên sửa 7, 12, 17, 18.
+2. Bước chọn góc 45°, 60°, 75° khi vẽ hình bình hành (SBT 4.12): giữ như vòng 1, chấp nhận mọi góc trong ba góc.
+3. SBT 4.12, 4.13, 4.18, 4.19 sách không in lời giải; reviewer vòng 1 và vòng 2 đã tự giải, khớp `answer`.
