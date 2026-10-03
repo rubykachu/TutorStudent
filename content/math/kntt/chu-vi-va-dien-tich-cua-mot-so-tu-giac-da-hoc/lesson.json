@@ -436,7 +436,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Vẽ một hình chữ nhật đi qua bốn đỉnh của hình thoi, có hai cạnh bằng hai đường chéo a và b. Sau đó xoay mỗi tam giác nằm ngoài hình thoi nửa vòng quanh điểm giữa cạnh, thì bốn tam giác lấp đầy hình thoi."
+              "text": "Vẽ hình chữ nhật đi qua bốn đỉnh hình thoi, dài bằng đường chéo a, rộng bằng đường chéo b. Sau đó, xoay bốn tam giác ở ngoài vào trong hình thoi thì chúng lấp đầy hình thoi."
             },
             {
               "type": "visual",
@@ -496,7 +496,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Lấy hai hình thang cân giống hệt nhau, xoay ngược một hình rồi ghép hai cạnh bên vào nhau. Ta được hình bình hành có cạnh đáy bằng hai đáy của hình thang cộng lại."
+              "text": "Lấy hai hình thang cân giống hệt nhau, quay một hình cho đáy lớn lên trên rồi đặt sát hình kia. Ta được hình bình hành có đáy bằng hai đáy hình thang cộng lại."
             },
             {
               "type": "visual",
@@ -733,7 +733,7 @@
             },
             {
               "type": "note",
-              "text": "Cắt mất một hình chữ nhật nhỏ ở góc, chu vi hình còn lại bằng chu vi hình chữ nhật trước khi cắt. Diện tích hình còn lại bằng diện tích hình chữ nhật trước khi cắt, trừ đi diện tích phần bị cắt."
+              "text": "Hình chữ nhật bị cắt mất một hình chữ nhật nhỏ ở góc vẫn có chu vi như trước khi cắt. Còn diện tích thì bằng diện tích lúc trước trừ đi phần bị cắt."
             },
             {
               "type": "visual",
@@ -780,7 +780,7 @@
             },
             {
               "type": "note",
-              "text": "Hãy đổi về cùng một đơn vị: ra cm để đếm gạch theo hàng, ra m khi giá tính theo mét vuông. Muốn đếm gạch theo hàng, lấy chiều dài và chiều rộng chia cho cạnh gạch, rồi nhân hai kết quả."
+              "text": "Muốn đếm gạch, đổi hết ra cm, rồi lấy chiều dài và chiều rộng chia cho cạnh gạch. Nhân hai kết quả là ra số viên; còn khi giá tính theo mét vuông thì đổi ra m."
             },
             {
               "type": "visual",
@@ -4505,7 +4505,7 @@
       },
       "difficulty": 3,
       "explain": {
-        "text": "Vẽ thêm hai đoạn bù vào chỗ bị cắt, ta được hình chữ nhật 8 m và 6 m. Hai cạnh của phần bị cắt là 8 − 6 = 2 m và 6 − 4 = 2 m. Chu vi mảnh vườn bằng chu vi hình chữ nhật, còn diện tích bằng hình chữ nhật trừ phần bị cắt.",
+        "text": "Vẽ thêm hai đoạn vào chỗ bị cắt, ta được hình chữ nhật dài 8 m, rộng 6 m. Phần bị cắt có hai cạnh là 8 − 6 = 2 m và 6 − 4 = 2 m. Vì vậy, chu vi mảnh vườn bằng chu vi hình chữ nhật, còn diện tích thì trừ đi phần bị cắt.",
         "tex": "\\begin{gathered} 2 \\cdot (8 + 6) = \\concept{blue}{28}\\ \\mathrm{m} \\\\ 8 \\cdot 6 - 2 \\cdot 2 = \\concept{teal}{44}\\ \\mathrm{m}^{2} \\end{gathered}"
       },
       "segments": [
@@ -4874,7 +4874,7 @@
       },
       "difficulty": 3,
       "explain": {
-        "text": "Đổi ra cm: sân dài 1 500 cm, rộng 900 cm, cạnh gạch 60 cm. Mỗi hàng có 25 viên, có 15 hàng, nên cần 25 · 15 = 375 viên, tức 375 : 5 = 75 thùng. Cách khác: lấy 135 m² chia cho 0,36 m² của một viên, cũng được 375 viên.",
+        "text": "Đổi ra cm: sân dài 1 500 cm, rộng 900 cm, gạch cạnh 60 cm. Mỗi hàng có 25 viên và có 15 hàng, nên cần 375 viên, tức là 75 thùng. Sách làm cách khác: lấy 135 m² chia cho 0,36 m², cũng ra 375 viên.",
         "tex": "\\begin{gathered} 1\\,500 : 60 = 25 \\\\ 900 : 60 = 15 \\\\ 25 \\cdot 15 = 375 \\\\ 375 : 5 = 75 \\end{gathered}"
       },
       "answer": {
@@ -4906,7 +4906,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Đầu tiên, đổi 50 cm thành 0,5 m. Sau đó lấy cạnh nhân với cạnh để tính diện tích. Muốn nhân 0,5 với 0,5, ta nhân 5 với 5 được 25, rồi đặt dấu phẩy để được 0,25.",
+        "text": "Đổi 50 cm thành 0,5 m, rồi lấy cạnh nhân với cạnh. Ta nhân 5 với 5 được 25. Hai số 0,5 có tất cả hai chữ số sau dấu phẩy, nên kết quả là 0,25.",
         "tex": "0{,}5 \\cdot 0{,}5 = \\concept{teal}{0{,}25}\\ \\mathrm{m}^{2}"
       },
       "answer": {

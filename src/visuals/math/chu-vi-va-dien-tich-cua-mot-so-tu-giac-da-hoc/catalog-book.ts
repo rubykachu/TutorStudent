@@ -384,7 +384,9 @@ const PAIRS: Record<string, Pair> = {
           { i: 5, text: "6 m" },
         ],
         completed: true,
-        canvas: CALC_CANVAS,
+        // Lower than the other solution pictures: this solution has a row
+        // more (the two sides of the cut piece) and must still fit a phone.
+        canvas: { ...CALC_CANVAS, h: 136 },
       },
     ),
   },

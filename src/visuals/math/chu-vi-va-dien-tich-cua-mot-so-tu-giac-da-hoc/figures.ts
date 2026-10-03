@@ -17,7 +17,7 @@ export const CANVAS = { w: 320, h: 200 } as const;
 export const SIDE_MARGIN = 46;
 // Height of the flat figure of a rule (a shape with its letters, and nothing
 // written under it): the same for every rule of the lesson.
-export const RULE_FIGURE_HEIGHT = 150;
+export const RULE_FIGURE_HEIGHT = 140;
 
 const CORNER_NAMES = ["A", "B", "C", "D", "E", "F", "G", "H"] as const;
 const CHAR_HALF_WIDTH = 4.7;
