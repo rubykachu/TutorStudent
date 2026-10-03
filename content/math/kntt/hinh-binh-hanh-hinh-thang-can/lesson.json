@@ -12,7 +12,8 @@
   },
   "title": "Hình bình hành. Hình thang cân",
   "sourceRef": "Sách bài tập tr.67–69",
-  "status": "draft",
+  "status": "published",
+  "reviewedHash": "3701be57526ea92fd5b6053d6c6a50ce671e0a4f39697cf95c66bfc4456067f9",
   "overview": {
     "hook": {
       "text": "Chào bạn! Ở bài này, chúng ta sẽ học thêm hai hình nữa. Bạn thử nhìn chiếc thang chữ A nhà mình xem, hai bên của nó nghiêng thế nào nhỉ?"
@@ -2851,7 +2852,7 @@
         "wrong": [
           {
             "optionId": "b",
-            "text": "Nhiều hình thang cân có hai đường chéo bằng nhau mà không phải hình bình hành."
+            "text": "Hai đường chéo bằng nhau thì chưa đủ. Hình thang cân có hai đáy dài ngắn khác nhau cũng có hai đường chéo bằng nhau, nhưng không phải hình bình hành."
           },
           {
             "optionId": "c",
@@ -3700,7 +3701,7 @@
           },
           {
             "optionId": "tc",
-            "text": "Hình thang cân cần hai góc kề một đáy bằng nhau, còn hai góc kề mỗi cạnh của OUVW là 60° và 120°."
+            "text": "Hình thang cân có hai góc kề một đáy bằng nhau. Ở OUVW, hai góc ở hai đầu mỗi cạnh là 60° và 120°, không bằng nhau."
           }
         ]
       },
