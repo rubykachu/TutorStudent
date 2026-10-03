@@ -6,7 +6,7 @@ Mọi bước ở phần "Các bước ngoài máy" ghi ra ngoài máy này (R2,
 
 ## Bản đang chạy
 
-- Production: `https://owlyeah.vercel.app` (tên hiển thị "Owl Yeah", project Vercel `tutor`, tài khoản `rubykachu`; là domain của project nên mỗi `vercel deploy --prod` cập nhật luôn). Địa chỉ phụ `https://tutor-minhtangs-projects.vercel.app` chưa nằm trong CORS của bucket. Bản đang chạy: commit `38c726d` (03/10/2026; offline bật bằng `NEXT_PUBLIC_OFFLINE_ENABLED=1` ở Vercel Production, `/sw.js` là worker thật; bản trước là `a56c37a`).
+- Production: `https://owlyeah.vercel.app` (tên hiển thị "Owl Yeah", project Vercel `tutor`, tài khoản `rubykachu`; là domain của project nên mỗi `vercel deploy --prod` cập nhật luôn). Địa chỉ phụ `https://tutor-minhtangs-projects.vercel.app` chưa nằm trong CORS của bucket. Bản đang chạy: commit `ac69155` (03/10/2026; thêm Bài 18 với lời đọc và ba video, sửa cuộn hình gợi ý trên iPad; offline vẫn bật, `/sw.js` là worker thật; bản trước là `38c726d`).
 - Bucket media: `tutor-media`, địa chỉ công khai `https://pub-26fcfa663ca24297a8512aaf77c47fe8.r2.dev`, CORS chỉ cho origin `https://owlyeah.vercel.app` (origin khác không nhận header CORS, preflight bị từ chối).
 - Giá trị thật của ba biến môi trường nằm ở `.env.production.local` ở gốc repo (không commit, `chmod 600`). Next chỉ đọc tệp này khi build hay chạy production, nên dev server không có cổng mã. Muốn đổi biến trên Vercel thì sửa tệp này trước, rồi áp lại bằng các lệnh ở "Đổi mã gia đình".
 - Deploy lại: `pnpm deploy:prod` (chi tiết ở "Đưa bài mới lên production"). Lệnh luôn dựng từ một worktree sạch của `HEAD`, nên thay đổi chưa commit ở cây chính (kể cả việc dở của agent khác) không bao giờ lên mạng.

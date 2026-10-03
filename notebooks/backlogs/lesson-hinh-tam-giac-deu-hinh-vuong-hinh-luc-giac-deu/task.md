@@ -1,9 +1,9 @@
 # Bàn giao: Bài 18 `hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu` (Hình tam giác đều. Hình vuông. Hình lục giác đều)
 
 ## Trạng thái
-- Cập nhật cuối: 03/10/2026. Bài đã duyệt: `status: published`, `reviewedHash` `d7de67d4…` (commit 6c769d6), 112 id đã khoá (be28ae2). Chưa có lời đọc và video, chưa deploy.
+- Cập nhật cuối: 03/10/2026. Bài đã duyệt (`published`, `reviewedHash` `59f87f85…`, 115 id đã khoá), có lời đọc và ba video, đã tải media và deploy ở commit `ac69155` (smoke 7/7). Còn lại: chủ dự án nghe thử lời đọc và video trên iPad, rồi lưu trữ thư mục này.
 - Vòng 1 (3 Reviewer Opus song song và 1 Tổng hợp Opus): 8 Nghiêm trọng, 24 Nên sửa, 13 Góp ý; ghi ở `review.md` cạnh `lesson.json` (commit 348e484, kèm `content:hash --mark`, "Bản đã review" `f1ad7433…`). Kết quả sửa ở mục "Sửa sau vòng 1".
-- Việc kế tiếp: lời đọc (Gemini, mỗi bài một giọng) và video theo `lesson-video`, review lời đọc và video (Sonnet, chỉ phần đổi), rồi `pnpm media:upload` và `pnpm deploy:prod` theo `docs/operations.md` "Đưa bài mới lên production", mỗi bước ghi ra ngoài máy cần chủ dự án duyệt. Kết quả vòng 2 và 3 ở mục "Review vòng 2 và 3".
+- Việc kế tiếp: chủ dự án nghe thử (Whisper nghe "tam giác" thành "tâm giác" ở vài câu dù khớp ≥ 0,98 sau chuẩn hoá; không có công cụ nghe âm thanh). Chi tiết phần media ở mục "Lời đọc và video".
 
 ## Nguồn (sách bài tập, `sources/math/hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu/`, không commit)
 - Đề: tr.63–66 in (PDF 64–67), tệp `sbt-p63.png` đến `sbt-p66.png`. Tr.63 có "Kiến thức cần nhớ", "Kĩ năng giải toán", ví dụ 1; tr.64 có ví dụ 2 và 3 cùng bài 4.1; tr.65 có bài 4.2 đến 4.5; tr.66 có bài 4.6 và 4.7. Bài 19 bắt đầu ở tr.67 (PDF 68), không thuộc bài này.
@@ -113,3 +113,10 @@ Chạy `.claude/skills/lesson-review` mục "Vòng toàn bài" (vòng 2) trên `
 - Kiểm cuối trên 42a640a (worktree tạm, cổng 3720): `content:check` 0 lỗi; `visual:shot` 202/202 đạt; `pnpm lint`, `pnpm typecheck` đạt; `pnpm test` 209/210 tệp đạt, tệp còn lại (`tests/scripts/sources-import.test.ts`) chạy riêng đạt 13/13 (timeout do máy tải nặng). `lesson:walk`: 2 FAIL cùng một lỗi của mã dùng chung, không phải của nội dung bài, xem dưới.
 - Lỗi mã dùng chung còn mở (chưa sửa, cần chủ dự án hoặc điều phối quyết vì đổi hành vi mọi bài): `[ipad]` và `[ipad-landscape] s12-07-exercise-sbt-4-1-wrong2`, hình gợi ý nấc 2 của bài 4.1 nằm dưới thanh nút. Nguyên nhân đo được: effect `bringIntoView` trong `src/exercises/exercise-frame.tsx` gọi `scrollIntoView` đúng lúc trang vừa cao thêm 345px; WebKit iPad trả vị trí cuộn về chỗ cũ vài mili giây sau, và không có lần gọi nào nữa. Lỗi có từ trước; lộ ra vì `ex.noi-vat-voi-hinh` bỏ hình gợi ý nên walk đổi sang câu `match` có hình gợi ý kế tiếp là 4.1. Cách sửa đề xuất (đã thử trong worktree, walk 0 lỗi trên ba thiết bị): gọi `bringIntoView` thêm một lần sau khoảng 100ms và huỷ hẹn giờ đó trong cleanup. Trong tệp của bài không có cách tránh mà không làm yếu gợi ý.
 
+
+## Lời đọc và video (03/10/2026, xong)
+- Giọng của bài: `hai-dang` (Hải Đăng), theo luật xen kẽ: Bài 17 là Hải Đăng, Bài 16 và Ôn tập III là Mỹ Duyên, bài không có lý do riêng để đổi. Khai ở `video/projects/hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu/media.json`.
+- Lời đọc giới thiệu: Gemini Achird (không phải VieNeu), 11 câu, Whisper ≥ 98,6%.
+- Ba video, mỗi video đặt đầu một phần: `ba-hinh-deu` (phần `hinh-deu-quanh-ta`, 39,6 giây), `ve-tam-giac-deu` (phần `ve-tam-giac-deu`, 41,9 giây), `ghep-luc-giac` (phần `ghep-luc-giac`, 36,7 giây). Hình lấy từ catalog của bài qua `figures.tsx`.
+- Review media (Sonnet, chỉ phần đổi): 0 Nghiêm trọng, 4 Nên sửa đã sửa; chi tiết ở cuối `review.md`.
+- `lesson:walk` (ba kích thước): 0 lỗi, gồm câu SBT 4.1 trên iPad nhờ lần cuộn lại trong `exercise-frame.tsx`.
