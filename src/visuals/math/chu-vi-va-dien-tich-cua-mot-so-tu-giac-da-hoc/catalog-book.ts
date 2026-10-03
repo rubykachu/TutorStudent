@@ -237,12 +237,11 @@ const CALC_CANVAS = { w: 270, h: 160 } as const;
 // ---------------------------------------------------------------- the rows
 
 // The tag of a row says what the row finds, in the colour of that thing: the
-// perimeter blue, the area teal, a diagonal amber, a converted length sky.
+// perimeter blue, the area teal, a diagonal amber.
 // Anything else (a side to find, a count of tiles or boxes, money) is slate.
 const sTag = (text: string): readonly [string, ConceptColor] => [text, "teal"];
 const cTag = (text: string): readonly [string, ConceptColor] => [text, "blue"];
 const dTag = (text: string): readonly [string, ConceptColor] => [text, "amber"];
-const uTag = (text: string): readonly [string, ConceptColor] => [text, "sky"];
 const nTag = (text: string): readonly [string, ConceptColor] => [text, "slate"];
 
 type Pair = {
