@@ -137,7 +137,7 @@ Sizes: S is up to about 2 files of code plus tests; M is up to about 5. A task t
 
 ## Slice 7: rollout
 
-### T15. Fine-grained token (owner, by hand; no agent step)
+### T15. Fine-grained token (owner, by hand; no agent step) [x]
 
 The owner creates the token; no agent sees its value. Click steps:
 
@@ -164,7 +164,7 @@ curl -s -o /dev/null -w '%{http_code}\n' \
 
 The second command calls GitHub (read only); the owner runs it, or an agent runs it after the owner says so.
 
-### T16. Rollout (external writes; each step only after the owner's go-ahead for it)
+### T16. Rollout (external writes; each step only after the owner's go-ahead for it) [x] except step 1 (owner)
 
 1. Owner, Cloudflare dashboard: lifecycle rules on `tutor-progress`: delete `prod/feedback/` after 365 days, `dev/feedback/` after 30 days.
 2. Vercel env (**external write**): `sed -n 's/^GITHUB_FEEDBACK_TOKEN=//p' .env.production.local | tr -d '\n' | npx vercel env add GITHUB_FEEDBACK_TOKEN production --sensitive` (`npx vercel whoami` is `rubykachu`). Production only, not Preview.
@@ -178,9 +178,14 @@ Base commit (the commit before T1, for the security review diff): `e706002`.
 
 Coordinator decisions on the reviewer's open questions (recorded in `spec.md`): chip label "Hay, mình thích"; PIN asked for every note; thank-you closes after 5 s and has a close button; opening the sheet pauses narration and video (no auto-resume); the repo README's hidden-block example updated to match section 6.2.
 
-Done: T1 to T14 (build of the route passes in a temp worktree; `lesson:walk luy-thua` shows no overlap on phone, iPad, iPad landscape, its only failures being the gitignored media missing in the worktree). The overview's button sits in the `PageTopBar` above the overview (the same top row as the lesson page), not inside the overview's own header.
+Done: T1 to T14 and T16 steps 2 to 5 (06/10/2026). `GITHUB_FEEDBACK_TOKEN` added to Vercel Production (Sensitive); `f3803c1` deployed with `pnpm deploy:prod`, smoke 8/8; production check with `OWLTEST0`: issues https://github.com/rubykachu/owlyeah-feedback/issues/1 (parent, note) and https://github.com/rubykachu/owlyeah-feedback/issues/2 (child), right labels and body, `app` = `f3803c1`, R2 records `sent`, `pending.json` empty; both closed with `trang-thai:khong-sua` and the comment "kiểm thử triển khai". Full E2E at `f3803c1`: everything passes except `e2e/unlock.spec.ts` "a link preview crawler…" on both targets, which fails already at `e706002` (it expects "bạn cú", the brand text says "Bạn cú").
 README of `rubykachu/owlyeah-feedback` updated through the contents API (commit `584e6f9`, by `rubykachu`): the hidden-block example has `id` and `step`.
-Next: T16 rollout (T15 token done by the owner). Checkpoint B screenshots (iPad and phone: child sheet, thank-you, PIN step, parent form) are written by `e2e/user-feedback.spec.ts` into `test-results/` of the run.
+Leftovers (do not archive this folder until they are done):
+- Owner: add the R2 lifecycle rules on `tutor-progress` (`prod/feedback/` 365 days, `dev/feedback/` 30 days), T16 step 1.
+- Owner: read Checkpoint A (issue format above, or issues #1 and #2) and Checkpoint B (screenshots from an `e2e/user-feedback.spec.ts` run, `test-results/`), and the security review below; change copy or layout if wanted.
+- Owner: GitHub returned no expiry header for the token; write its expiry date into `docs/operations.md`, "Góp ý từ app".
+- Later (security review L1, L3): search for the report id before resending after a `timeout`; a lesson catalog on the server so unknown slugs get no `bai:` label.
+- Pre-existing, not from this feature: the `e2e/unlock.spec.ts` share-card test expects lowercase "bạn cú".
 
 Deploy coordination (another agent deploys Bài 21 `hinh-co-truc-doi-xung` tonight): right before `deploy:prod`, read the production SHA (last "Bản đang chạy" line of `docs/operations.md`, or `npx vercel ls --prod`); the pinned SHA must contain it (`git merge-base --is-ancestor <prod> <ours>`), else re-pin to a commit with both and re-run lint, typecheck, `content:check`, build. Never deploy while the other deploy runs; if "Bản đang chạy" changed in the last 10 minutes by another deploy, re-check. Every published lesson at the SHA must have its media (`pnpm media:upload --all --dry-run` reports 0).
 
