@@ -69,6 +69,14 @@ export const SYNC_FAMILIES: readonly SyncFamily[] = Array.from(
   },
 );
 
+// The families of the feedback E2E (`e2e/user-feedback.spec.ts`), one per
+// target, on the same server and store: apart from the sync scenarios so the
+// per-family feedback limit is theirs alone.
+export const FEEDBACK_FAMILIES: Record<string, SyncFamily> = {
+  ipad: { id: "OWLFDBK1" },
+  phone: { id: "OWLFDBK2" },
+};
+
 const SYNC_STORE_ENV_KEY = "TUTOR_E2E_SYNC_STORE";
 
 // The folder of this run's store, named on first call, in the system's
@@ -95,6 +103,8 @@ export function syncServerEnv(): Record<string, string> {
     FAMILY_CODES_REVOKED: "",
     SESSION_SECRET: E2E_SESSION_SECRET,
     SYNC_STORE: `fs:${syncStoreDir()}`,
+    // Feedback is stored and left pending: no request can reach GitHub.
+    GITHUB_FEEDBACK_TOKEN: "",
   };
 }
 
