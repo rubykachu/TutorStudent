@@ -11,7 +11,7 @@ export async function createProfile(page: Page, name: string, avatar: string) {
   await page.getByText(avatar, { exact: true }).click();
   await page.getByRole("button", { name: "Bắt đầu học" }).click();
   await expect(
-    page.getByRole("heading", { level: 1, name: `Chào ${name}!` }),
+    page.getByRole("heading", { level: 1, name: `Chào ${name}!`, exact: true }),
   ).toBeVisible();
 }
 

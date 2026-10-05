@@ -117,7 +117,7 @@ test("a new launch asks who learns today; tapping the child starts the music; a 
 
   await launch.getByRole("button", { name: "Bé Mi" }).tap();
   await expect(
-    launch.getByRole("heading", { level: 1, name: "Chào Bé Mi!" }),
+    launch.getByRole("heading", { level: 1, name: "Chào Bé Mi!", exact: true }),
   ).toBeVisible();
   await expect
     .poll(async () => (await longSources(launch)).playing)
@@ -130,7 +130,7 @@ test("a new launch asks who learns today; tapping the child starts the music; a 
   await launch.reload();
   await expect(launch).toHaveURL(/\/$/);
   await expect(
-    launch.getByRole("heading", { level: 1, name: "Chào Bé Mi!" }),
+    launch.getByRole("heading", { level: 1, name: "Chào Bé Mi!", exact: true }),
   ).toBeVisible();
   await expect(launch.getByText(OWL_INVITE)).toBeVisible();
   expect((await longSources(launch)).started).toBe(0);
@@ -153,7 +153,7 @@ test("a link into a lesson opens it on a new launch, and home then skips the pic
   await expect(launch).toHaveURL(/\/lessons\/fixture/);
   await launch.goto("/");
   await expect(
-    launch.getByRole("heading", { level: 1, name: "Chào Bé Mi!" }),
+    launch.getByRole("heading", { level: 1, name: "Chào Bé Mi!", exact: true }),
   ).toBeVisible();
   await expect(launch).toHaveURL(/\/$/);
 });

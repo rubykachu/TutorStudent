@@ -164,7 +164,7 @@ export async function pickChild(page: Page, name = NAME) {
   await page.goto("/profiles");
   await page.getByText(name, { exact: true }).tap({ timeout: 30_000 });
   await expect(
-    page.getByRole("heading", { level: 1, name: `Chào ${name}!` }),
+    page.getByRole("heading", { level: 1, name: `Chào ${name}!`, exact: true }),
   ).toBeVisible();
 }
 

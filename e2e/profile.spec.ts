@@ -108,7 +108,7 @@ test("a first visit creates a profile that survives a reload", async ({
 
   await page.reload();
   await expect(
-    page.getByRole("heading", { level: 1, name: "Chào Bé Na!" }),
+    page.getByRole("heading", { level: 1, name: "Chào Bé Na!", exact: true }),
   ).toBeVisible();
 
   await math.click();
@@ -149,12 +149,12 @@ test("switching between two children from the home corner", async ({
   await page.getByRole("link", { name: "Đổi hồ sơ" }).click();
   await page.getByRole("button", { name: "Bé Na" }).click();
   await expect(
-    page.getByRole("heading", { level: 1, name: "Chào Bé Na!" }),
+    page.getByRole("heading", { level: 1, name: "Chào Bé Na!", exact: true }),
   ).toBeVisible();
 
   await page.reload();
   await expect(
-    page.getByRole("heading", { level: 1, name: "Chào Bé Na!" }),
+    page.getByRole("heading", { level: 1, name: "Chào Bé Na!", exact: true }),
   ).toBeVisible();
 });
 
@@ -177,7 +177,7 @@ test("renaming a child and changing the avatar keeps their progress", async ({
   await page.getByRole("link", { name: "Đổi hồ sơ" }).click();
   await page.getByRole("button", { name: "Bé Na" }).click();
   await expect(
-    page.getByRole("heading", { level: 1, name: "Chào Bé Na!" }),
+    page.getByRole("heading", { level: 1, name: "Chào Bé Na!", exact: true }),
   ).toBeVisible();
   await openFixtureLesson(page);
   await page.locator('[data-section="fixture.section.phep-nhan"]').tap();
@@ -217,7 +217,7 @@ test("renaming a child and changing the avatar keeps their progress", async ({
   await page.getByRole("button", { name: "Na Na" }).click();
 
   await expect(
-    page.getByRole("heading", { level: 1, name: "Chào Na Na!" }),
+    page.getByRole("heading", { level: 1, name: "Chào Na Na!", exact: true }),
   ).toBeVisible();
   await expect(
     page.locator('header [data-avatar="racecar"]').first(),
@@ -231,7 +231,7 @@ test("renaming a child and changing the avatar keeps their progress", async ({
 
   await page.reload();
   await expect(
-    page.getByRole("heading", { level: 1, name: "Chào Na Na!" }),
+    page.getByRole("heading", { level: 1, name: "Chào Na Na!", exact: true }),
   ).toBeVisible();
 });
 

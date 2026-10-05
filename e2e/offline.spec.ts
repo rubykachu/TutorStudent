@@ -246,7 +246,7 @@ test("1 opens home, a subject, lessons, sections, tips and review offline from a
   // from the precache) and the review page.
   await cold.goto("/");
   await expect(
-    cold.getByRole("heading", { level: 1, name: "Chào Bé Na!" }),
+    cold.getByRole("heading", { level: 1, name: "Chào Bé Na!", exact: true }),
   ).toBeVisible();
   await cold.goto("/lessons/fixture");
   await expect(cold.locator("[data-tips-open]")).toBeVisible();
@@ -595,7 +595,7 @@ test("7 offline, a page that is not stored shows the offline page, and Quay lạ
   await cold.getByRole("button", { name: "Quay lại" }).tap();
   await expect(cold).toHaveURL(new RegExp(`^${BASE}/$`));
   await expect(
-    cold.getByRole("heading", { level: 1, name: "Chào Bé Na!" }),
+    cold.getByRole("heading", { level: 1, name: "Chào Bé Na!", exact: true }),
   ).toBeVisible();
   await cold.close();
   await context.setOffline(false);
@@ -684,7 +684,7 @@ test("9 online, a device without the cookie goes to the unlock page; a device ne
 test("10 a changed worker waits, the banner offers it outside a lesson, and a tap puts the new one in charge", async () => {
   await page.goto("/");
   await expect(
-    page.getByRole("heading", { level: 1, name: "Chào Bé Na!" }),
+    page.getByRole("heading", { level: 1, name: "Chào Bé Na!", exact: true }),
   ).toBeVisible();
   // A cache of a build that no longer exists must be gone after the update.
   await page.evaluate(() => caches.open("offline-an-old-build"));
@@ -723,7 +723,7 @@ test("10 a changed worker waits, the banner offers it outside a lesson, and a ta
   await page.goBack();
   await page.goBack();
   await expect(
-    page.getByRole("heading", { level: 1, name: "Chào Bé Na!" }),
+    page.getByRole("heading", { level: 1, name: "Chào Bé Na!", exact: true }),
   ).toBeVisible();
 
   // The tap activates the waiting worker and the page reloads under it.
@@ -738,7 +738,7 @@ test("10 a changed worker waits, the banner offers it outside a lesson, and a ta
     "the page reloaded",
   ).toBe(false);
   await expect(
-    page.getByRole("heading", { level: 1, name: "Chào Bé Na!" }),
+    page.getByRole("heading", { level: 1, name: "Chào Bé Na!", exact: true }),
   ).toBeVisible();
   await expect(page.getByRole("button", { name: BANNER })).toHaveCount(0);
   expect(
