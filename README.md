@@ -17,7 +17,7 @@ Tài liệu chính:
 
 ## Chạy trên máy
 
-Yêu cầu: Node.js ≥ 22, pnpm. Công cụ media (chỉ khi làm video/lời đọc): ffmpeg, poppler (`pdftoppm`), môi trường Python của giọng đọc (`video/.venv`, cài theo `video/requirements.txt`; xem skill `lesson-video`).
+Yêu cầu: Node.js ≥ 22, pnpm. Công cụ media (chỉ khi làm video/lời đọc): ffmpeg, poppler (`pdftoppm`), môi trường Python của giọng đọc (`video/.venv`, cài theo `video/requirements.txt`; OmniVoice ở `video/.venv-omni`, cài bằng `pnpm video:setup-omni`; xem skill `lesson-video`).
 
 ```bash
 pnpm install
@@ -88,7 +88,9 @@ Soạn bằng Sonnet; review vòng 1–2 bằng Opus, từ vòng 3 bằng Sonnet
 | `pnpm visual:shot <bài>` | Chụp từng hình của bài; ghi sheet `sheet-<thiết bị>-NN.png` |
 | `pnpm shots:sheet <thư mục\|tệp\|mẫu>… [--cols N] [--out <tiền tố>] [--width PX] [--height PX]` | Ghép ảnh chụp thành contact sheet, mỗi ô in tên tệp, tự chia nhiều sheet; đọc một sheet thay cho nhiều ảnh (cần `ffmpeg`) |
 | `pnpm video:build <bài> <video>` / `pnpm video:check` | Dựng video / kiểm video đã dựng |
-| `pnpm narration:build <bài>` | Lời đọc cho phần giới thiệu bài, bằng giọng Gemini của bài (nam/nữ theo `media.json`); cần key ở `~/.config/gemini/api_key*`; hết hạn mức thì đọc lại cả bài bằng giọng VieNeu |
+| `pnpm video:setup-omni` | Cài môi trường OmniVoice (`video/.venv-omni`, bản cố định ở `video/requirements-omni.txt`) và tải model vào `video/.hf` một lần; chạy lại được |
+| `pnpm test:omni` | Đọc thử một câu bằng OmniVoice qua bước đọc thật (Whisper kiểm), trong thư mục tạm; bỏ qua khi chưa cài |
+| `pnpm narration:build <bài>` | Lời đọc cho phần giới thiệu bài, bằng giọng Gemini của bài (nam/nữ theo `media.json`); cần key ở `~/.config/gemini/api_key*`; hết hạn mức thì đọc lại cả bài bằng giọng OmniVoice |
 | `pnpm brand:images` | Vẽ lại icon cú mèo (app, Màn hình chính, favicon) và ảnh xem trước link vào `public/brand/` từ `assets/brand/owl.svg` (chỉ khi đổi cú, màu hoặc chữ trên ảnh) |
 | `pnpm sounds:build` | Âm thanh dùng chung của app (chỉ khi đổi câu thoại) |
 | `pnpm media:upload <bài>… \| --all [--dry-run]` | Tải media của bài (`public/media/video\|narration/<bài>/`) lên bucket R2 với `Content-Type` đúng, bỏ qua tệp đã giống hệt; ghi ra ngoài máy, chỉ chạy khi chủ dự án đồng ý |
