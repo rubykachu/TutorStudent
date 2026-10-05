@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Lesson video "Gấp hình để tìm trục đối xứng" (lesson hinh-co-truc-doi-xung): a paper kite is
+  Lesson video "Gấp hình để tìm trục đối xứng" (lesson hinh-co-truc-doi-xung): a paper arrowhead is
   folded along a line d; when the two halves cover each other exactly, d is an axis of symmetry;
   a fold along another line leaves one half sticking out. Colours as in the lesson: axis of
   symmetry pink, dashed.
@@ -57,7 +57,7 @@
     >
       <div id="stage" class="layer">
         <svg id="kiteA" class="kite" viewBox="-185 -212 370 394" role="img">
-          <title>Cánh diều giấy gấp theo đường d</title>
+          <title>Miếng giấy hình mũi tên gấp theo đường d</title>
           <g id="a-left">
             <polygon points="0,-130 -85,-30 0,140" fill="#0369a1" fill-opacity="0.35" stroke="#0369a1" stroke-width="4" stroke-linejoin="round" />
           </g>
@@ -68,7 +68,7 @@
           <text id="a-d" x="14" y="-146" fill="#db2777" font-family="Baloo 2" font-weight="800" font-size="44">d</text>
         </svg>
         <svg id="kiteB" class="kite" viewBox="-185 -212 370 394" role="img">
-          <title>Cánh diều giấy gấp theo đường nằm ngang</title>
+          <title>Miếng giấy hình mũi tên gấp theo đường nằm ngang</title>
           <g id="b-up">
             <polygon points="0,-130 85,-30 -85,-30" fill="#0369a1" fill-opacity="0.35" stroke="#0369a1" stroke-width="4" stroke-linejoin="round" />
           </g>
@@ -186,12 +186,16 @@
         }
         {
           const sid = "s05-thu";
-          // the second kite: same paper, other fold line
+          // the second figure: same paper, other fold line
           tl.set("#kiteA", { autoAlpha: 0 }, start(sid));
           tl.set("#kiteB", { autoAlpha: 1 }, start(sid));
           fold("#b-down", "scaleY", "0 -30", W(sid, "dưới"));
           pop("#t5", W(sid, "lệch"), { from: 0.6 });
           pose(bird, "idle", start(sid));
+          // the last sentence goes back to the pink line d: its folded halves still cover each other
+          tl.set("#kiteB", { autoAlpha: 0 }, W(sid, "chỉ"));
+          tl.set("#kiteA", { autoAlpha: 1 }, W(sid, "chỉ"));
+          tl.set("#t5", { autoAlpha: 0 }, W(sid, "chỉ"));
         }
 
         finish();

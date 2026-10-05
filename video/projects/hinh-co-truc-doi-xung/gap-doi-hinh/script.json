@@ -17,7 +17,7 @@
           "text": "Bạn cú sẽ gấp giấy cùng bạn."
         },
         {
-          "text": "Đây là một cánh diều giấy."
+          "text": "Đây là một miếng giấy hình mũi tên."
         }
       ]
     },
@@ -25,13 +25,13 @@
       "id": "s02-hoi",
       "sentences": [
         {
-          "text": "Ta kẻ đường thẳng d qua giữa diều."
+          "text": "Ta kẻ đường thẳng d qua giữa hình."
         },
         {
           "text": "Đường d vẽ nét đứt màu hồng."
         },
         {
-          "text": "Đường d chia diều làm hai nửa."
+          "text": "Đường d chia hình làm hai nửa."
         },
         {
           "text": "Bạn đoán xem: gấp theo đường d, hai nửa có khít không?",
@@ -81,7 +81,7 @@
           "text": "Vậy đường này không phải trục."
         },
         {
-          "text": "Diều giấy này chỉ có một trục."
+          "text": "Chỉ đường d làm hai nửa khít."
         }
       ]
     }

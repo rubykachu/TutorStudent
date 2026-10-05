@@ -5224,12 +5224,12 @@
       "url": "video/hinh-co-truc-doi-xung/gap-doi-hinh.mp4",
       "vttUrl": "video/hinh-co-truc-doi-xung/gap-doi-hinh.vtt",
       "posterUrl": "video/hinh-co-truc-doi-xung/gap-doi-hinh.jpg",
-      "durationSec": 47.93,
+      "durationSec": 48.73,
       "clips": [
         {
           "id": "gap-doi-hinh",
-          "start": 9.299,
-          "end": 46.516,
+          "start": 9.946,
+          "end": 47.311,
           "cardIds": ["hinh-co-truc-doi-xung.card.truc-doi-xung"]
         }
       ],
@@ -5250,7 +5250,7 @@
         {
           "id": "dem-truc",
           "start": 9.526,
-          "end": 44.543,
+          "end": 25.724,
           "cardIds": ["hinh-co-truc-doi-xung.card.hinh-deu"]
         }
       ],
@@ -5266,12 +5266,12 @@
       "url": "video/hinh-co-truc-doi-xung/ve-them-doi-xung.mp4",
       "vttUrl": "video/hinh-co-truc-doi-xung/ve-them-doi-xung.vtt",
       "posterUrl": "video/hinh-co-truc-doi-xung/ve-them-doi-xung.jpg",
-      "durationSec": 47.73,
+      "durationSec": 47.83,
       "clips": [
         {
           "id": "ve-them-doi-xung",
           "start": 9.259,
-          "end": 46.304,
+          "end": 46.426,
           "cardIds": ["hinh-co-truc-doi-xung.card.ve-them-hinh"]
         }
       ],

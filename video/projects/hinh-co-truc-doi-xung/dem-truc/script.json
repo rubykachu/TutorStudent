@@ -90,7 +90,7 @@
     {
       "id": "dem-truc",
       "from": "s02-hoi",
-      "to": "s05-nho",
+      "to": "s03-vuong",
       "cardIds": ["hinh-co-truc-doi-xung.card.hinh-deu"]
     }
   ]
