@@ -1,3 +1,5 @@
+import type { DeviceClass } from "@/user-feedback/schema";
+
 // What "install the app" means on the device in hand. Pure: the browser facts
 // come in, one action comes out, so every platform is covered by unit tests.
 // `src/install/browser.ts` reads the facts; the home bar and the parent page
@@ -47,11 +49,26 @@ const IOS_OTHER_BROWSER = /CriOS|FxiOS|EdgiOS|OPiOS|GSA\/|YaBrowser|DuckDuckGo/;
 
 const CHROMIUM = /Chrome\/|Chromium\/|CriOS|EdgA?\//;
 
-export function isIos({ userAgent, maxTouchPoints }: InstallFacts): boolean {
+export type DeviceFacts = Pick<InstallFacts, "userAgent" | "maxTouchPoints">;
+
+export function isIos({ userAgent, maxTouchPoints }: DeviceFacts): boolean {
   return (
     /iPhone|iPad|iPod/.test(userAgent) ||
     (/Macintosh/.test(userAgent) && maxTouchPoints > 1)
   );
+}
+
+// The coarse device class a feedback report carries instead of the user
+// agent: what kind of device and which OS family, nothing finer.
+export function deviceClass(facts: DeviceFacts): DeviceClass {
+  const ua = facts.userAgent;
+  if (isIos(facts)) {
+    return { kind: /iPhone|iPod/.test(ua) ? "phone" : "ipad", os: "ios" };
+  }
+  if (/Android/.test(ua)) return { kind: "phone", os: "android" };
+  if (/Macintosh|Mac OS X/.test(ua)) return { kind: "desktop", os: "macos" };
+  if (/Windows/.test(ua)) return { kind: "desktop", os: "windows" };
+  return { kind: "desktop", os: "other" };
 }
 
 export function installAction(facts: InstallFacts): InstallAction {

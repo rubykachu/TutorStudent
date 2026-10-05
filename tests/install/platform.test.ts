@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   chromeIntentUrl,
+  deviceClass,
   HIDDEN_FOR_GOOD,
   homeBarDue,
   homeOffersInstall,
@@ -184,4 +185,29 @@ it("builds a Chrome intent link to the same page", () => {
   expect(chromeIntentUrl("https://owlyeah.vercel.app/unlock?next=%2F")).toBe(
     "intent://owlyeah.vercel.app/unlock?next=%2F#Intent;scheme=https;package=com.android.chrome;end",
   );
+});
+
+describe("deviceClass", () => {
+  it("gives the coarse kind and OS, with an iPad reporting as a Mac", () => {
+    const of = (userAgent: string, maxTouchPoints = 0) =>
+      deviceClass({ userAgent, maxTouchPoints });
+    expect(of(USER_AGENTS.ipadDesktopSafari, 5)).toEqual({
+      kind: "ipad",
+      os: "ios",
+    });
+    expect(of(USER_AGENTS.macSafari, 0)).toEqual({
+      kind: "desktop",
+      os: "macos",
+    });
+    expect(of(USER_AGENTS.iphoneSafari)).toEqual({ kind: "phone", os: "ios" });
+    expect(of(USER_AGENTS.androidChrome)).toEqual({
+      kind: "phone",
+      os: "android",
+    });
+    expect(of(USER_AGENTS.desktopFirefox)).toEqual({
+      kind: "desktop",
+      os: "windows",
+    });
+    expect(of("curl/8")).toEqual({ kind: "desktop", os: "other" });
+  });
 });

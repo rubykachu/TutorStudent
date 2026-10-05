@@ -24,7 +24,7 @@ Sizes: S is up to about 2 files of code plus tests; M is up to about 5. A task t
 
 **Checkpoint A:** ask the owner to confirm the issue format from the body printed in the handover and the label list of `spec.md` section 6.2, before T4.
 
-### T3. Family pseudonym, app SHA, device class (S)
+### T3. Family pseudonym, app SHA, device class (S) [x]
 
 - Files: `src/user-feedback/identity.ts` (new), `src/install/platform.ts` (add `deviceClass`, reusing `isIos`), `tests/user-feedback/identity.test.ts`, `tests/install/platform.test.ts`.
 - Do: `familyPseudonym(sessionSecret, familyId)` = first 12 hex of HMAC-SHA256 with the `feedback-family:` prefix via `hmacSign`; `appVersion(env)` = first 7 of `APP_COMMIT_SHA` or `dev`; `deviceClass(facts)` → `{ kind, os }`.
@@ -178,8 +178,8 @@ Base commit (the commit before T1, for the security review diff): `e706002`.
 
 Coordinator decisions on the reviewer's open questions (recorded in `spec.md`): chip label "Hay, mình thích"; PIN asked for every note; thank-you closes after 5 s and has a close button; opening the sheet pauses narration and video (no auto-resume); the repo README's hidden-block example updated to match section 6.2.
 
-Done: T1, T2.
-Next: T3.
+Done: T1, T2, T3.
+Next: T4.
 
 Checkpoint A (issue format; the owner approved building and deploying without waiting, so it is recorded here for the morning review). A parent report with section, item and note renders as (labels `feedback`, `nguon:phu-huynh`, `ly-do:sai-noi-dung`, `bai:luy-thua`, `mon:math`, `lop:6`, `trang-thai:moi`; title `[Góp ý] Sai nội dung hoặc đáp án · Bài 6. Lũy thừa với số mũ tự nhiên · Phần 3`):
 
