@@ -11,7 +11,12 @@ export const APP_NAME = "Owl Yeah";
 export const APP_SHORT_NAME = APP_NAME;
 // A page that sets its own title gets the app's name after it.
 export const TITLE_TEMPLATE = `%s | ${APP_NAME}`;
-export const APP_DESCRIPTION = "Học từng bước cùng cú";
+// The manifest and meta description, and the line under the title in a shared
+// link's card: one text for all of them.
+export const APP_DESCRIPTION =
+  "Mỗi ngày một chút, mỗi bước một vui. Bạn cú cùng bé, học đâu nhớ đó.";
+// The line under the name on the share image.
+export const APP_TAGLINE = "Học vui – nhớ lâu – giỏi mau";
 
 // Public address of the production app: the base of every absolute URL in
 // the share card, and the origin `pnpm deploy:prod` smoke-checks.
@@ -58,23 +63,25 @@ export const FAVICON_ICO_SIZES = [16, 32, 48] as const;
 export const FAVICON_ICO_PATH = "/favicon.ico";
 
 // The card a chat app shows for a pasted link (Open Graph and Twitter use
-// the same file): 1200×630, the owl and the app's name on the cosmos.
+// the same file): 1200×630, the owl flying through the cosmos above the
+// app's name and tagline.
 export const SHARE_IMAGE = {
   path: "/brand/share.png",
+  // Bump when the image changes: chat apps cache a link's image by its URL.
+  version: 2,
   width: 1200,
   height: 630,
-  alt: `Bạn cú giữa bầu trời sao, cạnh chữ ${APP_NAME}: tự học lớp 6`,
+  alt: `Bạn cú bay giữa các hành tinh, trên chữ ${APP_NAME}: ${APP_TAGLINE}`,
 } as const;
 // The image as the metadata API takes it.
 export const SHARE_IMAGE_TAG = {
-  url: SHARE_IMAGE.path,
+  url: `${SHARE_IMAGE.path}?v=${SHARE_IMAGE.version}`,
   width: SHARE_IMAGE.width,
   height: SHARE_IMAGE.height,
   alt: SHARE_IMAGE.alt,
 } as const;
-export const SHARE_TITLE = `${APP_NAME}: tự học lớp 6 cùng bạn cú`;
-export const SHARE_DESCRIPTION =
-  "Học bài cùng bạn cú: hình động dễ hiểu, bài tập vui và ôn lại đúng lúc để nhớ lâu.";
+export const SHARE_TITLE = `${APP_NAME}: Học vui, nhớ lâu, giỏi mau`;
+export const SHARE_DESCRIPTION = APP_DESCRIPTION;
 
 // Public, carry no family data and have to load before anyone has unlocked
 // the app: a browser finds the manifest and icons, and a chat app's crawler

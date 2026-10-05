@@ -6,6 +6,7 @@ import {
   APP_ICONS,
   APP_NAME,
   APP_SHORT_NAME,
+  APP_TAGLINE,
   APPLE_TOUCH_ICON,
   BACKGROUND_COLOR,
   BRAND_PUBLIC_PATHS,
@@ -13,7 +14,9 @@ import {
   FAVICON_SVG_PATH,
   ICON_BACKGROUND_COLOR,
   MANIFEST_PATH,
+  SHARE_DESCRIPTION,
   SHARE_IMAGE,
+  SHARE_IMAGE_TAG,
   SHARE_TITLE,
   SITE_URL,
   THEME_COLOR,
@@ -67,7 +70,12 @@ describe("the web app manifest", () => {
     // An iOS icon label holds about this many characters before it is cut.
     expect(APP_SHORT_NAME.length).toBeLessThanOrEqual(14);
     expect(TITLE_TEMPLATE).toBe("%s | Owl Yeah");
-    expect(SHARE_TITLE).toBe("Owl Yeah: tự học lớp 6 cùng bạn cú");
+    expect(SHARE_TITLE).toBe("Owl Yeah: Học vui, nhớ lâu, giỏi mau");
+    expect(SHARE_DESCRIPTION).toBe(
+      "Mỗi ngày một chút, mỗi bước một vui. Bạn cú cùng bé, học đâu nhớ đó.",
+    );
+    expect(m.description).toBe(SHARE_DESCRIPTION);
+    expect(SHARE_IMAGE_TAG.url).toBe("/brand/share.png?v=2");
     expect(SHARE_IMAGE.alt).toContain(APP_NAME);
     expect(JSON.stringify(m)).not.toContain("Tutor");
   });
@@ -148,7 +156,8 @@ describe("the share image", () => {
   it("names the app and says what it is, in Vietnamese", () => {
     const html = shareImageHtml(readOwlSvg(root), []);
     expect(html).toContain(`>${APP_NAME}<`);
-    expect(html).toContain("Tự học lớp 6 cùng bạn cú");
+    expect(html).toContain(APP_TAGLINE);
+    expect(APP_TAGLINE).toBe("Học vui – nhớ lâu – giỏi mau");
   });
 });
 

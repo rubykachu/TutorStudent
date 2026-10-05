@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import {
   APP_NAME,
+  APP_TAGLINE,
   type AppIcon,
   ICON_BACKGROUND_COLOR,
   OWL_SHARE_OF_ICON,
@@ -24,17 +25,19 @@ function owlBody(owlSvg: string): string {
   return match[1];
 }
 
-// The owl's box centred on `(cx, cy)` with its drawn height `height`.
+// The owl's box centred on `(cx, cy)` with its drawn height `height`,
+// turned by `degrees` around that centre.
 function placeOwl(
   owlSvg: string,
   cx: number,
   cy: number,
   height: number,
+  degrees = 0,
 ): string {
   const scale = height / OWL_BOX.height;
-  const x = cx - (OWL_BOX.x + OWL_BOX.width / 2) * scale;
-  const y = cy - (OWL_BOX.y + OWL_BOX.height / 2) * scale;
-  return `<g transform="translate(${x.toFixed(2)} ${y.toFixed(2)}) scale(${scale.toFixed(4)})">${owlBody(owlSvg)}</g>`;
+  const x = -(OWL_BOX.x + OWL_BOX.width / 2);
+  const y = -(OWL_BOX.y + OWL_BOX.height / 2);
+  return `<g transform="translate(${cx} ${cy}) rotate(${degrees}) scale(${scale.toFixed(4)}) translate(${x} ${y})">${owlBody(owlSvg)}</g>`;
 }
 
 // A square app icon: the owl, centred and sized for the icon's purpose, on
@@ -118,36 +121,55 @@ export const SHARE_COLORS = {
 // Star positions in the 1200×630 card: [x, y, radius].
 const SHARE_STARS: readonly (readonly [number, number, number])[] = [
   [60, 60, 2.2],
-  [170, 130, 1.4],
-  [300, 48, 1.8],
-  [420, 96, 1.2],
-  [520, 36, 2],
-  [610, 150, 1.4],
-  [720, 70, 1.6],
-  [820, 30, 1.2],
-  [930, 120, 2],
-  [1040, 40, 1.4],
-  [1150, 170, 1.8],
-  [90, 250, 1.4],
-  [210, 340, 2],
-  [330, 270, 1.2],
-  [560, 300, 1.6],
-  [690, 250, 1.2],
-  [1100, 330, 1.4],
-  [1160, 440, 2],
-  [980, 560, 1.4],
-  [880, 600, 1.8],
-  [640, 580, 1.2],
-  [520, 540, 1.6],
-  [60, 440, 1.8],
-  [150, 580, 1.2],
+  [170, 130, 1.5],
+  [110, 300, 1.8],
+  [220, 420, 2],
+  [70, 520, 1.6],
+  [200, 580, 1.4],
+  [240, 40, 1.6],
+  [1140, 70, 2],
+  [1030, 150, 1.6],
+  [1100, 300, 1.8],
+  [990, 450, 2],
+  [1150, 540, 1.6],
+  [1050, 590, 1.4],
+  [950, 40, 1.4],
+  [260, 230, 1.3],
+  [940, 260, 1.3],
+];
+
+// Sparks the owl leaves behind: [x, y, radius].
+const SHARE_SPARKS: readonly (readonly [number, number, number])[] = [
+  [430, 395, 5],
+  [480, 365, 4],
+  [520, 337, 3],
+  [390, 435, 3.5],
 ];
 
 export type ShareFont = { family: string; weight: number; dataUrl: string };
 
+// A planet at `(x, y)` of radius `r`, tilted, with or without a ring.
+function planet(x: number, y: number, r: number, fill: string, ring: boolean) {
+  const c = SHARE_COLORS;
+  const rx = r * 2.2;
+  const ry = r * 0.55;
+  const stroke = `fill="none" stroke="${c.beak}" stroke-width="${r * 0.14}"`;
+  return `<g transform="translate(${x} ${y}) rotate(-18)">${ring ? `<ellipse rx="${rx}" ry="${ry}" ${stroke} opacity="0.5"/>` : ""}<circle r="${r}" fill="${fill}"/><circle cx="${-r * 0.35}" cy="${-r * 0.3}" r="${r}" fill="${c.pink}" opacity="0.16"/>${ring ? `<path d="M${-rx} 0 A${rx} ${ry} 0 0 0 ${rx} 0" ${stroke} opacity="0.9"/>` : ""}</g>`;
+}
+
+// A moon with two light bands, clipped to its disc.
+function bandedMoon(x: number, y: number, r: number) {
+  const c = SHARE_COLORS;
+  const band = (top: number, h: number, opacity: number) =>
+    `<rect x="${x - r}" y="${y + r * top}" width="${r * 2}" height="${r * h}" fill="${c.sky}" opacity="${opacity}"/>`;
+  return `<clipPath id="moon"><circle cx="${x}" cy="${y}" r="${r}"/></clipPath><g clip-path="url(#moon)"><circle cx="${x}" cy="${y}" r="${r}" fill="${c.teal}"/>${band(-0.3, 0.18, 0.28)}${band(0.15, 0.25, 0.2)}</g>`;
+}
+
 // The share card as a page to screenshot at 1200×630: a night sky with
-// nebula glows and stars, a ringed planet and a banded moon, the owl on a
-// glow to the right, the app's name and the line under it to the left.
+// nebula glows and stars, planets and a moon, the owl flying through them
+// with a trail of sparks, the app's name and its tagline under it. Chat apps
+// crop the card to a square in the middle (x 285..915), so the name, the
+// tagline and the owl all sit inside it.
 export function shareImageHtml(owlSvg: string, fonts: ShareFont[]): string {
   const c = SHARE_COLORS;
   const { width, height } = SHARE_IMAGE;
@@ -161,39 +183,34 @@ export function shareImageHtml(owlSvg: string, fonts: ShareFont[]): string {
     ([x, y, r]) =>
       `<circle cx="${x}" cy="${y}" r="${r}" fill="${c.white}" opacity="0.8"/>`,
   ).join("");
-  const owl = placeOwl(owlSvg, 930, 365, 440);
+  const sparks = SHARE_SPARKS.map(
+    ([x, y, r]) =>
+      `<circle cx="${x}" cy="${y}" r="${r}" fill="${c.beak}" opacity="0.85"/>`,
+  ).join("");
+  const owl = placeOwl(owlSvg, 620, 195, 280, -14);
   const art = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" style="position:absolute;inset:0">
 <defs>
   <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="${c.cream}" stop-opacity="0.34"/><stop offset="1" stop-color="${c.cream}" stop-opacity="0"/></radialGradient>
-  <clipPath id="moon"><circle cx="110" cy="590" r="120"/></clipPath>
 </defs>
 <rect width="${width}" height="${height}" fill="${c.night}"/>
 <ellipse cx="1100" cy="40" rx="620" ry="420" fill="${c.violet}" opacity="0.4"/>
 <ellipse cx="60" cy="640" rx="560" ry="360" fill="${c.blue}" opacity="0.38"/>
 ${stars}
-<g transform="translate(1110 62) rotate(-18)">
-  <ellipse rx="160" ry="40" fill="none" stroke="${c.beak}" stroke-width="10" opacity="0.5"/>
-  <circle r="72" fill="${c.amber}"/>
-  <circle cx="-26" cy="-22" r="72" fill="${c.pink}" opacity="0.18"/>
-  <path d="M-160 0 A160 40 0 0 0 160 0" fill="none" stroke="${c.beak}" stroke-width="10" opacity="0.9"/>
-</g>
-<g clip-path="url(#moon)">
-  <circle cx="110" cy="590" r="120" fill="${c.teal}"/>
-  <rect x="-20" y="520" width="260" height="22" fill="${c.sky}" opacity="0.28"/>
-  <rect x="-20" y="568" width="260" height="30" fill="${c.sky}" opacity="0.2"/>
-  <rect x="-20" y="620" width="260" height="22" fill="${c.sky}" opacity="0.28"/>
-</g>
-<circle cx="930" cy="365" r="290" fill="url(#glow)"/>
+${planet(1010, 150, 70, c.amber, true)}
+${planet(190, 470, 46, c.violet, false)}
+${bandedMoon(1040, 560, 70)}
+<circle cx="600" cy="240" r="300" fill="url(#glow)"/>
+<path d="M300 440 Q420 410 500 350" stroke="${c.sky}" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.35" stroke-dasharray="2 22"/>
+${sparks}
 ${owl}
 </svg>`;
   return `<!doctype html><html lang="vi"><head><meta charset="utf-8"><style>${faces}
 html,body{margin:0;width:${width}px;height:${height}px;overflow:hidden;background:${c.night}}
-.title{position:absolute;left:84px;top:70px;width:640px;margin:0;font:700 150px/1 "Baloo 2",sans-serif;color:${c.white};letter-spacing:-2px}
-.line{position:absolute;left:90px;top:392px;margin:0;font:700 56px/1.2 "Baloo 2",sans-serif;color:${c.sky}}
-.hint{position:absolute;left:90px;top:466px;margin:0;font:600 34px/1.3 "Baloo 2",sans-serif;color:${c.cream};opacity:.9}
+.text{position:absolute;left:0;width:${width}px;margin:0;text-align:center;font-family:"Baloo 2",sans-serif;font-weight:700;line-height:1}
+.title{top:385px;font-size:124px;letter-spacing:-2px;color:${c.white}}
+.line{top:530px;font-size:50px;font-weight:600;white-space:nowrap;color:${c.sky}}
 </style></head><body>${art}
-<h1 class="title">${APP_NAME}</h1>
-<p class="line">Tự học lớp 6 cùng bạn cú</p>
-<p class="hint">Hình động · Bài tập vui · Ôn lại đúng lúc</p>
+<h1 class="text title">${APP_NAME}</h1>
+<p class="text line">${APP_TAGLINE}</p>
 </body></html>`;
 }
