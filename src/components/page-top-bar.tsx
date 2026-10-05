@@ -18,7 +18,7 @@ export function PageTopBar({
   return (
     <div className="flex items-center justify-between gap-2" data-page-top-bar>
       {children}
-      <div className="flex shrink-0 items-center">
+      <div className="flex shrink-0 items-center gap-2">
         {feedback && <FeedbackButton context={feedback} />}
         <SoundToggle childId={childId} />
       </div>

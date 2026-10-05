@@ -68,7 +68,7 @@ export function PlayerHeader({
         </button>
       )}
       {progress && <SectionStepper {...progress} />}
-      <div className="ml-auto flex shrink-0 items-center">
+      <div className="ml-auto flex shrink-0 items-center gap-2">
         {feedback && <FeedbackButton context={feedback} />}
         <SoundToggle childId={childId} />
       </div>
