@@ -40,7 +40,7 @@ Sizes: S is up to about 2 files of code plus tests; M is up to about 5. A task t
 - Acceptance: tests over a fake `fetch` for success (exact request: URL, method, headers, `{ title, body, labels }`), 401, 403 without and with `retry-after` (`github-403` vs `github-rate`), 429, 422 on the issue, 422 `already_exists` on a label (done) and another 422 on a label (`labels`, issue still created without it), 502, abort on timeout, missing token (no request at all); a test asserts the token string appears in no returned value.
 - Verify: `pnpm test tests/user-feedback/github.test.ts`.
 
-### T5a. Shared request helpers (S, refactor only)
+### T5a. Shared request helpers (S, refactor only) [x]
 
 - Files: `src/access/client-key.ts` (new, `clientKey` moved from `src/app/api/session/route.ts`), `src/lib/read-capped.ts` (new, `readCapped` moved from `src/sync/server.ts`), `src/app/api/session/route.ts`, `src/sync/server.ts`, `tests/access/client-key.test.ts`, `tests/lib/read-capped.test.ts`.
 - Do: move, do not change behaviour; the two callers import the shared copies.
@@ -178,8 +178,8 @@ Base commit (the commit before T1, for the security review diff): `e706002`.
 
 Coordinator decisions on the reviewer's open questions (recorded in `spec.md`): chip label "Hay, mình thích"; PIN asked for every note; thank-you closes after 5 s and has a close button; opening the sheet pauses narration and video (no auto-resume); the repo README's hidden-block example updated to match section 6.2.
 
-Done: T1, T2, T3, T4.
-Next: T5a.
+Done: T1, T2, T3, T4, T5a.
+Next: T5b.
 
 Checkpoint A (issue format; the owner approved building and deploying without waiting, so it is recorded here for the morning review). A parent report with section, item and note renders as (labels `feedback`, `nguon:phu-huynh`, `ly-do:sai-noi-dung`, `bai:luy-thua`, `mon:math`, `lop:6`, `trang-thai:moi`; title `[Góp ý] Sai nội dung hoặc đáp án · Bài 6. Lũy thừa với số mũ tự nhiên · Phần 3`):
 

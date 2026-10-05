@@ -1,4 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server";
+import { clientKey } from "@/access/client-key";
 import { familyCode, verifyFamilyCode } from "@/access/code";
 import { readAccessConfig } from "@/access/env";
 import { sameOrigin } from "@/access/origin";
@@ -21,15 +22,6 @@ const limiter = new FailureLimiter(
   ACCESS_MAX_FAILS,
   ACCESS_LOCK_MINUTES * 60 * 1000,
 );
-
-// The visitor's address as the host (Vercel) reports it.
-function clientKey(request: NextRequest): string {
-  const forwarded = request.headers
-    .get("x-forwarded-for")
-    ?.split(",")[0]
-    ?.trim();
-  return forwarded || request.headers.get("x-real-ip") || "unknown";
-}
 
 function locked(retryAfterSeconds: number) {
   return NextResponse.json(

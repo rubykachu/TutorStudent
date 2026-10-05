@@ -13,6 +13,7 @@ import {
   SYNC_PROFILE_CACHE_SECONDS,
   SYNC_PUT_LIMIT_PER_MINUTE,
 } from "@/lib/config";
+import { readCapped } from "@/lib/read-capped";
 import { vnDayKey } from "@/lib/time";
 import { clampFutureTimes } from "@/sync/clamp";
 import {
@@ -159,37 +160,6 @@ function interpret(found: StoredBlob, kind: DocKind): Stored {
     body: found.body,
     version: known,
   };
-}
-
-// The body of a request, or null when it is longer than `max` bytes. Reading
-// stops at the cap, so an oversized body is never held whole or parsed.
-async function readCapped(
-  request: NextRequest,
-  max: number,
-): Promise<string | null> {
-  const declared = Number(request.headers.get("content-length"));
-  if (Number.isFinite(declared) && declared > max) return null;
-  const reader = request.body?.getReader();
-  if (!reader) return "";
-  const chunks: Uint8Array[] = [];
-  let total = 0;
-  for (;;) {
-    const { done, value } = await reader.read();
-    if (done) break;
-    total += value.byteLength;
-    if (total > max) {
-      await reader.cancel();
-      return null;
-    }
-    chunks.push(value);
-  }
-  const bytes = new Uint8Array(total);
-  let offset = 0;
-  for (const chunk of chunks) {
-    bytes.set(chunk, offset);
-    offset += chunk.byteLength;
-  }
-  return new TextDecoder().decode(bytes);
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
