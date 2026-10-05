@@ -1,0 +1,308 @@
+<!doctype html>
+<!--
+  Lesson video "Vẽ nốt nửa hình đối xứng trên lưới" (lesson hinh-co-truc-doi-xung): half of a
+  shape is drawn on a grid left of the vertical axis d; each vertex gets its symmetric point by
+  counting the cells from the vertex to d and the same number of cells on the other side, then
+  the points are joined. Colours as in the lesson: axis of symmetry pink, dashed; symmetric
+  points teal.
+  Built by `pnpm video:build hinh-co-truc-doi-xung ve-them-doi-xung`, which injects window.TIMING.
+  The rule card carries `data-rule-text`: its text is a sentence of the lesson's note word for word.
+-->
+<html lang="vi">
+  <head>
+    <title>Vẽ nốt nửa hình đối xứng trên lưới</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .grid {
+        position: absolute;
+        left: 190px;
+        top: 100px;
+        width: 540px;
+        height: 405px;
+      }
+      .side {
+        position: absolute;
+        left: 770px;
+        width: 480px;
+        display: flex;
+      }
+      .side .chip {
+        white-space: normal;
+        font-size: 36px;
+      }
+      .rule {
+        position: absolute;
+        left: 770px;
+        width: 480px;
+        top: 110px;
+        padding: 22px 28px;
+        font:
+          600 32px / 1.45 "Be Vietnam Pro",
+          sans-serif;
+        box-sizing: border-box;
+        text-wrap: balance;
+      }
+      .cnt text {
+        font-family: "Baloo 2", sans-serif;
+        font-weight: 800;
+        font-size: 28px;
+        fill: #0f172a;
+        text-anchor: middle;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="70"
+      data-width="1280"
+      data-height="720"
+    >
+      <div id="stage" class="layer">
+        <svg id="grid" class="grid" viewBox="0 0 540 405" role="img">
+          <title>Lưới ô vuông, nửa hình bên trái trục d</title></svg>
+        <section id="s1" class="scene layer">
+          <div class="row title" style="top: 24px; left: 640px; width: 640px">Vẽ nốt nửa hình</div>
+        </section>
+        <section id="s2" class="scene layer">
+          <div id="t2" class="side" style="top: 250px">
+            <span class="chip" style="--c: var(--color-concept-sky)">Đỉnh cách d: 2 ô</span>
+          </div>
+        </section>
+        <section id="s3" class="scene layer">
+          <div id="t3" class="side" style="top: 250px">
+            <span class="chip" style="--c: var(--color-concept-teal)">Điểm đối xứng: ?</span>
+          </div>
+        </section>
+        <section id="s4" class="scene layer">
+          <div id="t4" class="side" style="top: 250px">
+            <span class="chip" style="--c: var(--color-concept-teal)">Bên kia cũng 2 ô</span>
+          </div>
+        </section>
+        <section id="s5" class="scene layer">
+          <div id="t5" class="side" style="top: 250px">
+            <span class="chip" style="--c: var(--color-concept-teal)">Bên kia cũng 5 ô</span>
+          </div>
+        </section>
+        <section id="s6" class="scene layer">
+          <div id="rule6" class="card rule" data-rule-text>
+            Muốn vẽ thêm cho hình có trục d, hãy tìm điểm đối xứng của từng đỉnh rồi nối lại.
+          </div>
+        </section>
+        <section id="s7" class="scene layer">
+          <div id="t7" class="side" style="top: 250px">
+            <span class="chip" style="--c: var(--color-concept-pink)">Hai nửa giống hệt</span>
+          </div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div
+        id="fade"
+        class="layer"
+        style="background: var(--color-background)"
+      ></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>
+      /*TIMING:BEGIN*/ window.TIMING = null; /*TIMING:END*/
+    </script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { $, start, W, owl, pop, hide, pose, scenes, finish, tl } =
+          window.LV;
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], {
+          left: "30px",
+          top: "385px",
+          width: "150px",
+          height: "150px",
+        });
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        // ---------- the grid: 12 columns x 9 rows of 45 px cells, axis d on line x = 6 ----------
+        const C = 45;
+        const AXIS = 6;
+        const NS = "http://www.w3.org/2000/svg";
+        const svg = $("#grid");
+        const el = (tag, attrs, parent = svg) => {
+          const node = document.createElementNS(NS, tag);
+          for (const [k, v] of Object.entries(attrs)) node.setAttribute(k, v);
+          parent.append(node);
+          return node;
+        };
+        const pt = ([x, y]) => `${x * C},${y * C}`;
+        for (let i = 0; i <= 12; i++)
+          el("line", { x1: i * C, y1: 0, x2: i * C, y2: 9 * C, stroke: "#cbd5e1", "stroke-width": 1.5 });
+        for (let j = 0; j <= 9; j++)
+          el("line", { x1: 0, y1: j * C, x2: 12 * C, y2: j * C, stroke: "#cbd5e1", "stroke-width": 1.5 });
+
+        // left half of the shape: top and bottom vertices on d, three vertices off it
+        const T = [6, 1];
+        const P = [4, 3];
+        const Q = [1, 5];
+        const R = [4, 7];
+        const B = [6, 8];
+        const mirror = ([x, y]) => [2 * AXIS - x, y];
+        const left = [T, P, Q, R, B];
+        el("polygon", {
+          points: left.map(pt).join(" "),
+          fill: "#0369a1",
+          "fill-opacity": 0.3,
+          stroke: "#0369a1",
+          "stroke-width": 4,
+          "stroke-linejoin": "round",
+        });
+        // right half: drawn in once the symmetric points exist
+        el("polyline", {
+          points: [T, mirror(P), mirror(Q), mirror(R), B].map(pt).join(" "),
+          fill: "#0f766e",
+          "fill-opacity": 0.3,
+          stroke: "#0f766e",
+          "stroke-width": 4,
+          "stroke-linejoin": "round",
+          id: "right-half",
+        });
+        el("line", {
+          x1: AXIS * C, y1: -10, x2: AXIS * C, y2: 9 * C + 10,
+          stroke: "#db2777", "stroke-width": 5, "stroke-dasharray": "14 10", "stroke-linecap": "round",
+        });
+        el("text", {
+          x: AXIS * C + 12, y: 22, fill: "#db2777",
+          "font-family": "Baloo 2", "font-weight": 800, "font-size": 34,
+        }).textContent = "d";
+        for (const v of [P, Q, R])
+          el("circle", { cx: v[0] * C, cy: v[1] * C, r: 8, fill: "#0369a1" });
+
+        // counting cells: a band of cells in the vertex's row, numbered 1, 2, ...
+        const cells = (y, from, to, id) => {
+          const g = el("g", { id, class: "cnt" });
+          for (let x = from; x < to; x++) {
+            el("rect", {
+              x: x * C + 2, y: y * C + 2, width: C - 4, height: C - 4, rx: 6,
+              fill: "#fde68a", "fill-opacity": 0.9,
+            }, g);
+            el("text", { x: x * C + C / 2, y: y * C + C / 2 + 10 }, g).textContent =
+              String(x - from + 1);
+          }
+          return g;
+        };
+        // left of d: 1 is the cell next to the vertex; right of d: 1 is the cell next to d
+        const countLeft = (v, id) => cells(v[1], v[0], AXIS, id);
+        const countRight = (v, id) => cells(v[1], AXIS, mirror(v)[0], id);
+        const dot = (v, id) => {
+          const g = el("g", { id });
+          el("circle", { cx: v[0] * C, cy: v[1] * C, r: 17, fill: "none", stroke: "#0f766e", "stroke-width": 4 }, g);
+          el("circle", { cx: v[0] * C, cy: v[1] * C, r: 9, fill: "#0f766e" }, g);
+          return g;
+        };
+        const ring = (v, id) =>
+          el("circle", { id, cx: v[0] * C, cy: v[1] * C, r: 18, fill: "none", stroke: "#0369a1", "stroke-width": 4 });
+
+        countLeft(P, "cl-p");
+        countRight(P, "cr-p");
+        countLeft(Q, "cl-q");
+        countRight(Q, "cr-q");
+        dot(mirror(P), "d-p");
+        dot(mirror(Q), "d-q");
+        dot(mirror(R), "d-r");
+        ring(P, "ring-p");
+        ring(Q, "ring-q");
+
+        scenes(
+          [
+            ["#s1", "s01-chao"],
+            ["#s2", "s02-dem"],
+            ["#s3", "s03-hoi"],
+            ["#s4", "s04-ben-kia"],
+            ["#s5", "s05-nam-o"],
+            ["#s6", "s06-quy-tac"],
+            ["#s7", "s07-xong"],
+          ],
+          { leave: 0 },
+        );
+        const show = (target, t, d = 0.4) =>
+          tl.fromTo(
+            target,
+            { autoAlpha: 0 },
+            { autoAlpha: 1, duration: d, immediateRender: false },
+            t,
+          );
+        const gone = (target, t) => tl.set(target, { autoAlpha: 0 }, t);
+
+        hide([
+          "#cl-p", "#cr-p", "#cl-q", "#cr-q", "#d-p", "#d-q", "#d-r",
+          "#ring-p", "#ring-q", "#right-half",
+          "#t2", "#t3", "#t4", "#t5", "#rule6", "#t7",
+        ]);
+        // the numbered cells fade in one by one
+        const reveal = (selector, t, gap) => {
+          const nodes = [...$(selector).querySelectorAll("rect, text")];
+          const n = nodes.length / 2;
+          tl.set(selector, { autoAlpha: 1 }, t);
+          window.gsap.set(nodes, { autoAlpha: 0 });
+          for (let i = 0; i < n; i++)
+            show([nodes[i * 2], nodes[i * 2 + 1]], t + i * gap, 0.3);
+        };
+
+        {
+          const sid = "s01-chao";
+          pose(bird, "happy", W(sid, "chào"));
+          pose(bird, "idle", W(sid, "bạn"));
+        }
+        {
+          const sid = "s02-dem";
+          show("#ring-p", W(sid, "đỉnh"));
+          pop("#t2", W(sid, "hai"), { from: 0.6 });
+          reveal("#cl-p", W(sid, "đếm"), 0.55);
+          pose(bird, "idle", start(sid));
+        }
+        {
+          const sid = "s03-hoi";
+          pop("#t3", W(sid, "đoán"), { from: 0.6 });
+          pose(bird, "idle", start(sid));
+        }
+        {
+          const sid = "s04-ben-kia";
+          reveal("#cr-p", W(sid, "hai"), 0.55);
+          show("#d-p", W(sid, "hiện"));
+          pop("#t4", W(sid, "đúng"), { from: 0.6 });
+          pose(bird, "happy", W(sid, "đúng"));
+        }
+        {
+          const sid = "s05-nam-o";
+          // the first vertex's count and its ring leave; the long one takes over
+          gone(["#cl-p", "#cr-p", "#ring-p"], start(sid));
+          show("#ring-q", W(sid, "đỉnh"));
+          reveal("#cl-q", W(sid, "năm"), 0.3);
+          reveal("#cr-q", W(sid, "kia"), 0.3);
+          show("#d-q", W(sid, "hiện"));
+          pop("#t5", W(sid, "cũng"), { from: 0.6 });
+          show("#d-r", W(sid, "còn"));
+          pose(bird, "idle", start(sid));
+        }
+        {
+          const sid = "s06-quy-tac";
+          gone(["#cl-q", "#cr-q", "#ring-q"], start(sid));
+          pop("#rule6", start(sid) + 0.1, { from: 0.9 });
+          show("#right-half", W(sid, "nối"), 0.8);
+          pose(bird, "idle", start(sid));
+        }
+        {
+          const sid = "s07-xong";
+          pop("#t7", W(sid, "giống"), { from: 0.6 });
+          pose(bird, "cheer", W(sid, "làm"));
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

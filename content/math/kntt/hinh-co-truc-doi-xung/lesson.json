@@ -24,7 +24,16 @@
       "vẽ thêm để được hình có trục đối xứng cho trước",
       "gấp và cắt giấy để được hình đối xứng"
     ],
-    "whyItMatters": "Bạn dùng bài này khi gấp đôi tờ giấy rồi cắt con bướm, mở ra thì hai cánh giống hệt nhau."
+    "whyItMatters": "Bạn dùng bài này khi gấp đôi tờ giấy rồi cắt con bướm, mở ra thì hai cánh giống hệt nhau.",
+    "narration": {
+      "audioUrl": "narration/hinh-co-truc-doi-xung/overview.m4a",
+      "vttUrl": "narration/hinh-co-truc-doi-xung/overview.vtt",
+      "voice": {
+        "engine": "gemini",
+        "voiceName": "Achird",
+        "model": "gemini-3.1-flash-tts-preview"
+      }
+    }
   },
   "concepts": [
     {
@@ -94,6 +103,10 @@
       "sourceRef": "Sách bài tập tr.78 (kiến thức cần nhớ)",
       "minutes": 5,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "hinh-co-truc-doi-xung.video.gap-doi-hinh"
+        },
         {
           "type": "group",
           "children": [
@@ -276,6 +289,10 @@
       "sourceRef": "Sách bài tập tr.78 (hình 5.1), tr.80 (bài 5.1), tr.118 (lời giải bài 5.1)",
       "minutes": 5,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "hinh-co-truc-doi-xung.video.dem-truc"
+        },
         {
           "type": "group",
           "children": [
@@ -491,6 +508,10 @@
       "sourceRef": "Sách bài tập tr.78 (ví dụ 1), tr.79 (ví dụ 2, hình 5.3, hình 5.4)",
       "minutes": 5,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "hinh-co-truc-doi-xung.video.ve-them-doi-xung"
+        },
         {
           "type": "group",
           "children": [
@@ -5195,5 +5216,70 @@
   "sticker": {
     "name": "Huy hiệu cánh bướm",
     "visualId": "hinh-co-truc-doi-xung.visual.sticker"
-  }
+  },
+  "videos": [
+    {
+      "id": "hinh-co-truc-doi-xung.video.gap-doi-hinh",
+      "lessonId": "hinh-co-truc-doi-xung",
+      "url": "video/hinh-co-truc-doi-xung/gap-doi-hinh.mp4",
+      "vttUrl": "video/hinh-co-truc-doi-xung/gap-doi-hinh.vtt",
+      "posterUrl": "video/hinh-co-truc-doi-xung/gap-doi-hinh.jpg",
+      "durationSec": 47.93,
+      "clips": [
+        {
+          "id": "gap-doi-hinh",
+          "start": 9.299,
+          "end": 46.516,
+          "cardIds": ["hinh-co-truc-doi-xung.card.truc-doi-xung"]
+        }
+      ],
+      "voice": {
+        "engine": "omnivoice",
+        "voiceName": "Hải Đăng",
+        "model": "OmniVoice c5fdb5c"
+      }
+    },
+    {
+      "id": "hinh-co-truc-doi-xung.video.dem-truc",
+      "lessonId": "hinh-co-truc-doi-xung",
+      "url": "video/hinh-co-truc-doi-xung/dem-truc.mp4",
+      "vttUrl": "video/hinh-co-truc-doi-xung/dem-truc.vtt",
+      "posterUrl": "video/hinh-co-truc-doi-xung/dem-truc.jpg",
+      "durationSec": 45.97,
+      "clips": [
+        {
+          "id": "dem-truc",
+          "start": 9.526,
+          "end": 44.543,
+          "cardIds": ["hinh-co-truc-doi-xung.card.hinh-deu"]
+        }
+      ],
+      "voice": {
+        "engine": "omnivoice",
+        "voiceName": "Hải Đăng",
+        "model": "OmniVoice c5fdb5c"
+      }
+    },
+    {
+      "id": "hinh-co-truc-doi-xung.video.ve-them-doi-xung",
+      "lessonId": "hinh-co-truc-doi-xung",
+      "url": "video/hinh-co-truc-doi-xung/ve-them-doi-xung.mp4",
+      "vttUrl": "video/hinh-co-truc-doi-xung/ve-them-doi-xung.vtt",
+      "posterUrl": "video/hinh-co-truc-doi-xung/ve-them-doi-xung.jpg",
+      "durationSec": 47.73,
+      "clips": [
+        {
+          "id": "ve-them-doi-xung",
+          "start": 9.259,
+          "end": 46.304,
+          "cardIds": ["hinh-co-truc-doi-xung.card.ve-them-hinh"]
+        }
+      ],
+      "voice": {
+        "engine": "omnivoice",
+        "voiceName": "Hải Đăng",
+        "model": "OmniVoice c5fdb5c"
+      }
+    }
+  ]
 }

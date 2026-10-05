@@ -1,0 +1,107 @@
+{
+  "title": "Vẽ nốt nửa hình đối xứng trên lưới",
+  "engine": "omnivoice",
+  "poster": {
+    "scene": "s05-nam-o",
+    "at": 0.9
+  },
+  "scenes": [
+    {
+      "id": "s01-chao",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta vẽ nốt nửa còn lại của hình.",
+          "opening": true
+        },
+        {
+          "text": "Mới có nửa bên trái trục d."
+        },
+        {
+          "text": "Bạn cú sẽ giúp bạn đếm ô."
+        }
+      ]
+    },
+    {
+      "id": "s02-dem",
+      "sentences": [
+        {
+          "text": "Lấy một đỉnh, cách trục hai ô."
+        },
+        {
+          "text": "Đếm hai ô từ đỉnh tới trục."
+        }
+      ]
+    },
+    {
+      "id": "s03-hoi",
+      "sentences": [
+        {
+          "text": "Bạn thử đoán xem: điểm đối xứng ở đâu?",
+          "pause": "ask"
+        }
+      ]
+    },
+    {
+      "id": "s04-ben-kia",
+      "sentences": [
+        {
+          "text": "Đếm đúng hai ô bên kia trục."
+        },
+        {
+          "text": "Điểm đối xứng hiện ra, màu xanh ngọc.",
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s05-nam-o",
+      "sentences": [
+        {
+          "text": "Đỉnh này cách trục năm ô."
+        },
+        {
+          "text": "Bên kia cũng đếm năm ô."
+        },
+        {
+          "text": "Điểm đối xứng thứ hai hiện ra."
+        },
+        {
+          "text": "Các đỉnh còn lại làm như vậy.",
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s06-quy-tac",
+      "sentences": [
+        {
+          "text": "Muốn vẽ thêm cho hình có trục d, hãy tìm điểm đối xứng của từng đỉnh rồi nối lại.",
+          "rule": true,
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s07-xong",
+      "sentences": [
+        {
+          "text": "Hai nửa giống hệt nhau."
+        },
+        {
+          "text": "Nửa phải soi gương nửa trái."
+        },
+        {
+          "text": "Bạn làm được rồi!"
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "ve-them-doi-xung",
+      "from": "s02-dem",
+      "to": "s07-xong",
+      "cardIds": ["hinh-co-truc-doi-xung.card.ve-them-hinh"]
+    }
+  ]
+}

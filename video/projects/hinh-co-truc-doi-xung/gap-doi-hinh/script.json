@@ -1,0 +1,97 @@
+{
+  "title": "Gấp hình để tìm trục đối xứng",
+  "engine": "omnivoice",
+  "poster": {
+    "scene": "s03-gap",
+    "at": 0.9
+  },
+  "scenes": [
+    {
+      "id": "s01-chao",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta gấp hình để tìm trục đối xứng.",
+          "opening": true
+        },
+        {
+          "text": "Bạn cú sẽ gấp giấy cùng bạn."
+        },
+        {
+          "text": "Đây là một cánh diều giấy."
+        }
+      ]
+    },
+    {
+      "id": "s02-hoi",
+      "sentences": [
+        {
+          "text": "Ta kẻ đường thẳng d qua giữa diều."
+        },
+        {
+          "text": "Đường d vẽ nét đứt màu hồng."
+        },
+        {
+          "text": "Đường d chia diều làm hai nửa."
+        },
+        {
+          "text": "Bạn đoán xem: gấp theo đường d, hai nửa có khít không?",
+          "pause": "ask"
+        }
+      ]
+    },
+    {
+      "id": "s03-gap",
+      "sentences": [
+        {
+          "text": "Ta gấp thử nhé."
+        },
+        {
+          "text": "Nửa phải đè lên nửa trái."
+        },
+        {
+          "text": "Hai nửa chồng khít nhau!",
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s04-quy-tac",
+      "sentences": [
+        {
+          "text": "Gấp hình theo đường thẳng d, nếu hai nửa chồng khít nhau thì d là trục đối xứng.",
+          "rule": true,
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s05-thu",
+      "sentences": [
+        {
+          "text": "Giờ thử gấp theo đường nằm ngang."
+        },
+        {
+          "text": "Nửa dưới dài hơn nửa trên."
+        },
+        {
+          "text": "Hai nửa lệch nhau, không khít.",
+          "pause": "think"
+        },
+        {
+          "text": "Vậy đường này không phải trục."
+        },
+        {
+          "text": "Diều giấy này chỉ có một trục."
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "gap-doi-hinh",
+      "from": "s02-hoi",
+      "to": "s05-thu",
+      "cardIds": ["hinh-co-truc-doi-xung.card.truc-doi-xung"]
+    }
+  ]
+}

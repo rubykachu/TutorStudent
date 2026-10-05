@@ -1,0 +1,97 @@
+{
+  "title": "Đếm trục bằng cách gấp thử",
+  "engine": "omnivoice",
+  "poster": {
+    "scene": "s03-vuong",
+    "at": 0.9
+  },
+  "scenes": [
+    {
+      "id": "s01-chao",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta đếm trục đối xứng của một hình.",
+          "opening": true
+        },
+        {
+          "text": "Bạn cú sẽ cùng bạn gấp thử."
+        },
+        {
+          "text": "Đây là một tấm thẻ hình vuông."
+        }
+      ]
+    },
+    {
+      "id": "s02-hoi",
+      "sentences": [
+        {
+          "text": "Bạn đoán xem: hình vuông có mấy trục?",
+          "pause": "ask"
+        }
+      ]
+    },
+    {
+      "id": "s03-vuong",
+      "sentences": [
+        {
+          "text": "Ta gấp thử theo từng đường, rồi đếm số đường khít."
+        },
+        {
+          "text": "Đường thẳng đứng gấp khít."
+        },
+        {
+          "text": "Đường nằm ngang cũng khít."
+        },
+        {
+          "text": "Hai đường chéo cũng khít.",
+          "pause": "think"
+        },
+        {
+          "text": "Vậy hình vuông có bốn trục.",
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s04-chu-nhat",
+      "sentences": [
+        {
+          "text": "Giờ ta thử tiếp với hình chữ nhật."
+        },
+        {
+          "text": "Đường thẳng đứng gấp khít."
+        },
+        {
+          "text": "Đường nằm ngang cũng khít."
+        },
+        {
+          "text": "Đường chéo thì lệch, không khít.",
+          "pause": "think"
+        },
+        {
+          "text": "Vậy hình chữ nhật chỉ có hai trục.",
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s05-nho",
+      "sentences": [
+        {
+          "text": "Hình nào ta cũng gấp thử như vậy."
+        },
+        {
+          "text": "Bạn nhớ: gấp khít mới là trục."
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "dem-truc",
+      "from": "s02-hoi",
+      "to": "s05-nho",
+      "cardIds": ["hinh-co-truc-doi-xung.card.hinh-deu"]
+    }
+  ]
+}

@@ -1,0 +1,195 @@
+<!doctype html>
+<!--
+  Lesson video "Đếm trục bằng cách gấp thử" (lesson hinh-co-truc-doi-xung): to count the axes of
+  a shape, fold it along each candidate line; every line where the halves cover each other is an
+  axis. A square has 4 (vertical, horizontal, two diagonals), a rectangle 2 (its diagonals leave
+  the halves apart). Colours as in the lesson: axis of symmetry pink, dashed.
+  Built by `pnpm video:build hinh-co-truc-doi-xung dem-truc`, which injects window.TIMING.
+-->
+<html lang="vi">
+  <head>
+    <title>Đếm trục bằng cách gấp thử</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .shape {
+        position: absolute;
+      }
+      .side {
+        position: absolute;
+        left: 700px;
+        width: 540px;
+        display: flex;
+      }
+      .side .chip {
+        white-space: normal;
+        font-size: 38px;
+      }
+      .num text {
+        font-family: "Baloo 2", sans-serif;
+        font-weight: 800;
+        font-size: 22px;
+        fill: #ffffff;
+        text-anchor: middle;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="60"
+      data-width="1280"
+      data-height="720"
+    >
+      <div id="stage" class="layer">
+        <!-- square: always on screen until the rectangle replaces it -->
+        <svg id="sq" class="shape" style="left: 200px; top: 80px; width: 440px; height: 440px" viewBox="-175 -175 350 350" role="img">
+          <title>Hình vuông và các đường gấp thử</title>
+          <rect x="-110" y="-110" width="220" height="220" rx="6" fill="#0369a1" fill-opacity="0.3" stroke="#0369a1" stroke-width="4" />
+          <g id="sq-v"><line x1="0" y1="-140" x2="0" y2="140" stroke="#db2777" stroke-width="5" stroke-dasharray="14 10" stroke-linecap="round" /><g class="num"><circle cx="0" cy="-156" r="16" fill="#db2777" /><text x="0" y="-148">1</text></g></g>
+          <g id="sq-h"><line x1="-140" y1="0" x2="140" y2="0" stroke="#db2777" stroke-width="5" stroke-dasharray="14 10" stroke-linecap="round" /><g class="num"><circle cx="156" cy="0" r="16" fill="#db2777" /><text x="156" y="8">2</text></g></g>
+          <g id="sq-d1"><line x1="-128" y1="-128" x2="128" y2="128" stroke="#db2777" stroke-width="5" stroke-dasharray="14 10" stroke-linecap="round" /><g class="num"><circle cx="-144" cy="-144" r="16" fill="#db2777" /><text x="-144" y="-136">3</text></g></g>
+          <g id="sq-d2"><line x1="128" y1="-128" x2="-128" y2="128" stroke="#db2777" stroke-width="5" stroke-dasharray="14 10" stroke-linecap="round" /><g class="num"><circle cx="144" cy="-144" r="16" fill="#db2777" /><text x="144" y="-136">4</text></g></g>
+        </svg>
+        <svg id="rc" class="shape" style="left: 170px; top: 110px; width: 500px; height: 360px" viewBox="-215 -150 430 300" role="img">
+          <title>Hình chữ nhật và các đường gấp thử</title>
+          <rect x="-170" y="-90" width="340" height="180" rx="6" fill="#4d7c0f" fill-opacity="0.3" stroke="#4d7c0f" stroke-width="4" />
+          <g id="rc-v"><line x1="0" y1="-120" x2="0" y2="120" stroke="#db2777" stroke-width="5" stroke-dasharray="14 10" stroke-linecap="round" /><g class="num"><circle cx="0" cy="-134" r="16" fill="#db2777" /><text x="0" y="-126">1</text></g></g>
+          <g id="rc-h"><line x1="-195" y1="0" x2="195" y2="0" stroke="#db2777" stroke-width="5" stroke-dasharray="14 10" stroke-linecap="round" /><g class="num"><circle cx="195" cy="-24" r="16" fill="#db2777" /><text x="195" y="-16">2</text></g></g>
+          <g id="rc-d"><line x1="-185" y1="-105" x2="185" y2="105" stroke="#475569" stroke-width="5" stroke-dasharray="14 10" stroke-linecap="round" /><g class="num"><circle cx="-185" cy="-122" r="16" fill="#475569" /><text x="-185" y="-114">✕</text></g></g>
+        </svg>
+        <section id="s1" class="scene layer">
+          <div class="row title" style="top: 24px; left: 640px; width: 640px">Đếm trục đối xứng</div>
+        </section>
+        <section id="s2" class="scene layer">
+          <div id="q2" class="side" style="top: 250px">
+            <span class="chip" style="--c: var(--color-concept-pink)">Hình vuông: ? trục</span>
+          </div>
+        </section>
+        <section id="s3" class="scene layer">
+          <div id="r3" class="side" style="top: 250px">
+            <span class="chip" style="--c: var(--color-concept-pink)">Hình vuông: 4 trục</span>
+          </div>
+        </section>
+        <section id="s4" class="scene layer">
+          <div id="r4" class="side" style="top: 250px">
+            <span class="chip" style="--c: var(--color-concept-pink)">Hình chữ nhật: 2 trục</span>
+          </div>
+        </section>
+        <section id="s5" class="scene layer">
+          <div id="r5a" class="side" style="top: 190px">
+            <span class="chip" style="--c: var(--color-concept-pink)">Gấp khít là trục</span>
+          </div>
+          <div id="r5b" class="side" style="top: 300px">
+            <span class="chip" style="--c: var(--color-concept-slate)">Gấp lệch thì không</span>
+          </div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div
+        id="fade"
+        class="layer"
+        style="background: var(--color-background)"
+      ></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>
+      /*TIMING:BEGIN*/ window.TIMING = null; /*TIMING:END*/
+    </script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { $, start, W, owl, pop, hide, pose, scenes, finish, tl } =
+          window.LV;
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], {
+          left: "30px",
+          top: "385px",
+          width: "150px",
+          height: "150px",
+        });
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        scenes(
+          [
+            ["#s1", "s01-chao"],
+            ["#s2", "s02-hoi"],
+            ["#s3", "s03-vuong"],
+            ["#s4", "s04-chu-nhat"],
+            ["#s5", "s05-nho"],
+          ],
+          { leave: 0 },
+        );
+        const show = (target, t) =>
+          tl.fromTo(
+            target,
+            { autoAlpha: 0 },
+            { autoAlpha: 1, duration: 0.4, immediateRender: false },
+            t,
+          );
+
+        hide([
+          "#rc",
+          "#sq-v",
+          "#sq-h",
+          "#sq-d1",
+          "#sq-d2",
+          "#rc-v",
+          "#rc-h",
+          "#rc-d",
+          "#q2",
+          "#r3",
+          "#r4",
+          "#r5a",
+          "#r5b",
+        ]);
+
+        {
+          const sid = "s01-chao";
+          pose(bird, "happy", W(sid, "chào"));
+          pose(bird, "idle", W(sid, "bạn"));
+        }
+        {
+          const sid = "s02-hoi";
+          pop("#q2", W(sid, "đoán"), { from: 0.6 });
+          pose(bird, "idle", start(sid));
+        }
+        {
+          const sid = "s03-vuong";
+          show("#sq-v", W(sid, "thẳng"));
+          show("#sq-h", W(sid, "nằm"));
+          show("#sq-d1", W(sid, "chéo"));
+          show("#sq-d2", W(sid, "chéo") + 0.7);
+          pop("#r3", W(sid, "bốn"), { from: 0.6 });
+          pose(bird, "happy", W(sid, "bốn"));
+        }
+        {
+          const sid = "s04-chu-nhat";
+          tl.set("#sq", { autoAlpha: 0 }, start(sid));
+          tl.set("#rc", { autoAlpha: 1 }, start(sid));
+          show("#rc-v", W(sid, "thẳng"));
+          show("#rc-h", W(sid, "nằm"));
+          show("#rc-d", W(sid, "chéo"));
+          pop("#r4", W(sid, "hai", 1), { from: 0.6 });
+          pose(bird, "idle", start(sid));
+        }
+        {
+          const sid = "s05-nho";
+          tl.set("#rc", { autoAlpha: 0 }, start(sid));
+          tl.set("#sq", { autoAlpha: 1 }, start(sid));
+          pop("#r5a", W(sid, "khít"), { from: 0.6 });
+          pop("#r5b", W(sid, "trục"), { from: 0.6 });
+          pose(bird, "cheer", W(sid, "khít"));
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>
