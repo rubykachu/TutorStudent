@@ -15,7 +15,7 @@ Sizes: S is up to about 2 files of code plus tests; M is up to about 5. A task t
 - Acceptance: unknown keys, a note with `source: "be"`, a section id of another lesson, an item of another lesson, `sectionNumber` without `section`, an id that is not 32 hex, a 501-character note, a `createdAt` 9 days old or 10 minutes ahead are each refused; a full valid example parses. Keys refuse a bad id or month and are under the right prefix.
 - Verify: `pnpm test tests/user-feedback/schema.test.ts tests/sync/store/keys.test.ts && pnpm typecheck`.
 
-### T2. Sanitizer, title, labels, body (M)
+### T2. Sanitizer, title, labels, body (M) [x]
 
 - Files: `src/user-feedback/sanitize.ts`, `src/user-feedback/issue.ts` (new), `tests/user-feedback/sanitize.test.ts`, `tests/user-feedback/issue.test.ts`.
 - Do: `plainText` (including the broken `://` and `www.`), `noteText`, escaped hidden JSON (`\u003c`, `\u003e`, `\u0026`; `spec.md` section 6.3); `issueTitle`, `issueLabels`, `lessonLabel` (50-character rule with the 6-hex SHA-256 suffix), `issueBody` with the exact template of section 6.2, screen and reason labels in one map each. Print one rendered body (parent report with section, item and note) into the handover below for Checkpoint A.
@@ -178,8 +178,26 @@ Base commit (the commit before T1, for the security review diff): `e706002`.
 
 Coordinator decisions on the reviewer's open questions (recorded in `spec.md`): chip label "Hay, mình thích"; PIN asked for every note; thank-you closes after 5 s and has a close button; opening the sheet pauses narration and video (no auto-resume); the repo README's hidden-block example updated to match section 6.2.
 
-Done: T1.
-Next: T2.
+Done: T1, T2.
+Next: T3.
+
+Checkpoint A (issue format; the owner approved building and deploying without waiting, so it is recorded here for the morning review). A parent report with section, item and note renders as (labels `feedback`, `nguon:phu-huynh`, `ly-do:sai-noi-dung`, `bai:luy-thua`, `mon:math`, `lop:6`, `trang-thai:moi`; title `[Góp ý] Sai nội dung hoặc đáp án · Bài 6. Lũy thừa với số mũ tự nhiên · Phần 3`):
+
+````markdown
+**Lý do:** Sai nội dung hoặc đáp án
+**Người gửi:** Phụ huynh
+**Bài:** Bài 6. Lũy thừa với số mũ tự nhiên (`luy-thua`)
+**Phần:** 3. Nhân hai lũy thừa cùng cơ số (`luy-thua.section.nhan-hai-luy-thua`)
+**Câu / màn:** Câu hỏi · `luy-thua.ex.tinh-nhanh`
+**Ghi chú:**
+```text
+Đáp án câu b in sai dấu
+```
+
+<sub>Gửi từ app bản `5fc3656` · iPad (iOS) · 05/10/2026 20:15</sub>
+
+<!-- feedback-data {"v":1,"id":"9f0c2a7be1d04c58a6b7f0e2c4d91a35","lesson":"luy-thua","section":"luy-thua.section.nhan-hai-luy-thua","item":"luy-thua.ex.tinh-nhanh","step":"check-2","screen":"exercise","reason":"sai-noi-dung","source":"phu-huynh","app":"5fc3656","device":{"kind":"ipad","os":"ios"},"family":"a1b2c3d4e5f6","at":"2026-10-05T20:15:03+07:00"} -->
+````
 
 ## Security review
 

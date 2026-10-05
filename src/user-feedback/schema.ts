@@ -118,7 +118,7 @@ export const FeedbackRequestSchema = z
     if ((report.section === null) !== (report.sectionNumber === null)) {
       issue("sectionNumber goes with section");
     }
-    if (report.section === null && report.sectionTitle !== null) {
+    if ((report.section === null) !== (report.sectionTitle === null)) {
       issue("sectionTitle goes with section");
     }
     if (report.note !== undefined && report.note !== "") {

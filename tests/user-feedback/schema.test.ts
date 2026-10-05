@@ -23,6 +23,7 @@ describe("FeedbackRequestSchema", () => {
       parentReport({ item: "khac.ex.a" }),
       parentReport({ section: null, sectionTitle: null }),
       parentReport({ sectionNumber: null }),
+      parentReport({ sectionTitle: null }),
       parentReport({ id: "9F0C2A7BE1D04C58A6B7F0E2C4D91A35" }),
       parentReport({ id: "abc" }),
       parentReport({ note: "a".repeat(501) }),
