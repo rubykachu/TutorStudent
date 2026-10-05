@@ -47,7 +47,7 @@ Sizes: S is up to about 2 files of code plus tests; M is up to about 5. A task t
 - Acceptance: existing `tests/api/sync-*.test.ts` and `tests/access/` pass unchanged; the new unit tests cover `x-forwarded-for` with several entries, `x-real-ip`, none, and a body over the cap with and without `content-length`.
 - Verify: `pnpm test tests/api/ tests/access/ tests/lib/`.
 
-### T5b. Feedback service: admit, store, pending add, limits, logging (M)
+### T5b. Feedback service: admit, store, pending add, limits, logging (M) [x]
 
 - Files: `src/user-feedback/server.ts` (new), `src/user-feedback/pending.ts` (new: idempotent add and remove with conditional writes, 3 rounds), `tests/api/feedback-post.test.ts`, `tests/api/feedback-helpers.ts`, `tests/user-feedback/pending.test.ts`.
 - Do: `createFeedbackService({ store, prefix, github, readAccess, now, log, after })` with the check order of `spec.md` section 4, family, IP and 24-hour limits (section 10), record write with `ifNoneMatch: "*"`, the pending add before the answer (step 8: 202 new, 200 duplicate with the add repeated while `pending`, 503 `busy` when the add loses 3 rounds), the log entry of section 6.4.
@@ -178,8 +178,10 @@ Base commit (the commit before T1, for the security review diff): `e706002`.
 
 Coordinator decisions on the reviewer's open questions (recorded in `spec.md`): chip label "Hay, mình thích"; PIN asked for every note; thank-you closes after 5 s and has a close button; opening the sheet pauses narration and video (no auto-resume); the repo README's hidden-block example updated to match section 6.2.
 
-Done: T1, T2, T3, T4, T5a.
-Next: T5b.
+Done: T1, T2, T3, T4, T5a, T5b.
+Next: T6.
+
+Deploy coordination (another agent deploys Bài 21 `hinh-co-truc-doi-xung` tonight): right before `deploy:prod`, read the production SHA (last "Bản đang chạy" line of `docs/operations.md`, or `npx vercel ls --prod`); the pinned SHA must contain it (`git merge-base --is-ancestor <prod> <ours>`), else re-pin to a commit with both and re-run lint, typecheck, `content:check`, build. Never deploy while the other deploy runs; if "Bản đang chạy" changed in the last 10 minutes by another deploy, re-check. Every published lesson at the SHA must have its media (`pnpm media:upload --all --dry-run` reports 0).
 
 Checkpoint A (issue format; the owner approved building and deploying without waiting, so it is recorded here for the morning review). A parent report with section, item and note renders as (labels `feedback`, `nguon:phu-huynh`, `ly-do:sai-noi-dung`, `bai:luy-thua`, `mon:math`, `lop:6`, `trang-thai:moi`; title `[Góp ý] Sai nội dung hoặc đáp án · Bài 6. Lũy thừa với số mũ tự nhiên · Phần 3`):
 

@@ -53,3 +53,12 @@ export function weekdayOfDay(day: number): number {
   // Day 0 (1970-01-01) was a Thursday.
   return (day + 3) % 7;
 }
+
+// Vietnam keeps UTC+7 all year (no daylight saving).
+const VN_OFFSET_MS = 7 * 3_600_000;
+
+// A time as Vietnam local ISO text with its offset, to the second:
+// `2026-10-05T20:15:03+07:00`.
+export function vnIsoTime(date: Date): string {
+  return `${new Date(date.getTime() + VN_OFFSET_MS).toISOString().slice(0, 19)}+07:00`;
+}

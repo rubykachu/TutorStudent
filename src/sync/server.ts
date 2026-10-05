@@ -551,7 +551,7 @@ export function createSyncService(deps: SyncServiceDeps) {
   return { get, put };
 }
 
-function errorDetail(error: unknown): string {
+export function errorDetail(error: unknown): string {
   if (error instanceof R2Error) return `R2 ${error.status} ${error.code}`;
   return error instanceof Error ? error.name : "unknown";
 }
