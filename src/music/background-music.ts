@@ -123,6 +123,7 @@ export class BackgroundMusic {
   // A track that failed to load stops the playlist until an input changes,
   // so an offline device never retries in a loop.
   private failed = false;
+  private readonly unlockListeners = new Set<() => void>();
 
   constructor(
     private readonly engine: MusicEngine,
@@ -162,6 +163,20 @@ export class BackgroundMusic {
     if (this.unlocked) return;
     this.unlocked = true;
     this.update();
+    for (const listener of this.unlockListeners) listener();
+  }
+
+  // Whether a tap has let audio start in this page.
+  isUnlocked(): boolean {
+    return this.unlocked;
+  }
+
+  // Calls `listener` once audio is unlocked; returns the unsubscribe.
+  onUnlock(listener: () => void): () => void {
+    this.unlockListeners.add(listener);
+    return () => {
+      this.unlockListeners.delete(listener);
+    };
   }
 
   setVisible(visible: boolean): void {

@@ -1,6 +1,11 @@
 "use client";
 
 import { GraduationCap } from "lucide-react";
+import {
+  motion,
+  type TargetAndTransition,
+  type Transition,
+} from "motion/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AVATARS, Avatar } from "@/components/avatar";
@@ -20,13 +25,20 @@ import { avatarClipId, useSayClip } from "@/lib/avatar-sounds";
 import { useFeedbackSoundsContext } from "@/lib/feedback-sounds";
 import { GRADES_PATH, PROFILES_PATH, subjectPath } from "@/lib/routes";
 import { now, vnDayKey } from "@/lib/time";
+import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 import type { MascotExpression } from "@/mascot/expressions";
-import { OWL_TAP_LINE } from "@/mascot/lines";
+import { OWL_TAP_INVITE, OWL_TAP_LINE } from "@/mascot/lines";
 import { Owl } from "@/mascot/owl";
-import { OuterScreenMusic } from "@/music/background-music-runner";
+import { SpeechBubble } from "@/mascot/speech-bubble";
+import {
+  OuterScreenMusic,
+  unlockAudioFromTap,
+  useAudioUnlocked,
+} from "@/music/background-music-runner";
 import type { ProfileRecord } from "@/progress/db";
 import {
   type ChildProgress,
+  useBackgroundMusicAllowed,
   useChildProgress,
   useContentIndex,
 } from "@/progress/hooks";
@@ -52,6 +64,19 @@ const DEFAULT_SPEECH = "Hôm nay mình học môn nào?";
 // How long the owl cheers after a tap.
 const OWL_REACTION_MS = 1200;
 
+// The owl's wiggle while it asks for the first tap: a small side to side
+// sway (degrees), then a rest, repeated until audio is unlocked.
+const INVITE_WIGGLE: { animate: TargetAndTransition; transition: Transition } =
+  {
+    animate: { rotate: [0, -8, 8, -6, 6, 0] },
+    transition: {
+      duration: 0.8,
+      ease: "easeInOut",
+      repeat: Number.POSITIVE_INFINITY,
+      repeatDelay: 2,
+    },
+  };
+
 function OwlGreeting({
   progress,
   childId,
@@ -62,6 +87,11 @@ function OwlGreeting({
   const today = vnDayKey(now());
   const expression = homeMascotExpression(progress.activityDays, today);
   const say = useSayClip(childId);
+  // Until a tap lets audio start (home opened without the picker's tap, or
+  // after a reload), the owl asks for one, if the music would then play.
+  const unlocked = useAudioUnlocked();
+  const inviting = useBackgroundMusicAllowed() === true && !unlocked;
+  const reducedMotion = usePrefersReducedMotion();
   // A tap makes the owl cheer (wings up, a hop) and hoot for a moment.
   const [cheering, setCheering] = useState(false);
   useEffect(() => {
@@ -79,17 +109,33 @@ function OwlGreeting({
         data-own-sound
         className="-m-1 shrink-0 rounded-full p-1 transition-transform duration-100 ease-out active:scale-[0.97] motion-reduce:transition-none"
         onClick={() => {
+          // First, inside the tap: iOS lets audio start only here.
+          unlockAudioFromTap();
           say?.(OWL_TAP_LINE.id);
           setCheering(false);
           // A new reaction restarts the pose even on a quick second tap.
           requestAnimationFrame(() => setCheering(true));
         }}
       >
-        <Owl expression={cheering ? "cheer" : expression} size="home" loop />
+        <motion.span
+          className="block"
+          data-owl-invite={
+            inviting ? (reducedMotion ? "still" : "wiggle") : undefined
+          }
+          {...(inviting && !reducedMotion
+            ? INVITE_WIGGLE
+            : { animate: { rotate: 0 } })}
+        >
+          <Owl expression={cheering ? "cheer" : expression} size="home" loop />
+        </motion.span>
       </button>
-      <p className="font-semibold">
-        {OWL_SPEECH[expression] ?? DEFAULT_SPEECH}
-      </p>
+      {inviting ? (
+        <SpeechBubble text={OWL_TAP_INVITE} owlSide="left" />
+      ) : (
+        <p className="font-semibold">
+          {OWL_SPEECH[expression] ?? DEFAULT_SPEECH}
+        </p>
+      )}
     </section>
   );
 }
@@ -258,7 +304,7 @@ function HomeHeaderAndBody({ profile }: { profile: ProfileRecord }) {
 }
 
 export function HomeScreen() {
-  const profile = useRequiredProfile();
+  const profile = useRequiredProfile({ pickOnColdLaunch: true });
   return (
     <main className="mx-auto flex w-full max-w-content flex-1 flex-col gap-6 px-gutter py-6 md:px-gutter-lg md:py-10 tall:gap-8">
       {profile && <HomeContent profile={profile} />}

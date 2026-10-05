@@ -136,8 +136,12 @@ test("switching between two children from the home corner", async ({
   await createProfile(page, "Bé Na", "Mèo");
 
   await page.getByRole("link", { name: "Đổi hồ sơ" }).click();
+  // One child: greeted by name, with one big card.
   await expect(
-    page.getByRole("heading", { level: 1, name: "Ai đang học đấy?" }),
+    page.getByRole("heading", {
+      level: 1,
+      name: "Chào Bé Na! Học thôi nào",
+    }),
   ).toBeVisible();
   await page.getByRole("button", { name: "Thêm bạn mới" }).click();
   await createProfile(page, "Bin", "Gấu");
@@ -185,7 +189,7 @@ test("renaming a child and changing the avatar keeps their progress", async ({
 
   await page.getByRole("link", { name: "Đổi hồ sơ" }).click();
   await expect(
-    page.getByRole("heading", { level: 1, name: "Ai đang học đấy?" }),
+    page.getByRole("heading", { level: 1, name: "Hôm nay ai học?" }),
   ).toBeVisible();
   await expectNoHorizontalScroll(page);
   await expectTouchTargets(page);
@@ -207,7 +211,7 @@ test("renaming a child and changing the avatar keeps their progress", async ({
 
   // Back on the list the card shows the change; the other child is untouched.
   await expect(
-    page.getByRole("heading", { level: 1, name: "Ai đang học đấy?" }),
+    page.getByRole("heading", { level: 1, name: "Hôm nay ai học?" }),
   ).toBeVisible();
   await expect(page.getByRole("button", { name: "Bin" })).toBeVisible();
   await page.getByRole("button", { name: "Na Na" }).click();

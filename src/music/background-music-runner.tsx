@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 import { unlockAudio } from "@/lib/sound";
 import { useBackgroundMusicAllowed } from "@/progress/hooks";
 import { type BackgroundMusic, backgroundMusic } from "./background-music";
@@ -24,7 +24,7 @@ export function BackgroundMusicRunner() {
     music.setEnabled(allowed);
     if (!allowed) return undefined;
     const cleanups = [
-      installGestureUnlock(music),
+      installGestureUnlock(),
       installVisibility(music),
       installMediaHolds(music),
     ];
@@ -37,15 +37,19 @@ export function BackgroundMusicRunner() {
   return null;
 }
 
-// iOS starts audio only inside a tap: the first one unlocks the shared
-// context and lets the music start. Later taps resume a context that was
-// suspended while the page was in the background or idle.
-function installGestureUnlock(music: BackgroundMusic): () => void {
+// Unlocks the shared audio context and lets the background music start.
+// Call it synchronously from a tap handler: iOS starts audio only there.
+export function unlockAudioFromTap(): void {
+  unlockAudio();
+  backgroundMusic().unlock();
+}
+
+// iOS starts audio only inside a tap: the first one anywhere unlocks the
+// shared context and lets the music start. Later taps resume a context that
+// was suspended while the page was in the background or idle.
+function installGestureUnlock(): () => void {
   const options = { capture: true, passive: true };
-  const onGesture = () => {
-    unlockAudio();
-    music.unlock();
-  };
+  const onGesture = unlockAudioFromTap;
   for (const type of GESTURE_EVENTS)
     window.addEventListener(type, onGesture, options);
   return () => {
@@ -107,4 +111,14 @@ function installMediaHolds(music: BackgroundMusic): () => void {
 export function OuterScreenMusic() {
   useEffect(() => backgroundMusic().claimOuterScreen(), []);
   return null;
+}
+
+// Whether a tap has let audio start in this page (the music then plays when
+// it is allowed).
+export function useAudioUnlocked(): boolean {
+  return useSyncExternalStore(
+    (onChange) => backgroundMusic().onUnlock(onChange),
+    () => backgroundMusic().isUnlocked(),
+    () => false,
+  );
 }

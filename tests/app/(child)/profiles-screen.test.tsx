@@ -8,8 +8,14 @@ import {
 } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { ProfilesScreen } from "@/app/(child)/profiles/profiles-screen";
+import { isColdLaunch } from "@/lib/cold-launch";
 import { LOCAL_FAMILY_ID, PROFILE_NAME_MAX_LENGTH } from "@/lib/config";
 import { AVATAR_CLIP_IDS, soundUrl } from "@/lib/sound-manifest";
+import { OWL_TAP_LINE } from "@/mascot/lines";
+import {
+  backgroundMusic,
+  resetBackgroundMusicForTesting,
+} from "@/music/background-music";
 import { markActivityDay } from "@/progress/db";
 import {
   appDb,
@@ -17,13 +23,19 @@ import {
   readChildProgress,
   resetAppDbForTesting,
   setActiveProfile,
+  setSoundEnabled,
 } from "@/progress/hooks";
 
 const playSequence = vi.hoisted(() => vi.fn(async () => undefined));
+const unlockAudio = vi.hoisted(() => vi.fn());
 vi.mock("@/lib/sound", async (importOriginal) => ({
   ...(await importOriginal<typeof import("@/lib/sound")>()),
   playSequence,
+  unlockAudio,
 }));
+
+// The picker's title, for one child or several.
+const PICK_HEADING = /^(Hôm nay ai học\?|Chào .+! Học thôi nào)$/;
 
 const requestSync = vi.hoisted(() => vi.fn());
 vi.mock("@/sync/request", () => ({ requestSync }));
@@ -35,6 +47,9 @@ vi.mock("next/navigation", () => ({
 
 afterEach(async () => {
   playSequence.mockClear();
+  unlockAudio.mockClear();
+  sessionStorage.clear();
+  resetBackgroundMusicForTesting();
   replace.mockClear();
   requestSync.mockClear();
   await appDb().delete();
@@ -56,7 +71,7 @@ async function seedProfile(id: string, name: string, avatar: string) {
 
 async function openEditOf(name: string) {
   render(<ProfilesScreen subjects={[]} />);
-  await screen.findByRole("heading", { name: "Ai đang học đấy?" });
+  await screen.findByRole("heading", { name: PICK_HEADING });
   const card = screen.getByRole("button", { name }).closest("li");
   if (!card) throw new Error("profile card not found");
   fireEvent.click(within(card).getByRole("button", { name: "Sửa" }));
@@ -94,7 +109,7 @@ describe("ProfilesScreen: editing a profile", () => {
     ]);
     fireEvent.click(screen.getByRole("button", { name: "Lưu" }));
 
-    await screen.findByRole("heading", { name: "Ai đang học đấy?" });
+    await screen.findByRole("heading", { name: PICK_HEADING });
     expect(screen.getByRole("button", { name: "Na Na" })).toBeInTheDocument();
     expect(await appDb().profiles.get("na")).toMatchObject({
       id: "na",
@@ -146,7 +161,7 @@ describe("ProfilesScreen: editing a profile", () => {
     });
     fireEvent.click(screen.getByRole("button", { name: "Quay lại" }));
 
-    await screen.findByRole("heading", { name: "Ai đang học đấy?" });
+    await screen.findByRole("heading", { name: PICK_HEADING });
     await waitFor(() =>
       expect(screen.getByRole("button", { name: "Bé Na" })).toBeInTheDocument(),
     );
@@ -164,5 +179,57 @@ describe("ProfilesScreen: editing a profile", () => {
     ).toBeInTheDocument();
     expect(screen.getByLabelText("Bạn tên là gì?")).toHaveValue("");
     expect(screen.getByRole("button", { name: "Bắt đầu học" })).toBeDisabled();
+  });
+});
+
+describe("ProfilesScreen: picking who learns today", () => {
+  it("greets a lone child by name with one big card", async () => {
+    await seedProfile("na", "Bé Na", "fox");
+    render(<ProfilesScreen subjects={[]} />);
+    expect(
+      await screen.findByRole("heading", { name: "Chào Bé Na! Học thôi nào" }),
+    ).toBeInTheDocument();
+    expect(screen.getAllByRole("listitem")).toHaveLength(1);
+    // Adding a child stays possible.
+    expect(
+      screen.getByRole("button", { name: "Thêm bạn mới" }),
+    ).toBeInTheDocument();
+  });
+
+  it("asks who learns today when there are several children", async () => {
+    await seedProfile("na", "Bé Na", "fox");
+    await seedProfile("bin", "Bin", "bear");
+    render(<ProfilesScreen subjects={[]} />);
+    expect(
+      await screen.findByRole("heading", { name: "Hôm nay ai học?" }),
+    ).toBeInTheDocument();
+    expect(screen.getAllByRole("button", { name: "Sửa" })).toHaveLength(2);
+  });
+
+  it("unlocks audio inside the tap, starts the music, says hello and marks the launch", async () => {
+    await seedProfile("na", "Bé Na", "fox");
+    render(<ProfilesScreen subjects={[]} />);
+    const avatar = await screen.findByRole("button", { name: "Bé Na" });
+    expect(isColdLaunch()).toBe(true);
+    fireEvent.click(avatar);
+    // Synchronously, before anything is awaited.
+    expect(unlockAudio).toHaveBeenCalledTimes(1);
+    expect(backgroundMusic().isUnlocked()).toBe(true);
+    expect(isColdLaunch()).toBe(false);
+    await waitFor(() =>
+      expect(playSequence).toHaveBeenCalledWith([soundUrl(OWL_TAP_LINE.id)]),
+    );
+    await waitFor(() => expect(replace).toHaveBeenCalledWith("/"));
+    expect((await readActiveProfile(appDb()))?.id).toBe("na");
+  });
+
+  it("says no hello for a child who turned sound off", async () => {
+    await seedProfile("na", "Bé Na", "fox");
+    await setSoundEnabled("na", false);
+    render(<ProfilesScreen subjects={[]} />);
+    fireEvent.click(await screen.findByRole("button", { name: "Bé Na" }));
+    expect(unlockAudio).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(replace).toHaveBeenCalledWith("/"));
+    expect(playSequence).not.toHaveBeenCalled();
   });
 });

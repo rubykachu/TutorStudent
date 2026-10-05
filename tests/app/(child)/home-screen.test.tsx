@@ -1,5 +1,6 @@
 import "fake-indexeddb/auto";
 import {
+  act,
   fireEvent,
   render,
   screen,
@@ -8,14 +9,20 @@ import {
 } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { HomeScreen } from "@/app/(child)/home-screen";
+import { markLaunched } from "@/lib/cold-launch";
 import { LOCAL_FAMILY_ID } from "@/lib/config";
 import { AVATAR_CLIP_IDS, soundUrl } from "@/lib/sound-manifest";
-import { OWL_TAP_LINE } from "@/mascot/lines";
+import { OWL_TAP_INVITE, OWL_TAP_LINE } from "@/mascot/lines";
+import {
+  backgroundMusic,
+  resetBackgroundMusicForTesting,
+} from "@/music/background-music";
 import {
   appDb,
   resetAppDbForTesting,
   resetContentIndexForTesting,
   setActiveProfile,
+  setBackgroundMusicEnabled,
   setSoundEnabled,
 } from "@/progress/hooks";
 import type { ContentIndex, LessonSummary } from "@/schema/content";
@@ -29,19 +36,26 @@ vi.mock("@/lib/config", async (importOriginal) => ({
   },
 }));
 
+const originalMatchMedia = window.matchMedia;
+
 // Shows every grade, as when the owner publishes more than grade 6.
 const ALL_GRADES = Array.from({ length: 12 }, (_, i) => i + 1);
 
+const unlockAudio = vi.hoisted(() => vi.fn());
 vi.mock("@/lib/sound", async (importOriginal) => ({
   ...(await importOriginal<typeof import("@/lib/sound")>()),
   playSequence,
+  unlockAudio,
 }));
 
+const replace = vi.hoisted(() => vi.fn());
 vi.mock("next/navigation", () => ({
-  useRouter: () => ({ replace: vi.fn(), push: vi.fn() }),
+  useRouter: () => ({ replace, push: vi.fn() }),
 }));
 
 beforeEach(() => {
+  // Most tests open home within a session (after the picker).
+  markLaunched();
   // The content index is not what these tests are about.
   vi.stubGlobal(
     "fetch",
@@ -52,6 +66,11 @@ beforeEach(() => {
 afterEach(async () => {
   gradesVisible.list = [6];
   playSequence.mockClear();
+  unlockAudio.mockClear();
+  replace.mockClear();
+  sessionStorage.clear();
+  resetBackgroundMusicForTesting();
+  window.matchMedia = originalMatchMedia;
   vi.unstubAllGlobals();
   resetContentIndexForTesting();
   await appDb().delete();
@@ -453,5 +472,93 @@ describe("HomeScreen with one visible grade", () => {
     expect(tile).not.toHaveAttribute("data-locked");
     // The stored record keeps its own grade.
     expect((await appDb().profiles.get("kid-1"))?.grade).toBe(7);
+  });
+});
+
+describe("HomeScreen on a cold launch", () => {
+  it("sends a fresh launch to the picker even with a remembered child", async () => {
+    sessionStorage.clear();
+    await openHomeOf("fox");
+    await waitFor(() => expect(replace).toHaveBeenCalledWith("/profiles"));
+    expect(screen.queryByRole("heading", { name: "Chào Bin!" })).toBeNull();
+  });
+
+  it("stays home once the session has started (a reload, in-app navigation)", async () => {
+    await openHomeOf("fox");
+    expect(
+      await screen.findByRole("heading", { name: "Chào Bin!" }),
+    ).toBeInTheDocument();
+    expect(replace).not.toHaveBeenCalled();
+  });
+});
+
+describe("HomeScreen owl inviting the first tap", () => {
+  const bubble = () => screen.queryByText(OWL_TAP_INVITE);
+  const invite = () =>
+    document
+      .querySelector("[data-owl-invite]")
+      ?.getAttribute("data-owl-invite");
+
+  it("asks for a tap while audio is locked, wiggling, and the tap unlocks it at once", async () => {
+    await openHomeOf("fox");
+    expect(await screen.findByText(OWL_TAP_INVITE)).toBeInTheDocument();
+    expect(invite()).toBe("wiggle");
+    fireEvent.click(screen.getByRole("button", { name: "Chạm vào bạn cú" }));
+    // Synchronously inside the tap.
+    expect(unlockAudio).toHaveBeenCalledTimes(1);
+    expect(backgroundMusic().isUnlocked()).toBe(true);
+    await waitFor(() => expect(bubble()).toBeNull());
+    expect(invite()).toBeUndefined();
+  });
+
+  it("hides the bubble after a first tap anywhere else", async () => {
+    await openHomeOf("fox");
+    await screen.findByText(OWL_TAP_INVITE);
+    // What the page's tap listener does on any tap.
+    act(() => backgroundMusic().unlock());
+    await waitFor(() => expect(bubble()).toBeNull());
+  });
+
+  it("shows no bubble when audio is already unlocked", async () => {
+    backgroundMusic().unlock();
+    await openHomeOf("fox");
+    await screen.findByRole("heading", { name: "Chào Bin!" });
+    await screen.findByRole("button", { name: "Chạm vào bạn cú" });
+    expect(bubble()).toBeNull();
+  });
+
+  it("does not wiggle under reduced motion", async () => {
+    window.matchMedia = (query: string) =>
+      ({
+        matches: true,
+        media: query,
+        addEventListener: () => undefined,
+        removeEventListener: () => undefined,
+      }) as unknown as MediaQueryList;
+    await openHomeOf("fox");
+    await screen.findByText(OWL_TAP_INVITE);
+    expect(invite()).toBe("still");
+  });
+
+  it("shows no bubble when the music is off", async () => {
+    await setBackgroundMusicEnabled(false);
+    await openHomeOf("fox");
+    await screen.findByRole("button", { name: "Chạm vào bạn cú" });
+    await screen.findByRole("button", { name: "Âm thanh" });
+    expect(bubble()).toBeNull();
+  });
+
+  it("shows no bubble and says nothing when the child turned sound off", async () => {
+    await openHomeOf("fox");
+    await setSoundEnabled("kid-1", false);
+    await waitFor(() =>
+      expect(screen.getByRole("button", { name: "Âm thanh" })).toHaveAttribute(
+        "data-sound",
+        "off",
+      ),
+    );
+    await waitFor(() => expect(bubble()).toBeNull());
+    fireEvent.click(screen.getByRole("button", { name: "Chạm vào bạn cú" }));
+    expect(playSequence).not.toHaveBeenCalled();
   });
 });

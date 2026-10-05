@@ -173,6 +173,16 @@ async function findMediaLesson(
   return null;
 }
 
+// A new tab is a new launch: home first asks who learns today, and the
+// child's tap opens home.
+async function pickChild(cold: Page) {
+  await expect(cold).toHaveURL(/\/profiles$/);
+  await cold.getByRole("button", { name: "Bé Na" }).tap();
+  await expect(
+    cold.getByRole("heading", { level: 1, name: "Chào Bé Na!", exact: true }),
+  ).toBeVisible();
+}
+
 let media: MediaLesson | null = null;
 
 test.beforeAll(async ({ browser }) => {
@@ -211,9 +221,7 @@ test("1 opens home, a subject, lessons, sections, tips and review offline from a
     if (request.url().includes("/_next/static/")) failed.push(request.url());
   });
   await cold.goto("/");
-  await expect(
-    cold.getByRole("heading", { level: 1, name: "Chào Bé Na!" }),
-  ).toBeVisible();
+  await pickChild(cold);
 
   // A subject, then a lesson that was never opened online.
   const subject = media?.subject ?? "math";
@@ -577,9 +585,7 @@ test("6 offline, the goodbye clip of X plays to its end and the page stays", asy
 test("7 offline, a page that is not stored shows the offline page, and Quay lại goes back", async () => {
   await context.setOffline(true);
   const cold = await coldOfflinePage("/");
-  await expect(
-    cold.getByRole("heading", { level: 1, name: "Chào Bé Na!" }),
-  ).toBeVisible();
+  await pickChild(cold);
   await cold.goto("/lessons/a-lesson-this-build-does-not-have");
   await expect(cold.locator("[data-offline-page]")).toBeVisible();
   await expect(
@@ -598,9 +604,7 @@ test("7 offline, a page that is not stored shows the offline page, and Quay lạ
 test("8 offline, a Range request for a short sound gets a 206 slice from the worker", async () => {
   await context.setOffline(true);
   const cold = await coldOfflinePage("/");
-  await expect(
-    cold.getByRole("heading", { level: 1, name: "Chào Bé Na!" }),
-  ).toBeVisible();
+  await pickChild(cold);
   const key = (await cacheKeys(cold)).find((k) => k.startsWith("/sounds/"));
   expect(key).toBeDefined();
   const url = (key as string).replace(/[?&]__rev=.*$/, "");

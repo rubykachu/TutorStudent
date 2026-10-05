@@ -56,6 +56,11 @@ export const STICKER_EARNED_LINE: VoiceLine = {
 // Said when the child taps the owl on the home screen: a playful hoot.
 export const OWL_TAP_LINE: VoiceLine = { id: "owl-tap", text: "Cú cú!" };
 
+// The owl's bubble on the home screen while the browser still blocks audio
+// (no tap yet in this page): it asks for the tap that starts the music. The
+// one bubble with no voice clip, since nothing can sound before that tap.
+export const OWL_TAP_INVITE = "Chạm vào tớ nào!";
+
 // Spoken sound of the avatars with no recorded effect: a short playful
 // onomatopoeia of the animal. (The cat, the chick, the spider hero and the race
 // car use recorded effects, see `FILES` in scripts/lib/sound-spec.ts.)

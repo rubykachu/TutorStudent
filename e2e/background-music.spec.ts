@@ -95,3 +95,65 @@ test("the home music switch turns the music off and on", async ({ page }) => {
     .poll(async () => (await longSources(page)).playing)
     .toBeGreaterThan(0);
 });
+
+const OWL_INVITE = "Chạm vào tớ nào!";
+
+test("a new launch asks who learns today; tapping the child starts the music; a reload stays home", async ({
+  context,
+  page,
+}) => {
+  await page.goto("/profiles");
+  await createProfile(page, "Bé Mi", "Cáo");
+
+  // A new tab is a new launch: the picker shows although the child is
+  // remembered, and nothing plays yet.
+  const launch = await context.newPage();
+  await launch.goto("/");
+  await expect(launch).toHaveURL(/\/profiles$/);
+  await expect(
+    launch.getByRole("heading", { level: 1, name: "Chào Bé Mi! Học thôi nào" }),
+  ).toBeVisible();
+  expect((await longSources(launch)).started).toBe(0);
+
+  await launch.getByRole("button", { name: "Bé Mi" }).tap();
+  await expect(
+    launch.getByRole("heading", { level: 1, name: "Chào Bé Mi!" }),
+  ).toBeVisible();
+  await expect
+    .poll(async () => (await longSources(launch)).playing)
+    .toBeGreaterThan(0);
+  // Audio is unlocked: the owl does not ask for a tap.
+  await expect(launch.getByText(OWL_INVITE)).toHaveCount(0);
+
+  // A reload in the same tab skips the picker; audio is locked again, so the
+  // owl asks for a tap, and that tap starts the music.
+  await launch.reload();
+  await expect(launch).toHaveURL(/\/$/);
+  await expect(
+    launch.getByRole("heading", { level: 1, name: "Chào Bé Mi!" }),
+  ).toBeVisible();
+  await expect(launch.getByText(OWL_INVITE)).toBeVisible();
+  expect((await longSources(launch)).started).toBe(0);
+  await launch.getByRole("button", { name: "Chạm vào bạn cú" }).tap();
+  await expect
+    .poll(async () => (await longSources(launch)).playing)
+    .toBeGreaterThan(0);
+  await expect(launch.getByText(OWL_INVITE)).toHaveCount(0);
+});
+
+test("a link into a lesson opens it on a new launch, and home then skips the picker", async ({
+  context,
+  page,
+}) => {
+  await page.goto("/profiles");
+  await createProfile(page, "Bé Mi", "Cáo");
+
+  const launch = await context.newPage();
+  await openFixtureLesson(launch);
+  await expect(launch).toHaveURL(/\/lessons\/fixture/);
+  await launch.goto("/");
+  await expect(
+    launch.getByRole("heading", { level: 1, name: "Chào Bé Mi!" }),
+  ).toBeVisible();
+  await expect(launch).toHaveURL(/\/$/);
+});

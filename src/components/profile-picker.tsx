@@ -12,17 +12,26 @@ type ProfilePickerProps = {
 
 // Large avatar buttons so a child who cannot read yet still finds their own.
 // Under each one a smaller "Sửa" opens the profile for a new name or avatar.
+// A lone child gets one card, bigger and centred: a single obvious tap.
 export function ProfilePicker({
   profiles,
   onPick,
   onEdit,
 }: ProfilePickerProps) {
+  const solo = profiles.length === 1;
   return (
-    <ul className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6">
+    <ul
+      className={
+        solo
+          ? "mx-auto grid w-full max-w-sm"
+          : "grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6"
+      }
+    >
       {profiles.map((profile) => (
         <ProfileCard
           key={profile.id}
           profile={profile}
+          solo={solo}
           onPick={onPick}
           onEdit={onEdit}
         />
@@ -33,10 +42,12 @@ export function ProfilePicker({
 
 function ProfileCard({
   profile,
+  solo,
   onPick,
   onEdit,
 }: {
   profile: ProfileRecord;
+  solo: boolean;
   onPick: (profile: ProfileRecord) => void;
   onEdit: (profile: ProfileRecord) => void;
 }) {
@@ -50,9 +61,14 @@ function ProfileCard({
       <button
         type="button"
         onClick={() => onPick(profile)}
-        className="flex flex-1 flex-col items-center gap-3 p-4 pb-2 transition-transform duration-100 ease-out active:scale-[0.97] motion-reduce:transition-none md:p-6 md:pb-3"
+        className={`flex flex-1 flex-col items-center gap-3 transition-transform duration-100 ease-out active:scale-[0.97] motion-reduce:transition-none ${
+          solo ? "p-8 pb-4" : "p-4 pb-2 md:p-6 md:pb-3"
+        }`}
       >
-        <Avatar avatar={profile.avatar} className="size-24 md:size-28" />
+        <Avatar
+          avatar={profile.avatar}
+          className={solo ? "size-36 md:size-44" : "size-24 md:size-28"}
+        />
         <span
           id={nameId}
           className="w-full break-words text-center text-block font-bold font-heading md:text-block-lg"

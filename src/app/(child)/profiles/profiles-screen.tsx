@@ -3,19 +3,28 @@
 import { ArrowLeft, Plus } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BigButton } from "@/components/big-button";
 import { CosmosHorizon } from "@/components/cosmos-background";
 import { ProfileForm } from "@/components/profile-form";
 import { ProfilePicker } from "@/components/profile-picker";
 import { openGrades } from "@/content/grades";
+import { markLaunched } from "@/lib/cold-launch";
 import { DEFAULT_GRADE } from "@/lib/config";
 import { HOME_PATH, PARENT_PATH } from "@/lib/routes";
-import { OuterScreenMusic } from "@/music/background-music-runner";
+import { playSequence, preloadSounds } from "@/lib/sound";
+import { soundUrl } from "@/lib/sound-manifest";
+import { OWL_TAP_LINE } from "@/mascot/lines";
+import {
+  OuterScreenMusic,
+  unlockAudioFromTap,
+} from "@/music/background-music-runner";
 import type { ProfileRecord } from "@/progress/db";
 import {
+  appDb,
   createProfile,
   type NewProfile,
+  readSoundEnabled,
   setActiveProfile,
   updateProfile,
   useContentIndex,
@@ -33,6 +42,15 @@ type ProfilesScreenProps = {
 // What the screen shows: the list to pick from, the form for a new child, or
 // the same form filled in for one child.
 type Mode = { kind: "pick" } | { kind: "add" } | { kind: "edit"; id: string };
+
+// The owl's hello when a child picks themselves, unless that child turned
+// sound off. Audio is already unlocked by the tap, so it may start after the
+// setting is read.
+async function greet(childId: string): Promise<void> {
+  const url = soundUrl(OWL_TAP_LINE.id);
+  if (!url || !(await readSoundEnabled(appDb(), childId))) return;
+  void playSequence([url]);
+}
 
 function BackButton({ onClick }: { onClick: () => void }) {
   return (
@@ -53,7 +71,14 @@ export function ProfilesScreen({ subjects }: ProfilesScreenProps) {
   const pickableGrades =
     content.status === "ready" ? openGrades(content.index) : [DEFAULT_GRADE];
 
+  // Decoded once audio is unlocked, so the hello plays at once.
+  useEffect(() => {
+    const url = soundUrl(OWL_TAP_LINE.id);
+    if (url) preloadSounds([url]);
+  }, []);
+
   async function handleCreate(input: NewProfile) {
+    markLaunched();
     setBusy(true);
     await createProfile(input, subjects);
     requestSync();
@@ -73,6 +98,11 @@ export function ProfilesScreen({ subjects }: ProfilesScreenProps) {
   }
 
   async function handlePick(profile: ProfileRecord) {
+    // Inside the tap, before any await: iOS lets audio start only here. The
+    // music starts and the owl says hello as the child enters home.
+    unlockAudioFromTap();
+    void greet(profile.id);
+    markLaunched();
     setBusy(true);
     await setActiveProfile(profile.id);
     router.replace(HOME_PATH);
@@ -130,7 +160,9 @@ export function ProfilesScreen({ subjects }: ProfilesScreenProps) {
       {view === "pick" && profiles && (
         <>
           <h1 className="text-title font-bold md:text-title-lg">
-            Ai đang học đấy?
+            {profiles.length === 1 && profiles[0]
+              ? `Chào ${profiles[0].name}! Học thôi nào`
+              : "Hôm nay ai học?"}
           </h1>
           <ProfilePicker
             profiles={profiles}
