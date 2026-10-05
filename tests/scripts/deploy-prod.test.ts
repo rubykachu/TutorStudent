@@ -61,6 +61,7 @@ function fakeSite(
       }),
     "GET media": () => new Response("x", { status: 206 }),
     "GET /api/sync": () => new Response(null, { status: 401 }),
+    "POST /api/feedback": () => new Response(null, { status: 401 }),
     "GET /sw.js": () =>
       new Response("worker", {
         status: 200,
@@ -87,17 +88,27 @@ const input = {
 };
 
 describe("runSmokeChecks", () => {
-  it("passes all seven checks on a healthy site", async () => {
+  it("passes all eight checks on a healthy site", async () => {
     const checks = await runSmokeChecks({ ...input, fetch: fakeSite() });
-    expect(checks.map((c) => c.ok)).toEqual([
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-    ]);
+    expect(checks.map((c) => c.ok)).toEqual(Array(8).fill(true));
+  });
+
+  it("fails when the feedback API answers without a cookie", async () => {
+    for (const status of [202, 400, 404, 503]) {
+      const checks = await runSmokeChecks({
+        ...input,
+        fetch: fakeSite({
+          "POST /api/feedback": () => new Response("{}", { status }),
+        }),
+      });
+      expect(checks.filter((c) => !c.ok)).toEqual([
+        {
+          name: "feedback 401 without cookie",
+          ok: false,
+          detail: String(status),
+        },
+      ]);
+    }
   });
 
   it("fails when the worker script is cached, missing or behind the gate", async () => {
@@ -227,7 +238,9 @@ describe("runDeploy", () => {
     expect(out).toContain("git worktree add --detach");
     expect(out).toContain("pnpm install --frozen-lockfile");
     expect(out).toContain("npx vercel link --yes --project tutor");
-    expect(out).toContain("npx vercel deploy --prod");
+    expect(out).toContain(
+      "npx vercel deploy --prod --env APP_COMMIT_SHA=fullsha1234",
+    );
     expect(out).toContain("git worktree remove --force");
     expect(out).toContain(`smoke checks against ${PROD_URL}`);
     expect(out).toContain("media 206");
@@ -279,7 +292,7 @@ describe("runDeploy", () => {
       "git worktree add --detach",
       "pnpm install --frozen-lockfile",
       "vercel link --yes --project tutor",
-      "vercel deploy --prod",
+      "vercel deploy --prod --env APP_COMMIT_SHA=abc123",
       "git worktree remove --force",
     ].map((part) => calls.findIndex((c) => c.includes(part)));
     expect(order.every((i) => i >= 0)).toBe(true);

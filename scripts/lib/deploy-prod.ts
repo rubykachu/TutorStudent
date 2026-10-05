@@ -36,7 +36,9 @@ export function parseDeployArgs(argv: readonly string[]): {
 }
 
 // The shell steps of a deploy, run in the clean worktree.
-export function deploySteps(worktree: string) {
+// `sha` is the full commit shipped; the deployment gets it as
+// `APP_COMMIT_SHA`, which feedback reports carry (`src/user-feedback/`).
+export function deploySteps(worktree: string, sha: string) {
   return [
     {
       label: "install dependencies",
@@ -50,7 +52,13 @@ export function deploySteps(worktree: string) {
     },
     {
       label: "deploy to production",
-      command: [...VERCEL, "deploy", "--prod"],
+      command: [
+        ...VERCEL,
+        "deploy",
+        "--prod",
+        "--env",
+        `APP_COMMIT_SHA=${sha}`,
+      ],
       cwd: worktree,
     },
   ] as const;
@@ -74,6 +82,7 @@ export const SMOKE_CHECK_NAMES = [
   "content index 200",
   "media 206",
   "sync 401 without cookie",
+  "feedback 401 without cookie",
   "worker script no-cache",
 ] as const;
 
@@ -158,6 +167,18 @@ export async function runSmokeChecks(input: SmokeInput): Promise<SmokeCheck[]> {
     return [response.status === 401, String(response.status)];
   });
 
+  // Feedback sits behind the gate too: without the cookie it answers 401
+  // before it reads a body or touches the bucket or GitHub.
+  await attempt("feedback 401 without cookie", async () => {
+    const response = await get(`${appUrl}/api/feedback`, {
+      method: "POST",
+      redirect: "manual",
+      headers: { "content-type": "application/json", origin: appUrl },
+      body: "{}",
+    });
+    return [response.status === 401, String(response.status)];
+  });
+
   // The service worker script is public (an update check carries no cookie)
   // and must never be served from a cache, or a device would keep an old
   // worker for as long as the cache lives.
@@ -230,7 +251,7 @@ export async function runDeploy(
   const worktreePath = dryRun
     ? path.join(os.tmpdir(), "tutor-deploy-<random>")
     : path.join(mkdtempSync(path.join(os.tmpdir(), "tutor-deploy-")), "tree");
-  const steps = deploySteps(worktreePath);
+  const steps = deploySteps(worktreePath, sha);
 
   if (dryRun) {
     log("deploy:prod dry run, nothing is executed. Steps:");

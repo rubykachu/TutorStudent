@@ -112,7 +112,7 @@ Sizes: S is up to about 2 files of code plus tests; M is up to about 5. A task t
 - Acceptance: the spec passes on both targets with the existing suites at `--workers=2`; no request leaves localhost (`context.on("request")`, as in `e2e/sync.spec.ts`).
 - Verify: `pnpm test:e2e e2e/user-feedback.spec.ts`.
 
-### T12. Deploy SHA (S)
+### T12. Deploy SHA (S) [x]
 
 - Files: `scripts/lib/deploy-prod.ts`, `tests/scripts/deploy-prod.test.ts`.
 - Do: the deploy step becomes `vercel deploy --prod --env APP_COMMIT_SHA=<sha>` with the SHA it already resolves (`deploySteps` takes the SHA); one more smoke check, `POST /api/feedback` without a cookie answers 401 (the gate stops it before the bucket), with `docs/operations.md` updated from seven checks to eight in T13.
@@ -178,8 +178,8 @@ Base commit (the commit before T1, for the security review diff): `e706002`.
 
 Coordinator decisions on the reviewer's open questions (recorded in `spec.md`): chip label "Hay, mình thích"; PIN asked for every note; thank-you closes after 5 s and has a close button; opening the sheet pauses narration and video (no auto-resume); the repo README's hidden-block example updated to match section 6.2.
 
-Done: T1 to T11 (build of the route passes in a temp worktree; `lesson:walk luy-thua` shows no overlap on phone, iPad, iPad landscape, its only failures being the gitignored media missing in the worktree). The overview's button sits in the `PageTopBar` above the overview (the same top row as the lesson page), not inside the overview's own header.
-Next: T12. Checkpoint B screenshots (iPad and phone: child sheet, thank-you, PIN step, parent form) are written by `e2e/user-feedback.spec.ts` into `test-results/` of the run.
+Done: T1 to T12 (build of the route passes in a temp worktree; `lesson:walk luy-thua` shows no overlap on phone, iPad, iPad landscape, its only failures being the gitignored media missing in the worktree). The overview's button sits in the `PageTopBar` above the overview (the same top row as the lesson page), not inside the overview's own header.
+Next: T13. Checkpoint B screenshots (iPad and phone: child sheet, thank-you, PIN step, parent form) are written by `e2e/user-feedback.spec.ts` into `test-results/` of the run.
 
 Deploy coordination (another agent deploys Bài 21 `hinh-co-truc-doi-xung` tonight): right before `deploy:prod`, read the production SHA (last "Bản đang chạy" line of `docs/operations.md`, or `npx vercel ls --prod`); the pinned SHA must contain it (`git merge-base --is-ancestor <prod> <ours>`), else re-pin to a commit with both and re-run lint, typecheck, `content:check`, build. Never deploy while the other deploy runs; if "Bản đang chạy" changed in the last 10 minutes by another deploy, re-check. Every published lesson at the SHA must have its media (`pnpm media:upload --all --dry-run` reports 0).
 
