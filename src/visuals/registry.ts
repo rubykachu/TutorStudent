@@ -58,6 +58,11 @@ import {
   VISUAL_SPECS as RECTANGLE_SPECS,
 } from "@/visuals/math/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/catalog";
 import {
+  LESSON_SLUG as SYMMETRY_SLUG,
+  metaOf as symmetryMeta,
+} from "@/visuals/math/hinh-co-truc-doi-xung/logic";
+import { VISUAL_SPECS as SYMMETRY_SPECS } from "@/visuals/math/hinh-co-truc-doi-xung/visuals";
+import {
   INTERACTIVE_KINDS as SHAPES_INTERACTIVE_KINDS,
   LESSON_SLUG as SHAPES_SLUG,
   VISUAL_SPECS as SHAPES_SPECS,
@@ -840,6 +845,19 @@ const areaEntries: Record<string, VisualEntry> = Object.fromEntries(
   }),
 );
 
+// Entries of "hinh-co-truc-doi-xung": one per item of its catalog. The pickers
+// and boards the child acts on carry the validator of the `manipulate`
+// exercises built on them; a strip of tappable drawings declares its regions.
+const symmetryEntries: Record<string, VisualEntry> = Object.fromEntries(
+  Object.entries(SYMMETRY_SPECS).map(([key, spec]) => [
+    `${SYMMETRY_SLUG}.visual.${key}`,
+    {
+      ...symmetryMeta(spec),
+      load: () => lessonExample(SYMMETRY_SLUG, (m) => m.fromSpec(spec)),
+    },
+  ]),
+);
+
 export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   ...numberEntries,
   ...integerEntries,
@@ -851,6 +869,7 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   ...rectangleEntries,
   ...parallelogramEntries,
   ...areaEntries,
+  ...symmetryEntries,
   ...orderEntries,
   ...primeEntries,
   ...thuTuEntries,
@@ -1675,6 +1694,8 @@ const EXAMPLE_MODULES = lessonModules({
     import(
       "@/visuals/math/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/examples"
     ),
+  "hinh-co-truc-doi-xung": () =>
+    import("@/visuals/math/hinh-co-truc-doi-xung/examples"),
   "quy-tac-dau-ngoac": () =>
     import("@/visuals/math/quy-tac-dau-ngoac/examples"),
   "neu-cau-muon-co-mot-nguoi-ban": () =>

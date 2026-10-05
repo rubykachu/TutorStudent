@@ -595,6 +595,16 @@
       "term": "ô vuông đơn vị",
       "forbidden": [],
       "prerequisite": "tiểu học"
+    },
+    {
+      "term": "trục đối xứng",
+      "forbidden": [],
+      "color": "pink"
+    },
+    {
+      "term": "điểm đối xứng",
+      "forbidden": [],
+      "color": "teal"
     }
   ],
   "names": [
