@@ -60,6 +60,7 @@ const thumbs: Record<string, VisualSpec> = {
         "gate",
         "glass",
         "hexagon",
+        "house",
         "key",
         "leaf",
         "mask",
@@ -207,7 +208,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     width: PICTURE_WIDTH,
   },
   "big-star": { kind: "subject", subject: shape("star"), width: PICTURE_WIDTH },
-  "chu-e": bigGlyph("E"),
+  "chu-b": bigGlyph("B"),
   "chu-f": bigGlyph("F"),
   "chu-u": bigGlyph("U"),
   "chu-so-1": bigGlyph("1"),
@@ -239,14 +240,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "cham-gap-doi": {
     kind: "strip",
-    label: "Chiếc ô, cái chuông, chữ Z và tam giác lệch",
+    label: "Chiếc ô, cái chuông, chữ Z và tam giác ba cạnh khác nhau",
     mode: "tap",
     columns: 2,
     items: [
       shapeItem("chiec-o", "umbrella", "Chiếc ô"),
       shapeItem("cai-chuong", "bell", "Cái chuông"),
       glyphItem("chu-z", "Z", "Chữ Z"),
-      shapeItem("tam-giac-lech", "scalene", "Tam giác lệch"),
+      shapeItem("tam-giac-lech", "scalene", "Tam giác ba cạnh khác nhau"),
     ],
   },
 
