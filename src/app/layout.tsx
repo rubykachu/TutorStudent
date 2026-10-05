@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Baloo_2, Be_Vietnam_Pro } from "next/font/google";
+import { InstallPromptCapture } from "@/install/browser";
 import {
   APP_DESCRIPTION,
   APP_NAME,
@@ -88,7 +89,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="vi"
       className={`${headingFont.variable} ${bodyFont.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col">{children}</body>
+      <body className="flex min-h-full flex-col">
+        <InstallPromptCapture />
+        {children}
+      </body>
     </html>
   );
 }

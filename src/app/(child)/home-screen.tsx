@@ -10,6 +10,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AVATARS, Avatar } from "@/components/avatar";
 import { CosmosHorizon } from "@/components/cosmos-background";
+import { InstallBar } from "@/components/install-bar";
 import { MusicToggle } from "@/components/music-toggle";
 import { SoundToggle } from "@/components/sound-toggle";
 import { SubjectTile, subjectTileLayout } from "@/components/subject-tile";
@@ -308,8 +309,11 @@ export function HomeScreen() {
   return (
     <main className="mx-auto flex w-full max-w-content flex-1 flex-col gap-6 px-gutter py-6 md:px-gutter-lg md:py-10 tall:gap-8">
       {profile && <HomeContent profile={profile} />}
-      {/* The end of the page: its own band of sky, below the last content. */}
-      <CosmosHorizon className="mt-auto -mx-gutter -mb-6 md:-mx-gutter-lg md:-mb-10" />
+      {profile && <InstallBar />}
+      {/* The end of the page: its own band of sky, below the last content
+          (right under the install bar when it shows, which then takes the
+          bottom of the page). */}
+      <CosmosHorizon className="mt-auto -mx-gutter -mb-6 md:-mx-gutter-lg md:-mb-10 [[data-install-bar]+&]:mt-0" />
     </main>
   );
 }

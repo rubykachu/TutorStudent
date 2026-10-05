@@ -10,6 +10,7 @@ import { closeParentSession } from "@/progress/parent-session";
 import { BackgroundMusicSetting } from "./background-music-setting";
 import { ChildReport } from "./child-report";
 import { FamilyCodePanel } from "./family-code-panel";
+import { InstallAppPanel } from "./install-app-panel";
 import { OfflineStatus } from "./offline-status";
 import { ReportSourceNote } from "./progress-location";
 import { SyncStatus } from "./sync-status";
@@ -49,6 +50,7 @@ export function ParentDashboard() {
       <ReportSourceNote />
       <SyncStatus />
       <OfflineStatus />
+      <InstallAppPanel />
       <BackgroundMusicSetting />
       <FamilyCodePanel />
       {profiles && profiles.length === 0 && (
