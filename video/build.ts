@@ -1,4 +1,4 @@
-import { mkdirSync, statSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, statSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { LocalIdSchema } from "@/schema/content";
 import {
@@ -30,6 +30,7 @@ import {
 } from "./lib/timeline";
 import { checkVerbatim } from "./lib/verbatim";
 import { ttsEngine } from "./tts";
+import { videoVoice } from "./voices";
 
 // Usage: pnpm video:build <lessonId> <name>
 // Builds video/projects/<lessonId>/<name>/ into
@@ -78,22 +79,26 @@ async function main() {
   if (opening.length > 0) {
     throw new Error(`the opening line is off:\n${opening.join("\n")}`);
   }
-  const voice = lessonVoice(lessonId).spec.video;
-  if (script.engine !== voice.engine) {
+  // The engine is chosen per video in script.json: a video built with VieNeu
+  // ("local") keeps it, and its cached takes, until its script is switched.
+  const spec = lessonVoice(lessonId).spec;
+  const voice = videoVoice(spec, script.engine);
+  if (!voice) {
     throw new Error(
-      `script.json engine "${script.engine}" is not the lesson's voice engine "${voice.engine}"`,
+      `script.json engine "${script.engine}" has no voice for the lesson; use "${spec.video.engine}"`,
+    );
+  }
+  const audioDir = path.join(projectDir, "audio");
+  if (voice.engine !== spec.video.engine && !existsSync(audioDir)) {
+    console.warn(
+      `video: this video has no takes yet and names "${voice.engine}"; new videos use "${spec.video.engine}" (set "engine" in script.json)`,
     );
   }
   const engine = ttsEngine(script.engine);
   const renders = path.join(projectDir, "renders");
   mkdirSync(renders, { recursive: true });
 
-  const takes = await narrate(
-    script,
-    engine,
-    voice.preset,
-    path.join(projectDir, "audio"),
-  );
+  const takes = await narrate(script, engine, voice.preset, audioDir);
   const words = takes.map((t) =>
     alignWords(t.text, t.spoken, t.words, t.duration),
   );

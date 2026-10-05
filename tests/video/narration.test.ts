@@ -143,7 +143,7 @@ describe("readWithFallback", () => {
     expect(result).toBe("gemini take");
   });
 
-  it("on quota reads the whole narration again with the video voice, warning", async () => {
+  it("on quota reads the whole narration again with the OmniVoice video voice, warning", async () => {
     const used: string[] = [];
     const warnings: string[] = [];
     const { voice, result } = await readWithFallback(
@@ -151,13 +151,13 @@ describe("readWithFallback", () => {
       async (v) => {
         used.push(v.engine);
         if (v.engine === "gemini") throw quota;
-        return "vieneu take";
+        return "omnivoice take";
       },
       (m) => warnings.push(m),
     );
-    expect(used).toEqual(["gemini", "local"]);
-    expect(voice).toEqual(spec.video);
-    expect(result).toBe("vieneu take");
+    expect(used).toEqual(["gemini", "omnivoice"]);
+    expect(voice).toEqual({ engine: "omnivoice", preset: "Hải Đăng" });
+    expect(result).toBe("omnivoice take");
     expect(warnings[0]).toMatch(/quota used up/);
     expect(warnings[0]).toMatch(/Hải Đăng/);
   });

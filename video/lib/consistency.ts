@@ -10,7 +10,7 @@ import {
   PAUSE,
   PROJECTS_DIR,
 } from "../config";
-import { voiceSpec } from "../voices";
+import { videoVoice, videoVoices, voiceSpec } from "../voices";
 import { type LessonMedia, readLessonMedia } from "./lesson-media";
 import { narrationPaths, narrationScript } from "./narration";
 import type { VideoScript } from "./script";
@@ -272,15 +272,17 @@ export function voiceIssues(
   }[],
   projects: readonly string[],
 ): string[] {
-  const spec = voiceSpec(media.voice).video;
+  const allowed = videoVoices(voiceSpec(media.voice));
   const issues: string[] = [];
   for (const video of videos) {
     if (
-      video.voice.voiceName !== spec.preset ||
-      video.voice.engine !== spec.engine
+      !allowed.some(
+        (v) =>
+          v.preset === video.voice.voiceName && v.engine === video.voice.engine,
+      )
     ) {
       issues.push(
-        `video ${video.id} was read by "${video.voice.voiceName}", the lesson's voice is "${spec.preset}"`,
+        `video ${video.id} was read by "${video.voice.voiceName}" (${video.voice.engine}), the lesson's voice is "${voiceSpec(media.voice).video.preset}"`,
       );
     }
   }
@@ -295,8 +297,9 @@ export function voiceIssues(
 }
 
 // One voice per narration: the voice recorded on a lesson's overview narration
-// is the lesson's narration voice, or its video voice when the narration was
-// read whole by that voice because Gemini's quota ran out. A narration with no
+// is the lesson's narration voice, or one of its video voices (OmniVoice now,
+// VieNeu before it) when the narration was read whole by that voice because
+// Gemini's quota ran out. A narration with no
 // recorded voice predates the record.
 export function narrationVoiceIssues(
   media: LessonMedia,
@@ -305,7 +308,7 @@ export function narrationVoiceIssues(
   const recorded = narration?.voice;
   if (!recorded) return [];
   const spec = voiceSpec(media.voice);
-  const allowed = [spec.narration, spec.video];
+  const allowed = [spec.narration, ...videoVoices(spec)];
   if (
     allowed.some(
       (v) => v.engine === recorded.engine && v.preset === recorded.voiceName,
@@ -314,7 +317,7 @@ export function narrationVoiceIssues(
     return [];
   }
   return [
-    `the overview narration was read by "${recorded.voiceName}" (${recorded.engine}); the lesson's voices are ${allowed.map((v) => `"${v.preset}" (${v.engine})`).join(" and ")}`,
+    `the overview narration was read by "${recorded.voiceName}" (${recorded.engine}); the lesson's voices are ${allowed.map((v) => `"${v.preset}" (${v.engine})`).join(", ")}`,
   ];
 }
 
@@ -497,10 +500,14 @@ export function checkProject(
     result.issues.push(
       ...openingIssues(script, media.openingExempt?.includes(name)),
     );
-    const spec = voiceSpec(media.voice).video;
-    if (script.engine !== spec.engine) {
+    const spec = voiceSpec(media.voice);
+    if (!videoVoice(spec, script.engine)) {
       result.issues.push(
-        `script.json engine "${script.engine}" is not the lesson's voice engine "${spec.engine}"`,
+        `script.json engine "${script.engine}" has no voice for the lesson (video engines: ${videoVoices(
+          spec,
+        )
+          .map((v) => v.engine)
+          .join(", ")})`,
       );
     }
   }

@@ -35,7 +35,7 @@ import type { EngineVoice } from "./voices";
 // lead-in silence (PAUSE.leadIn), like a video's.
 // A narration is read by one voice from start to end: when every Gemini key
 // is out of quota the whole narration is read again by the lesson's video
-// voice (local VieNeu), and a warning says so; the sentences Gemini had
+// voice (OmniVoice, `video` in video/voices.ts), and a warning says so; the sentences Gemini had
 // finished are not used in it.
 
 const AUDIO_BITRATE = "64k";

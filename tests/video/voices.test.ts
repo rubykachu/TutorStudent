@@ -2,7 +2,7 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
-import { PAUSE, PROJECTS_DIR } from "../../video/config";
+import { PAUSE, PROJECTS_DIR, VOICE_REFS_DIR } from "../../video/config";
 import {
   checkLessonVoice,
   leadInIssues,
@@ -13,8 +13,18 @@ import {
 import { LessonMediaSchema } from "../../video/lib/lesson-media";
 import { cacheKey } from "../../video/lib/narrate";
 import { readScript, VideoScriptSchema } from "../../video/lib/script";
+import { TTS_ENGINES } from "../../video/tts";
 import { localEngine } from "../../video/tts/local";
-import { GEMINI_NARRATORS, VOICE_IDS, VOICES } from "../../video/voices";
+import {
+  omnivoiceEngine,
+  withFinalPunctuation,
+} from "../../video/tts/omnivoice";
+import {
+  GEMINI_NARRATORS,
+  VOICE_IDS,
+  VOICES,
+  videoVoice,
+} from "../../video/voices";
 
 type Sentence = { text: string; opening?: true; rule?: true; quote?: true };
 
@@ -37,13 +47,25 @@ describe("voices", () => {
   it("lists each voice once with an engine preset and a gender", () => {
     expect(VOICE_IDS.sort()).toEqual(["hai-dang", "my-duyen"]);
     expect(VOICES["hai-dang"]).toMatchObject({
-      video: { engine: "local", preset: "Hải Đăng" },
+      video: { engine: "omnivoice", preset: "Hải Đăng" },
+      earlierVideo: { engine: "local", preset: "Hải Đăng" },
       gender: "male",
     });
     expect(VOICES["my-duyen"]).toMatchObject({
-      video: { engine: "local", preset: "Mỹ Duyên" },
+      video: { engine: "omnivoice", preset: "Mỹ Duyên" },
+      earlierVideo: { engine: "local", preset: "Mỹ Duyên" },
       gender: "female",
     });
+  });
+
+  it("has an OmniVoice reference recording and transcript for every voice", () => {
+    for (const id of VOICE_IDS) {
+      for (const ext of ["flac", "txt"]) {
+        expect(existsSync(path.join(VOICE_REFS_DIR, `${id}.${ext}`))).toBe(
+          true,
+        );
+      }
+    }
   });
 
   it("reads every narration with the Gemini voice of the lesson voice's gender", () => {
@@ -68,6 +90,67 @@ describe("voices", () => {
       model: "VieNeu-TTS v3 Turbo",
     });
     expect(cacheKey(voice, "Bạn nhớ nhé.")).toBe("56dedb834ddda5c4");
+  });
+
+  it("keys a take by its engine, so OmniVoice never reuses a VieNeu take", () => {
+    const vieneu = localEngine.voice("Hải Đăng");
+    const omni = omnivoiceEngine.voice("Hải Đăng");
+    expect(omni.engine).toBe("omnivoice");
+    expect(cacheKey(omni, "Bạn nhớ nhé.")).not.toBe(
+      cacheKey(vieneu, "Bạn nhớ nhé."),
+    );
+  });
+});
+
+describe("videoVoice", () => {
+  const spec = VOICES["my-duyen"];
+  it("reads a video with the voice of the engine its script names", () => {
+    expect(videoVoice(spec, "omnivoice")).toEqual({
+      engine: "omnivoice",
+      preset: "Mỹ Duyên",
+    });
+    // A video built with VieNeu stays on VieNeu and its cached takes.
+    expect(videoVoice(spec, "local")).toEqual({
+      engine: "local",
+      preset: "Mỹ Duyên",
+    });
+  });
+  it("has no video voice for Gemini", () => {
+    expect(videoVoice(spec, "gemini")).toBeUndefined();
+  });
+  it("is what a new script from the skill template names", () => {
+    const template = readScript(
+      ".claude/skills/lesson-video/templates/script.example.json",
+    );
+    expect(template.engine).toBe("omnivoice");
+    expect(TTS_ENGINES).toContain(template.engine);
+  });
+});
+
+describe("withFinalPunctuation", () => {
+  it("ends a sentence without final punctuation with a full stop", () => {
+    expect(withFinalPunctuation("số nguyên dương")).toBe("số nguyên dương.");
+    expect(withFinalPunctuation("  có khoảng trắng  ")).toBe(
+      "có khoảng trắng.",
+    );
+  });
+  it("keeps a full stop, question, exclamation mark or ellipsis", () => {
+    for (const t of ["Chào bạn!", "Bao nhiêu độ?", "Xong.", "Rồi…"]) {
+      expect(withFinalPunctuation(t)).toBe(t);
+    }
+  });
+  it("turns a trailing comma, colon, semicolon or dash into a full stop", () => {
+    expect(withFinalPunctuation("Học xong bài này, bạn sẽ:")).toBe(
+      "Học xong bài này, bạn sẽ.",
+    );
+    expect(withFinalPunctuation("một,")).toBe("một.");
+    expect(withFinalPunctuation("hai –")).toBe("hai.");
+  });
+  it("puts the mark before closing quotes and brackets", () => {
+    expect(withFinalPunctuation("Bạn nói “xin chào”")).toBe(
+      "Bạn nói “xin chào.”",
+    );
+    expect(withFinalPunctuation("(ví dụ?)")).toBe("(ví dụ?)");
   });
 });
 
@@ -105,10 +188,17 @@ describe("voiceIssues", () => {
   it("passes when every video used the lesson's voice", () => {
     expect(voiceIssues({ voice: "hai-dang" }, [spec], ["x"])).toEqual([]);
   });
+  it("accepts VieNeu and OmniVoice videos of the same voice in one lesson", () => {
+    const omni = {
+      id: "a.video.y",
+      voice: { engine: "omnivoice", voiceName: "Hải Đăng" },
+    };
+    expect(voiceIssues({ voice: "hai-dang" }, [spec, omni], ["x"])).toEqual([]);
+  });
   it("reports a video read by another voice", () => {
     const issues = voiceIssues({ voice: "my-duyen" }, [spec], ["x"]);
     expect(issues).toEqual([
-      'video a.video.x was read by "Hải Đăng", the lesson\'s voice is "Mỹ Duyên"',
+      'video a.video.x was read by "Hải Đăng" (local), the lesson\'s voice is "Mỹ Duyên"',
     ]);
   });
   it("reports an exemption that names no video", () => {
@@ -130,6 +220,9 @@ describe("narrationVoiceIssues", () => {
     expect(narrationVoiceIssues(media, recorded("local", "Mỹ Duyên"))).toEqual(
       [],
     );
+    expect(
+      narrationVoiceIssues(media, recorded("omnivoice", "Mỹ Duyên")),
+    ).toEqual([]);
   });
   it("accepts a narration with no recorded voice", () => {
     expect(narrationVoiceIssues(media, {})).toEqual([]);

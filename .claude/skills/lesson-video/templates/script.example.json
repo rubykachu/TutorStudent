@@ -1,6 +1,6 @@
 {
   "title": "Nhân hai luỹ thừa cùng cơ số",
-  "engine": "local",
+  "engine": "omnivoice",
   "poster": {
     "scene": "s02-noi",
     "at": 0.9

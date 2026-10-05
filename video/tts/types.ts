@@ -23,4 +23,7 @@ export interface TtsEngine {
     voiceName: string,
     requests: readonly SynthesisRequest[],
   ): Promise<void>;
+  // Stops what the engine keeps running between requests (a worker holding
+  // its model); the narration step calls it when it is done.
+  close?(): Promise<void>;
 }

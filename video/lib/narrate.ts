@@ -109,6 +109,19 @@ export async function narrate(
   voiceName: string,
   audioDir: string,
 ): Promise<SentenceTake[]> {
+  try {
+    return await narrateWith(script, engine, voiceName, audioDir);
+  } finally {
+    await engine.close?.();
+  }
+}
+
+async function narrateWith(
+  script: VideoScript,
+  engine: TtsEngine,
+  voiceName: string,
+  audioDir: string,
+): Promise<SentenceTake[]> {
   mkdirSync(audioDir, { recursive: true });
   const voice = engine.voice(voiceName);
   const lines: Line[] = script.scenes.flatMap((scene) =>
