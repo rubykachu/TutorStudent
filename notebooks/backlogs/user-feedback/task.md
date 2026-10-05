@@ -54,7 +54,7 @@ Sizes: S is up to about 2 files of code plus tests; M is up to about 5. A task t
 - Acceptance: 403 without or with a foreign Origin; 400 wrong media type or schema; 401 without cookie and for a revoked family; 404 `no-gate` with the gate open; 503 without a store; 413 over 4096 bytes; 429 with `retry-after` past each limit; a duplicate id stores once; a new report's id is in `pending.json` before the answer; a store whose `pending.json` write always conflicts answers 503 `busy` and the retry of the same id adds it; two concurrent adds keep both ids; a full list answers 202 and logs `pending-full`; the stored record has the pseudonym and no family id, cookie, IP or user agent; a log spy sees no note, title, family id or pseudonym.
 - Verify: `pnpm test tests/api/ tests/user-feedback/`.
 
-### T6. Forwarding, pending list, retry (M)
+### T6. Forwarding, pending list, retry (M) [x]
 
 - Files: `src/user-feedback/forward.ts` (new), `src/user-feedback/server.ts`, `tests/user-feedback/forward.test.ts`, `tests/api/feedback-forward.test.ts`.
 - Do: the pass of `spec.md` section 9.1 through the injected `after`: `forwardReport(store, prefix, github, id, month)` with the claim, `sent`, `failed` and `pending` writes, the write gap, the 30 s budget and the per-instance hourly cap; the gap and the clock are injected so tests do not wait.
@@ -178,8 +178,8 @@ Base commit (the commit before T1, for the security review diff): `e706002`.
 
 Coordinator decisions on the reviewer's open questions (recorded in `spec.md`): chip label "Hay, mình thích"; PIN asked for every note; thank-you closes after 5 s and has a close button; opening the sheet pauses narration and video (no auto-resume); the repo README's hidden-block example updated to match section 6.2.
 
-Done: T1, T2, T3, T4, T5a, T5b.
-Next: T6.
+Done: T1, T2, T3, T4, T5a, T5b, T6.
+Next: T7.
 
 Deploy coordination (another agent deploys Bài 21 `hinh-co-truc-doi-xung` tonight): right before `deploy:prod`, read the production SHA (last "Bản đang chạy" line of `docs/operations.md`, or `npx vercel ls --prod`); the pinned SHA must contain it (`git merge-base --is-ancestor <prod> <ours>`), else re-pin to a commit with both and re-run lint, typecheck, `content:check`, build. Never deploy while the other deploy runs; if "Bản đang chạy" changed in the last 10 minutes by another deploy, re-check. Every published lesson at the SHA must have its media (`pnpm media:upload --all --dry-run` reports 0).
 

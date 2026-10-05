@@ -21,13 +21,15 @@ export function feedbackHarness(
   options: {
     access?: AccessConfig;
     store?: BlobStore | null;
-    onStored?: FeedbackServiceDeps["onStored"];
+    github?: FeedbackServiceDeps["github"];
   } = {},
 ) {
   const store =
     options.store === undefined ? createMemoryStore() : options.store;
   let clock = new Date(START);
   const logs: FeedbackLogEntry[] = [];
+  // Work the service hands to `after()`, run by the test with `runAfter`.
+  const tasks: (() => Promise<void>)[] = [];
   const service = createFeedbackService({
     store,
     prefix: PREFIX,
@@ -35,12 +37,19 @@ export function feedbackHarness(
     readAccess: () => options.access ?? ACCESS,
     now: () => clock,
     log: (entry) => logs.push(entry),
-    ...(options.onStored ? { onStored: options.onStored } : {}),
+    github: options.github ?? null,
+    after: (task) => {
+      tasks.push(task);
+    },
   });
   return {
     store: store as BlobStore,
     service,
     logs,
+    tasks,
+    async runAfter() {
+      while (tasks.length > 0) await tasks.shift()?.();
+    },
     setNow(iso: string) {
       clock = new Date(iso);
     },

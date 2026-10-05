@@ -18,6 +18,8 @@ import { vnIsoTime } from "@/lib/time";
 import { errorDetail } from "@/sync/server";
 import { type SyncPrefix, syncKey } from "@/sync/store/keys";
 import type { BlobStore } from "@/sync/store/types";
+import { createForwarder } from "./forward";
+import type { GithubIssues } from "./github";
 import { familyPseudonym } from "./identity";
 import { addPending } from "./pending";
 import { noteText } from "./sanitize";
@@ -32,7 +34,7 @@ import {
 
 // The server side of `POST /api/feedback`: checks who is asking, stores the
 // report in the progress bucket and lists it as pending before answering,
-// then hands forwarding to `onStored` (run after the answer). The family id
+// then forwards it to GitHub after the answer (`forward.ts`). The family id
 // comes only from the cookie and is never stored or logged; the record holds
 // the household pseudonym instead.
 
@@ -64,9 +66,12 @@ export type FeedbackServiceDeps = {
   readAccess?: () => AccessConfig;
   now?: () => Date;
   log?: (entry: FeedbackLogEntry) => void;
-  // Runs after a new report is stored and listed, once the answer is sent
-  // (`after()` in the route). Never awaited by the request.
-  onStored?: (stored: { store: BlobStore; id: string; month: string }) => void;
+  // null: no `GITHUB_FEEDBACK_TOKEN`; reports are stored and stay pending.
+  github: GithubIssues | null;
+  // Runs work after the answer is sent (`after()` from `next/server` in the
+  // route); forwarding to GitHub goes through it, never awaited by the
+  // request.
+  after?: (task: () => Promise<void>) => void;
 };
 
 // The report id once known, and whether the answer was already logged with
@@ -96,6 +101,17 @@ export function createFeedbackService(deps: FeedbackServiceDeps) {
     deps.log ??
     ((entry: FeedbackLogEntry) => console.warn(JSON.stringify(entry)));
   const clock = () => now().getTime();
+  const after =
+    deps.after ??
+    ((task: () => Promise<void>) => {
+      void task();
+    });
+  const forwarder = createForwarder({
+    prefix: deps.prefix,
+    github: deps.github,
+    now,
+    log,
+  });
   const familyLimiter = new RequestLimiter(
     FEEDBACK_FAMILY_LIMIT,
     FEEDBACK_FAMILY_WINDOW_MINUTES * MINUTE_MS,
@@ -219,7 +235,20 @@ export function createFeedbackService(deps: FeedbackServiceDeps) {
       log({ route: "POST", status: 202, event: "pending-full", id: report.id });
     }
     if (duplicate) return reply({ ok: true, duplicate: true });
-    deps.onStored?.({ store, id: report.id, month });
+    const fresh = { id: report.id, month };
+    after(async () => {
+      try {
+        await forwarder.pass(store, fresh);
+      } catch (error) {
+        log({
+          route: "POST",
+          status: 202,
+          event: "exception",
+          id: report.id,
+          detail: errorDetail(error),
+        });
+      }
+    });
     return reply({ ok: true }, 202);
   }
 

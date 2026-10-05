@@ -155,20 +155,12 @@ describe("POST /api/feedback refusals", () => {
 
 describe("POST /api/feedback storage", () => {
   it("stores the record and lists it as pending before the answer", async () => {
-    let pendingAtStored: string[] = [];
-    const h = feedbackHarness({
-      onStored: () => {
-        void h.pending().then((ids) => {
-          pendingAtStored = ids;
-        });
-      },
-    });
+    const h = feedbackHarness();
     const response = await h.service.post(await feedbackRequest());
     expect(await status(response)).toEqual({ status: 202, body: { ok: true } });
     expect(response.headers.get("cache-control")).toBe("no-store");
+    expect(h.tasks).toHaveLength(1);
     expect(await h.pending()).toEqual([parentReport().id]);
-    await Promise.resolve();
-    expect(pendingAtStored).toEqual([parentReport().id]);
     const record = await h.record(parentReport().id);
     expect(record).toMatchObject({
       schema: "feedback",
@@ -198,8 +190,7 @@ describe("POST /api/feedback storage", () => {
   });
 
   it("stores a duplicate id once", async () => {
-    let stored = 0;
-    const h = feedbackHarness({ onStored: () => stored++ });
+    const h = feedbackHarness();
     await h.service.post(await feedbackRequest());
     const again = await h.service.post(
       await feedbackRequest(parentReport({ note: "khác" })),
@@ -211,7 +202,7 @@ describe("POST /api/feedback storage", () => {
     expect((await h.record(parentReport().id))?.report.note).toBe(
       "Đáp án câu b in sai dấu",
     );
-    expect(stored).toBe(1);
+    expect(h.tasks).toHaveLength(1);
     expect(await h.pending()).toEqual([parentReport().id]);
   });
 
