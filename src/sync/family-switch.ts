@@ -1,9 +1,11 @@
 import { ACTIVE_PROFILE_KEY, DEVICE_SCOPE, type TutorDb } from "@/progress/db";
 import { SYNC_FAMILY_KEY } from "@/sync/state";
+import { FEEDBACK_OUTBOX_KEY } from "@/user-feedback/outbox";
 
 // Makes this device a blank one for another family: deletes every profile and
-// every child's records, the sync bookkeeping, and the two device settings
-// that name the old family and the child using the device. What stays is the
+// every child's records, the sync bookkeeping, the two device settings that
+// name the old family and the child using the device, and the feedback
+// outbox (its reports would be sent with the new family's cookie). What stays is the
 // device's own: the parent PIN and its lock, the clock offset. The caller
 // syncs afterwards to pull the new family's docs.
 //
@@ -17,7 +19,7 @@ export async function clearLocalFamilyData(db: TutorDb): Promise<void> {
       .filter((row) => row.childId !== DEVICE_SCOPE.childId)
       .delete();
     await db.settings.bulkDelete(
-      [SYNC_FAMILY_KEY, ACTIVE_PROFILE_KEY].map(
+      [SYNC_FAMILY_KEY, ACTIVE_PROFILE_KEY, FEEDBACK_OUTBOX_KEY].map(
         (key): [string, string, string] => [
           DEVICE_SCOPE.familyId,
           DEVICE_SCOPE.childId,

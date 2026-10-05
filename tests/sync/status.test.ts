@@ -218,6 +218,7 @@ describe("clearLocalFamilyData", () => {
     await d.sync();
     await setSetting(d.db, DEVICE_SCOPE, ACTIVE_PROFILE_KEY, CHILD);
     await setSetting(d.db, DEVICE_SCOPE, "parentPin", "pin-hash");
+    await setSetting(d.db, DEVICE_SCOPE, "feedbackOutbox", "[]");
     await setSetting(d.db, scope, "soundEnabled", false);
     expect(await readSyncFamily(d.db)).toBe("OWL4K7MQ");
 
@@ -234,6 +235,9 @@ describe("clearLocalFamilyData", () => {
       await getSetting(d.db, DEVICE_SCOPE, ACTIVE_PROFILE_KEY),
     ).toBeUndefined();
     expect(await getSetting(d.db, scope, "soundEnabled")).toBeUndefined();
+    expect(
+      await getSetting(d.db, DEVICE_SCOPE, "feedbackOutbox"),
+    ).toBeUndefined();
     expect(await getSetting(d.db, DEVICE_SCOPE, "parentPin")).toBe("pin-hash");
   });
 });
