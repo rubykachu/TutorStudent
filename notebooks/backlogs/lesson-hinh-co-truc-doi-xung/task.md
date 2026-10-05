@@ -91,9 +91,9 @@ Mọi bảng chọn đường (`lines`, `foldLab`, `axisPicker`) đặt tên đ�
 
 ## Bảng hình theo tầng (để câu mới không lặp hình)
 
-- Section 1 `quanh-ta`: màn dạy cánh bướm, chiếc lá, cổng đền, ngôi nhà, hình bình hành. Câu kiểm tra `s1-chon-hinh-gap-doi`: mặt nạ và chiếc ly (gấp được), chìa khóa và lá cờ (không). Câu luyện `s1-vat-gap-doi` (chữ): gương tròn trơn (gấp được); dấu hỏi, bàn chân trái, vệt khói. Câu ôn `s1-on-la`: cây thông (gấp được); đám mây lệch, chữ N, chữ P. Câu ôn `s1-on-cham`: chiếc ô và cái chuông (gấp được); chữ Z, lá cờ.
-- Section 6 `chu-cai-chu-so`: màn dạy T, E, I, L; kiểm tra U, F; luyện K, W, G, P; ôn `s6-on-chu-mot-truc` (C đúng; S, J, R) và `s6-on-chu-d-truc` (D). Không dùng chữ của 5.3 (A B H M N X Y Z 0 2 3 8 9) hay đáp án 5.7 (V, M, O) ở các câu của thẻ.
-- Section 7 `do-vat-bieu-tuong`: màn dạy biển cấm, trái tim, mũi tên, đám mây lệch (hình quy tắc: trái tim, biển cấm, đám mây lệch); kiểm tra `s7-khong-co-truc` (bình hành nghiêng không trục; tam giác đều, lục giác đều, hình thoi); luyện `s7-mot-truc` (hình thang cân, chai nước một trục; hình chữ nhật, hình vuông); ôn `s7-on-khong-truc` (bình hành lệch, đám mây lệch; chiếc lá, dấu cộng).
+- Section 1 `quanh-ta`: màn dạy cánh bướm, chiếc lá, cổng đền, ngôi nhà, hình bình hành. Câu kiểm tra `s1-chon-hinh-gap-doi`: mặt nạ và chiếc ly (gấp được), chìa khóa và lá cờ (không). Câu luyện `s1-vat-gap-doi` (chữ): gương tròn trơn (gấp được); dấu hỏi, bàn chân trái, vệt khói. Câu ôn `s1-on-la`: cây thông (gấp được); đám mây lệch, chữ N, chữ P. Câu ôn `s1-on-cham`: chiếc ô và cái chuông (gấp được); chữ Z, tam giác lệch.
+- Section 6 `chu-cai-chu-so`: màn dạy T, E, I, L; kiểm tra U, F; luyện K, W, G, P; ôn `s6-on-chu-mot-truc` (C đúng; S, J, R) và `s6-on-chu-e-truc` (E). Không dùng chữ của 5.3 (A B H M N X Y Z 0 2 3 8 9) hay đáp án 5.7 (V, M, O) ở các câu của thẻ.
+- Section 7 `do-vat-bieu-tuong`: màn dạy biển cấm, trái tim, mũi tên, đám mây lệch (hình quy tắc: trái tim, biển cấm, đám mây lệch); kiểm tra `s7-khong-co-truc` (bình hành nghiêng không trục; tam giác đều, lục giác đều, hình thoi); luyện `s7-mot-truc` (hình thang cân, chai nước một trục; hình chữ nhật, hình vuông); ôn `s7-on-khong-truc` (tam giác lệch, chiếc chìa khóa; chiếc lá, dấu cộng).
 - Giấy: màn quy tắc, recap và khối "Nhắc lại" của section `gap-giay` dùng lỗ tròn (`gap-giay-quy-tac`); tờ cắt tam giác mở ra hình thoi (`paper-t`, `goi-y-gap-giay`) chỉ ở câu dẫn `l57-hinh-thoi` và gợi ý của 5.7.
 - Câu dẫn `l55-dau-cong`: chữ thập có cánh ngang dài, cánh dọc ngắn (hai trục), không phải dấu cộng bốn cánh bằng nhau của 5.4 và các khối "Nhắc lại".
 
@@ -102,6 +102,12 @@ Mọi bảng chọn đường (`lines`, `foldLab`, `axisPicker`) đặt tên đ�
 - `cheo-khong-phai-truc` (tránh sai, section 3): hình chữ nhật có hai cạnh dài ngắn khác nhau thì đường chéo không phải trục; hình thoi thì hai đường chéo là trục. Đã thử hình chữ nhật 160 × 90, 120 × 100, 150 × 20, 100 × 99 (đường chéo không phải trục) và hình thoi nửa đường chéo 90 và 52, 80 và 80 (hình vuông), 100 và 30, 60 và 59 (cả hai đường chéo là trục). Điều kiện "dài ngắn khác nhau" nằm trong câu mẹo.
 - `dem-truc-hinh-deu` (làm nhanh, section 5): tam giác đều, hình vuông, lục giác đều có bao nhiêu cạnh thì có bấy nhiêu trục. Test đã thử n = 3, 4, 5, 6, 8, 10, 12 (đếm trục bằng cách gấp số học, quét nửa độ); mẹo chỉ nêu ba hình lớp 6 biết.
 - `gap-hai-lan` (hiểu nhanh, section 11): gấp hai lần theo hai nếp vuông góc rồi cắt, khi mở ra có ít nhất hai trục là hai nếp gấp. Đã thử năm hình cắt (hình chữ nhật ở góc, tam giác sát nếp, hình bốn cạnh chạm nếp, hình sát tâm, hình vuông nhỏ).
+
+## Vòng 3 và đọc hiểu lượt 2: đã sửa
+
+- Nên sửa 1 đến 4 xong: `s7-on-khong-truc` dùng tam giác lệch và chìa khóa; `s4-on-ghep-so-truc` nối hình thang cân, hình bình hành lệch, tam giác đều (1, 0, 3 trục); `s1-on-cham` thay lá cờ bằng tam giác lệch; `s6-on-chu-d-truc` thành `s6-on-chu-e-truc` (chữ E); lý do `wrong` của `s3-cheo-thoi` viết lại.
+- Góp ý: 2 (thêm "Trục d nằm ngang thì đếm số ô theo cột." vào Nhắc lại 5.6) và 3 (gọi "Biển cấm" cả hai chỗ) xong; Góp ý 1 (đổi nhãn đường sang 1, 2, 3, 4) không làm vì phải đổi luật nhãn, `lines.ts`, test và mọi đề có chữ a, b, c, e.
+- Bảy mục "Hiểu mơ hồ" của `doc-hieu-2.md` đã viết lại; danh sách chữ mới nằm ở tệp scratchpad cho lượt đọc hiểu kế tiếp. Trạng thái: chờ lượt đọc hiểu lại, rồi điều phối chạy walk và duyệt.
 
 ## Kiểm đã chạy (06/10/2026, sau khi sửa vòng 2)
 

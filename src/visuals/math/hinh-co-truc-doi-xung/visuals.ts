@@ -207,7 +207,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     width: PICTURE_WIDTH,
   },
   "big-star": { kind: "subject", subject: shape("star"), width: PICTURE_WIDTH },
-  "chu-d": bigGlyph("D"),
+  "chu-e": bigGlyph("E"),
   "chu-f": bigGlyph("F"),
   "chu-u": bigGlyph("U"),
   "chu-so-1": bigGlyph("1"),
@@ -239,14 +239,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "cham-gap-doi": {
     kind: "strip",
-    label: "Chiếc ô, cái chuông, chữ Z và lá cờ cắm trên cột",
+    label: "Chiếc ô, cái chuông, chữ Z và tam giác lệch",
     mode: "tap",
     columns: 2,
     items: [
       shapeItem("chiec-o", "umbrella", "Chiếc ô"),
       shapeItem("cai-chuong", "bell", "Cái chuông"),
       glyphItem("chu-z", "Z", "Chữ Z"),
-      shapeItem("la-co", "flag", "Lá cờ cắm trên cột"),
+      shapeItem("tam-giac-lech", "scalene", "Tam giác lệch"),
     ],
   },
 
@@ -437,7 +437,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "bieu-tuong-the": {
     kind: "axisCards",
     label:
-      "Bốn thẻ: biển báo cấm đi ngược chiều, trái tim, mũi tên và đám mây bị gió thổi lệch",
+      "Bốn thẻ: biển cấm đi ngược chiều, trái tim, mũi tên và đám mây bị gió thổi lệch",
     items: [shape("nosign"), shape("heart"), shape("arrow"), shape("cloud")],
     verb: "xem",
     done: "Bạn đã xem cả bốn hình.",

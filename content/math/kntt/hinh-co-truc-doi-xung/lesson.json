@@ -391,7 +391,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Biển báo, trái tim, mũi tên, đám mây quanh ta: cái nào có trục đối xứng, có mấy trục?"
+              "text": "Biển cấm, trái tim, mũi tên, đám mây quanh ta: cái nào có trục đối xứng, có mấy trục?"
             },
             {
               "type": "visual",
@@ -522,7 +522,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Trục d cũng có thể nằm ngang. Khi đó đếm số ô từ điểm tới d theo cột, rồi đếm số ô bằng vậy ở bên kia d, trên cùng cột."
+              "text": "Trục d cũng có thể nằm ngang. Khi đó, đếm số ô từ điểm tới d theo cột, rồi đếm đúng số ô ấy ở bên kia d, trên cùng cột."
             },
             {
               "type": "visual",
@@ -741,6 +741,10 @@
             {
               "type": "note",
               "text": "Muốn vẽ thêm cho hình có trục d, hãy tìm điểm đối xứng của từng đỉnh rồi nối lại."
+            },
+            {
+              "type": "note",
+              "text": "Trục d nằm ngang thì đếm số ô theo cột."
             },
             {
               "type": "note",
@@ -1424,7 +1428,7 @@
         "wrong": [
           {
             "optionId": "khong",
-            "text": "Hình thoi khác hình chữ nhật dài ngắn khác nhau: cả hai đường chéo của hình thoi đều là trục."
+            "text": "Với hình thoi, cả hai đường chéo đều là trục. Chỉ hình chữ nhật có hai cạnh dài ngắn khác nhau thì đường chéo mới không phải là trục."
           }
         ]
       },
@@ -2180,7 +2184,7 @@
           "id": "buoc3",
           "content": {
             "type": "text",
-            "text": "Lấy chỗ thứ hai đường tròn cắt đường thẳng vừa dựng (khác A), đó là A′"
+            "text": "Đường tròn cắt đường thẳng vừa dựng ở hai chỗ, một chỗ là A. Lấy chỗ còn lại, đó là A′"
           }
         }
       ]
@@ -2276,7 +2280,7 @@
         "wrong": [
           {
             "optionId": "to",
-            "text": "Các đỉnh đã có đã được nối sẵn; phần còn thiếu là các điểm đối xứng, nên phải tìm chúng trước."
+            "text": "Các đỉnh đã có thì được nối sẵn rồi. Còn thiếu các điểm đối xứng, nên bạn phải tìm chúng trước."
           },
           {
             "optionId": "do",
@@ -2711,7 +2715,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Chiếc ô và cái chuông có hai nửa giống hệt nhau, nên gấp đôi là khít. Chữ Z và lá cờ cắm trên cột thì không."
+        "text": "Chiếc ô và cái chuông có hai nửa giống hệt nhau, nên gấp đôi là khít. Chữ Z và tam giác lệch thì không."
       },
       "visualId": "hinh-co-truc-doi-xung.visual.cham-gap-doi",
       "answer": ["chiec-o", "cai-chuong"]
@@ -2736,7 +2740,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Mỗi hình khác nhau: bàn chân trái không có trục, ngôi nhà có một trục, còn có hình có nhiều trục.",
+        "text": "Mỗi hình mỗi khác. Bàn chân trái không có trục, ngôi nhà có một trục, còn những hình khác lại có nhiều trục.",
         "wrong": [
           {
             "optionId": "mot",
@@ -2941,7 +2945,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Hình thang cân có 1 trục, hình chữ nhật có 2 trục, còn hình bình hành lệch không có trục nào."
+        "text": "Hình thang cân có 1 trục, hình tam giác đều có 3 trục, còn hình bình hành lệch không có trục nào."
       },
       "left": [
         {
@@ -2959,10 +2963,10 @@
           }
         },
         {
-          "id": "chu",
+          "id": "deu",
           "content": {
             "type": "visual",
-            "visualId": "hinh-co-truc-doi-xung.visual.thumb-rectangle"
+            "visualId": "hinh-co-truc-doi-xung.visual.thumb-triangle"
           }
         }
       ],
@@ -3006,8 +3010,8 @@
           "right": "khong"
         },
         {
-          "left": "chu",
-          "right": "hai"
+          "left": "deu",
+          "right": "ba"
         }
       ]
     },
@@ -3242,17 +3246,17 @@
       "multiple": false
     },
     {
-      "id": "hinh-co-truc-doi-xung.ex.s6-on-chu-d-truc",
+      "id": "hinh-co-truc-doi-xung.ex.s6-on-chu-e-truc",
       "type": "choice",
       "cardIds": ["hinh-co-truc-doi-xung.card.chu-cai-chu-so"],
       "prompt": [
         {
           "type": "note",
-          "text": "Chữ D có đúng một trục đối xứng. Trục đó thẳng đứng hay nằm ngang?"
+          "text": "Chữ E có đúng một trục đối xứng. Trục đó thẳng đứng hay nằm ngang?"
         },
         {
           "type": "visual",
-          "visualId": "hinh-co-truc-doi-xung.visual.chu-d"
+          "visualId": "hinh-co-truc-doi-xung.visual.chu-e"
         }
       ],
       "hints": {
@@ -3265,11 +3269,11 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Gấp chữ D đôi theo đường nằm ngang ở giữa thì nửa trên khít nửa dưới. Vậy trục của chữ D nằm ngang.",
+        "text": "Gấp chữ E đôi theo đường nằm ngang ở giữa thì nửa trên khít nửa dưới. Vậy trục của chữ E nằm ngang.",
         "wrong": [
           {
             "optionId": "dung",
-            "text": "Gấp chữ D theo đường thẳng đứng thì nét thẳng ở bên trái, nét cong ở bên phải, hai nửa không khít."
+            "text": "Gấp chữ E theo đường thẳng đứng thì nét dọc ở bên trái, ba nét ngang ở bên phải, hai nửa không khít."
           }
         ]
       },
@@ -3373,7 +3377,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Hình bình hành lệch và đám mây bị gió thổi lệch đều không có trục. Chiếc lá có một trục, dấu cộng có bốn trục.",
+        "text": "Tam giác lệch và chiếc chìa khóa đều không có trục. Chiếc lá có một trục, dấu cộng có bốn trục.",
         "wrong": [
           {
             "optionId": "la",
@@ -3387,17 +3391,17 @@
       },
       "options": [
         {
-          "id": "binh",
+          "id": "lech",
           "content": {
             "type": "visual",
-            "visualId": "hinh-co-truc-doi-xung.visual.thumb-parallelogram"
+            "visualId": "hinh-co-truc-doi-xung.visual.thumb-scalene"
           }
         },
         {
-          "id": "may",
+          "id": "khoa",
           "content": {
             "type": "visual",
-            "visualId": "hinh-co-truc-doi-xung.visual.thumb-cloud"
+            "visualId": "hinh-co-truc-doi-xung.visual.thumb-key"
           }
         },
         {
@@ -3415,7 +3419,7 @@
           }
         }
       ],
-      "answer": ["binh", "may"],
+      "answer": ["lech", "khoa"],
       "multiple": true
     },
     {
@@ -4325,7 +4329,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Gấp chữ thập theo đường thẳng đứng hay đường nằm ngang, hai nửa chồng khít. Hai cánh ngang dài hơn hai cánh dọc, nên hai đường chéo không phải trục: chữ thập có 2 trục."
+        "text": "Gấp chữ thập theo đường thẳng đứng hoặc đường nằm ngang thì hai nửa đều khít. Còn hai đường chéo thì không phải trục, vì cánh ngang dài hơn cánh dọc. Vì vậy chữ thập có 2 trục."
       },
       "visualId": "hinh-co-truc-doi-xung.visual.chon-truc-chu-thap",
       "validatorId": "chon-truc",
@@ -5182,7 +5186,7 @@
       },
       "difficulty": 3,
       "explain": {
-        "text": "Thẻ 0, 1 và 8 xếp được 6 cách, nhưng 018 và 081 bắt đầu bằng 0, nên còn 108, 180, 801, 810. Thẻ 2 và thẻ 5 đứng hai bên một thẻ 0, 1 hoặc 8 ghép được 6 số: 205, 215, 285, 502, 512 và 582. Mỗi thẻ chỉ có một tấm, nên không có số 181 hay 888.",
+        "text": "Thẻ 0, 1 và 8 xếp được 6 cách, nhưng 018 và 081 bắt đầu bằng 0, nên còn 108, 180, 801 và 810. Còn thẻ 2 và thẻ 5 đứng hai bên thẻ 0, 1 hoặc 8 cho thêm 6 số: 205, 215, 285, 502, 512, 582. Mỗi thẻ chỉ có một tấm, nên không có số 181 hay 888.",
         "tex": "4 + 6 = 10"
       },
       "answer": {

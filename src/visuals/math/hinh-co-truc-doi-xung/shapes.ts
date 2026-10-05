@@ -738,7 +738,7 @@ function arrow(): ShapeDef {
 function nosign(): ShapeDef {
   return {
     id: "nosign",
-    name: "Biển báo cấm",
+    name: "Biển cấm",
     strokes: [
       closed(regularPolygon(90, 120, 120, 88, 0), { fill: true }),
       closed(
