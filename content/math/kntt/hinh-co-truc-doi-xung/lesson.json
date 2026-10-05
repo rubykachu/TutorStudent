@@ -2740,7 +2740,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Mỗi hình có số trục khác nhau. Bàn chân trái không có trục, ngôi nhà có một trục. Một số hình khác có nhiều trục.",
+        "text": "Số trục của các hình có thể khác nhau. Bàn chân trái không có trục, ngôi nhà có một trục. Một số hình khác có nhiều trục.",
         "wrong": [
           {
             "optionId": "mot",
@@ -3239,17 +3239,17 @@
       "multiple": false
     },
     {
-      "id": "hinh-co-truc-doi-xung.ex.s6-on-chu-b-truc",
+      "id": "hinh-co-truc-doi-xung.ex.s6-on-chu-t-truc",
       "type": "choice",
       "cardIds": ["hinh-co-truc-doi-xung.card.chu-cai-chu-so"],
       "prompt": [
         {
           "type": "note",
-          "text": "Chữ B có đúng một trục đối xứng. Trục đó thẳng đứng hay nằm ngang?"
+          "text": "Chữ T có đúng một trục đối xứng. Trục đó thẳng đứng hay nằm ngang?"
         },
         {
           "type": "visual",
-          "visualId": "hinh-co-truc-doi-xung.visual.chu-b"
+          "visualId": "hinh-co-truc-doi-xung.visual.chu-t"
         }
       ],
       "hints": {
@@ -3262,11 +3262,11 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Gấp chữ B đôi theo đường nằm ngang ở giữa thì nửa trên chồng khít nửa dưới. Vậy trục của chữ B nằm ngang.",
+        "text": "Gấp chữ T đôi theo đường thẳng đứng ở giữa thì nửa trái chồng khít nửa phải. Vậy trục của chữ T thẳng đứng.",
         "wrong": [
           {
-            "optionId": "dung",
-            "text": "Gấp chữ B theo đường thẳng đứng thì nét dọc ở bên trái, hai nửa vòng ở bên phải. Hai nửa không chồng khít nhau."
+            "optionId": "ngang",
+            "text": "Gấp chữ T theo đường nằm ngang thì nửa trên là nét ngang dài, nửa dưới chỉ là nét dọc. Hai nửa không chồng khít nhau."
           }
         ]
       },
@@ -3286,7 +3286,7 @@
           }
         }
       ],
-      "answer": ["ngang"],
+      "answer": ["dung"],
       "multiple": false
     },
     {

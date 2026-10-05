@@ -208,8 +208,8 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     width: PICTURE_WIDTH,
   },
   "big-star": { kind: "subject", subject: shape("star"), width: PICTURE_WIDTH },
-  "chu-b": bigGlyph("B"),
   "chu-f": bigGlyph("F"),
+  "chu-t": bigGlyph("T"),
   "chu-u": bigGlyph("U"),
   "chu-so-1": bigGlyph("1"),
 
