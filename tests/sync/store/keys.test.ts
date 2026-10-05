@@ -152,3 +152,33 @@ describe("test prefix", () => {
     expect(isSyncPrefix("test/run-abc123/../prod/")).toBe(false);
   });
 });
+
+describe("feedback keys", () => {
+  const REPORT = "9f0c2a7be1d04c58a6b7f0e2c4d91a35";
+
+  it("builds the report and pending keys under the prefix", () => {
+    expect(
+      syncKey("prod/", {
+        kind: "feedback",
+        month: "2026-10",
+        reportId: REPORT,
+      }),
+    ).toBe(`prod/feedback/2026-10/${REPORT}.json`);
+    expect(syncKey("dev/", { kind: "feedback-pending" })).toBe(
+      "dev/feedback/pending.json",
+    );
+  });
+
+  it("refuses a bad report id or month", () => {
+    for (const reportId of ["", "../x", REPORT.toUpperCase(), `${REPORT}0`]) {
+      expect(() =>
+        syncKey("dev/", { kind: "feedback", month: "2026-10", reportId }),
+      ).toThrow();
+    }
+    for (const month of ["2026-13", "2026-1", "2026-10/../x", ""]) {
+      expect(() =>
+        syncKey("dev/", { kind: "feedback", month, reportId: REPORT }),
+      ).toThrow();
+    }
+  });
+});

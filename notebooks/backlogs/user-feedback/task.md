@@ -8,7 +8,7 @@ Sizes: S is up to about 2 files of code plus tests; M is up to about 5. A task t
 
 ## Slice 1: pure core
 
-### T1. Schema, constants, key kinds (S)
+### T1. Schema, constants, key kinds (S) [x]
 
 - Files: `src/user-feedback/schema.ts` (new), `src/lib/config.ts`, `src/sync/store/keys.ts`, `tests/user-feedback/schema.test.ts`, `tests/sync/store/keys.test.ts`.
 - Do: the strict request schema of `spec.md` section 4 (subjects from `content/subjects.json`, grades from `GRADES`, phases from `SECTION_PHASES`, scoped ids from `src/schema/content.ts`); the record (states `pending`, `sending`, `sent`, `failed`, `claimedAt`) and pending schemas of section 5; constants `FEEDBACK_REPO`, `FEEDBACK_BODY_MAX_BYTES`, `FEEDBACK_NOTE_MAX_CHARS`, the limits of section 10, `FEEDBACK_RETRY_PER_REQUEST`, `FEEDBACK_PENDING_MAX`, `FEEDBACK_OUTBOX_MAX`, `FEEDBACK_OUTBOX_MAX_AGE_DAYS`, `FEEDBACK_SEND_TIMEOUT_MS`, `FEEDBACK_GITHUB_TIMEOUT_MS`, `FEEDBACK_GITHUB_WRITE_GAP_MS`, `FEEDBACK_FORWARD_BUDGET_MS`, `FEEDBACK_CLAIM_SECONDS`, `FEEDBACK_MAX_ATTEMPTS`; `syncKey` kinds `feedback` (`<prefix>feedback/<yyyy-mm>/<id>.json`, month from `createdAt`) and `feedback-pending`.
@@ -174,7 +174,12 @@ The second command calls GitHub (read only); the owner runs it, or an agent runs
 
 ## Handover
 
-Nothing built yet. Start with T1 in a fresh Sonnet subagent, from this file.
+Base commit (the commit before T1, for the security review diff): `e706002`.
+
+Coordinator decisions on the reviewer's open questions (recorded in `spec.md`): chip label "Hay, mình thích"; PIN asked for every note; thank-you closes after 5 s and has a close button; opening the sheet pauses narration and video (no auto-resume); the repo README's hidden-block example updated to match section 6.2.
+
+Done: T1.
+Next: T2.
 
 ## Security review
 

@@ -8,6 +8,8 @@ import { CHILD_ID_PATTERN, DAY_PATTERN, MONTH_PATTERN } from "@/sync/schema";
 //   <prefix>progress/<familyId>/<childId>.json
 //   <prefix>progress/<familyId>/<childId>/history/<yyyy-mm>.json
 //   <prefix>snapshots/<familyId>/<childId>/<yyyy-mm-dd>.json
+//   <prefix>feedback/<yyyy-mm>/<reportId>.json   (one feedback report)
+//   <prefix>feedback/pending.json                (reports not yet on GitHub)
 //
 // The prefix says which environment owns the key. It comes from
 // `syncEnvPrefix` or `testPrefix` below and from no setting of its own, so a
@@ -44,7 +46,13 @@ export type SyncKeyTarget =
   | { kind: "profile"; familyId: string }
   | { kind: "child"; familyId: string; childId: string }
   | { kind: "history"; familyId: string; childId: string; month: string }
-  | { kind: "snapshot"; familyId: string; childId: string; day: string };
+  | { kind: "snapshot"; familyId: string; childId: string; day: string }
+  // Feedback reports carry no family id in their key.
+  | { kind: "feedback"; month: string; reportId: string }
+  | { kind: "feedback-pending" };
+
+// A feedback report id: 32 hex digits, like a child id.
+const REPORT_ID_PATTERN = /^[0-9a-f]{32}$/;
 
 function part(value: string, pattern: RegExp, what: string): string {
   if (!pattern.test(value)) throw new Error(`invalid ${what} in a sync key`);
@@ -53,6 +61,12 @@ function part(value: string, pattern: RegExp, what: string): string {
 
 export function syncKey(prefix: SyncPrefix, target: SyncKeyTarget): string {
   if (!isSyncPrefix(prefix)) throw new Error("invalid sync key prefix");
+  if (target.kind === "feedback") {
+    const month = part(target.month, MONTH_PATTERN, "month");
+    return `${prefix}feedback/${month}/${part(target.reportId, REPORT_ID_PATTERN, "report id")}.json`;
+  }
+  if (target.kind === "feedback-pending")
+    return `${prefix}feedback/pending.json`;
   const family = part(target.familyId, FAMILY_ID_PATTERN, "family id");
   switch (target.kind) {
     case "profile":

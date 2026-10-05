@@ -177,3 +177,44 @@ export const SYNC_BODY_SLACK_BYTES = 4_096;
 // A request from the server to the cloud bucket is given up after this long, so
 // a stalled bucket never holds a function open.
 export const SYNC_STORE_TIMEOUT_MS = 10_000;
+
+// In-app feedback ("Góp ý", `src/user-feedback/`, `POST /api/feedback`).
+// Reports become issues in this private repo.
+export const FEEDBACK_REPO = "rubykachu/owlyeah-feedback";
+// Largest request body the route reads, and the longest parent note.
+export const FEEDBACK_BODY_MAX_BYTES = 4_096;
+export const FEEDBACK_NOTE_MAX_CHARS = 500;
+// Per server instance, in memory (like the sync limits): reports per family
+// in a short and a one-day window, and per client address.
+export const FEEDBACK_FAMILY_LIMIT = 10;
+export const FEEDBACK_FAMILY_WINDOW_MINUTES = 10;
+export const FEEDBACK_FAMILY_DAY_LIMIT = 40;
+export const FEEDBACK_IP_LIMIT = 20;
+export const FEEDBACK_IP_WINDOW_MINUTES = 10;
+// GitHub issues one server instance creates per hour; past it, reports wait
+// in the pending list for a later pass.
+export const FEEDBACK_ISSUES_PER_HOUR = 30;
+// Pending reports one forwarding pass tries, oldest first, and the most ids
+// the pending list keeps (a report past it is stored but not queued).
+export const FEEDBACK_RETRY_PER_REQUEST = 10;
+export const FEEDBACK_PENDING_MAX = 500;
+// The device outbox: most reports kept, oldest dropped first, and the age
+// after which a report is dropped unsent.
+export const FEEDBACK_OUTBOX_MAX = 20;
+export const FEEDBACK_OUTBOX_MAX_AGE_DAYS = 7;
+// One send from the device, and one request from the server to GitHub, are
+// given up after this long.
+export const FEEDBACK_SEND_TIMEOUT_MS = 10_000;
+export const FEEDBACK_GITHUB_TIMEOUT_MS = 8_000;
+// GitHub's secondary rate limits want writes in series about a second apart.
+export const FEEDBACK_GITHUB_WRITE_GAP_MS = 1_000;
+// A forwarding pass starts no new report after this long (the route's
+// `maxDuration` is 60 s), and a report claimed by a pass that stopped is
+// taken again after this many seconds.
+export const FEEDBACK_FORWARD_BUDGET_MS = 30_000;
+export const FEEDBACK_CLAIM_SECONDS = 120;
+// Forward attempts after which a report is given up (`failed`).
+export const FEEDBACK_MAX_ATTEMPTS = 10;
+// The thank-you after a child's report closes by itself after this long
+// (not under reduced motion).
+export const FEEDBACK_THANKS_CLOSE_MS = 5_000;
