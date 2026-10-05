@@ -78,7 +78,7 @@ Sizes: S is up to about 2 files of code plus tests; M is up to about 5. A task t
 - Acceptance: offline (fetch throws `TypeError`) and a timeout keep the report; 202, 200 duplicate, 400, 403, 404 and 413 remove it; 401, 429 and 503 keep it and end the flush (no request for the next report); a damaged outbox value reads as empty; a family switch empties the outbox; the 21st report drops the oldest; a report of 8 days ago is dropped without a request; two flushes at once send each report once; `SYNC_POLICY` and `LESSON_RESET_POLICY` tests still pass unchanged.
 - Verify: `pnpm test tests/user-feedback/ tests/sync/ tests/progress/`.
 
-### T9a. Button, sheet, thank-you and context, as components (M)
+### T9a. Button, sheet, thank-you and context, as components (M) [x]
 
 - Files: `src/user-feedback/feedback-button.tsx`, `src/user-feedback/feedback-sheet.tsx`, `src/user-feedback/context.ts` (new: builds the report context from lesson, section, step, screen), `tests/user-feedback/feedback-sheet.test.tsx`, `tests/user-feedback/context.test.ts`.
 - Do: `spec.md` sections 3.2, 3.4: icon button with `aria-label`, label text from `md`, sheet with five chips in one column, one tap sends, thank-you with `role="status"` as soon as the outbox write resolves, auto-close after 5 s except under reduced motion, "Đã gửi" per reason and item while the screen is open.
@@ -178,8 +178,8 @@ Base commit (the commit before T1, for the security review diff): `e706002`.
 
 Coordinator decisions on the reviewer's open questions (recorded in `spec.md`): chip label "Hay, mình thích"; PIN asked for every note; thank-you closes after 5 s and has a close button; opening the sheet pauses narration and video (no auto-resume); the repo README's hidden-block example updated to match section 6.2.
 
-Done: T1 to T8 (build of the route passes in a temp worktree).
-Next: T9a.
+Done: T1 to T9a (build of the route passes in a temp worktree).
+Next: T9b.
 
 Deploy coordination (another agent deploys Bài 21 `hinh-co-truc-doi-xung` tonight): right before `deploy:prod`, read the production SHA (last "Bản đang chạy" line of `docs/operations.md`, or `npx vercel ls --prod`); the pinned SHA must contain it (`git merge-base --is-ancestor <prod> <ours>`), else re-pin to a commit with both and re-run lint, typecheck, `content:check`, build. Never deploy while the other deploy runs; if "Bản đang chạy" changed in the last 10 minutes by another deploy, re-check. Every published lesson at the SHA must have its media (`pnpm media:upload --all --dry-run` reports 0).
 
