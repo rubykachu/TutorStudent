@@ -45,25 +45,25 @@ Mỗi mục là một tệp `<id>-<slug>.md` gồm: Triệu chứng, Ví dụ th
 
 ## Số lần gặp
 
-Đếm từ mọi vòng review tới 06/10/2026 của 25 bài (Toán: `tap-hop`, `phep-cong-phep-tru` bản nháp, `luy-thua`, `thu-tu-thuc-hien-phep-tinh`, `phep-nhan-phep-chia` (Nghiêm trọng vòng 1–2), `quan-he-chia-het-va-tinh-chat` (Nghiêm trọng vòng 1–3), `dau-hieu-chia-het` (Nghiêm trọng vòng 1–3), `uoc-chung-uoc-chung-lon-nhat` (Nghiêm trọng vòng 1–2), `so-nguyen-to` (Nghiêm trọng vòng 1–2 và, ở video, vòng 4), `on-tap-chuong-2` (Nghiêm trọng vòng 1–3), `boi-chung-boi-chung-nho-nhat` (Nghiêm trọng vòng 1–2), `cach-ghi-so-tu-nhien` (Nghiêm trọng vòng 1–2), `thu-tu-trong-tap-hop-cac-so-tu-nhien` (vòng 1), `tap-hop-cac-so-nguyen` (Nghiêm trọng vòng 1–2), `phep-cong-phep-tru-so-nguyen` (Nghiêm trọng vòng 1–3), `quy-tac-dau-ngoac` (Nghiêm trọng vòng 1–2), `phep-chia-het-uoc-va-boi-cua-mot-so-nguyen` (Nghiêm trọng vòng 1–2 và, ở phần bài tập sách bài tập, vòng 6), `phep-nhan-so-nguyen` (Nghiêm trọng vòng 1–2 và, ở phần bài tập sách bài tập, vòng 6), `on-tap-chuong-3` (vòng 1), `hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu` (Nghiêm trọng vòng 1–2), `hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can` (Nghiêm trọng vòng 1–2), `hinh-binh-hanh-hinh-thang-can` (vòng 2, phần 2 sau khi tách bài), `chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc` (Nghiêm trọng vòng 1–2), `hinh-co-truc-doi-xung` (Nghiêm trọng vòng 1–2); Ngữ văn: `neu-cau-muon-co-mot-nguoi-ban`) và đợt review sản phẩm ngày 01/10/2026. Mỗi phát hiện tính một lần, ở vòng đầu tiên nó xuất hiện; một mục review gộp vài chỗ cùng kiểu vẫn tính là một. Vòng 1–7 của `luy-thua` không còn trong lịch sử git nên không đếm được.
+Đếm từ mọi vòng review tới 06/10/2026 của 25 bài (Toán: `tap-hop`, `phep-cong-phep-tru` bản nháp, `luy-thua`, `thu-tu-thuc-hien-phep-tinh`, `phep-nhan-phep-chia` (Nghiêm trọng vòng 1–2), `quan-he-chia-het-va-tinh-chat` (Nghiêm trọng vòng 1–3), `dau-hieu-chia-het` (Nghiêm trọng vòng 1–3), `uoc-chung-uoc-chung-lon-nhat` (Nghiêm trọng vòng 1–2), `so-nguyen-to` (Nghiêm trọng vòng 1–2 và, ở video, vòng 4), `on-tap-chuong-2` (Nghiêm trọng vòng 1–3), `boi-chung-boi-chung-nho-nhat` (Nghiêm trọng vòng 1–2), `cach-ghi-so-tu-nhien` (Nghiêm trọng vòng 1–2), `thu-tu-trong-tap-hop-cac-so-tu-nhien` (vòng 1), `tap-hop-cac-so-nguyen` (Nghiêm trọng vòng 1–2), `phep-cong-phep-tru-so-nguyen` (Nghiêm trọng vòng 1–3), `quy-tac-dau-ngoac` (Nghiêm trọng vòng 1–2), `phep-chia-het-uoc-va-boi-cua-mot-so-nguyen` (Nghiêm trọng vòng 1–2 và, ở phần bài tập sách bài tập, vòng 6), `phep-nhan-so-nguyen` (Nghiêm trọng vòng 1–2 và, ở phần bài tập sách bài tập, vòng 6), `on-tap-chuong-3` (vòng 1), `hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu` (Nghiêm trọng vòng 1–2), `hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can` (Nghiêm trọng vòng 1–2), `hinh-binh-hanh-hinh-thang-can` (vòng 2, phần 2 sau khi tách bài), `chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc` (Nghiêm trọng vòng 1–2), `hinh-co-truc-doi-xung` (Nghiêm trọng vòng 1–2 và 4); Ngữ văn: `neu-cau-muon-co-mot-nguoi-ban`) và đợt review sản phẩm ngày 01/10/2026. Mỗi phát hiện tính một lần, ở vòng đầu tiên nó xuất hiện; một mục review gộp vài chỗ cùng kiểu vẫn tính là một. Vòng 1–7 của `luy-thua` không còn trong lịch sử git nên không đếm được.
 
 | Id | Nghiêm trọng | Nên sửa | Góp ý | Tổng |
 |---|---|---|---|---|
 | LL-10 | 8 | 45 | 31 | 84 |
 | LL-19 | 2 | 8 | 28 | 38 |
 | LL-12 | 26 | 21 | 30 | 77 |
-| LL-07 | 2 | 46 | 42 | 90 |
+| LL-07 | 2 | 47 | 42 | 91 |
 | LL-15 | 8 | 19 | 12 | 39 |
 | LL-16 | 0 | 33 | 4 | 37 |
 | LL-05 | 14 | 46 | 23 | 83 |
-| LL-09 | 22 | 16 | 4 | 42 |
+| LL-09 | 23 | 16 | 4 | 43 |
 | LL-14 | 2 | 19 | 14 | 35 |
 | LL-11 | 4 | 5 | 7 | 16 |
 | LL-06 | 1 | 19 | 8 | 28 |
 | LL-02 | 13 | 19 | 13 | 45 |
 | LL-01 | 22 | 1 | 0 | 23 |
 | LL-03 | 3 | 6 | 2 | 11 |
-| LL-17 | 75 | 5 | 3 | 83 |
+| LL-17 | 75 | 6 | 3 | 84 |
 | LL-04 | 0 | 5 | 2 | 7 |
 | LL-18 | 0 | 7 | 2 | 9 |
 | LL-08 | 40 | 3 | 8 | 51 |
@@ -108,4 +108,4 @@ Theo dõi xem kho này có làm giảm lỗi ở bài mới không. Thêm một 
 | `hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu` | Toán | 8 | 3 (vòng 2 còn 4) | 3 |
 | `hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can` | Toán | 21 | chưa (tách bài sau vòng 1; vòng 2 của phần 1 còn 1) | 2 |
 | `chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc` | Toán | 5 | chưa | 1 |
-| `hinh-co-truc-doi-xung` | Toán | 15 | chưa (vòng 2 còn 3) | 2 |
+| `hinh-co-truc-doi-xung` | Toán | 15 | chưa (vòng 2 còn 3, vòng 3 hết, vòng 4 có 1) | 2 |
