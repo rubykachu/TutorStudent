@@ -6,8 +6,8 @@
 - `content:check`: 0 lỗi (chỉ còn `review-hash` do bản chưa ghi hash của vòng này), 1 cảnh báo của bài (3 id video chưa khoá)
 - Đọc hiểu (Haiku): không chạy (chữ bài không đổi); các vòng trước: 215 / 1 / 0 trên toàn bài (trước vòng 1, `.shots/review/hinh-co-truc-doi-xung/doc-hieu.md`); chữ đổi sau vòng 2: lượt 1 72 / 7 / 0 (`doc-hieu-2.md`), lượt 2 7 / 6 / 1 (`doc-hieu-3.md`), lượt 3 8 / 4 / 0 (`doc-hieu-4.md`, hết 3 lượt); chữ đổi sau vòng 5: 6 / 0 / 0 (`doc-hieu-5.md`)
 - `lesson:walk`: chưa chạy trong vòng này (điều phối chạy sau); `pnpm video:check hinh-co-truc-doi-xung` ok cả bài và 3 video
-- Kết luận: Đã ghi reviewedHash, bài giữ trạng thái hiện tại (0 Nghiêm trọng, 2 Nên sửa và 2 Góp ý về video, không chặn; điều phối chạy `--approve` sau khi chốt các mục Nên sửa)
-- Bản đã review: `4d2dee270e58de03520d542c26fd44c9c0f8f2522ba4e320682df1187aefd2c1` (`pnpm content:diff` so với bản này)
+- Kết luận: Đã xuất bản (0 Nghiêm trọng; 2 Nên sửa và Góp ý 2 đã sửa ở `d95eeaf`: tên hình trung tính, clip `dem-truc` chỉ phần hình vuông, câu "Đỉnh nào cách trục cũng làm như vậy."; Góp ý 1 giữ)
+- Bản đã review: `9bf7ec7bdb4fad23b8493cebb996bd55bfe3d56f4492a5725118899096ee59e2` (`pnpm content:diff` so với bản này)
 
 Đã soát: kịch bản (`script.json`), `index.html`, báo cáo Whisper (`renders/report.json`, mọi câu khớp 97% trở lên), phụ đề `.vtt`, sheet khung hình và khung riêng cắt từ `.mp4` của cả ba video, lời đọc giới thiệu `overview.vtt` (chữ khớp `overview` từng câu; câu đầu "Chào bạn!" cách đầu 1 giây; giọng Achird cùng giới tính với Hải Đăng). Lưu ý đọc sheet: tên khung `f-NNN` ứng với khoảng giây NNN x 2 cộng thêm gần 1 giây; đã cắt khung riêng từ `dem-truc.mp4` ở 16,0 / 16,6 / 17,0 / 17,4 / 17,8 để xác nhận đường 1 hiện ngay trước chữ "thẳng" (17,39 s), tức hình khớp lời.
 
