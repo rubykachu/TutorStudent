@@ -21,7 +21,7 @@ import { APP_NAME } from "@/lib/brand";
 
 // Rounded pill buttons of the install bar and panel: 48px tall.
 export const INSTALL_BUTTON =
-  "inline-flex min-h-touch items-center justify-center gap-2 rounded-full px-5 text-body font-semibold select-none transition-transform duration-100 ease-out active:scale-[0.97] motion-reduce:transition-none";
+  "inline-flex min-h-touch items-center justify-center gap-2 whitespace-nowrap rounded-full px-4 text-body font-semibold select-none md:px-5 transition-transform duration-100 ease-out active:scale-[0.97] motion-reduce:transition-none";
 export const INSTALL_PRIMARY = `${INSTALL_BUTTON} bg-primary text-primary-foreground shadow-card`;
 export const INSTALL_SECONDARY = `${INSTALL_BUTTON} border-2 border-border bg-surface text-foreground`;
 

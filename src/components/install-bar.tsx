@@ -60,16 +60,16 @@ export function InstallBar() {
       initial={reducedMotion ? false : { y: 24, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
-      className="sticky mt-auto bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-20 flex flex-col gap-3 rounded-xl border-2 border-border bg-surface p-3 shadow-card md:flex-row md:items-center md:p-4"
+      className="sticky mt-auto bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-20 flex flex-col gap-3 rounded-xl border-2 border-border bg-surface p-3 shadow-card md:p-4 lg:flex-row lg:items-center"
     >
       <div className="flex min-w-0 flex-1 items-center gap-3">
         <Owl expression="happy" size="exercise" className="shrink-0" />
-        <p className="min-w-0 font-semibold">
+        <p className="min-w-0 text-caption font-semibold md:text-body">
           Cài {APP_NAME} lên máy để học như app thật, dùng được cả khi không có
           mạng
         </p>
       </div>
-      <div className="flex shrink-0 gap-3 [&>*]:flex-1 md:[&>*]:flex-none">
+      <div className="flex shrink-0 gap-3 md:justify-end [&>*]:flex-auto md:[&>*]:flex-none">
         <InstallButton action={action} onDone={() => setShown(false)} />
         <button
           type="button"
