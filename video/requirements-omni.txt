@@ -1,0 +1,17 @@
+# OmniVoice environment (arm64, PyTorch on the Apple GPU through MPS) for the
+# `omnivoice` TTS engine (video/tts/omnivoice.ts). Kept apart from .venv
+# because it needs torch and transformers 5, which VieNeu and mlx-whisper do
+# not. Set up from the repo root with `pnpm video:setup-omni`; it creates
+# video/.venv-omni from the arm64 Python in video/.python and downloads the
+# model (k2-fsa/OmniVoice at OMNIVOICE_REVISION, video/config.ts) into
+# video/.hf once; runs are offline afterwards.
+# Licences: code Apache-2.0; weights CC-BY-NC (non-commercial only); the
+# bundled audio tokenizer under the Boson Higgs Audio 2 Community License.
+omnivoice==0.2.1
+torch==2.8.0
+torchaudio==2.8.0
+transformers==5.18.0
+accelerate==1.15.0
+huggingface-hub==1.33.0
+numpy==2.5.3
+soundfile==0.14.0

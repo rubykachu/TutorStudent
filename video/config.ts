@@ -17,6 +17,18 @@ export const GLOBALS_CSS = path.join(ROOT, "src", "app", "globals.css");
 export const PYTHON_BIN =
   process.env.VIDEO_PYTHON ?? path.join(VIDEO_DIR, ".venv", "bin", "python");
 export const HF_HOME = process.env.VIDEO_HF_HOME ?? path.join(VIDEO_DIR, ".hf");
+// The arm64 Python of the OmniVoice engine (PyTorch on the Apple GPU), apart
+// from PYTHON_BIN because it needs torch; set up by `pnpm video:setup-omni`
+// from video/requirements-omni.txt. Its model shares HF_HOME, pinned to one
+// revision so a rebuild reads with the same weights.
+export const OMNI_PYTHON_BIN =
+  process.env.VIDEO_OMNI_PYTHON ??
+  path.join(VIDEO_DIR, ".venv-omni", "bin", "python");
+export const OMNIVOICE_MODEL = "k2-fsa/OmniVoice";
+export const OMNIVOICE_REVISION = "c5fdb5ccb189668d56333f77ba2629f4cd7535f4";
+// Reference recordings the OmniVoice voices are cloned from, one
+// `<voice id>.flac` with its transcript `<voice id>.txt` per lesson voice.
+export const VOICE_REFS_DIR = path.join(VIDEO_DIR, "tts", "refs");
 export const WHISPER_MODEL = "mlx-community/whisper-large-v3-turbo";
 
 // Narration is slowed to this share of the voice's own speed, for a grade-6
