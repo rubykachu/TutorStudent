@@ -61,7 +61,7 @@ Sizes: S is up to about 2 files of code plus tests; M is up to about 5. A task t
 - Acceptance: no token → record `lastError: "no-token"`, id still in the list, no GitHub request, one log line per instance; next report with a working fake GitHub forwards both, oldest first, and empties the list; a 502 or `github-rate` stops the pass at once; two passes started together over the same list create one issue per report (claim); a stale `sending` claim is taken again, a fresh one is skipped; a 422 report ends `failed`, leaves the list, and the report behind it is sent in the same pass; the 10th attempt ends `failed`; a pending id whose record is missing is removed; a record already `sent` is never sent again and its id is removed; the budget stops the pass before the 11th id.
 - Verify: `pnpm test tests/user-feedback/ tests/api/feedback-forward.test.ts`.
 
-### T7. Route, bundle check, env example (S)
+### T7. Route, bundle check, env example (S) [x]
 
 - Files: `src/app/api/feedback/route.ts` (new), `scripts/lib/bundle-check.ts` (`SERVER_ONLY_ENV_NAMES`), `tests/scripts/bundle-check.test.ts`, `.env.example`.
 - Do: the route wires the service to `readSyncStoreConfig`, `syncEnvPrefix`, `GITHUB_FEEDBACK_TOKEN`, `after` from `next/server` (read `node_modules/next/dist/docs/01-app/03-api-reference/04-functions/after.md` and `.../03-file-conventions/02-route-segment-config/maxDuration.md` first), `export const maxDuration = 60`; `GITHUB_FEEDBACK_TOKEN` joins the server-only names; `.env.example` documents the name and its scope (Issues read and write on `rubykachu/owlyeah-feedback` only).
@@ -178,8 +178,8 @@ Base commit (the commit before T1, for the security review diff): `e706002`.
 
 Coordinator decisions on the reviewer's open questions (recorded in `spec.md`): chip label "Hay, mình thích"; PIN asked for every note; thank-you closes after 5 s and has a close button; opening the sheet pauses narration and video (no auto-resume); the repo README's hidden-block example updated to match section 6.2.
 
-Done: T1, T2, T3, T4, T5a, T5b, T6.
-Next: T7.
+Done: T1 to T7 (build of the route passes in a temp worktree).
+Next: T8.
 
 Deploy coordination (another agent deploys Bài 21 `hinh-co-truc-doi-xung` tonight): right before `deploy:prod`, read the production SHA (last "Bản đang chạy" line of `docs/operations.md`, or `npx vercel ls --prod`); the pinned SHA must contain it (`git merge-base --is-ancestor <prod> <ours>`), else re-pin to a commit with both and re-run lint, typecheck, `content:check`, build. Never deploy while the other deploy runs; if "Bản đang chạy" changed in the last 10 minutes by another deploy, re-check. Every published lesson at the SHA must have its media (`pnpm media:upload --all --dry-run` reports 0).
 
