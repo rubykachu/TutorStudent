@@ -85,7 +85,7 @@ Sizes: S is up to about 2 files of code plus tests; M is up to about 5. A task t
 - Acceptance: `context` produces the right `screen`, `section`, `sectionNumber`, `item`, `step` for each screen kind of section 3.1, including a step reached through "Quay lại"; the thank-you shows with a `sendFeedback` that never resolves its network part (offline, slow) as well as after success; a sent reason is disabled for the same item and open for another.
 - Verify: `pnpm test tests/user-feedback/`.
 
-### T9b. Wire the button into the lesson screens (M)
+### T9b. Wire the button into the lesson screens (M) [x]
 
 - Files: `src/learn/player-header.tsx`, `src/components/page-top-bar.tsx`, `src/learn/lesson-overview.tsx`, `src/learn/section-player.tsx`, `src/learn/review-player.tsx`, `src/app/(child)/lessons/[lessonId]/lesson-screen.tsx`, `src/app/(child)/lessons/[lessonId]/tips/tips-screen.tsx`, existing tests under `tests/learn/` and `tests/components/`.
 - Do: `spec.md` section 3.1: the optional `feedback` prop on `PlayerHeader` and `PageTopBar`, passed by the five screens.
@@ -178,8 +178,8 @@ Base commit (the commit before T1, for the security review diff): `e706002`.
 
 Coordinator decisions on the reviewer's open questions (recorded in `spec.md`): chip label "Hay, mình thích"; PIN asked for every note; thank-you closes after 5 s and has a close button; opening the sheet pauses narration and video (no auto-resume); the repo README's hidden-block example updated to match section 6.2.
 
-Done: T1 to T9a (build of the route passes in a temp worktree).
-Next: T9b.
+Done: T1 to T9b (build of the route passes in a temp worktree; `lesson:walk luy-thua` shows no overlap on phone, iPad, iPad landscape, its only failures being the gitignored media missing in the worktree). The overview's button sits in the `PageTopBar` above the overview (the same top row as the lesson page), not inside the overview's own header.
+Next: T10.
 
 Deploy coordination (another agent deploys Bài 21 `hinh-co-truc-doi-xung` tonight): right before `deploy:prod`, read the production SHA (last "Bản đang chạy" line of `docs/operations.md`, or `npx vercel ls --prod`); the pinned SHA must contain it (`git merge-base --is-ancestor <prod> <ours>`), else re-pin to a commit with both and re-run lint, typecheck, `content:check`, build. Never deploy while the other deploy runs; if "Bản đang chạy" changed in the last 10 minutes by another deploy, re-check. Every published lesson at the SHA must have its media (`pnpm media:upload --all --dry-run` reports 0).
 
