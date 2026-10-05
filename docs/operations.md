@@ -69,7 +69,7 @@ Lệnh luôn dựng từ một `git worktree` tạm của `HEAD` (cây chính c�
 
 ### 5. Kiểm nhanh sau deploy
 
-`pnpm deploy:prod` tự chạy bảy kiểm tra và in từng dòng `PASS` hoặc `FAIL`: `/` chuyển về `/unlock`; `/content/index.json` trả 401 khi chưa có cookie; đăng nhập bằng mã của gia đình kiểm thử `OWLTEST0` (`SMOKE_FAMILY_ID` trong `scripts/lib/release-config.ts`, mã tạo lúc chạy từ `FAMILY_CODE_SECRET` của `.env.production.local`, không in ra; gia đình này không bao giờ đồng bộ và `pnpm family:code` không cấp id này cho ai) được cookie; `/content/index.json` trả 200 với cookie; một URL media trả 206 với `Range`; `/api/sync?doc=profile` trả 401 khi chưa có cookie (cổng chặn trước khi chạm bucket); `/sw.js` trả 200 không cần cookie với `Cache-Control: no-cache` (tệp service worker phải qua cổng và không bao giờ nằm trong cache, nếu không máy giữ worker cũ bấy lâu cache còn sống). Lệnh thoát khác 0 nếu có kiểm tra hỏng. Việc còn lại bằng tay: mở bài mới trên iPad theo mục "Kiểm trên iPad Safari" (video phát, phụ đề chạy, lời đọc phát). Hỏng thì xem "Khi có lỗi"; cần quay về bản trước thì `npx vercel rollback`.
+`pnpm deploy:prod` tự chạy tám kiểm tra và in từng dòng `PASS` hoặc `FAIL`: `/` chuyển về `/unlock`; `/content/index.json` trả 401 khi chưa có cookie; đăng nhập bằng mã của gia đình kiểm thử `OWLTEST0` (`SMOKE_FAMILY_ID` trong `scripts/lib/release-config.ts`, mã tạo lúc chạy từ `FAMILY_CODE_SECRET` của `.env.production.local`, không in ra; gia đình này không bao giờ đồng bộ và `pnpm family:code` không cấp id này cho ai) được cookie; `/content/index.json` trả 200 với cookie; một URL media trả 206 với `Range`; `/api/sync?doc=profile` trả 401 khi chưa có cookie (cổng chặn trước khi chạm bucket); `POST /api/feedback` trả 401 khi chưa có cookie (cổng chặn trước khi đọc thân, chạm bucket hay GitHub); `/sw.js` trả 200 không cần cookie với `Cache-Control: no-cache` (tệp service worker phải qua cổng và không bao giờ nằm trong cache, nếu không máy giữ worker cũ bấy lâu cache còn sống). Lệnh thoát khác 0 nếu có kiểm tra hỏng. Việc còn lại bằng tay: mở bài mới trên iPad theo mục "Kiểm trên iPad Safari" (video phát, phụ đề chạy, lời đọc phát). Hỏng thì xem "Khi có lỗi"; cần quay về bản trước thì `npx vercel rollback`.
 
 ## Biến môi trường
 
@@ -83,6 +83,8 @@ Lệnh luôn dựng từ một `git worktree` tạm của `HEAD` (cây chính c�
 | `R2_SECRET_ACCESS_KEY` | để bật đồng bộ | như trên | Secret của token đó. Không in ra log, không dán vào chat |
 | `R2_PRIVATE_BUCKET` | để bật đồng bộ | như trên | `tutor-progress`. Thiếu một trong bốn biến (hoặc id, tên bucket sai dạng) thì đồng bộ tắt và log ghi tên biến thiếu, không ghi giá trị; không đặt biến nào thì đồng bộ tắt im lặng |
 | `SYNC_STORE` | không | chỉ máy dev và test | `fs:<thư mục>` hay `memory`: store thay cho R2 khi chạy thử trên máy (E2E nhiều máy dùng nó). Được ưu tiên hơn `R2_*`, và server production từ chối nó |
+| `GITHUB_FEEDBACK_TOKEN` | để góp ý thành issue | Vercel Production (Sensitive), `.env.production.local` | Token fine-grained của `rubykachu`, chỉ Issues đọc ghi trên `rubykachu/owlyeah-feedback`. Thiếu thì báo cáo góp ý vẫn được lưu trong bucket và chờ ở `pending.json`; log ghi một lần mỗi instance. Xem "Góp ý từ app" |
+| `APP_COMMIT_SHA` | không | do `pnpm deploy:prod` đặt cho từng bản deploy (`vercel deploy --env`) | Commit đang chạy; mỗi issue góp ý ghi 7 ký tự đầu (`app`). Không đặt ở đâu khác; vắng thì là `dev` |
 | `NEXT_PUBLIC_MEDIA_BASE_URL` | khi dùng bucket | Vercel, lúc build | Địa chỉ công khai của bucket media, không có dấu `/` ở cuối, ví dụ `https://pub-xxxx.r2.dev`. Để trống thì app đọc video từ `public/media` |
 | `NEXT_PUBLIC_OFFLINE_ENABLED` | không | Vercel, lúc build | `1` bật offline (service worker) ở bản deploy đó; cách bật: "Bật offline". Vắng hay khác `1` (mặc định) thì app không đăng ký worker, gỡ worker còn sót trên máy, và `/sw.js` là worker tự gỡ. Chỉ phòng thử offline (`pnpm test:e2e:offline`) tự đặt `1` |
 | `NEXT_PUBLIC_OFFLINE_KILL_SWITCH` | không | Vercel, lúc build | `1` gỡ service worker khỏi mọi máy ở bản deploy đó (cách dùng: "Gỡ service worker lỗi"). Để trống hay vắng là chế độ bình thường; đặt nó trong `.env.local` khi chạy thử thì cũng tắt worker ở máy |
@@ -149,7 +151,7 @@ Mỗi bước dưới ghi ra ngoài máy; agent chỉ làm khi chủ dự án đ
    ```
 
    Không đặt biến cho Preview: bản preview không có khoá nên trả 503, và nếu sau này có thì nó chỉ ghi dưới `dev/`.
-5. **Deploy** theo "Đưa bài mới lên production", bước 4: `pnpm deploy:prod` từ commit đã kiểm. Kiểm nhanh phải `PASS` cả bảy dòng, kể cả `login with the family code` (mã `OWL` của gia đình kiểm thử) và `sync 401 without cookie`.
+5. **Deploy** theo "Đưa bài mới lên production", bước 4: `pnpm deploy:prod` từ commit đã kiểm. Kiểm nhanh phải `PASS` cả tám dòng, kể cả `login with the family code` (mã `OWL` của gia đình kiểm thử), `sync 401 without cookie` và `feedback 401 without cookie`.
 6. **Thử trên hai máy thật** (iPad Safari và app ở Màn hình chính, hoặc iPad và điện thoại): học xong một phần ở máy này, máy kia thấy sau vài giây; `/parent` hiện thời gian đồng bộ lần cuối; trong dashboard đối tượng mới nằm dưới `prod/progress/<id gia đình>/` và không có gì mới dưới `dev/`. Kiểm lại bucket vẫn riêng tư (Settings: Public access tắt, không có `r2.dev` hay domain).
 7. **Một tuần sau:** xem mức dùng R2 và Vercel trên dashboard (số request, dữ liệu truyền), vẫn trong gói miễn phí.
 
@@ -409,6 +411,62 @@ pnpm deploy:prod --ref <commit đã kiểm>
 ```
 
 Giới hạn thử sai (5 lần trong 10 phút cho mỗi địa chỉ mạng) được đếm trong bộ nhớ của từng instance Vercel, nên chỉ làm chậm việc đoán mã. Chữ ký 40 bit mới là thứ khiến việc đoán vô vọng: id gia đình không bí mật, nên kẻ đoán chọn id nào cũng chỉ có 1 trên khoảng 1,1 nghìn tỉ cơ hội mỗi lần; 10 000 địa chỉ, mỗi địa chỉ 720 lần một ngày, vẫn cần hơn 400 năm. Mã đoán trúng chỉ mở một gia đình trống, không bao giờ mở dữ liệu của gia đình khác.
+
+## Góp ý từ app
+
+Bé và phụ huynh bấm "Góp ý" trên màn bài học (quy tắc: `docs/spec.md` 5.13). Mỗi báo cáo được lưu trong bucket riêng tư `tutor-progress` rồi thành một issue trong repo riêng tư `rubykachu/owlyeah-feedback` (README của repo trỏ về mục này).
+
+### Nơi dữ liệu nằm
+
+- Bản ghi: `prod/feedback/<yyyy-mm>/<id>.json` (tháng giờ Việt Nam của lúc tạo trên máy). `forward.state`: `pending` (chờ), `sending` (một lượt đang gửi), `sent` (có `issue`, `url`) hay `failed` (GitHub từ chối hẳn hoặc đã thử 10 lần; `lastError` là mã ngắn như `github-422`).
+- Hàng chờ: `prod/feedback/pending.json`, các id chưa lên GitHub, cũ nhất trước, tối đa 500. Mỗi báo cáo mới kéo theo một lượt gửi tối đa 10 id cũ nhất; không có lịch chạy riêng.
+- Log Vercel: mỗi dòng là JSON với `event` (`forward-failed`, `forward-given-up`, `pending-full`, `pending-busy`, `forward-off`, `labels`, `exception`), `id` báo cáo và `detail` (mã lỗi). Không có ghi chú, tên bài, id hay bí danh gia đình, token.
+- Kiểm hàng chờ khi gom issue: mở `prod/feedback/pending.json` trong dashboard Cloudflare. Danh sách có id nằm lâu hơn vài ngày nghĩa là token hỏng hay hết hạn (xem log `forward-failed github-401`), hoặc đã tới lúc thêm cron gọi cùng lượt gửi.
+
+### Token `GITHUB_FEEDBACK_TOKEN`
+
+- Token fine-grained `owlyeah-feedback-app` của `rubykachu`, chỉ repo `rubykachu/owlyeah-feedback`, quyền Issues: Read and write (Metadata: Read-only do GitHub tự thêm). Nằm ở Vercel Production (Sensitive) và `.env.production.local`.
+- Hạn dùng: GitHub không trả ngày hết hạn của token khi kiểm ngày 06/10/2026 (header `github-authentication-token-expiration` vắng), nghĩa là token không đặt hạn hoặc phải xem trong Settings → Developer settings → Fine-grained tokens. Chủ dự án ghi ngày hết hạn vào đây khi tạo lại token.
+- Xoay token: đăng nhập GitHub bằng `rubykachu`, Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token; Resource owner `rubykachu`; Expiration một năm; Repository access: Only select repositories → `rubykachu/owlyeah-feedback`; Repository permissions → Issues: Read and write, còn lại No access. Không dán token vào chat, issue, commit hay log. Thay dòng trong `.env.production.local`, rồi trên Vercel: `npx vercel env rm GITHUB_FEEDBACK_TOKEN production`, rồi `sed -n 's/^GITHUB_FEEDBACK_TOKEN=//p' .env.production.local | tr -d '\n' | npx vercel env add GITHUB_FEEDBACK_TOKEN production --sensitive` (kiểm `npx vercel whoami` là `rubykachu` trước), deploy lại bằng `pnpm deploy:prod`, rồi xoá token cũ trên GitHub. Nghi lộ thì xoá token cũ trước. Các báo cáo gửi trong lúc thiếu token vẫn nằm ở hàng chờ và lên GitHub ở báo cáo kế tiếp.
+
+### Vòng đời bản ghi
+
+Chủ dự án đặt hai quy tắc lifecycle trên bucket `tutor-progress` (dashboard Cloudflare, R2, bucket, Settings, Object lifecycle rules): xoá `prod/feedback/` sau 365 ngày và `dev/feedback/` sau 30 ngày. `pending.json` được ghi lại mỗi lần đổi nên không hết hạn khi còn dùng. Issue trên GitHub được giữ; chủ dự án có thể xoá issue đã đóng hơn một năm. Gia đình muốn xoá dữ liệu: tính bí danh của gia đình trên máy tin cậy (12 hex đầu của HMAC-SHA256(`SESSION_SECRET`, `feedback-family:<id gia đình>`)), xoá các bản ghi có `family` đó và các issue có `"family":"<bí danh>"` trong khối ẩn.
+
+### Gom và sửa (agent làm khi chủ dự án yêu cầu)
+
+1. **Đọc issue đang mở** bằng token của `rubykachu` (không dựa vào tài khoản đang bật):
+
+   ```bash
+   GH_TOKEN="$(gh auth token -u rubykachu)" gh issue list \
+     --repo rubykachu/owlyeah-feedback --state open --label feedback --label trang-thai:moi \
+     --limit 200 --json number,title,labels,body,createdAt \
+     | jq '[.[] | {number, createdAt, labels: [.labels[].name],
+         data: (.body | capture("<!-- feedback-data (?<j>.*) -->").j | fromjson)}]'
+   ```
+
+2. **Gom nhóm** theo `data.lesson`, rồi `data.item` (hay `data.step` khi không có item), rồi `data.reason`. Đếm số báo cáo mỗi nhóm, giữ ghi chú của phụ huynh, bỏ trùng cùng `data.id`. Nhóm `ly-do:thich` là tín hiệu, không phải việc sửa.
+3. **Đề xuất** một cách sửa mỗi nhóm trong backlog `notebooks/backlogs/feedback-<yyyy-mm-dd>/task.md`: `sai-noi-dung` thì đối chiếu ảnh SGK trước, là sửa nội dung; `kho-hieu`, `dai-chan` là sửa lời, tách hay đổi nhịp; `loi-hinh-video` là sửa visual hay video. Chủ dự án duyệt danh sách trước khi sửa nội dung.
+4. **Chạy quy trình bài học** cho mỗi việc đã duyệt: `lesson-author` (hay `lesson-visual`, `lesson-video`), một subagent `lesson-review` mới, `content:check`, bộ kiểm thường lệ, một commit mỗi bài. Trong lúc làm, đổi nhãn:
+
+   ```bash
+   GH_TOKEN="$(gh auth token -u rubykachu)" gh issue edit <n> --repo rubykachu/owlyeah-feedback \
+     --remove-label trang-thai:moi --add-label trang-thai:dang-xu-ly
+   ```
+
+5. **Đóng kèm commit** khi đã commit (và đã deploy, nếu bé thấy lỗi trên production):
+
+   ```bash
+   GH_TOKEN="$(gh auth token -u rubykachu)" gh issue close <n> --repo rubykachu/owlyeah-feedback \
+     --reason completed --comment "Đã sửa trong <sha ngắn>: <một dòng>"
+   GH_TOKEN="$(gh auth token -u rubykachu)" gh issue edit <n> --repo rubykachu/owlyeah-feedback \
+     --remove-label trang-thai:dang-xu-ly --add-label trang-thai:da-sua
+   ```
+
+   Không sửa: `trang-thai:khong-sua` kèm lý do, `--reason "not planned"`. Trùng: `trang-thai:trung` và link tới issue giữ lại. Commit ghi tên issue (`Feedback: rubykachu/owlyeah-feedback#12, #15`).
+6. **Kiểm hàng chờ** như ở "Nơi dữ liệu nằm".
+
+Bình luận, gắn nhãn và đóng issue là ghi ra GitHub: agent chỉ làm trong phiên chủ dự án yêu cầu gom góp ý.
 
 ## Khi có lỗi
 
