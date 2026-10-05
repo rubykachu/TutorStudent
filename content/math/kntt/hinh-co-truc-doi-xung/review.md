@@ -1,15 +1,23 @@
 # Review: Hình có trục đối xứng (`hinh-co-truc-doi-xung`)
 
 - Bài: `content/math/kntt/hinh-co-truc-doi-xung/lesson.json`
-- Vòng: 6 - chỉ phần đổi (`pnpm content:diff`), section: `truc-doi-xung`, `chu-cai-chu-so`
-- Nguồn đã đọc: không mở ảnh nguồn (diff không có câu `bookPractice`; 5.3 và 5.7 chỉ đối chiếu đáp án trong `lesson.json`)
-- `content:check`: 0 lỗi, 1 cảnh báo của bài (id chưa khoá)
-- Đọc hiểu (Haiku, lượt 1): 215 / 1 / 0 trên toàn bài (trước vòng 1, `.shots/review/hinh-co-truc-doi-xung/doc-hieu.md`); chữ đổi sau vòng 2: lượt 1 72 / 7 / 0 (`doc-hieu-2.md`), lượt 2 7 / 6 / 1 (`doc-hieu-3.md`), lượt 3 8 / 4 / 0 (`doc-hieu-4.md`, hết 3 lượt); chữ đổi sau vòng 5: 6 / 0 / 0 (`doc-hieu-5.md`)
-- `lesson:walk`: 0 FAIL, 0 cảnh báo trên iPad dọc, iPad ngang, điện thoại; ảnh trong `.shots/walk/hinh-co-truc-doi-xung/`. `visual:shot` 250/250: đã mở `chu-t` (chữ T căn giữa, không cắt)
-- Kết luận: Đã xuất bản (0 Nghiêm trọng; 5 Nên sửa còn lại không chặn: chữ T lặp ví dụ màn dạy vì mọi chữ một trục khác đã dùng, 4 mục đọc hiểu hết 3 lượt)
-- Bản đã review: `f77300e6500d792e4ff03d5cc931631557f1bfbdf70ec5e84f7dd2f49baa450c` (`pnpm content:diff` so với bản này)
+- Vòng: 7 - chỉ phần đổi (`pnpm content:diff`: video và lời đọc), section: `truc-doi-xung`, `hinh-deu`, `ve-them-hinh` (ba video) và `overview.narration`
+- Nguồn đã đọc: không mở ảnh nguồn (diff chỉ có video và lời đọc, không có câu `bookPractice`)
+- `content:check`: 0 lỗi (chỉ còn `review-hash` do bản chưa ghi hash của vòng này), 1 cảnh báo của bài (3 id video chưa khoá)
+- Đọc hiểu (Haiku): không chạy (chữ bài không đổi); các vòng trước: 215 / 1 / 0 trên toàn bài (trước vòng 1, `.shots/review/hinh-co-truc-doi-xung/doc-hieu.md`); chữ đổi sau vòng 2: lượt 1 72 / 7 / 0 (`doc-hieu-2.md`), lượt 2 7 / 6 / 1 (`doc-hieu-3.md`), lượt 3 8 / 4 / 0 (`doc-hieu-4.md`, hết 3 lượt); chữ đổi sau vòng 5: 6 / 0 / 0 (`doc-hieu-5.md`)
+- `lesson:walk`: chưa chạy trong vòng này (điều phối chạy sau); `pnpm video:check hinh-co-truc-doi-xung` ok cả bài và 3 video
+- Kết luận: Đã ghi reviewedHash, bài giữ trạng thái hiện tại (0 Nghiêm trọng, 2 Nên sửa và 2 Góp ý về video, không chặn; điều phối chạy `--approve` sau khi chốt các mục Nên sửa)
+- Bản đã review: `4d2dee270e58de03520d542c26fd44c9c0f8f2522ba4e320682df1187aefd2c1` (`pnpm content:diff` so với bản này)
 
-Đã tự giải: `s6-on-chu-t-truc` (T: trục thẳng đứng; đúng, lựa chọn "Nằm ngang" sai vì nửa trên là nét ngang dài, nửa dưới chỉ là nét dọc), `s2-on-nhieu-truc` (đáp án `tat`; `explain` mới "Số trục của các hình có thể khác nhau" không còn nói mọi hình khác nhau; `wrong` của `mot`, `hai`, `khong` đều đúng), `s6-chu-u-truc`, `s6-on-chu-mot-truc` (C), `s6-cham-chu-mot-truc` (K, W). Recap của section 6 vẫn khớp `note` quy tắc. Bản sửa không làm hỏng các mục cùng section: câu mới không trùng đáp án 5.3 (A B M Y 3, H X 0 8) hay 5.7. `chu-b` không còn được tham chiếu.
+Đã soát: kịch bản (`script.json`), `index.html`, báo cáo Whisper (`renders/report.json`, mọi câu khớp 97% trở lên), phụ đề `.vtt`, sheet khung hình và khung riêng cắt từ `.mp4` của cả ba video, lời đọc giới thiệu `overview.vtt` (chữ khớp `overview` từng câu; câu đầu "Chào bạn!" cách đầu 1 giây; giọng Achird cùng giới tính với Hải Đăng). Lưu ý đọc sheet: tên khung `f-NNN` ứng với khoảng giây NNN x 2 cộng thêm gần 1 giây; đã cắt khung riêng từ `dem-truc.mp4` ở 16,0 / 16,6 / 17,0 / 17,4 / 17,8 để xác nhận đường 1 hiện ngay trước chữ "thẳng" (17,39 s), tức hình khớp lời.
+
+Kiến thức, quy tắc, nhịp, hình:
+- `gap-doi-hinh`: câu `rule` đúng nguyên văn `note` của section (một nửa trước dấu "."; build đã kiểm); gấp theo d (hai nửa chồng khít), gấp theo đường nằm ngang (nửa dưới dài 170, nửa trên 100, lệch); đúng kiến thức. Câu mở đầu 11 chữ có "bạn"; hình có từ khung đầu; `ask` ở 17,5-20,7 s, hình chưa gấp, gấp bắt đầu ở chữ "đè" (24,3 s); trục d hồng nét đứt, đường ngang xám.
+- `dem-truc`: hình vuông 4 trục, hình chữ nhật 2 trục (đường chéo lệch, đánh dấu xám có ✕); `ask` ở 9,8-12,4 s, các đường chỉ hiện từ chữ "thẳng", "nằm", "chéo"; câu kết "gấp khít mới là trục" khớp quy tắc của section 2 (trục đối xứng).
+- `ve-them-doi-xung`: câu `rule` đúng nguyên văn; các điểm đối xứng (2 ô, 5 ô) tính đúng trên lưới (đỉnh cách d 2 ô thì điểm đối xứng cách 2 ô bên kia; đỉnh cách 5 ô thì 5 ô); điểm đối xứng xanh ngọc, trục d hồng nét đứt, `ask` ở 15,1-17,5 s, điểm đối xứng chỉ hiện sau "Đếm đúng hai ô bên kia trục".
+- Số liệu: lưới của video có khoảng cách 2 và 5; mọi bảng lưới có trục thẳng đứng của bài (`boards.ts`) dùng khoảng cách 0 đến 3, nên 5 ô không trùng câu luyện, ôn hay sách; 2 ô là khoảng cách chung của nhiều câu nhưng hình khác (kim cương, không phải dấu cộng, chiếc bình hay hình của sách).
+- Dải dưới (từ y 540) trống ở cả ba video, chữ trong thẻ và chip không bị cắt, cú đứng trên dải đó.
+- Ba video đặt ở đầu đúng section, mỗi section một video; clip gắn đúng card (`truc-doi-xung`, `hinh-deu`, `ve-them-hinh`).
 
 ## Nghiêm trọng
 
@@ -17,41 +25,32 @@ Không có.
 
 ## Nên sửa
 
-### 1. Câu ôn `s6-on-chu-t-truc` hỏi lại đúng ví dụ màn quy tắc (LL-07)
+### 1. `gap-doi-hinh`: "Diều giấy này chỉ có một trục" mâu thuẫn với "Con diều có hình thoi" của section sau
 
-- Vị trí: `$.exercises[?(@.id=='hinh-co-truc-doi-xung.ex.s6-on-chu-t-truc')]` (visual `chu-t`)
+- Vị trí: `video/projects/hinh-co-truc-doi-xung/gap-doi-hinh/script.json`, câu cuối của cảnh `s05-thu` (khoảng 44,5-46,4 s); `$.videos[?(@.id=='hinh-co-truc-doi-xung.video.gap-doi-hinh')]`
 - Nguồn: —
-- Vấn đề: `chu-cai-quy-tac` (màn quy tắc và recap của section 6) in đúng dòng "Chữ T: 1 trục thẳng đứng", và thẻ đầu của `chu-cai-the` là T. Câu ôn nhắc lại đúng chữ, đúng đáp án đó, nên bé nhớ lại hình vừa xem chứ chưa tự xét trục. Mức Nên sửa (không Nghiêm trọng): câu kho ôn nằm xa câu sách, không lộ đáp án 5.3 hay 5.7, và chữ lặp là lựa chọn ít hại nhất theo bảng hình của tác giả (mọi chữ một trục khác đều đã ở 5.3, 5.7 hoặc câu dẫn `l53a-chu-mot-truc`).
-- Sửa: tốt hơn một chút là chữ V (thêm visual `chu-v` cùng kiểu `chu-t`, đề "Chữ V có đúng một trục... thẳng đứng hay nằm ngang?", đáp án thẳng đứng): V chỉ lặp ở câu dẫn `l53a` (cùng section 9, khác dạng câu, cách xa) và là một đáp án nối của 5.7 chứ không phải 5.3. Chấp nhận giữ T nếu chủ dự án thấy việc thêm một visual không đáng, vì cả hai cách đều lặp một dữ kiện bé đã thấy.
+- Vấn đề: video gọi hình cánh diều (hai cạnh dài, hai cạnh ngắn, một trục) là "diều giấy" và chốt "chỉ có một trục". Section `chu-nhat-thoi` ngay sau đó nói "Con diều có hình thoi" (hai trục là hai đường chéo). Bé chậm, nhanh quên sẽ nhớ "diều thì một trục" rồi gặp "diều có hai trục" (cùng lúc câu "Con diều hình thoi gấp đôi theo một đường chéo thì hai nửa khít nhau"). Câu cuối cũng không có hình chứng minh: màn chỉ còn đường e lệch, không cho thấy các đường khác không phải trục.
+- Sửa: đổi từ "cánh diều" thành tên không trùng "con diều" của bài (ví dụ "một miếng giấy hình mũi tên") ở câu "Đây là một cánh diều giấy.", câu "Ta kẻ đường thẳng d qua giữa diều." và "Đường d chia diều làm hai nửa."; và thay câu cuối bằng câu có hình đỡ, như "Chỉ đường d làm hai nửa khít." (hình quay lại đường d hồng). Dựng lại video là quyết định của chủ dự án (`.claude/rules/video.md`).
 
-### 2. Đọc hiểu: `ex.s9-buoc-dau` `explain.wrong[0].text` còn "Hiểu mơ hồ"
+### 2. `dem-truc`: clip của card `hinh-deu` chứa cả đoạn hình chữ nhật mà card không dạy
 
-- Vị trí: `$.exercises[?(@.id=='hinh-co-truc-doi-xung.ex.s9-buoc-dau')].explain.wrong[0].text`
+- Vị trí: `$.videos[?(@.id=='hinh-co-truc-doi-xung.video.dem-truc')].clips[0]` (`start` 9,526, `end` 44,543; `cardIds`: `hinh-co-truc-doi-xung.card.hinh-deu`); kịch bản cảnh `s04-chu-nhat`
 - Nguồn: —
-- Vấn đề: Haiku ghi "điểm đối xứng quá trừu tượng"; đã hết 3 lượt. Không chặn: "điểm đối xứng" là từ section 9 đã dạy.
-- Sửa: tuỳ tác giả; nếu sửa, thêm vế "điểm ở bên kia trục" ngay sau từ này.
-
-### 3. Đọc hiểu: bài tập sách bài tập, `blocks[2].children[2].text` còn "Hiểu mơ hồ"
-
-- Vị trí: `$.sections[?(@.id=='hinh-co-truc-doi-xung.section.bai-tap-sach-bai-tap')].blocks[2].children[2].text`
-- Nguồn: —
-- Vấn đề: Haiku ghi "theo cột mơ hồ" ở câu "đếm số ô từ điểm tới d theo cột". Không chặn: "theo cột" khớp màn dạy đếm ô của 5.6 và hình đi kèm.
-- Sửa: tuỳ tác giả; có thể đổi thành "đếm số ô từ điểm đó sang trục d, trên cùng một cột".
-
-### 4. Đọc hiểu: `ex.l55-dau-cong` `explain.text` còn "Hiểu mơ hồ"
-
-- Vị trí: `$.exercises[?(@.id=='hinh-co-truc-doi-xung.ex.l55-dau-cong')].explain.text`
-- Nguồn: —
-- Vấn đề: Haiku ghi "cánh ngang dài hơn cánh dọc chưa rõ". Không chặn: hình chữ thập của câu có cánh ngang dài hơn, chữ chỉ đang nêu đúng hình đó.
-- Sửa: tuỳ tác giả; có thể thêm "trong hình trên".
-
-### 5. Đọc hiểu: `ex.sbt-5-10` `explain.text` còn "Hiểu mơ hồ"
-
-- Vị trí: `$.exercises[?(@.id=='hinh-co-truc-doi-xung.ex.sbt-5-10')].explain.text`
-- Nguồn: tr.119 (5.10)
-- Vấn đề: Haiku ghi "phải suy luận tính toán". Không chặn: bài đếm số ghép từ ba thẻ, mức suy luận này nằm trong đề sách (đếm 4 + 6 = 10).
-- Sửa: tuỳ tác giả; Góp ý cũ của vòng 5 (nêu 0, 1, 8 có trục thẳng đứng, 2 và 5 đối xứng nhau) vẫn áp dụng.
+- Vấn đề: card `hinh-deu` nhắc "tam giác đều 3 trục, vuông 4 trục, lục giác đều 6 trục, hình tròn vô số trục". Clip chạy từ `s02-hoi` tới `s05-nho` nên có thêm khoảng 12 giây hình chữ nhật (2 trục, đã dạy ở card `chu-nhat-thoi`). Khi bé sai card này rồi bấm "Xem lại đoạn video", bé xem một đoạn không khớp card. Video cũng không nêu tam giác đều, lục giác đều hay hình tròn, nên ý của section ("hình có nhiều trục") chỉ được dạy bằng một hình vuông.
+- Sửa: cắt clip chỉ lấy `s02-hoi` tới `s03-vuong` (hỏi rồi đếm 4 trục của hình vuông), hoặc đổi cảnh `s04-chu-nhat` thành hình đều khác (tam giác đều 3 trục) rồi để clip như cũ. Cả hai cách đều cần dựng lại video: chủ dự án quyết.
 
 ## Góp ý
 
-Không có.
+### 1. `dem-truc`: lời nói "gấp thử" nhưng hình chỉ vẽ đường, không gấp
+
+- Vị trí: `video/projects/hinh-co-truc-doi-xung/dem-truc/index.html`, cảnh `s03-vuong` và `s04-chu-nhat`
+- Nguồn: —
+- Vấn đề: ở video `gap-doi-hinh` bé thấy hình gấp thật; ở đây các đường hiện từng cái cùng lời "gấp khít", không có chuyển động hai nửa chồng nhau, nên "khít" và "lệch" chỉ là lời nói và dấu ✕ xám.
+- Sửa: tuỳ tác giả; nếu dựng lại, lật một nửa theo đường đang xét như `fold` của `gap-doi-hinh`.
+
+### 2. `ve-them-doi-xung`: "Các đỉnh còn lại làm như vậy" bỏ qua hai đỉnh nằm trên d
+
+- Vị trí: câu cuối của cảnh `s05-nam-o` (khoảng 31,4-33,4 s)
+- Nguồn: —
+- Vấn đề: hình mẫu có hai đỉnh nằm ngay trên d (trên cùng và dưới cùng), không cần điểm đối xứng mới; câu "các đỉnh còn lại" làm bé hiểu mọi đỉnh còn lại đều cần đếm. Phần này bài đã dạy ở câu `s9-on-diem-tren-truc`, nên không sai kiến thức.
+- Sửa: tuỳ tác giả; có thể nói "Đỉnh nằm trên trục thì giữ nguyên." trước câu quy tắc nếu dựng lại.
