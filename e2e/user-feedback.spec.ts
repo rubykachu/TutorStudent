@@ -3,7 +3,7 @@ import path from "node:path";
 import type { Page, TestInfo } from "@playwright/test";
 import { findOverlaps } from "./overlap";
 import { idbAll, Lab, newChild, openLesson, openParent } from "./sync-lab";
-import { FEEDBACK_FAMILIES, syncStoreDir } from "./targets";
+import { feedbackFamily, syncStoreDir } from "./targets";
 import { test as base, expect } from "./test";
 
 // The "Góp ý" button end to end on the sync server: the report is stored in
@@ -98,7 +98,7 @@ async function shot(page: Page, info: TestInfo, name: string) {
 test("a child's report from an exercise is stored and left pending", async ({
   lab,
 }, testInfo) => {
-  const a = await lab.device(FEEDBACK_FAMILIES[lab.target] as { id: string });
+  const a = await lab.device(feedbackFamily(lab.target, 1));
   await newChild(a.page);
   await expect(feedbackButton(a.page)).toHaveCount(0);
 
@@ -150,7 +150,7 @@ test("a child's report from an exercise is stored and left pending", async ({
 test("a report made offline is queued and sent when the network is back", async ({
   lab,
 }) => {
-  const a = await lab.device(FEEDBACK_FAMILIES[lab.target] as { id: string });
+  const a = await lab.device(feedbackFamily(lab.target, 2));
   await newChild(a.page);
   await openLesson(a.page);
   await a.context.route("**/api/feedback", (route) =>
@@ -183,7 +183,7 @@ test("a report made offline is queued and sent when the network is back", async 
 });
 
 test("a parent sends a note behind the PIN", async ({ lab }, testInfo) => {
-  const a = await lab.device(FEEDBACK_FAMILIES[lab.target] as { id: string });
+  const a = await lab.device(feedbackFamily(lab.target, 3));
   await newChild(a.page);
   await openParent(a.page);
   await openLesson(a.page);

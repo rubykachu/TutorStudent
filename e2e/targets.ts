@@ -69,13 +69,16 @@ export const SYNC_FAMILIES: readonly SyncFamily[] = Array.from(
   },
 );
 
-// The families of the feedback E2E (`e2e/user-feedback.spec.ts`), one per
-// target, on the same server and store: apart from the sync scenarios so the
-// per-family feedback limit is theirs alone.
-export const FEEDBACK_FAMILIES: Record<string, SyncFamily> = {
-  ipad: { id: "OWLFDBK1" },
-  phone: { id: "OWLFDBK2" },
-};
+// The families of the feedback E2E (`e2e/user-feedback.spec.ts`): one per
+// scenario and target, on the sync server and store, apart from the sync
+// scenarios (a family's profile doc would bring their child along).
+export function feedbackFamily(target: string, scenario: number): SyncFamily {
+  const targetDigit = Object.keys(TARGET_DEVICES).indexOf(target) + 1;
+  if (targetDigit < 1 || scenario < 1 || scenario > 9) {
+    throw new Error(`No feedback family for ${target} scenario ${scenario}`);
+  }
+  return { id: `OWLFB${targetDigit}${scenario}0` };
+}
 
 const SYNC_STORE_ENV_KEY = "TUTOR_E2E_SYNC_STORE";
 
