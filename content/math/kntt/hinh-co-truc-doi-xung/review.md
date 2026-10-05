@@ -1,15 +1,15 @@
 # Review: Hình có trục đối xứng (`hinh-co-truc-doi-xung`)
 
 - Bài: `content/math/kntt/hinh-co-truc-doi-xung/lesson.json`
-- Vòng: 5 - chỉ phần đổi (`pnpm content:diff`), section: `quanh-ta`, `truc-doi-xung`, `chu-nhat-thoi`, `thang-can-binh-hanh`, `chu-cai-chu-so`, `do-vat-bieu-tuong`, `diem-doi-xung`, `ve-them-hinh`, `bai-tap-sach-bai-tap`
-- Nguồn đã đọc: `sources/math/hinh-co-truc-doi-xung/` - sbt-p81 (5.3), sbt-p119 (5.10; lời giải chỉ liệt kê 10 số), đề 5.6 và 5.10 không đổi
-- Đọc hiểu (Haiku, lượt 1): 215 / 1 / 0 trên toàn bài (trước vòng 1, `.shots/review/hinh-co-truc-doi-xung/doc-hieu.md`); chữ đổi sau vòng 2: lượt 1 72 / 7 / 0 (`doc-hieu-2.md`), lượt 2 7 / 6 / 1 (`doc-hieu-3.md`), lượt 3 8 / 4 / 0 (`doc-hieu-4.md`, hết 3 lượt)
+- Vòng: 6 - chỉ phần đổi (`pnpm content:diff`), section: `truc-doi-xung`, `chu-cai-chu-so`
+- Nguồn đã đọc: không mở ảnh nguồn (diff không có câu `bookPractice`; 5.3 và 5.7 chỉ đối chiếu đáp án trong `lesson.json`)
 - `content:check`: 0 lỗi, 1 cảnh báo của bài (id chưa khoá)
-- `lesson:walk`: 0 FAIL, 0 cảnh báo trên iPad dọc, iPad ngang, điện thoại; ảnh trong `.shots/walk/hinh-co-truc-doi-xung/`. `visual:shot` (02:53, sau commit sửa 02:50): đã mở `chu-b`, `thumb-house`, `cham-gap-doi` (nhãn mới), không chồng, không cắt
-- Kết luận: Không còn lỗi Nghiêm trọng (2 Nên sửa); đã ghi reviewedHash bằng `--mark`, chưa `--approve`, chờ lượt đọc hiểu cuối
-- Bản đã review: `382586187d4b71d3991df63a8714353e13cde67cb8ec2c6ebcf3f0790e11ce68` (`pnpm content:diff` so với bản này)
+- Đọc hiểu (Haiku, lượt 1): 215 / 1 / 0 trên toàn bài (trước vòng 1, `.shots/review/hinh-co-truc-doi-xung/doc-hieu.md`); chữ đổi sau vòng 2: lượt 1 72 / 7 / 0 (`doc-hieu-2.md`), lượt 2 7 / 6 / 1 (`doc-hieu-3.md`), lượt 3 8 / 4 / 0 (`doc-hieu-4.md`, hết 3 lượt); chữ đổi sau vòng 5: 6 / 0 / 0 (`doc-hieu-5.md`)
+- `lesson:walk`: 0 FAIL, 0 cảnh báo trên iPad dọc, iPad ngang, điện thoại; ảnh trong `.shots/walk/hinh-co-truc-doi-xung/`. `visual:shot` 250/250: đã mở `chu-t` (chữ T căn giữa, không cắt)
+- Kết luận: Đã xuất bản (0 Nghiêm trọng; 5 Nên sửa còn lại không chặn: chữ T lặp ví dụ màn dạy vì mọi chữ một trục khác đã dùng, 4 mục đọc hiểu hết 3 lượt)
+- Bản đã review: `f77300e6500d792e4ff03d5cc931631557f1bfbdf70ec5e84f7dd2f49baa450c` (`pnpm content:diff` so với bản này)
 
-Đã tự giải: `s4-on-ghep-so-truc` (ngôi nhà 1, hình bình hành nghiêng 0, hình thoi 2; cả ba đã dạy ở section 1 đến 4, không còn tam giác đều), `s6-on-chu-b-truc` (B: trục nằm ngang), `sbt-5-10` (4 + 6 = 10, đủ 10 số của tr.119), `l55-dau-cong` (2 trục), `s3-cheo-thoi`, `s9-buoc-dau`. "Tam giác lệch" đã đổi hết, còn `scalene` chỉ là id nội bộ. Nhắc lại 5.6 nay khớp màn dạy đếm ô (`theo cột`). Hai điểm tác giả hỏi: chữ B lộ một phần đáp án 5.3 (Nên sửa 1); `sbt-5-10` bỏ liệt kê sáu số là chấp nhận được vì tr.119 chỉ ghi dãy 10 số và hình lời giải có đủ (Góp ý 1).
+Đã tự giải: `s6-on-chu-t-truc` (T: trục thẳng đứng; đúng, lựa chọn "Nằm ngang" sai vì nửa trên là nét ngang dài, nửa dưới chỉ là nét dọc), `s2-on-nhieu-truc` (đáp án `tat`; `explain` mới "Số trục của các hình có thể khác nhau" không còn nói mọi hình khác nhau; `wrong` của `mot`, `hai`, `khong` đều đúng), `s6-chu-u-truc`, `s6-on-chu-mot-truc` (C), `s6-cham-chu-mot-truc` (K, W). Recap của section 6 vẫn khớp `note` quy tắc. Bản sửa không làm hỏng các mục cùng section: câu mới không trùng đáp án 5.3 (A B M Y 3, H X 0 8) hay 5.7. `chu-b` không còn được tham chiếu.
 
 ## Nghiêm trọng
 
@@ -17,25 +17,41 @@ Không có.
 
 ## Nên sửa
 
-### 1. Câu ôn `s6-on-chu-b-truc` dùng chữ B, nằm trong đáp án 5.3a (LL-07)
+### 1. Câu ôn `s6-on-chu-t-truc` hỏi lại đúng ví dụ màn quy tắc (LL-07)
 
-- Vị trí: `$.exercises[45]` (`ex.s6-on-chu-b-truc`, đề "Chữ B có đúng một trục đối xứng", visual `chu-b`)
-- Nguồn: tr.81 (5.3), tr.118 (lời giải 5.3)
-- Vấn đề: 5.3a yêu cầu chạm các chữ có đúng một trục, đáp án gồm A, B, M, Y, 3. Đề câu ôn nói thẳng B có đúng một trục, trục nằm ngang, nên bé chưa làm 5.3a đã biết một đáp án. Mức Nên sửa (không Nghiêm trọng) vì câu kho ôn không đứng ngay trước câu sách như câu dẫn, chỉ lộ một trong năm chữ, và `s1-on-cham`, `s1-on-la` cũng đã dùng Z, N của 5.3 làm hình không trục. Vòng 4 chính reviewer đã gợi ý chữ B mà không đối chiếu đáp án 5.3.
-- Sửa: bỏ ràng buộc "trục ngang": dùng chữ V (một trục thẳng đứng, không thuộc 5.3; V chỉ là một đáp án nối tờ giấy của 5.7, câu này không nói tờ nào), thêm visual `chu-v` cùng kiểu `chu-b`, đổi đề và `explain` ("Gấp chữ V theo đường thẳng đứng ở giữa thì nửa trái chồng khít nửa phải"; `wrong` cho "Nằm ngang": nửa trên chỉ có một đầu nhọn, nửa dưới là hai nhánh). Hoặc giữ B nếu chủ dự án chấp nhận lộ một chữ.
-
-### 2. `explain` của `s2-on-nhieu-truc` nói "Mỗi hình có số trục khác nhau" (LL-17)
-
-- Vị trí: `$.exercises[?(@.id=='hinh-co-truc-doi-xung.ex.s2-on-nhieu-truc')].explain.text`
+- Vị trí: `$.exercises[?(@.id=='hinh-co-truc-doi-xung.ex.s6-on-chu-t-truc')]` (visual `chu-t`)
 - Nguồn: —
-- Vấn đề: bản viết lại theo đọc hiểu nghe như mọi hình đều có số trục khác nhau, trái với chính lời giải: ngôi nhà và cánh bướm (ở `wrong`) cùng có một trục.
-- Sửa: "Số trục của các hình có thể khác nhau. Bàn chân trái không có trục, ngôi nhà có một trục. Một số hình khác có nhiều trục."
+- Vấn đề: `chu-cai-quy-tac` (màn quy tắc và recap của section 6) in đúng dòng "Chữ T: 1 trục thẳng đứng", và thẻ đầu của `chu-cai-the` là T. Câu ôn nhắc lại đúng chữ, đúng đáp án đó, nên bé nhớ lại hình vừa xem chứ chưa tự xét trục. Mức Nên sửa (không Nghiêm trọng): câu kho ôn nằm xa câu sách, không lộ đáp án 5.3 hay 5.7, và chữ lặp là lựa chọn ít hại nhất theo bảng hình của tác giả (mọi chữ một trục khác đều đã ở 5.3, 5.7 hoặc câu dẫn `l53a-chu-mot-truc`).
+- Sửa: tốt hơn một chút là chữ V (thêm visual `chu-v` cùng kiểu `chu-t`, đề "Chữ V có đúng một trục... thẳng đứng hay nằm ngang?", đáp án thẳng đứng): V chỉ lặp ở câu dẫn `l53a` (cùng section 9, khác dạng câu, cách xa) và là một đáp án nối của 5.7 chứ không phải 5.3. Chấp nhận giữ T nếu chủ dự án thấy việc thêm một visual không đáng, vì cả hai cách đều lặp một dữ kiện bé đã thấy.
 
-## Góp ý
+### 2. Đọc hiểu: `ex.s9-buoc-dau` `explain.wrong[0].text` còn "Hiểu mơ hồ"
 
-### 1. `explain` của `sbt-5-10` chưa nêu vì sao các số đó đối xứng
+- Vị trí: `$.exercises[?(@.id=='hinh-co-truc-doi-xung.ex.s9-buoc-dau')].explain.wrong[0].text`
+- Nguồn: —
+- Vấn đề: Haiku ghi "điểm đối xứng quá trừu tượng"; đã hết 3 lượt. Không chặn: "điểm đối xứng" là từ section 9 đã dạy.
+- Sửa: tuỳ tác giả; nếu sửa, thêm vế "điểm ở bên kia trục" ngay sau từ này.
+
+### 3. Đọc hiểu: bài tập sách bài tập, `blocks[2].children[2].text` còn "Hiểu mơ hồ"
+
+- Vị trí: `$.sections[?(@.id=='hinh-co-truc-doi-xung.section.bai-tap-sach-bai-tap')].blocks[2].children[2].text`
+- Nguồn: —
+- Vấn đề: Haiku ghi "theo cột mơ hồ" ở câu "đếm số ô từ điểm tới d theo cột". Không chặn: "theo cột" khớp màn dạy đếm ô của 5.6 và hình đi kèm.
+- Sửa: tuỳ tác giả; có thể đổi thành "đếm số ô từ điểm đó sang trục d, trên cùng một cột".
+
+### 4. Đọc hiểu: `ex.l55-dau-cong` `explain.text` còn "Hiểu mơ hồ"
+
+- Vị trí: `$.exercises[?(@.id=='hinh-co-truc-doi-xung.ex.l55-dau-cong')].explain.text`
+- Nguồn: —
+- Vấn đề: Haiku ghi "cánh ngang dài hơn cánh dọc chưa rõ". Không chặn: hình chữ thập của câu có cánh ngang dài hơn, chữ chỉ đang nêu đúng hình đó.
+- Sửa: tuỳ tác giả; có thể thêm "trong hình trên".
+
+### 5. Đọc hiểu: `ex.sbt-5-10` `explain.text` còn "Hiểu mơ hồ"
 
 - Vị trí: `$.exercises[?(@.id=='hinh-co-truc-doi-xung.ex.sbt-5-10')].explain.text`
 - Nguồn: tr.119 (5.10)
-- Vấn đề: bản mới đủ số nhóm và đúng 4 + 6 = 10; sáu số nhóm hai nằm ở hình lời giải `sbt-5-10-giai`, chấp nhận được vì tr.119 cũng chỉ liệt kê 10 số. Câu cuối "Mỗi thẻ chỉ có một tấm, nên hai nhóm cho 10 số" nối "nên" chưa chặt, và chưa nói 0, 1, 8 có trục thẳng đứng, còn 2 và 5 là hình đối xứng của nhau.
-- Sửa: tuỳ tác giả, thay câu cuối bằng "Thẻ 0, 1, 8 có trục thẳng đứng, còn 2 và 5 đối xứng với nhau. Cộng lại có 10 số." (vẫn 3 câu).
+- Vấn đề: Haiku ghi "phải suy luận tính toán". Không chặn: bài đếm số ghép từ ba thẻ, mức suy luận này nằm trong đề sách (đếm 4 + 6 = 10).
+- Sửa: tuỳ tác giả; Góp ý cũ của vòng 5 (nêu 0, 1, 8 có trục thẳng đứng, 2 và 5 đối xứng nhau) vẫn áp dụng.
+
+## Góp ý
+
+Không có.
