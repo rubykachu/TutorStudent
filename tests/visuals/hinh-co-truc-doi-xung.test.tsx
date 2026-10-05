@@ -49,6 +49,7 @@ import {
 } from "@/visuals/math/hinh-co-truc-doi-xung/glyphs";
 import {
   chain,
+  edgeKey,
   isChain,
   mirrorPoint,
 } from "@/visuals/math/hinh-co-truc-doi-xung/lattice";
@@ -658,6 +659,26 @@ describe("the names of the lines of a picture do not crowd each other", () => {
   });
 });
 
+describe("the letter d", () => {
+  it("names no candidate line: d is the name of an axis of symmetry", () => {
+    for (const spec of Object.values(VISUAL_SPECS)) {
+      const groups =
+        spec.kind === "axisPicker"
+          ? spec.groups
+          : spec.kind === "foldLab" || spec.kind === "lines"
+            ? [spec]
+            : [];
+      for (const group of groups) {
+        const letters = candidatesOf(group.shape, group.lines).map(
+          (c) => c.letter,
+        );
+        expect(letters).not.toContain("d");
+        expect(letters.slice(0, 3)).toEqual(["a", "b", "c"]);
+      }
+    }
+  });
+});
+
 describe("the figures of exercise 5.5 are the workbook's", () => {
   it("eight squares with no axis, a star with five, four squares in a chain with two", () => {
     expect(SHAPES.pentomino.axes).toHaveLength(0);
@@ -729,6 +750,39 @@ describe("the polylines of exercise 5.9 and its lead-ins", () => {
       ).toBe(true);
       expect(isChain(pieces), key).toBe(true);
       expect(figureAxes(BOOK_59, pieces), key).toHaveLength(axes);
+    }
+  });
+});
+
+describe("the solution shown for a polyline exercise", () => {
+  // The shown solution joins the two ends of the given polyline, which is the
+  // answer the explanation and the picture of the third hint teach.
+  const edgeSet = (edges: readonly (readonly [Pt, Pt])[]) =>
+    edges.map(edgeKey).sort().join(" ");
+
+  it.each([
+    ["sbt-5-9a-giai", { length: 4, axes: 1 }],
+    ["sbt-5-9b-giai", { length: 4, axes: 2 }],
+  ])("%s is the line the workbook draws", (key, params) => {
+    const found = solveEdges(BOOK_59, params);
+    expect(edgeSet(found ?? [])).toBe(edgeSet(chain(pathOf(key))));
+  });
+
+  it("joins the two ends of the given polyline whenever such a line exists", () => {
+    const first = BOOK_59.given[0] as Pt;
+    const last = BOOK_59.given[BOOK_59.given.length - 1] as Pt;
+    for (const params of [
+      { length: 4, axes: 1 },
+      { length: 4, axes: 2 },
+      { length: 8, axes: 4 },
+    ]) {
+      const found = solveEdges(BOOK_59, params) ?? [];
+      const degree = new Map<string, number>();
+      for (const [a, b] of found)
+        for (const p of [a, b])
+          degree.set(`${p}`, (degree.get(`${p}`) ?? 0) + 1);
+      expect(degree.get(`${first}`)).toBe(1);
+      expect(degree.get(`${last}`)).toBe(1);
     }
   });
 });

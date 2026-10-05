@@ -54,20 +54,25 @@ const thumbs: Record<string, VisualSpec> = {
   ...Object.fromEntries(
     (
       [
-        "butterfly",
+        "bottle",
         "cloud",
+        "flag",
         "gate",
+        "glass",
         "hexagon",
-        "house",
+        "key",
         "leaf",
+        "mask",
         "parallelogram",
+        "pine",
         "plus",
         "rectangle",
         "rhombus",
         "scalene",
+        "slantleft",
         "square",
-        "star",
         "trapezoid",
+        "triangle",
       ] as const
     ).map((id) => [
       `thumb-${id}`,
@@ -75,7 +80,7 @@ const thumbs: Record<string, VisualSpec> = {
     ]),
   ),
   ...Object.fromEntries(
-    (["C", "F", "N", "O", "P", "Z"] as const).map((id) => [
+    (["C", "J", "N", "P", "R", "S"] as const).map((id) => [
       `thumb-glyph-${id.toLowerCase()}`,
       { kind: "subject", subject: glyph(id), width: THUMB_WIDTH },
     ]),
@@ -189,7 +194,7 @@ const POINT_STEPS: StepsSpec = {
     constructionFrame(2, "Vẽ đường tròn tâm O, bán kính OA."),
     constructionFrame(
       3,
-      "Đường tròn cắt đường thẳng vừa dựng tại A′. Điểm A′ đối xứng với A qua d.",
+      "Đường tròn cắt lại đường thẳng vừa dựng tại A′, khác A. Điểm A′ đối xứng với A qua d.",
     ),
   ],
 };
@@ -202,7 +207,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     width: PICTURE_WIDTH,
   },
   "big-star": { kind: "subject", subject: shape("star"), width: PICTURE_WIDTH },
-  "chu-c": bigGlyph("C"),
+  "chu-d": bigGlyph("D"),
   "chu-f": bigGlyph("F"),
   "chu-u": bigGlyph("U"),
   "chu-so-1": bigGlyph("1"),
@@ -234,14 +239,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "cham-gap-doi": {
     kind: "strip",
-    label: "Ngôi nhà, mặt trống đồng, chữ Z và đám mây bị gió thổi lệch",
+    label: "Chiếc ô, cái chuông, chữ Z và lá cờ cắm trên cột",
     mode: "tap",
     columns: 2,
     items: [
-      shapeItem("ngoi-nha", "house", "Ngôi nhà"),
-      shapeItem("mat-trong", "circle", "Mặt trống đồng hình tròn"),
+      shapeItem("chiec-o", "umbrella", "Chiếc ô"),
+      shapeItem("cai-chuong", "bell", "Cái chuông"),
       glyphItem("chu-z", "Z", "Chữ Z"),
-      shapeItem("may", "cloud", "Đám mây bị gió thổi lệch"),
+      shapeItem("la-co", "flag", "Lá cờ cắm trên cột"),
     ],
   },
 
@@ -277,7 +282,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "lines-gate": {
     kind: "lines",
     shape: "gate",
-    lines: [fake(0), fake(1), axis(0), fake(2)],
+    lines: [fake(1), axis(0), fake(0), fake(2)],
   },
 
   // Section 3: the rectangle and the rhombus
@@ -285,7 +290,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "foldLab",
     shape: "rectangle",
     lines: [axis(0), fake(0), axis(1), fake(1)],
-    done: "Hình chữ nhật có hai trục. Đường chéo không phải trục.",
+    done: "Hình chữ nhật này có hai trục. Đường chéo của nó không phải trục.",
   },
   "thoi-gap-thu": {
     kind: "foldLab",
@@ -417,13 +422,13 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "cham-chu-mot-truc": {
     kind: "strip",
-    label: "Bốn chữ cái: K, W, O và P",
+    label: "Bốn chữ cái: K, W, G và P",
     mode: "tap",
     columns: 2,
     items: [
       glyphItem("chu-k", "K", "Chữ K"),
       glyphItem("chu-w", "W", "Chữ W"),
-      glyphItem("chu-o", "O", "Chữ O"),
+      glyphItem("chu-g", "G", "Chữ G"),
       glyphItem("chu-p", "P", "Chữ P"),
     ],
   },
@@ -436,6 +441,17 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     items: [shape("nosign"), shape("heart"), shape("arrow"), shape("cloud")],
     verb: "xem",
     done: "Bạn đã xem cả bốn hình.",
+  },
+  "do-vat-quy-tac": {
+    kind: "gallery",
+    label:
+      "Trái tim có một trục, biển cấm có hai trục, đám mây lệch không có trục",
+    columns: 3,
+    items: [
+      { subject: shape("heart"), axes: true, caption: "Trái tim: 1 trục" },
+      { subject: shape("nosign"), axes: true, caption: "Biển cấm: 2 trục" },
+      { subject: shape("cloud"), caption: "Đám mây lệch: không có trục" },
+    ],
   },
   "so-truc-tong-hop": {
     kind: "gallery",
@@ -526,7 +542,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       { t: 0, u: 0, caption: "Mở nếp gấp thứ nhất ra: hình giống chữ số 0." },
     ],
   },
-  "gap-giay-lo": {
+  "gap-giay-quy-tac": {
     kind: "paperOpen",
     paper: "h",
     frames: [
@@ -558,7 +574,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
     ],
   },
-  "gap-giay-quy-tac": {
+  "goi-y-gap-giay": {
     kind: "paperOpen",
     paper: "t",
     frames: [
@@ -582,14 +598,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "axisPicker",
     groups: [{ shape: "leaf", lines: [fake(1), fake(2), axis(0), fake(0)] }],
   },
-  "chon-truc-dau-cong": {
+  "chon-truc-chu-thap": {
     kind: "axisPicker",
-    groups: [
-      {
-        shape: "plus",
-        lines: [axis(0), fake(0), axis(1), axis(2), fake(1), axis(3)],
-      },
-    ],
+    groups: [{ shape: "cross", lines: [axis(0), fake(0), axis(1), fake(1)] }],
   },
   "sbt-5-2-chon": {
     kind: "axisPicker",
@@ -662,7 +673,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     shape: "leaf",
     axis: 0,
     frames: [
-      { t: 0, caption: "Thử gấp hình theo đường đã cho." },
+      { t: 0, caption: "Thử gấp đôi hình theo một đường thẳng." },
       { t: 0.5, caption: "Nhìn mép của hai nửa: có trùng nhau không?" },
     ],
   },
@@ -672,8 +683,8 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     axis: 0,
     fake: 2,
     frames: [
-      { t: 0, caption: "Thử gấp chiếc lá theo một đường nghiêng." },
-      { t: 1, caption: "Một nửa chìa ra ngoài: hai nửa không chồng khít." },
+      { t: 0, caption: "Thử gấp chiếc lá này theo một đường nghiêng." },
+      { t: 0.5, caption: "Nhìn mép của hai nửa: có trùng nhau không?" },
     ],
   },
   "goi-y-ve-hinh": {
@@ -859,8 +870,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "l510-the": {
     kind: "digitCards",
-    label: "Ba thẻ chữ: b, d và H",
-    digits: ["b", "d", "H"],
+    label: "Ba thẻ chữ chưa xếp: b, d và H",
+    digits: ["H", "b", "d"],
+    loose: true,
   },
   sticker: { kind: "sticker" },
 };

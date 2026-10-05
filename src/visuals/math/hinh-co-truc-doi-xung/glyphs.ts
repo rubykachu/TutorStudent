@@ -43,6 +43,10 @@ export const GLYPH_IDS = [
   "W",
   "b",
   "d",
+  "G",
+  "J",
+  "R",
+  "S",
 ] as const;
 export type GlyphId = (typeof GLYPH_IDS)[number];
 
@@ -144,6 +148,42 @@ export const GLYPHS: Readonly<Record<GlyphId, readonly Stroke[]>> = {
   W: [open([0, 0], [2.5, 16], [5, 6], [7.5, 16], [10, 0])],
   b: SMALL_B,
   d: SMALL_B.map(mirrored),
+  G: [
+    open(
+      [10, 3],
+      [7, 0],
+      [3, 0],
+      [0, 3],
+      [0, 13],
+      [3, 16],
+      [7, 16],
+      [10, 13],
+      [10, 9],
+      [5, 9],
+    ),
+  ],
+  J: [open([10, 0], [10, 12], [7, 16], [3, 16], [0, 12])],
+  R: [
+    open([0, 0], [0, 16]),
+    open([0, 0], [7, 0], [10, 3], [10, 6], [7, 9], [0, 9]),
+    open([4, 9], [10, 16]),
+  ],
+  S: [
+    open(
+      [10, 3],
+      [7, 0],
+      [3, 0],
+      [0, 3],
+      [0, 5],
+      [3, 8],
+      [7, 8],
+      [10, 11],
+      [10, 13],
+      [7, 16],
+      [3, 16],
+      [0, 13],
+    ),
+  ],
 };
 
 // Which of the two middle lines are axes of the glyph: "v" the vertical one,
@@ -180,6 +220,10 @@ export const GLYPH_AXES: Readonly<Record<GlyphId, readonly ("v" | "h")[]>> = {
   W: ["v"],
   b: [],
   d: [],
+  G: [],
+  J: [],
+  R: [],
+  S: [],
 };
 
 export const GLYPH_NAME: Readonly<Record<GlyphId, string>> = {
@@ -214,4 +258,8 @@ export const GLYPH_NAME: Readonly<Record<GlyphId, string>> = {
   W: "Chữ W",
   b: "Chữ b",
   d: "Chữ d",
+  G: "Chữ G",
+  J: "Chữ J",
+  R: "Chữ R",
+  S: "Chữ S",
 };

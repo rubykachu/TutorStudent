@@ -19,7 +19,9 @@ export type Candidate = {
   end: "p" | "q";
 };
 
-const LETTERS = "abcdefghij";
+// The names of candidate lines. The letter d is left out: in this lesson d is
+// the name of an axis of symmetry, so no line that is not an axis may carry it.
+const LETTERS = "abcefghijk";
 
 // The radius of a name badge, and the room it keeps from the frame's edge.
 export const BADGE_RADIUS = 14;

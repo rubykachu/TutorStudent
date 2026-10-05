@@ -67,12 +67,21 @@ const CARD_W = 56;
 const CARD_H = 88;
 const CARD_GAP = 8;
 
-export type DigitCardsSpec = { label: string; digits: readonly GlyphId[] };
+export type DigitCardsSpec = {
+  label: string;
+  digits: readonly GlyphId[];
+  // Cards lying about, each a little higher or lower and turned, not yet in
+  // a row.
+  loose?: boolean;
+};
+
+const LOOSE_DROP = [0, 20, 8];
+const LOOSE_TURN = [-7, 6, -3];
 
 export function DigitCards({ spec }: { spec: DigitCardsSpec }) {
   const width =
     spec.digits.length * CARD_W + (spec.digits.length + 1) * CARD_GAP;
-  const height = CARD_H + 2 * CARD_GAP;
+  const height = CARD_H + 2 * CARD_GAP + (spec.loose ? 24 : 0);
   const scale = 4.2;
   return (
     <div className="mx-auto w-full" style={{ maxWidth: width * 1.6 }}>
@@ -87,8 +96,13 @@ export function DigitCards({ spec }: { spec: DigitCardsSpec }) {
             const x = CARD_GAP + n * (CARD_W + CARD_GAP);
             const dx = x + (CARD_W - GLYPH_WIDTH * scale) / 2;
             const dy = CARD_GAP + (CARD_H - GLYPH_HEIGHT * scale) / 2;
+            const drop = spec.loose ? (LOOSE_DROP[n] ?? 0) : 0;
+            const turn = spec.loose ? (LOOSE_TURN[n] ?? 0) : 0;
             return (
-              <g key={digit}>
+              <g
+                key={digit}
+                transform={`translate(0 ${drop}) rotate(${turn} ${x + CARD_W / 2} ${CARD_GAP + CARD_H / 2})`}
+              >
                 <rect
                   x={x}
                   y={CARD_GAP}
@@ -120,7 +134,11 @@ export function DigitCards({ spec }: { spec: DigitCardsSpec }) {
 
 export type PapersSpec = {
   label: string;
-  items: readonly { paper: PaperId; open: boolean; caption: string }[];
+  items: readonly {
+    paper: PaperId;
+    open: boolean;
+    caption: string;
+  }[];
 };
 
 export function Papers({ spec }: { spec: PapersSpec }) {

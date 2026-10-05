@@ -99,9 +99,10 @@ export function stateOfEdges(
 
 const key = (p: Pt) => `${p[0]},${p[1]}`;
 
-// A polyline of `length` pieces that makes the figure have `axes` axes: the
-// first one found, trying the ends of the given polyline first so the new
-// part joins it.
+// A polyline of `length` pieces that makes the figure have `axes` axes. The
+// answer the lesson teaches joins the two ends of the given polyline, so
+// those are tried first (from one end to the other); only when no such line
+// exists, the first one found from any point.
 export function solveEdges(
   spec: EdgeBoardSpec,
   params: EdgeParams,
@@ -119,36 +120,46 @@ export function solveEdges(
       ]);
     }
   }
-  const ends = [spec.given[0], spec.given[spec.given.length - 1]].filter(
-    (p): p is Pt => p !== undefined,
-  );
-  const starts: Pt[] = [...ends];
-  for (let y = 0; y < spec.rows; y++) {
-    for (let x = 0; x < spec.cols; x++) {
-      if (!starts.some((p) => p[0] === x && p[1] === y)) starts.push([x, y]);
-    }
-  }
   const path: Edge[] = [];
   const visited = new Set<string>();
-  function walk(at: Pt): boolean {
+  // Walks from `at` until the path has the wanted length (ending at `end`
+  // when one is given) and the figure the wanted axes.
+  function walk(at: Pt, end: Pt | undefined): boolean {
     if (path.length === params.length) {
-      return figureAxes(spec, path).length === params.axes;
+      return (
+        (end === undefined || key(at) === key(end)) &&
+        figureAxes(spec, path).length === params.axes
+      );
     }
     for (const step of neighbours.get(key(at)) ?? []) {
       if (visited.has(key(step.to))) continue;
       visited.add(key(step.to));
       path.push(step.edge);
-      if (walk(step.to)) return true;
+      if (walk(step.to, end)) return true;
       path.pop();
       visited.delete(key(step.to));
     }
     return false;
   }
-  for (const start of starts) {
+  function from(start: Pt, end: Pt | undefined): Edge[] | undefined {
     visited.clear();
     visited.add(key(start));
     path.length = 0;
-    if (walk(start)) return [...path];
+    return walk(start, end) ? [...path] : undefined;
+  }
+  const first = spec.given[0];
+  const last = spec.given[spec.given.length - 1];
+  if (first && last) {
+    const joined = from(first, last) ?? from(last, first);
+    if (joined) return joined;
+  }
+  const starts: Pt[] = [first, last].filter((p): p is Pt => p !== undefined);
+  for (let y = 0; y < spec.rows; y++) {
+    for (let x = 0; x < spec.cols; x++) starts.push([x, y]);
+  }
+  for (const start of starts) {
+    const found = from(start, undefined);
+    if (found) return found;
   }
   return undefined;
 }

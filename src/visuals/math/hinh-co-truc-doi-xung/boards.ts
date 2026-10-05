@@ -19,13 +19,13 @@ export const POINTS_GUIDED: MirrorSpec = {
     {
       kind: "line",
       pts: [
-        [1, 1],
-        [2, 3],
+        [1, 3],
+        [2, 1],
       ],
     },
   ],
-  names: { A: [1, 1], B: [2, 3] },
-  nameShift: { A: [-0.4, -0.3], B: [-0.4, 0.3] },
+  names: { A: [1, 3], B: [2, 1] },
+  nameShift: { A: [-0.4, 0.3], B: [-0.4, -0.3] },
   done: "Bạn đã tìm đúng điểm A′ và điểm B′.",
 };
 

@@ -51,6 +51,15 @@ export const SHAPE_IDS = [
   "tallrect",
   "flatrhombus",
   "slantleft",
+  "cross",
+  "mask",
+  "glass",
+  "pine",
+  "umbrella",
+  "bell",
+  "bottle",
+  "key",
+  "flag",
 ] as const;
 export type ShapeId = (typeof SHAPE_IDS)[number];
 
@@ -280,31 +289,47 @@ function parallelogramOf(id: ShapeId, name: string, lean: 1 | -1): ShapeDef {
   };
 }
 
-function plus(): ShapeDef {
-  const arm = 26;
-  const reach = 86;
+// A cross whose arms are `arm` wide on each side of the middle and reach
+// `reachX` to the left and right, `reachY` up and down.
+function crossOutline(arm: number, reachX: number, reachY: number): Pt[] {
   const [lo, hi] = [120 - arm, 120 + arm];
-  const [far, near] = [120 - reach, 120 + reach];
-  const pts: Pt[] = [
-    [lo, far],
-    [hi, far],
+  const [left, right] = [120 - reachX, 120 + reachX];
+  const [top, bottom] = [120 - reachY, 120 + reachY];
+  return [
+    [lo, top],
+    [hi, top],
     [hi, lo],
-    [near, lo],
-    [near, hi],
+    [right, lo],
+    [right, hi],
     [hi, hi],
-    [hi, near],
-    [lo, near],
+    [hi, bottom],
+    [lo, bottom],
     [lo, hi],
-    [far, hi],
-    [far, lo],
+    [left, hi],
+    [left, lo],
     [lo, lo],
   ];
+}
+
+function plus(): ShapeDef {
   return {
     id: "plus",
     name: "Dấu cộng Chữ thập đỏ",
-    strokes: [closed(pts, { fill: true })],
+    strokes: [closed(crossOutline(26, 86, 86), { fill: true })],
     axes: [0, 45, 90, 135].map((deg) => through(CENTRE, deg)),
     fakes: [22, 68].map((deg) => through(CENTRE, deg)),
+  };
+}
+
+// A cross whose two arms across are longer than the two arms up and down: the
+// vertical and the horizontal line are its axes, the diagonals are not.
+function cross(): ShapeDef {
+  return {
+    id: "cross",
+    name: "Chữ thập có cánh ngang dài, cánh dọc ngắn",
+    strokes: [closed(crossOutline(24, 100, 62), { fill: true })],
+    axes: [through(CENTRE, 90, 90), through(CENTRE, 0, 108)],
+    fakes: [38, 142].map((deg) => through(CENTRE, deg)),
   };
 }
 
@@ -758,6 +783,260 @@ function sheet(): ShapeDef {
   };
 }
 
+// A closed outline from its right half: the points from the top of the axis
+// down to the bottom, then the same points mirrored back up.
+function symmetricOutline(right: readonly Pt[]): Pt[] {
+  return [...right, ...mirrorX(right.slice(1)).reverse()];
+}
+
+const VERTICAL_AXIS = through([120, 126], 90, 100);
+
+// A face mask: one vertical axis.
+function mask(): ShapeDef {
+  const mouth = Array.from({ length: 9 }, (_, i) =>
+    polar(120, 140, 30, 30 + 15 * i),
+  );
+  return {
+    id: "mask",
+    name: "Mặt nạ",
+    strokes: [
+      closed(ellipse(120, 120, 74, 96, 48), { fill: true }),
+      closed(ellipse(86, 100, 20, 11, 24)),
+      closed(ellipse(154, 100, 20, 11, 24)),
+      closed(
+        [
+          [120, 112],
+          [132, 148],
+          [108, 148],
+        ],
+        { thin: true },
+      ),
+      open(mouth),
+    ],
+    axes: [VERTICAL_AXIS],
+    fakes: [HORIZONTAL, through(CENTRE, 45, 104)],
+  };
+}
+
+// A wine glass: one vertical axis.
+function glass(): ShapeDef {
+  return {
+    id: "glass",
+    name: "Chiếc ly",
+    strokes: [
+      closed(
+        symmetricOutline([
+          [120, 40],
+          [172, 40],
+          [152, 108],
+          [128, 134],
+          [128, 184],
+          [162, 200],
+          [162, 212],
+        ]),
+        { fill: true },
+      ),
+      open(
+        [
+          [88, 76],
+          [152, 76],
+        ],
+        { thin: true },
+      ),
+    ],
+    axes: [VERTICAL_AXIS],
+    fakes: [HORIZONTAL, through([146, 126], 90, 100)],
+  };
+}
+
+// A fir tree: one vertical axis.
+function pine(): ShapeDef {
+  return {
+    id: "pine",
+    name: "Cây thông",
+    strokes: [
+      closed(
+        symmetricOutline([
+          [120, 20],
+          [158, 78],
+          [140, 78],
+          [176, 134],
+          [152, 134],
+          [192, 192],
+          [134, 192],
+          [134, 222],
+        ]),
+        { fill: true },
+      ),
+    ],
+    axes: [through([120, 126], 90, 106)],
+    fakes: [HORIZONTAL, through([150, 126], 90, 106)],
+  };
+}
+
+// An umbrella seen from the front: a dome with a scalloped edge, ribs and a
+// handle. One vertical axis.
+function umbrella(): ShapeDef {
+  const dome = Array.from({ length: 13 }, (_, i) =>
+    polar(120, 132, 92, 180 + 15 * i),
+  );
+  const scallops = [189, 143, 97, 51].flatMap((cx, k) =>
+    // The last piece stops short of its end, which is the start of the dome.
+    Array.from({ length: k === 3 ? 11 : 12 }, (_, i) =>
+      polar(cx, 132, 23, 15 * (i + 1)),
+    ),
+  );
+  return {
+    id: "umbrella",
+    name: "Chiếc ô",
+    strokes: [
+      closed([...dome, ...scallops], { fill: true }),
+      ...pair(
+        [
+          [120, 40],
+          [74, 132],
+        ],
+        { closed: false, thin: true },
+      ),
+      open([
+        [120, 132],
+        [120, 206],
+      ]),
+    ],
+    axes: [VERTICAL_AXIS],
+    fakes: [HORIZONTAL, through([150, 126], 90, 100)],
+  };
+}
+
+// A bell with its ring and clapper: one vertical axis.
+function bell(): ShapeDef {
+  return {
+    id: "bell",
+    name: "Cái chuông",
+    strokes: [
+      closed(
+        symmetricOutline([
+          [120, 40],
+          [142, 46],
+          [158, 74],
+          [164, 118],
+          [174, 156],
+          [204, 176],
+          [204, 190],
+        ]),
+        { fill: true },
+      ),
+      closed(ellipse(120, 28, 8, 8, 14)),
+      closed(ellipse(120, 208, 10, 10, 16), { fill: true }),
+    ],
+    axes: [VERTICAL_AXIS],
+    fakes: [HORIZONTAL, through([150, 126], 90, 100)],
+  };
+}
+
+// A bottle with a label: one vertical axis.
+function bottle(): ShapeDef {
+  return {
+    id: "bottle",
+    name: "Chai nước",
+    strokes: [
+      closed(
+        symmetricOutline([
+          [120, 24],
+          [134, 24],
+          [134, 70],
+          [164, 106],
+          [164, 214],
+        ]),
+        { fill: true },
+      ),
+      closed(
+        [
+          [100, 140],
+          [140, 140],
+          [140, 180],
+          [100, 180],
+        ],
+        { thin: true },
+      ),
+    ],
+    axes: [through([120, 120], 90, 106)],
+    fakes: [HORIZONTAL, through([150, 120], 90, 106)],
+  };
+}
+
+// A key with its teeth on one side: no axis.
+function key(): ShapeDef {
+  return {
+    id: "key",
+    name: "Chiếc chìa khóa",
+    strokes: [
+      closed(ellipse(70, 120, 36, 36, 28), { fill: true }),
+      closed(ellipse(70, 120, 14, 14, 16), { thin: true }),
+      closed(
+        [
+          [104, 114],
+          [212, 114],
+          [212, 126],
+          [104, 126],
+        ],
+        { fill: true },
+      ),
+      closed(
+        [
+          [176, 126],
+          [176, 150],
+          [190, 150],
+          [190, 126],
+        ],
+        { fill: true },
+      ),
+      closed(
+        [
+          [198, 126],
+          [198, 142],
+          [210, 142],
+          [210, 126],
+        ],
+        { fill: true },
+      ),
+    ],
+    axes: [],
+    fakes: [HORIZONTAL, VERTICAL],
+  };
+}
+
+// A flag on its pole: the pole runs below the flag, so no axis.
+function flag(): ShapeDef {
+  return {
+    id: "flag",
+    name: "Lá cờ cắm trên cột",
+    strokes: [
+      closed(
+        [
+          [54, 28],
+          [64, 28],
+          [64, 214],
+          [54, 214],
+        ],
+        { fill: true },
+      ),
+      closed(
+        [
+          [64, 36],
+          [190, 36],
+          [160, 76],
+          [190, 116],
+          [64, 116],
+        ],
+        { fill: true },
+      ),
+    ],
+    axes: [],
+    fakes: [HORIZONTAL, VERTICAL],
+  };
+}
+
 const DEFS: Record<ShapeId, ShapeDef> = {
   triangle: regular("Hình tam giác đều", "triangle", 3, 90, -90, [0, 60]),
   square: regular("Hình vuông", "square", 4, 94, -135, [20, 70]),
@@ -790,6 +1069,15 @@ const DEFS: Record<ShapeId, ShapeDef> = {
     "Hình bình hành nghiêng sang trái",
     -1,
   ),
+  cross: cross(),
+  mask: mask(),
+  glass: glass(),
+  pine: pine(),
+  umbrella: umbrella(),
+  bell: bell(),
+  bottle: bottle(),
+  key: key(),
+  flag: flag(),
 };
 
 export const SHAPES: Readonly<Record<ShapeId, ShapeDef>> = DEFS;

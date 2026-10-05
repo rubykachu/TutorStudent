@@ -4,18 +4,18 @@ Bài 21 của sách bài tập (SBT tr.78–83), bài đầu của Chương V "T
 
 ## Trạng thái
 
-- Cập nhật cuối: 06/10/2026. Bài đã **sửa theo review vòng 1** (15 Nghiêm trọng, 28 Nên sửa, các Góp ý rẻ) và **chờ review vòng 2** (chỉ phần đổi, `pnpm content:diff`). Vẫn `status: draft`, chưa có `reviewedHash`, chưa khoá id, chưa có lời đọc giới thiệu và chưa có video.
-- Gồm 11 section dạy, section bài tập sách bài tập (SBT 5.1 đến 5.10: 16 câu sách, 18 câu dẫn), 11 thẻ, 90 câu (34 câu ở các section dạy và câu luyện, 22 câu kho ôn, 34 câu của section sách), 4 mẹo, 78 phút (4 + 10 × 5 + 24).
+- Cập nhật cuối: 06/10/2026. Bài đã **sửa theo review vòng 1** (15 Nghiêm trọng, 28 Nên sửa, các Góp ý rẻ) và **sửa theo review vòng 2** (3 Nghiêm trọng, 15 Nên sửa, các Góp ý rẻ và an toàn); **chờ review vòng 3** (chỉ phần đổi, `pnpm content:diff`, Sonnet) và lượt đọc hiểu Haiku trên chữ đổi. Vẫn `status: draft`, chưa có `reviewedHash`, chưa khoá id, chưa có lời đọc giới thiệu và chưa có video.
+- Gồm 11 section dạy, section bài tập sách bài tập (SBT 5.1 đến 5.10: 16 câu sách, 18 câu dẫn), 11 thẻ, 90 câu (34 câu ở các section dạy và câu luyện, 22 câu kho ôn, 34 câu của section sách), 3 mẹo, 78 phút (4 + 10 × 5 + 24).
 - `pnpm content:check --stats`: 0 lỗi, mọi tiêu chí `PASS`, 16 `bookRef` (SBT 5.1, 5.2, 5.3a, 5.3b, 5.4, 5.5, 5.6a, 5.6b, 5.6c, 5.7, 5.8a, 5.8b, 5.9a, 5.9b, 5.9c, 5.10), 5 dạng câu (đúng mức tối thiểu: `choice` 34, `manipulate` 25, `numeric` 22, `tapRegion` 5, `match` 3, `order` 1), 35 hình tương tác.
 - Đọc hiểu (Haiku) lượt 1 trên toàn bài: 215 Hiểu rõ / 1 Hiểu mơ hồ / 0 Khó hiểu; mục mơ hồ là câu của mẹo `cheo-khong-phai-truc` ("ngược lại"), đã viết lại. Tệp ở `.shots/review/hinh-co-truc-doi-xung/doc-hieu.md` (ngoài git). Chữ của bài còn có thể đổi sau review, nên sau các vòng đầy đủ phải chạy lại lượt Haiku chỉ trên mục chữ đổi (`pnpm content:diff`), theo skill `lesson-review`, mục "Đọc hiểu".
 
 ## Việc tiếp theo (phiên mới)
 
-1. **Review vòng 2, chỉ phần đổi** (Opus, vòng đầy đủ thứ hai). Vòng 1 đã xong với ba Reviewer Opus và một Tổng hợp; nhóm chia khi đó:
+1. **Review vòng 3, chỉ phần đổi** (Sonnet, `pnpm content:diff` so với bản vòng 2 ghi ở `review.md`), rồi lượt Haiku "đọc hiểu" trên chữ đổi. Chia nhóm như hai vòng đầy đủ trước (ba Reviewer và một Tổng hợp):
    - Nhóm 1: section 1 đến 5 (`quanh-ta`, `truc-doi-xung`, `chu-nhat-thoi`, `thang-can-binh-hanh`, `hinh-deu`) cùng thẻ, câu kiểm tra, câu luyện, câu ôn của chúng.
    - Nhóm 2: section 6 đến 11 (`chu-cai-chu-so`, `do-vat-bieu-tuong`, `diem-doi-xung`, `ve-them-hinh`, `truc-cheo`, `gap-giay`) cùng thẻ và câu của chúng.
    - Nhóm 3: section `bai-tap-sach-bai-tap`, một nhóm riêng: mở ảnh `sources/math/hinh-co-truc-doi-xung/sbt-p80.png` đến `sbt-p83.png` và `sbt-p118.png`, `sbt-p119.png`; làm đủ ba việc với câu sách (đủ bài tập, đề y hệt sách, đáp án khớp lời giải) và soát 18 câu dẫn.
-2. Sửa lỗi vòng 2 (nếu có), vòng sau chỉ phần đổi (Sonnet từ vòng 3). Lượt đọc hiểu Haiku chỉ trên chữ đổi trước `pnpm content:hash hinh-co-truc-doi-xung --approve`; sau đó `pnpm content:lock hinh-co-truc-doi-xung` (không chạy lệnh khoá không kèm id bài).
+2. Sửa lỗi vòng 3 (nếu có), vòng sau chỉ phần đổi (Sonnet). Lượt đọc hiểu Haiku chỉ trên chữ đổi trước `pnpm content:hash hinh-co-truc-doi-xung --approve`; sau đó `pnpm content:lock hinh-co-truc-doi-xung` (không chạy lệnh khoá không kèm id bài).
 3. Sau khi duyệt (đã có chủ dự án đồng ý cho từng bước ngoài máy): lời đọc giới thiệu và ba video, rồi `pnpm media:upload` và `pnpm deploy:prod` chỉ khi chủ dự án yêu cầu.
 
 ## Lời đọc và video (làm sau khi duyệt, ghi trước để khỏi quên)
@@ -59,7 +59,7 @@ Bài 21 của sách bài tập (SBT tr.78–83), bài đầu của Chương V "T
 6. `chu-cai-chu-so` Chữ cái và chữ số: trục thẳng đứng hay nằm ngang (T, E, I, L ở màn dạy; chữ ở câu kiểm tra, luyện, ôn khác với màn dạy và với 5.3).
 7. `do-vat-bieu-tuong` Đồ vật và biểu tượng: biển cấm, trái tim, mũi tên, đám mây lệch (không dùng ba biểu tượng của 5.4); bảng 0, 1, 2, 4, 6, vô số trục.
 8. `diem-doi-xung` Điểm đối xứng qua trục: dựng bằng thước và compa (ví dụ 1), đếm ô, đặt A′ và B′.
-9. `ve-them-hinh` Vẽ thêm để hình có trục d (ví dụ 2): nửa dấu cộng (đỉnh trên d giữ nguyên); mẹo "làm nhanh" đếm ô khi trục d nằm ngang.
+9. `ve-them-hinh` Vẽ thêm để hình có trục d (ví dụ 2): nửa dấu cộng (đỉnh trên d giữ nguyên); một màn dạy đếm ô khi trục d nằm ngang (kiến thức mới của bài, không phải mẹo).
 10. `truc-cheo` Trục nằm nghiêng (bài 5.8): đi ngang tới trục rồi đi dọc.
 11. `gap-giay` Gấp giấy và cắt hình (ví dụ 3, bài 5.7): gấp hai lần cắt ở góc có hai nếp thành số 0; quy tắc minh hoạ bằng lỗ tròn không chạm nếp (mở ra có thêm một lỗ đối xứng); mẹo "hiểu nhanh" gấp hai lần hai trục.
 12. `bai-tap-sach-bai-tap` (cuối bài, `bookPractice`): 16 câu sách, 18 câu dẫn, 4 khối "Nhắc lại".
@@ -70,9 +70,9 @@ Bài 21 của sách bài tập (SBT tr.78–83), bài đầu của Chương V "T
 
 ## Hình (`src/visuals/math/hinh-co-truc-doi-xung/`)
 
-- Dữ liệu thuần (không React): `geometry.ts` (đối xứng điểm qua đường thẳng, kiểm "đường này là trục của hình" bằng cách gấp số học, tâm hình, đường cong mượt), `shapes.ts` (17 hình: mỗi hình có nét vẽ, danh sách trục, danh sách đường trông giống trục mà không phải), `glyphs.ts` (chữ và chữ số), `paper.ts` (tờ giấy gấp và cắt), `lattice.ts` (đối xứng trên lưới, hình ghép từ đoạn lưới và số trục của nó), `mirror-model.ts`, `edges.ts` (bài vẽ đường gấp khúc và lời giải), `lines.ts` (đường a, b, c của một hình và trạng thái khi chọn), `boards.ts` (các bảng lưới), `visuals.ts` (danh mục: một mục một hình, khoá là phần cuối của id), `catalog.ts` (kiểu), `logic.ts` (hàm chấm, hàm giải, vùng chạm).
+- Dữ liệu thuần (không React): `geometry.ts` (đối xứng điểm qua đường thẳng, kiểm "đường này là trục của hình" bằng cách gấp số học, tâm hình, đường cong mượt), `shapes.ts` (36 hình: mỗi hình có nét vẽ, danh sách trục, danh sách đường trông giống trục mà không phải), `glyphs.ts` (chữ và chữ số), `paper.ts` (tờ giấy gấp và cắt), `lattice.ts` (đối xứng trên lưới, hình ghép từ đoạn lưới và số trục của nó), `mirror-model.ts`, `edges.ts` (bài vẽ đường gấp khúc và lời giải), `lines.ts` (đường a, b, c, e... của một hình và trạng thái khi chọn; tên đường bỏ chữ d vì d luôn là tên của một trục, xem "Luật nhãn đường"), `boards.ts` (các bảng lưới), `visuals.ts` (danh mục: một mục một hình, khoá là phần cuối của id), `catalog.ts` (kiểu), `logic.ts` (hàm chấm, hàm giải, vùng chạm).
 - Thành phần React: `draw.tsx`, `fold-view.tsx` (gấp một hình theo trục, hai nửa hai màu), `fold-lab.tsx` ("gấp thử" và "chọn trục"), `fold-player.tsx` (hình chạy từng bước: gấp, mở giấy, gấp hai lần), `cards.tsx` (thẻ chạm để gấp, thẻ chạm để xem trục), `figures.tsx` (hình tĩnh, dải hình chạm vùng, hình có đường a, b, c), `gallery.tsx` (hàng hình, tờ giấy, số ghép từ thẻ, thẻ số), `mirror-board.tsx`, `edge-board.tsx`, `line-badge.tsx`, `layout.ts`, `sticker.tsx`, `examples.tsx`; đăng ký ở `src/visuals/registry.ts` (một khối `symmetryEntries`).
-- Test: `tests/visuals/hinh-co-truc-doi-xung.test.tsx` (89 test): từng hình và chữ có đúng các trục khai báo (quét từng độ, tính số học), danh mục khớp đúng tập hình `lesson.json` dùng, mọi bảng đặt điểm đối xứng trong lưới, mọi câu `manipulate` có hàm giải mà hàm chấm nhận và thiếu một mảnh thì không nhận, đáp án sách 5.3 khớp trục chữ, bốn mẹo (xem dưới), 5.10 có đúng mười số, các hình chạm được.
+- Test: `tests/visuals/hinh-co-truc-doi-xung.test.tsx` (106 test): từng hình và chữ có đúng các trục khai báo (quét từng độ, tính số học), danh mục khớp đúng tập hình `lesson.json` dùng, mọi bảng đặt điểm đối xứng trong lưới, mọi câu `manipulate` có hàm giải mà hàm chấm nhận và thiếu một mảnh thì không nhận, đáp án sách 5.3 khớp trục chữ, ba mẹo (xem dưới) và cách đếm ô khi trục nằm ngang (test "counting squares"), 5.10 có đúng mười số, các hình chạm được.
 - Hình gợi ý nấc 2 không lộ kết quả của đề (đếm ô trên ví dụ khác, gấp ngôi nhà), hình lời giải nấc 3 vẽ đúng đáp án của đề.
 
 ## Bài vẽ và cách chấm (yêu cầu của chủ dự án: bài "vẽ" thành dạng chấm được, giữ lời sách)
@@ -85,17 +85,28 @@ Bài 21 của sách bài tập (SBT tr.78–83), bài đầu của Chương V "T
 - 5.1, 5.3a, 5.3b, 5.4: nối, chạm chữ, chọn đáp án; chấm trọn vẹn.
 - Giới hạn: máy không đo được nét vẽ tay hay việc cắt giấy; ở 5.2 và 5.5 bé chọn trong các đường cho sẵn.
 
-## Mẹo (bốn khối `tip`; đã thử bằng test, `tests/visuals/hinh-co-truc-doi-xung.test.tsx`)
+## Luật nhãn đường
+
+Mọi bảng chọn đường (`lines`, `foldLab`, `axisPicker`) đặt tên đường theo thứ tự a, b, c, e, f... (`LETTERS` trong `lines.ts`): không bao giờ có đường tên "d". Chữ d chỉ là tên của trục đối xứng (màn quy tắc, bảng lưới, câu hỏi), nên không đường nào không phải trục mang tên d. Test `the letter d` giữ luật này; mỗi đề có chữ a, b, c, e viết đúng theo thứ tự đường của hình.
+
+## Bảng hình theo tầng (để câu mới không lặp hình)
+
+- Section 1 `quanh-ta`: màn dạy cánh bướm, chiếc lá, cổng đền, ngôi nhà, hình bình hành. Câu kiểm tra `s1-chon-hinh-gap-doi`: mặt nạ và chiếc ly (gấp được), chìa khóa và lá cờ (không). Câu luyện `s1-vat-gap-doi` (chữ): gương tròn trơn (gấp được); dấu hỏi, bàn chân trái, vệt khói. Câu ôn `s1-on-la`: cây thông (gấp được); đám mây lệch, chữ N, chữ P. Câu ôn `s1-on-cham`: chiếc ô và cái chuông (gấp được); chữ Z, lá cờ.
+- Section 6 `chu-cai-chu-so`: màn dạy T, E, I, L; kiểm tra U, F; luyện K, W, G, P; ôn `s6-on-chu-mot-truc` (C đúng; S, J, R) và `s6-on-chu-d-truc` (D). Không dùng chữ của 5.3 (A B H M N X Y Z 0 2 3 8 9) hay đáp án 5.7 (V, M, O) ở các câu của thẻ.
+- Section 7 `do-vat-bieu-tuong`: màn dạy biển cấm, trái tim, mũi tên, đám mây lệch (hình quy tắc: trái tim, biển cấm, đám mây lệch); kiểm tra `s7-khong-co-truc` (bình hành nghiêng không trục; tam giác đều, lục giác đều, hình thoi); luyện `s7-mot-truc` (hình thang cân, chai nước một trục; hình chữ nhật, hình vuông); ôn `s7-on-khong-truc` (bình hành lệch, đám mây lệch; chiếc lá, dấu cộng).
+- Giấy: màn quy tắc, recap và khối "Nhắc lại" của section `gap-giay` dùng lỗ tròn (`gap-giay-quy-tac`); tờ cắt tam giác mở ra hình thoi (`paper-t`, `goi-y-gap-giay`) chỉ ở câu dẫn `l57-hinh-thoi` và gợi ý của 5.7.
+- Câu dẫn `l55-dau-cong`: chữ thập có cánh ngang dài, cánh dọc ngắn (hai trục), không phải dấu cộng bốn cánh bằng nhau của 5.4 và các khối "Nhắc lại".
+
+## Mẹo (ba khối `tip`; đã thử bằng test, `tests/visuals/hinh-co-truc-doi-xung.test.tsx`)
 
 - `cheo-khong-phai-truc` (tránh sai, section 3): hình chữ nhật có hai cạnh dài ngắn khác nhau thì đường chéo không phải trục; hình thoi thì hai đường chéo là trục. Đã thử hình chữ nhật 160 × 90, 120 × 100, 150 × 20, 100 × 99 (đường chéo không phải trục) và hình thoi nửa đường chéo 90 và 52, 80 và 80 (hình vuông), 100 và 30, 60 và 59 (cả hai đường chéo là trục). Điều kiện "dài ngắn khác nhau" nằm trong câu mẹo.
 - `dem-truc-hinh-deu` (làm nhanh, section 5): tam giác đều, hình vuông, lục giác đều có bao nhiêu cạnh thì có bấy nhiêu trục. Test đã thử n = 3, 4, 5, 6, 8, 10, 12 (đếm trục bằng cách gấp số học, quét nửa độ); mẹo chỉ nêu ba hình lớp 6 biết.
-- `dem-o-tu-truc` (làm nhanh, section 9): trục d nằm ngang thì đếm số ô từ điểm tới d theo cột rồi đếm số ô bằng vậy ở bên kia, trên cùng cột (trục thẳng đứng đã dạy ở section 8). Đã thử khoảng cách 0, 1, 2, 3, 5 ô với trục đứng và ngang (khoảng cách 0 ra điểm trên trục).
 - `gap-hai-lan` (hiểu nhanh, section 11): gấp hai lần theo hai nếp vuông góc rồi cắt, khi mở ra có ít nhất hai trục là hai nếp gấp. Đã thử năm hình cắt (hình chữ nhật ở góc, tam giác sát nếp, hình bốn cạnh chạm nếp, hình sát tâm, hình vuông nhỏ).
 
-## Kiểm đã chạy (06/10/2026, sau khi sửa vòng 1)
+## Kiểm đã chạy (06/10/2026, sau khi sửa vòng 2)
 
-- `pnpm content:check`: 0 lỗi; `pnpm lint`, `pnpm typecheck`, `pnpm test` đều đạt (test của bài: 89).
-- `pnpm visual:shot` và `pnpm lesson:walk` chạy trong git worktree tạm cổng 3950: `visual:shot` 236/236 đạt; `lesson:walk` 0 lỗi, 0 cảnh báo ở iPad dọc, iPad ngang và điện thoại. Lỗi iPad ngang của câu `s1-chon-hinh-gap-doi` đã hết nhờ hình làm phương án thu còn 84 px (`THUMB_WIDTH` trong `visuals.ts`).
+- `pnpm content:check`: 0 lỗi; `pnpm lint`, `pnpm typecheck`, `pnpm test` đều đạt (test của bài: 106).
+- `pnpm visual:shot` và `pnpm lesson:walk` chạy trong git worktree tạm cổng 3950: `visual:shot` 248/248 đạt; `lesson:walk` 0 lỗi, 0 cảnh báo ở iPad dọc, iPad ngang và điện thoại. Câu ôn không nằm trong lượt `lesson:walk` (ví dụ `s4-on-ghep-so-truc`, nay nối hình với số trục) nên chưa có ảnh màn của câu đó.
 - Cách chạy lại: git worktree tạm, `pnpm install --offline --frozen-lockfile`, chép các tệp của bài, `TEST_PORT=<cổng> pnpm visual:shot hinh-co-truc-doi-xung` rồi `TEST_PORT=<cổng> pnpm lesson:walk hinh-co-truc-doi-xung` (không chạy song song trên một cổng).
 
 ## Vòng 1: việc chưa làm
