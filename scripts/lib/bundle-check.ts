@@ -16,6 +16,7 @@ export const SERVER_ONLY_ENV_NAMES = [
   "FAMILY_CODE_SECRET",
   "FAMILY_CODES_REVOKED",
   "SYNC_STORE",
+  "GITHUB_FEEDBACK_TOKEN",
 ] as const;
 
 // Variables whose values are secrets. `R2_ACCOUNT_ID` and `R2_PRIVATE_BUCKET`
@@ -26,6 +27,7 @@ const SECRET_VALUE_NAMES = [
   "R2_SECRET_ACCESS_KEY",
   "SESSION_SECRET",
   "FAMILY_CODE_SECRET",
+  "GITHUB_FEEDBACK_TOKEN",
 ] as const;
 
 // Shorter values are skipped: they would match by chance.

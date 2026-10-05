@@ -16,6 +16,7 @@ const ENV = {
   R2_PRIVATE_BUCKET: "tutor-progress",
   SESSION_SECRET: "a-secret-of-at-least-thirty-two-characters",
   FAMILY_CODE_SECRET: "a-code-secret-of-at-least-thirty-two-chars",
+  GITHUB_FEEDBACK_TOKEN: "github_pat_test_feedback_token_0001",
 };
 
 const file = (text: string) => ({ path: "chunks/app.js", text });
@@ -47,6 +48,22 @@ describe("findBundleLeaks", () => {
     ]);
     expect(JSON.stringify(leaks)).not.toContain(ENV.R2_SECRET_ACCESS_KEY);
     expect(JSON.stringify(leaks)).not.toContain(ENV.FAMILY_CODE_SECRET);
+  });
+
+  it("reports the feedback token by name and by value", () => {
+    expect(
+      findBundleLeaks(
+        [
+          file(
+            `process.env.GITHUB_FEEDBACK_TOKEN;"${ENV.GITHUB_FEEDBACK_TOKEN}"`,
+          ),
+        ],
+        ENV,
+      ),
+    ).toEqual([
+      { file: "chunks/app.js", what: "name GITHUB_FEEDBACK_TOKEN" },
+      { file: "chunks/app.js", what: "value of GITHUB_FEEDBACK_TOKEN" },
+    ]);
   });
 
   it("skips values too short to tell apart from ordinary text", () => {
