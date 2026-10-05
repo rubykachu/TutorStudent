@@ -8,6 +8,7 @@ import { ChildSounds } from "@/learn/child-sounds";
 import { useLessonTips } from "@/learn/use-lesson-tips";
 import { lessonHeading } from "@/lib/lesson-label";
 import { lessonPath } from "@/lib/routes";
+import { lessonFeedbackContext } from "@/user-feedback/context";
 import { ContentError } from "../../../content-error";
 import { LessonGate } from "../lesson-gate";
 
@@ -47,7 +48,10 @@ export function TipsScreen({ lessonId }: { lessonId: string }) {
       <LessonGate lessonId={lessonId}>
         {({ lesson }, profile) => (
           <ChildSounds childId={profile.id}>
-            <PageTopBar childId={profile.id}>
+            <PageTopBar
+              childId={profile.id}
+              feedback={lessonFeedbackContext(lesson, "tips")}
+            >
               <Link
                 href={lessonPath(lesson.id)}
                 data-tips-back

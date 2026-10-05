@@ -39,6 +39,7 @@ import {
   startSession,
 } from "@/srs/session";
 import { requestSync } from "@/sync/request";
+import { reviewFeedbackContext } from "@/user-feedback/context";
 import { preloadVisuals, visualIdsIn } from "@/visuals/registry-visual";
 
 type ReviewPlayerProps = {
@@ -174,6 +175,12 @@ export function ReviewPlayer({
           : undefined
       }
       onBack={canGoBack ? () => setViewing((viewing ?? live) - 1) : undefined}
+      feedback={reviewFeedbackContext(
+        lesson,
+        item || recap || viewing !== null
+          ? (session.items[onScreen]?.exerciseId ?? null)
+          : null,
+      )}
     />
   );
   const viewedItem = viewing === null ? undefined : session.items[viewing];

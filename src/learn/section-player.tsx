@@ -59,6 +59,7 @@ import {
 import { saveOpenEndedWriting } from "@/progress/writing";
 import type { Lesson, OpenEndedExercise, Section } from "@/schema/content";
 import { requestSync } from "@/sync/request";
+import { sectionFeedbackContext } from "@/user-feedback/context";
 import { preloadVisuals, visualIdsIn } from "@/visuals/registry-visual";
 import { GuidedStepProvider, useGuided } from "@/visuals/shared/guided-step";
 
@@ -194,7 +195,11 @@ export function SectionPlayer({
     return (
       <FeedbackSoundsProvider sounds={sounds}>
         <ButtonSounds>
-          <PlayerHeader lessonId={lesson.id} childId={childId} />
+          <PlayerHeader
+            lessonId={lesson.id}
+            childId={childId}
+            feedback={sectionFeedbackContext(lesson, section, null)}
+          />
           <SectionDone
             lesson={lesson}
             section={section}
@@ -256,6 +261,11 @@ export function SectionPlayer({
             onSelect: (i) => setViewing(i >= stepIndex ? null : i),
           }}
           onBack={shown > 0 ? back : backToIntro}
+          feedback={sectionFeedbackContext(
+            lesson,
+            section,
+            steps[shown] ?? step,
+          )}
         />
         <h1 className="text-block font-semibold md:text-block-lg">
           <RichText

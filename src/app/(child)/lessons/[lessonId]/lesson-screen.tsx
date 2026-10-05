@@ -41,6 +41,7 @@ import {
   useLessonProgress,
 } from "@/progress/hooks";
 import { countForgetting, countOpened } from "@/srs/select";
+import { lessonFeedbackContext } from "@/user-feedback/context";
 import { LessonGate } from "./lesson-gate";
 
 function useSubject(subjectId: string) {
@@ -101,7 +102,10 @@ function LessonBody({
     const started = progress.sections.some((s) => s.state !== "not_started");
     return (
       <>
-        <PageTopBar childId={profile.id}>
+        <PageTopBar
+          childId={profile.id}
+          feedback={lessonFeedbackContext(lesson, "overview")}
+        >
           <BackLink subjectId={lesson.subject} />
         </PageTopBar>
         <LessonOverviewView
@@ -151,7 +155,10 @@ function LessonBody({
     <>
       {/* The list of parts is an outer screen; the overview above is not. */}
       <OuterScreenMusic />
-      <PageTopBar childId={profile.id}>
+      <PageTopBar
+        childId={profile.id}
+        feedback={lessonFeedbackContext(lesson, "lesson")}
+      >
         <BackLink subjectId={lesson.subject} />
       </PageTopBar>
       <header className="flex flex-col gap-1">

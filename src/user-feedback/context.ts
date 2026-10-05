@@ -96,19 +96,22 @@ export function sectionFeedbackContext(
   };
 }
 
-// An exercise of the review player, placed in the section that holds it.
+// The review player: the exercise on screen, placed in the section that
+// holds it, or the lesson alone on its end screen (`exerciseId` null).
 export function reviewFeedbackContext(
   lesson: LessonFacts,
-  exerciseId: string,
+  exerciseId: string | null,
 ): FeedbackContext {
+  if (exerciseId === null || !exerciseId.startsWith(`${lesson.id}.`)) {
+    return { ...base(lesson), screen: "review" };
+  }
   const section = lesson.sections.find(
     (s) =>
       s.checkIds.includes(exerciseId) || s.practiceIds.includes(exerciseId),
   );
-  const placed = section ? withSection(lesson, section) : base(lesson);
   return {
-    ...placed,
-    item: exerciseId.startsWith(`${lesson.id}.`) ? exerciseId : null,
+    ...(section ? withSection(lesson, section) : base(lesson)),
+    item: exerciseId,
     screen: "review",
   };
 }

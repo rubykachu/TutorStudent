@@ -6,6 +6,8 @@ import { SectionStepper } from "@/components/section-stepper";
 import { SoundToggle } from "@/components/sound-toggle";
 import { useFeedbackSoundsContext } from "@/lib/feedback-sounds";
 import { lessonPath } from "@/lib/routes";
+import type { FeedbackContext } from "@/user-feedback/context";
+import { FeedbackButton } from "@/user-feedback/feedback-button";
 
 type PlayerHeaderProps = {
   lessonId: string;
@@ -24,16 +26,19 @@ type PlayerHeaderProps = {
   // Goes to the previous screen; absent on the first one. The button keeps
   // its room even then, so the dots never shift when it appears.
   onBack?: () => void;
+  // What a report from the "Góp ý" button is about: the screen shown.
+  feedback?: FeedbackContext;
 };
 
 // Top row of the section and review players: leave the lesson (×), go back
-// one screen ("Quay lại"), the position dots and, at the right end, the
-// sound switch. Leaving plays the goodbye clip.
+// one screen ("Quay lại"), the position dots and, at the right end, "Góp ý"
+// and the sound switch. Leaving plays the goodbye clip.
 export function PlayerHeader({
   lessonId,
   childId,
   progress,
   onBack,
+  feedback,
 }: PlayerHeaderProps) {
   const sounds = useFeedbackSoundsContext();
   return (
@@ -63,7 +68,8 @@ export function PlayerHeader({
         </button>
       )}
       {progress && <SectionStepper {...progress} />}
-      <div className="ml-auto flex shrink-0">
+      <div className="ml-auto flex shrink-0 items-center">
+        {feedback && <FeedbackButton context={feedback} />}
         <SoundToggle childId={childId} />
       </div>
     </header>
