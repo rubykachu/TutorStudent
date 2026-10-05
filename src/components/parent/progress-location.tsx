@@ -37,3 +37,15 @@ export function ReportSourceNote() {
     </p>
   );
 }
+
+// What a "Góp ý" report carries and where it goes, for the parent.
+export const FEEDBACK_PRIVACY_NOTE =
+  "Góp ý gửi tới người làm app để sửa bài, không kèm tên bé hay mã gia đình.";
+
+export function FeedbackPrivacyNote() {
+  return (
+    <p className="text-caption text-muted-foreground" data-feedback-privacy>
+      {FEEDBACK_PRIVACY_NOTE}
+    </p>
+  );
+}

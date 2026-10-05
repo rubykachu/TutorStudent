@@ -21,6 +21,7 @@ import { Owl } from "@/mascot/owl";
 import { sendFeedback as defaultSend } from "./client";
 import type { FeedbackContext } from "./context";
 import { REASON_LABELS } from "./labels";
+import { ParentFeedback } from "./parent-form";
 import {
   FEEDBACK_REASONS,
   type FeedbackReason,
@@ -78,6 +79,7 @@ export function FeedbackSheet({
   send = defaultSend,
 }: FeedbackSheetProps) {
   const [thanked, setThanked] = useState(false);
+  const [parent, setParent] = useState(false);
 
   const choose = async (reason: FeedbackReason) => {
     try {
@@ -91,7 +93,9 @@ export function FeedbackSheet({
 
   return (
     <Sheet label={SHEET_LABEL} onClose={onClose}>
-      {thanked ? (
+      {parent ? (
+        <ParentFeedback context={context} onClose={onClose} send={send} />
+      ) : thanked ? (
         <Thanks text="Cảm ơn bạn! Cú đã ghi lại rồi." onClose={onClose} />
       ) : (
         <div className="flex flex-col gap-4" data-feedback-sheet="chips">
@@ -123,6 +127,14 @@ export function FeedbackSheet({
               );
             })}
           </div>
+          <button
+            type="button"
+            data-feedback-parent
+            onClick={() => setParent(true)}
+            className="min-h-touch self-center px-2 font-semibold text-primary underline underline-offset-4"
+          >
+            Phụ huynh góp ý kèm ghi chú
+          </button>
         </div>
       )}
     </Sheet>

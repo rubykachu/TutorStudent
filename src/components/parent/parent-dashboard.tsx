@@ -12,7 +12,7 @@ import { ChildReport } from "./child-report";
 import { FamilyCodePanel } from "./family-code-panel";
 import { InstallAppPanel } from "./install-app-panel";
 import { OfflineStatus } from "./offline-status";
-import { ReportSourceNote } from "./progress-location";
+import { FeedbackPrivacyNote, ReportSourceNote } from "./progress-location";
 import { SyncStatus } from "./sync-status";
 
 const HEADER_ACTION =
@@ -48,6 +48,7 @@ export function ParentDashboard() {
         </div>
       </header>
       <ReportSourceNote />
+      <FeedbackPrivacyNote />
       <SyncStatus />
       <OfflineStatus />
       <InstallAppPanel />

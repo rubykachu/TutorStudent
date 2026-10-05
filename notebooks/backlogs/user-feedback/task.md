@@ -94,7 +94,7 @@ Sizes: S is up to about 2 files of code plus tests; M is up to about 5. A task t
 
 ## Slice 4: parent form
 
-### T10. Parent form behind the PIN (M)
+### T10. Parent form behind the PIN (M) [x]
 
 - Files: `src/components/parent/pin-gate.tsx` (extract `PinPrompt`), `src/components/parent/pin-prompt.tsx` (new), `src/user-feedback/parent-form.tsx` (new), `src/user-feedback/feedback-sheet.tsx`, `src/components/parent/progress-location.tsx` (privacy sentence of `spec.md` section 7.2), `tests/user-feedback/parent-form.test.tsx`, `tests/components/parent/pin-gate.test.tsx` (existing tests keep passing).
 - Do: `spec.md` section 3.3: the link "Phụ huynh góp ý kèm ghi chú", PIN step every time (the parent session is neither read nor opened), "Đặt PIN ở trang phụ huynh…" when no PIN, radio reasons, note with counter and 500 cap, "Gửi góp ý", thank-you.
@@ -178,8 +178,8 @@ Base commit (the commit before T1, for the security review diff): `e706002`.
 
 Coordinator decisions on the reviewer's open questions (recorded in `spec.md`): chip label "Hay, mình thích"; PIN asked for every note; thank-you closes after 5 s and has a close button; opening the sheet pauses narration and video (no auto-resume); the repo README's hidden-block example updated to match section 6.2.
 
-Done: T1 to T9b (build of the route passes in a temp worktree; `lesson:walk luy-thua` shows no overlap on phone, iPad, iPad landscape, its only failures being the gitignored media missing in the worktree). The overview's button sits in the `PageTopBar` above the overview (the same top row as the lesson page), not inside the overview's own header.
-Next: T10.
+Done: T1 to T10 (build of the route passes in a temp worktree; `lesson:walk luy-thua` shows no overlap on phone, iPad, iPad landscape, its only failures being the gitignored media missing in the worktree). The overview's button sits in the `PageTopBar` above the overview (the same top row as the lesson page), not inside the overview's own header.
+Next: T11 (Checkpoint B screenshots come from the T11 E2E run).
 
 Deploy coordination (another agent deploys Bài 21 `hinh-co-truc-doi-xung` tonight): right before `deploy:prod`, read the production SHA (last "Bản đang chạy" line of `docs/operations.md`, or `npx vercel ls --prod`); the pinned SHA must contain it (`git merge-base --is-ancestor <prod> <ours>`), else re-pin to a commit with both and re-run lint, typecheck, `content:check`, build. Never deploy while the other deploy runs; if "Bản đang chạy" changed in the last 10 minutes by another deploy, re-check. Every published lesson at the SHA must have its media (`pnpm media:upload --all --dry-run` reports 0).
 
