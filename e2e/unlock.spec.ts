@@ -1,5 +1,10 @@
 import { expect, type Page } from "@playwright/test";
-import { APP_NAME, APP_SHORT_NAME, SITE_URL } from "../src/lib/brand";
+import {
+  APP_NAME,
+  APP_SHORT_NAME,
+  SHARE_IMAGE_TAG,
+  SITE_URL,
+} from "../src/lib/brand";
 import { expectNoHorizontalScroll, expectTouchTargets } from "./layout";
 import {
   e2eFamilyCode,
@@ -114,10 +119,10 @@ test("a link preview crawler without the cookie gets the share card from the unl
     "content",
     new RegExp(APP_NAME),
   );
-  await expect(meta("og:description")).toHaveAttribute("content", /bạn cú/);
+  await expect(meta("og:description")).toHaveAttribute("content", /bạn cú/i);
   await expect(meta("og:image")).toHaveAttribute(
     "content",
-    `${production}/brand/share.png`,
+    `${production}${SHARE_IMAGE_TAG.url}`,
   );
   await expect(meta("og:image:width")).toHaveAttribute("content", "1200");
   await expect(meta("og:image:height")).toHaveAttribute("content", "630");
@@ -127,7 +132,7 @@ test("a link preview crawler without the cookie gets the share card from the unl
   );
   await expect(meta("twitter:image")).toHaveAttribute(
     "content",
-    `${production}/brand/share.png`,
+    `${production}${SHARE_IMAGE_TAG.url}`,
   );
   await expect(
     page.locator('link[rel="icon"][type="image/svg+xml"]'),

@@ -432,7 +432,7 @@ Bé và phụ huynh bấm "Góp ý" trên màn bài học (quy tắc: `docs/spec
 
 ### Vòng đời bản ghi
 
-Chủ dự án đặt hai quy tắc lifecycle trên bucket `tutor-progress` (dashboard Cloudflare, R2, bucket, Settings, Object lifecycle rules): xoá `prod/feedback/` sau 365 ngày và `dev/feedback/` sau 30 ngày. `pending.json` được ghi lại mỗi lần đổi nên không hết hạn khi còn dùng. Issue trên GitHub được giữ; chủ dự án có thể xoá issue đã đóng hơn một năm. Gia đình muốn xoá dữ liệu: tính bí danh của gia đình trên máy tin cậy (12 hex đầu của HMAC-SHA256(`SESSION_SECRET`, `feedback-family:<id gia đình>`)), xoá các bản ghi có `family` đó và các issue có `"family":"<bí danh>"` trong khối ẩn.
+Bucket `tutor-progress` có hai quy tắc lifecycle (`prod-feedback-365d`, `dev-feedback-30d`; xem bằng `npx wrangler r2 bucket lifecycle list tutor-progress`): xoá `prod/feedback/` sau 365 ngày và `dev/feedback/` sau 30 ngày. `pending.json` được ghi lại mỗi lần đổi nên không hết hạn khi còn dùng. Issue trên GitHub được giữ; chủ dự án có thể xoá issue đã đóng hơn một năm. Gia đình muốn xoá dữ liệu: tính bí danh của gia đình trên máy tin cậy (12 hex đầu của HMAC-SHA256(`SESSION_SECRET`, `feedback-family:<id gia đình>`)), xoá các bản ghi có `family` đó và các issue có `"family":"<bí danh>"` trong khối ẩn.
 
 ### Gom và sửa (agent làm khi chủ dự án yêu cầu)
 

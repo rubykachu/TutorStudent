@@ -164,9 +164,9 @@ curl -s -o /dev/null -w '%{http_code}\n' \
 
 The second command calls GitHub (read only); the owner runs it, or an agent runs it after the owner says so.
 
-### T16. Rollout (external writes; each step only after the owner's go-ahead for it) [x] except step 1 (owner)
+### T16. Rollout (external writes; each step only after the owner's go-ahead for it) [x]
 
-1. Owner, Cloudflare dashboard: lifecycle rules on `tutor-progress`: delete `prod/feedback/` after 365 days, `dev/feedback/` after 30 days.
+1. [x] Lifecycle rules (`prod-feedback-365d`, `dev-feedback-30d`, added with `wrangler r2 bucket lifecycle add`) on `tutor-progress`: delete `prod/feedback/` after 365 days, `dev/feedback/` after 30 days.
 2. Vercel env (**external write**): `sed -n 's/^GITHUB_FEEDBACK_TOKEN=//p' .env.production.local | tr -d '\n' | npx vercel env add GITHUB_FEEDBACK_TOKEN production --sensitive` (`npx vercel whoami` is `rubykachu`). Production only, not Preview.
 3. Deploy (**external write**): `pnpm deploy:prod --ref <the verified sha>`, smoke 8/8, per `docs/operations.md` "Đưa bài mới lên production".
 4. Live check (**external write: a real issue**): with the smoke family `OWLTEST0` (its code comes from `FAMILY_CODE_SECRET`, as in the deploy smoke checks; it never syncs, so no progress is touched), send one child report and one parent report on production; the issues appear in `rubykachu/owlyeah-feedback` with the right labels, `app` equals the deployed short SHA, `family` is 12 hex; R2 has `prod/feedback/<yyyy-mm>/<id>.json` with `forward.state: "sent"`; `pending.json` is empty or absent. Close both issues with `trang-thai:khong-sua` and the comment "Kiểm tra khi triển khai". No family is created or revoked, so no further env change or deploy follows.
@@ -181,7 +181,6 @@ Coordinator decisions on the reviewer's open questions (recorded in `spec.md`): 
 Done: T1 to T14 and T16 steps 2 to 5 (06/10/2026). `GITHUB_FEEDBACK_TOKEN` added to Vercel Production (Sensitive); `f3803c1` deployed with `pnpm deploy:prod`, smoke 8/8; production check with `OWLTEST0`: issues https://github.com/rubykachu/owlyeah-feedback/issues/1 (parent, note) and https://github.com/rubykachu/owlyeah-feedback/issues/2 (child), right labels and body, `app` = `f3803c1`, R2 records `sent`, `pending.json` empty; both closed with `trang-thai:khong-sua` and the comment "kiểm thử triển khai". Full E2E at `f3803c1`: everything passes except `e2e/unlock.spec.ts` "a link preview crawler…" on both targets, which fails already at `e706002` (it expects "bạn cú", the brand text says "Bạn cú").
 README of `rubykachu/owlyeah-feedback` updated through the contents API (commit `584e6f9`, by `rubykachu`): the hidden-block example has `id` and `step`.
 Leftovers (do not archive this folder until they are done):
-- Owner: add the R2 lifecycle rules on `tutor-progress` (`prod/feedback/` 365 days, `dev/feedback/` 30 days), T16 step 1.
 - Owner: read Checkpoint A (issue format above, or issues #1 and #2) and Checkpoint B (screenshots from an `e2e/user-feedback.spec.ts` run, `test-results/`), and the security review below; change copy or layout if wanted.
 - Owner: GitHub returned no expiry header for the token; write its expiry date into `docs/operations.md`, "Góp ý từ app".
 - Later (security review L1, L3): search for the report id before resending after a `timeout`; a lesson catalog on the server so unknown slugs get no `bai:` label.
