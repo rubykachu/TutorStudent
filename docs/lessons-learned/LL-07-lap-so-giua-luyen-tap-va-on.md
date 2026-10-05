@@ -11,6 +11,7 @@ Câu kho ôn dùng đúng bộ số của câu luyện tập, của ví dụ tr�
 - `thu-tu-thuc-hien-phep-tinh` vòng 2, `ex.nhan-7-8`: lặp dòng 8 · 7 = 56 của màn trước.
 - Review sản phẩm 30/09/2026: phiên ôn hỏi lại đúng câu vừa luyện.
 - `so-nguyen-to` vòng 3: bản sửa đưa chips màn chạm `chon-nt-2-7` xuống số không quá 30 (21, 22, 23, 25, 27, 29), nên bốn số và cả đáp án {23, 29} trùng màn "tra bảng rồi chạm" `chon-nt-bang` ở section 4. Đổi số của một màn để thỏa một luật thì soát các màn cùng loại ở section khác của bài, không chỉ recap và câu luyện cùng section.
+- `hinh-co-truc-doi-xung` phần bài tập sách bài tập vòng 1 (Nghiêm trọng): câu dẫn `ex.l510-ba-the` dùng đúng ba thẻ 1, 8, 0 của SBT 5.10 và ra 4 (một số hạng của đáp án 4 + 6), `ex.l510-hai-nam` ghép 285, một số của lời giải. Câu dẫn lặp đúng dữ kiện câu sách kế tiếp thì lộ đáp án.
 
 ## Nguyên nhân gốc
 
