@@ -2,7 +2,7 @@ import { CONCEPT_CLASSES } from "@/visuals/shared/concept";
 import { decorative } from "@/visuals/shared/markers";
 import { AXIS_CLASS, LineMark, Strokes } from "./draw";
 import { type Subject, SubjectDrawing, subjectName } from "./figures";
-import { FoldGroup } from "./fold-view";
+import { FixedHalf, FoldGroup } from "./fold-view";
 import { GLYPH_HEIGHT, GLYPH_WIDTH, GLYPHS, type GlyphId } from "./glyphs";
 import { PAPERS, type PaperId } from "./paper";
 import { FRAME } from "./shapes";
@@ -136,17 +136,25 @@ export function Papers({ spec }: { spec: PapersSpec }) {
             >
               <div className="w-full max-w-40">
                 <svg
-                  viewBox={`0 0 ${FRAME} ${FRAME}`}
+                  viewBox={
+                    item.open
+                      ? `0 0 ${FRAME} ${FRAME}`
+                      : paper.foldedBox.join(" ")
+                  }
                   role="img"
                   aria-label={`${paper.name}${item.open ? ", đã mở ra" : ", đã gấp đôi"}`}
                   className="h-auto w-full"
                 >
-                  <FoldGroup
-                    strokes={paper.strokes}
-                    axis={paper.fold}
-                    t={item.open ? 0 : 1}
-                    smoothly={false}
-                  />
+                  {item.open ? (
+                    <FoldGroup
+                      strokes={paper.strokes}
+                      axis={paper.fold}
+                      t={0}
+                      smoothly={false}
+                    />
+                  ) : (
+                    <FixedHalf strokes={paper.strokes} axis={paper.fold} />
+                  )}
                   <g {...decorative}>
                     <LineMark
                       axis={paper.fold}
@@ -170,6 +178,8 @@ export function Papers({ spec }: { spec: PapersSpec }) {
 
 export type NumbersSpec = {
   label: string;
+  // Numbers in a row (default 2).
+  columns?: 2 | 5;
   items: readonly {
     digits: readonly GlyphId[];
     // "v": the vertical line through the middle; "h": the horizontal one.
@@ -183,7 +193,9 @@ const NUMBER_GAP = 4;
 export function Numbers({ spec }: { spec: NumbersSpec }) {
   return (
     <figure aria-label={spec.label} className="w-full">
-      <ul className="grid grid-cols-2 items-start gap-3">
+      <ul
+        className={`grid items-start gap-3 ${spec.columns === 5 ? "grid-cols-5" : "grid-cols-2"}`}
+      >
         {spec.items.map((item) => {
           const width =
             item.digits.length * GLYPH_WIDTH +

@@ -32,6 +32,9 @@ export type MirrorSpec = {
   // Where a name stands beside its point, in lattice units (default up and
   // to the left).
   nameShift?: Readonly<Record<string, Pt>>;
+  // Writes 1, 2, 3 ... above the columns or beside the rows (counting from 1),
+  // for a question that names a column or a row.
+  numbering?: "cols" | "rows";
   // Lesson screen only: the closing line once the child has placed every
   // point. Without it the board is free (an exercise).
   done?: string;

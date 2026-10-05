@@ -7,6 +7,7 @@ import {
   BOOK_58A,
   BOOK_58B,
   BOOK_59,
+  COLUMN_QUESTION,
   COMPLETE_EXERCISE,
   COMPLETE_GUIDED,
   DIAGONAL_DEMO,
@@ -22,9 +23,11 @@ import {
   LEAD_59,
   PLUS_STEPS,
   POINT_DEMO,
+  POINT_DEMO_HORIZONTAL,
   POINT_EXERCISE,
   POINTS_GUIDED,
   POINTS_RULE,
+  ROW_QUESTION,
   VASE_RULE,
 } from "./boards";
 import type { VisualSpec } from "./catalog";
@@ -42,7 +45,9 @@ const fake = (i: number): LineRef => ({ src: "fake", i });
 const shape = (id: ShapeId): Subject => ({ shape: id });
 const glyph = (id: GlyphId): Subject => ({ glyph: id });
 
-const THUMB_WIDTH = 120;
+// Pictures that are the options of a question: small enough that four of
+// them fit one above the other on a landscape iPad.
+const THUMB_WIDTH = 84;
 const PICTURE_WIDTH = 250;
 
 const thumbs: Record<string, VisualSpec> = {
@@ -50,16 +55,16 @@ const thumbs: Record<string, VisualSpec> = {
     (
       [
         "butterfly",
+        "cloud",
         "gate",
         "hexagon",
         "house",
         "leaf",
-        "medical",
         "parallelogram",
-        "pentomino",
         "plus",
         "rectangle",
         "rhombus",
+        "scalene",
         "square",
         "star",
         "trapezoid",
@@ -70,12 +75,25 @@ const thumbs: Record<string, VisualSpec> = {
     ]),
   ),
   ...Object.fromEntries(
-    (["H", "L", "N", "T"] as const).map((id) => [
+    (["C", "F", "N", "O", "P", "Z"] as const).map((id) => [
       `thumb-glyph-${id.toLowerCase()}`,
       { kind: "subject", subject: glyph(id), width: THUMB_WIDTH },
     ]),
   ),
 };
+
+// A number of three digits built from cards, with the line it is symmetric
+// about named in its caption.
+function numberItem(
+  digits: string,
+  axis: "h" | "v",
+): { digits: GlyphId[]; axis: "h" | "v"; caption: string } {
+  return {
+    digits: [...digits] as GlyphId[],
+    axis,
+    caption: `${digits}: ${axis === "h" ? "ngang" : "đứng"}`,
+  };
+}
 
 const bigGlyph = (id: GlyphId): VisualSpec => ({
   kind: "subject",
@@ -180,13 +198,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   ...thumbs,
   "big-parallelogram": {
     kind: "subject",
-    subject: shape("parallelogram"),
+    subject: shape("slantleft"),
     width: PICTURE_WIDTH,
   },
   "big-star": { kind: "subject", subject: shape("star"), width: PICTURE_WIDTH },
-  "chu-e": bigGlyph("E"),
-  "chu-l": bigGlyph("L"),
-  "chu-t": bigGlyph("T"),
+  "chu-c": bigGlyph("C"),
+  "chu-f": bigGlyph("F"),
+  "chu-u": bigGlyph("U"),
+  "chu-so-1": bigGlyph("1"),
 
   // Section 1: shapes around us that fold in half
   "quanh-ta": {
@@ -215,14 +234,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "cham-gap-doi": {
     kind: "strip",
-    label: "Cánh bướm, hình bình hành, ngôi nhà và biểu tượng có con rắn",
+    label: "Ngôi nhà, mặt trống đồng, chữ Z và đám mây bị gió thổi lệch",
     mode: "tap",
     columns: 2,
     items: [
-      shapeItem("buom", "butterfly", "Cánh bướm"),
-      shapeItem("binh-hanh", "parallelogram", "Hình bình hành"),
       shapeItem("ngoi-nha", "house", "Ngôi nhà"),
-      shapeItem("y-duoc", "medical", "Biểu tượng có con rắn"),
+      shapeItem("mat-trong", "circle", "Mặt trống đồng hình tròn"),
+      glyphItem("chu-z", "Z", "Chữ Z"),
+      shapeItem("may", "cloud", "Đám mây bị gió thổi lệch"),
     ],
   },
 
@@ -241,6 +260,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "subject",
     subject: shape("house"),
     axes: true,
+    axisLabel: "d",
     width: PICTURE_WIDTH,
   },
   "gap-thu-ngoi-nha": {
@@ -249,10 +269,10 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     lines: [axis(0), fake(0), fake(2), fake(1)],
     done: "Bạn đã gấp thử cả bốn đường. Chỉ đường thẳng đứng ở giữa là trục.",
   },
-  "lines-house": {
+  "lines-butterfly": {
     kind: "lines",
-    shape: "house",
-    lines: [fake(0), axis(0), fake(1), fake(2)],
+    shape: "butterfly",
+    lines: [fake(0), fake(1), axis(0), fake(2)],
   },
   "lines-gate": {
     kind: "lines",
@@ -288,12 +308,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "lines-rectangle": {
     kind: "lines",
-    shape: "rectangle",
+    shape: "tallrect",
     lines: [fake(0), axis(0), fake(1), axis(1)],
   },
   "chon-truc-thoi": {
     kind: "axisPicker",
-    groups: [{ shape: "rhombus", lines: [fake(0), axis(1), fake(1), axis(0)] }],
+    groups: [
+      { shape: "flatrhombus", lines: [fake(0), axis(1), fake(1), axis(0)] },
+    ],
   },
 
   // Section 4: the isosceles trapezoid and the parallelogram
@@ -377,32 +399,32 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   // Section 6: letters and digits
   "chu-cai-the": {
     kind: "axisCards",
-    label: "Bốn thẻ chữ: A, B, H và N",
-    items: [glyph("A"), glyph("B"), glyph("H"), glyph("N")],
+    label: "Bốn thẻ chữ: T, E, I và L",
+    items: [glyph("T"), glyph("E"), glyph("I"), glyph("L")],
     verb: "xem",
     done: "Bạn đã xem cả bốn chữ.",
   },
   "chu-cai-quy-tac": {
     kind: "gallery",
-    label: "Trục đối xứng của các chữ A, B, H và N",
+    label: "Trục đối xứng của các chữ T, E, I và L",
     columns: 2,
     items: [
-      { subject: glyph("A"), axes: true, caption: "Chữ A: 1 trục thẳng đứng" },
-      { subject: glyph("B"), axes: true, caption: "Chữ B: 1 trục nằm ngang" },
-      { subject: glyph("H"), axes: true, caption: "Chữ H: 2 trục" },
-      { subject: glyph("N"), axes: true, caption: "Chữ N: không có trục" },
+      { subject: glyph("T"), axes: true, caption: "Chữ T: 1 trục thẳng đứng" },
+      { subject: glyph("E"), axes: true, caption: "Chữ E: 1 trục nằm ngang" },
+      { subject: glyph("I"), axes: true, caption: "Chữ I: 2 trục" },
+      { subject: glyph("L"), axes: true, caption: "Chữ L: không có trục" },
     ],
   },
   "cham-chu-mot-truc": {
     kind: "strip",
-    label: "Bốn chữ cái: E, H, L và T",
+    label: "Bốn chữ cái: K, W, O và P",
     mode: "tap",
     columns: 2,
     items: [
-      glyphItem("chu-e", "E", "Chữ E"),
-      glyphItem("chu-h", "H", "Chữ H"),
-      glyphItem("chu-l", "L", "Chữ L"),
-      glyphItem("chu-t", "T", "Chữ T"),
+      glyphItem("chu-k", "K", "Chữ K"),
+      glyphItem("chu-w", "W", "Chữ W"),
+      glyphItem("chu-o", "O", "Chữ O"),
+      glyphItem("chu-p", "P", "Chữ P"),
     ],
   },
 
@@ -410,8 +432,8 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "bieu-tuong-the": {
     kind: "axisCards",
     label:
-      "Bốn thẻ: cổng đền, biểu tượng Hòa bình, dấu cộng và biểu tượng có con rắn",
-    items: [shape("gate"), shape("peace"), shape("plus"), shape("medical")],
+      "Bốn thẻ: biển báo cấm đi ngược chiều, trái tim, mũi tên và đám mây bị gió thổi lệch",
+    items: [shape("nosign"), shape("heart"), shape("arrow"), shape("cloud")],
     verb: "xem",
     done: "Bạn đã xem cả bốn hình.",
   },
@@ -443,6 +465,18 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     show: "demo",
     from: [0, 1],
   },
+  "diem-dem-o-ngang": {
+    kind: "mirrorStill",
+    board: POINT_DEMO_HORIZONTAL,
+    show: "demo",
+    from: [2, 1],
+  },
+  "cot-cua-diem": {
+    kind: "mirrorStill",
+    board: COLUMN_QUESTION,
+    show: "given",
+  },
+  "hang-cua-diem": { kind: "mirrorStill", board: ROW_QUESTION, show: "given" },
   "diem-cung-lam": { kind: "mirror", board: POINTS_GUIDED },
   "diem-tap-lam": { kind: "mirror", board: POINT_EXERCISE },
 
@@ -451,7 +485,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "mirrorSteps",
     board: PLUS_STEPS,
     start: "Đây là nửa trái của dấu cộng và đường thẳng d.",
-    end: "Các đoạn đã nối: ta được dấu cộng có trục đối xứng d.",
+    end: "Các đoạn đã nối: ta được dấu cộng có trục đối xứng d. Đỉnh nằm trên d thì giữ nguyên.",
   },
   "ve-quy-tac": { kind: "mirrorStill", board: VASE_RULE, show: "solved" },
   "ve-cung-lam": { kind: "mirror", board: COMPLETE_GUIDED },
@@ -474,7 +508,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "mirrorStill",
     board: DIAGONAL_DEMO,
     show: "demo",
-    from: [4, 1],
+    from: [5, 1],
   },
   "cheo-cung-lam": { kind: "mirror", board: DIAGONAL_GUIDED },
   "cheo-tap-lam": { kind: "mirror", board: DIAGONAL_EXERCISE },
@@ -490,6 +524,38 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
       { t: 1, u: 0, caption: "Mở nếp gấp thứ hai ra." },
       { t: 0, u: 0, caption: "Mở nếp gấp thứ nhất ra: hình giống chữ số 0." },
+    ],
+  },
+  "gap-giay-lo": {
+    kind: "paperOpen",
+    paper: "h",
+    frames: [
+      {
+        t: 1,
+        caption: "Gấp đôi tờ giấy, cắt một lỗ tròn không chạm nếp gấp.",
+      },
+      { t: 0.5, caption: "Mở tờ giấy ra." },
+      {
+        t: 0,
+        caption:
+          "Có thêm một lỗ đối xứng với lỗ vừa cắt qua nếp gấp: tất cả 2 lỗ.",
+      },
+    ],
+  },
+  "gap-giay-lo-hai-lan": {
+    kind: "paperTwice",
+    sheet: "holes",
+    frames: [
+      {
+        t: 1,
+        u: 1,
+        caption: "Gấp hai lần rồi cắt một lỗ nhỏ, lỗ không chạm nếp nào.",
+      },
+      {
+        t: 1,
+        u: 0,
+        caption: "Mở nếp gấp thứ hai. Mở nốt nếp thứ nhất thì có thêm mấy lỗ?",
+      },
     ],
   },
   "gap-giay-quy-tac": {
@@ -579,13 +645,47 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
     ],
   },
-  "goi-y-dem-canh": {
+  "goi-y-dem-truc": {
     kind: "gallery",
-    label: "Ngôi sao năm cánh và dấu cộng bốn cánh",
-    columns: 2,
+    label: "Dấu cộng và bốn trục đối xứng của nó",
+    columns: 1,
     items: [
-      { subject: shape("star"), axes: true, caption: "5 cánh: 5 trục" },
-      { subject: shape("plus"), axes: true, caption: "4 cánh: 4 trục" },
+      {
+        subject: shape("plus"),
+        axes: true,
+        caption: "Dấu cộng: gấp theo từng đường hồng, đếm được 4 trục",
+      },
+    ],
+  },
+  "goi-y-gap-thu": {
+    kind: "foldSteps",
+    shape: "leaf",
+    axis: 0,
+    frames: [
+      { t: 0, caption: "Thử gấp hình theo đường đã cho." },
+      { t: 0.5, caption: "Nhìn mép của hai nửa: có trùng nhau không?" },
+    ],
+  },
+  "goi-y-gap-sai": {
+    kind: "foldSteps",
+    shape: "leaf",
+    axis: 0,
+    fake: 2,
+    frames: [
+      { t: 0, caption: "Thử gấp chiếc lá theo một đường nghiêng." },
+      { t: 1, caption: "Một nửa chìa ra ngoài: hai nửa không chồng khít." },
+    ],
+  },
+  "goi-y-ve-hinh": {
+    kind: "gallery",
+    label: "Chữ T và trục đối xứng thẳng đứng của nó",
+    columns: 1,
+    items: [
+      {
+        subject: glyph("T"),
+        axes: true,
+        caption: "Hình có trục: hai nửa giống hệt nhau, gấp đôi là khít",
+      },
     ],
   },
   "goi-y-chu": {
@@ -661,16 +761,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       { shape: "pentomino", lines: [fake(0), fake(1), fake(2), fake(3)] },
       {
         shape: "star",
-        lines: [
-          fake(0),
-          axis(0),
-          axis(1),
-          fake(1),
-          axis(2),
-          axis(3),
-          fake(2),
-          axis(4),
-        ],
+        lines: [axis(0), fake(0), axis(1), axis(2), axis(3), axis(4)],
       },
       { shape: "staircase", lines: [axis(0), fake(0), axis(1), fake(1)] },
     ],
@@ -725,11 +816,25 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "edgesStill",
     board: BOOK_59,
     params: { length: 4, axes: 1 },
+    path: [
+      [2, 1],
+      [3, 1],
+      [3, 2],
+      [3, 3],
+      [2, 3],
+    ],
   },
   "sbt-5-9b-giai": {
     kind: "edgesStill",
     board: BOOK_59,
     params: { length: 4, axes: 2 },
+    path: [
+      [2, 1],
+      [3, 1],
+      [3, 2],
+      [2, 2],
+      [2, 3],
+    ],
   },
   "sbt-5-9c-giai": {
     kind: "edgesStill",
@@ -743,11 +848,19 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "sbt-5-10-giai": {
     kind: "numbers",
-    label: "Hai số ghép từ ba thẻ và trục đối xứng của chúng",
+    label: "Mười số ghép được từ các thẻ và trục đối xứng của chúng",
+    columns: 5,
     items: [
-      { digits: ["1", "0", "8"], axis: "h", caption: "108: trục nằm ngang" },
-      { digits: ["2", "8", "5"], axis: "v", caption: "285: trục thẳng đứng" },
+      ...(["180", "810", "108", "801"] as const).map((n) => numberItem(n, "h")),
+      ...(["205", "502", "215", "512", "285", "582"] as const).map((n) =>
+        numberItem(n, "v"),
+      ),
     ],
+  },
+  "l510-the": {
+    kind: "digitCards",
+    label: "Ba thẻ chữ: b, d và H",
+    digits: ["b", "d", "H"],
   },
   sticker: { kind: "sticker" },
 };

@@ -21,7 +21,7 @@ import {
   stateOfEdges,
 } from "./edges";
 import type { Pt } from "./geometry";
-import { axisSegment, isChain } from "./lattice";
+import { axisSegment, chain, isChain } from "./lattice";
 import { bandPoints, widthOf } from "./layout";
 
 // The board of "vẽ thêm đường gấp khúc": the lattice, the given polyline and
@@ -248,14 +248,22 @@ export function EdgeBoard({
 // A still picture: the given polyline with the polyline that completes it
 // and the axes of the figure.
 
-export type EdgeStillSpec = { board: EdgeBoardSpec; params: EdgeParams };
+export type EdgeStillSpec = {
+  board: EdgeBoardSpec;
+  params: EdgeParams;
+  // The polyline to draw, as the chain of its lattice points; without it the
+  // first solution the solver finds is drawn.
+  path?: readonly Pt[];
+};
 
 export function EdgeStill({ spec }: { spec: EdgeStillSpec }) {
   const { board } = spec;
   const unit = unitOf(board);
   const width = (board.cols - 1) * unit + 2 * MARGIN;
   const height = (board.rows - 1) * unit + 2 * MARGIN;
-  const found = solveEdges(board, spec.params) ?? [];
+  const found = spec.path
+    ? chain(spec.path)
+    : (solveEdges(board, spec.params) ?? []);
   return (
     <div
       className="mx-auto w-full"

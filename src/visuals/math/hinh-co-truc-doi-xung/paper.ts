@@ -14,9 +14,12 @@ export type Paper = {
   fold: Line;
   // What the open sheet shows once the cut is opened.
   opens: string;
+  // The part of the 240 by 240 frame (x, y, width, height) that holds the
+  // sheet as it lies folded, so a folded sheet is drawn as large as it can be.
+  foldedBox: readonly [number, number, number, number];
 };
 
-export type PaperId = "v" | "m" | "o" | "t";
+export type PaperId = "v" | "m" | "o" | "t" | "h";
 
 const closed = (pts: readonly Pt[], fill = true): ShapeStroke => ({
   pts,
@@ -96,12 +99,21 @@ function bandAbove(): ShapeStroke[] {
   ];
 }
 
-// The half of a diamond: a triangle with its long side on the fold.
+// The half of a diamond: a narrow triangle with its long side on the fold,
+// so the open diamond has two clearly sharp and two clearly blunt corners.
 const T_HALF: Pt[] = [
-  [64, 120],
-  [120, 70],
-  [120, 170],
+  [90, 120],
+  [120, 60],
+  [120, 180],
 ];
+
+// The half of a round hole, cut away from the fold.
+const H_HALF: Pt[] = Array.from({ length: 20 }, (_, i): Pt => {
+  const a = (2 * Math.PI * i) / 20;
+  return [78 + 20 * Math.cos(a), 120 + 20 * Math.sin(a)];
+});
+
+const UPRIGHT_BOX = [30, 34, 100, 172] as const;
 
 export const PAPERS: Readonly<Record<PaperId, Paper>> = {
   v: {
@@ -109,52 +121,87 @@ export const PAPERS: Readonly<Record<PaperId, Paper>> = {
     strokes: sideBySide(V_HALF),
     fold: vertical(MIDDLE, 30, 210),
     opens: "chữ V",
+    foldedBox: UPRIGHT_BOX,
   },
   m: {
     name: "Tờ giấy cắt nửa chữ M",
     strokes: sideBySide(M_HALF),
     fold: vertical(MIDDLE, 30, 210),
     opens: "chữ M",
+    foldedBox: UPRIGHT_BOX,
   },
   t: {
     name: "Tờ giấy cắt một hình tam giác",
     strokes: sideBySide(T_HALF),
     fold: vertical(MIDDLE, 30, 210),
     opens: "hình thoi",
+    foldedBox: UPRIGHT_BOX,
+  },
+  h: {
+    name: "Tờ giấy cắt một lỗ tròn, lỗ không chạm nếp gấp",
+    strokes: sideBySide(H_HALF),
+    fold: vertical(MIDDLE, 30, 210),
+    opens: "hai lỗ tròn",
+    foldedBox: UPRIGHT_BOX,
   },
   o: {
     name: "Tờ giấy cắt một dải cong",
     strokes: bandAbove(),
     fold: line([20, 150], [220, 150]),
     opens: "chữ O",
+    foldedBox: [26, 50, 188, 106],
   },
 };
 
-// The sheet of the example: 3 cm by 5 cm, folded in half along the vertical
-// line, then in half along the horizontal line, with a small rectangle cut
-// at the corner where the two folds meet.
-export const SHEET_TWICE: {
+// Sheets folded in half along the vertical line, then in half along the
+// horizontal line, drawn open: 3 cm by 5 cm. `corner` has a small rectangle
+// cut at the corner where the two folds meet; `holes` has a round hole cut in
+// each quarter, away from both folds.
+export type TwiceSheet = {
   strokes: readonly ShapeStroke[];
   vertical: Line;
   horizontal: Line;
-} = {
-  strokes: [
-    closed(
-      [
-        [72, 40],
-        [168, 40],
-        [168, 200],
-        [72, 200],
-      ],
-      false,
-    ),
-    closed([
-      [100, 92],
-      [140, 92],
-      [140, 148],
-      [100, 148],
-    ]),
+};
+
+const SHEET_OUTLINE = closed(
+  [
+    [72, 40],
+    [168, 40],
+    [168, 200],
+    [72, 200],
   ],
-  vertical: vertical(MIDDLE, 20, 220),
-  horizontal: horizontal(MIDDLE, 40, 200),
+  false,
+);
+
+const circle = (cx: number, cy: number, r: number): Pt[] =>
+  Array.from({ length: 16 }, (_, i): Pt => {
+    const a = (2 * Math.PI * i) / 16;
+    return [cx + r * Math.cos(a), cy + r * Math.sin(a)];
+  });
+
+export const SHEETS_TWICE: Readonly<Record<"corner" | "holes", TwiceSheet>> = {
+  corner: {
+    strokes: [
+      SHEET_OUTLINE,
+      closed([
+        [100, 92],
+        [140, 92],
+        [140, 148],
+        [100, 148],
+      ]),
+    ],
+    vertical: vertical(MIDDLE, 20, 220),
+    horizontal: horizontal(MIDDLE, 40, 200),
+  },
+  holes: {
+    strokes: [
+      SHEET_OUTLINE,
+      closed(circle(94, 70, 12)),
+      closed(circle(146, 70, 12)),
+      closed(circle(94, 170, 12)),
+      closed(circle(146, 170, 12)),
+    ],
+    vertical: vertical(MIDDLE, 20, 220),
+    horizontal: horizontal(MIDDLE, 40, 200),
+  },
 };

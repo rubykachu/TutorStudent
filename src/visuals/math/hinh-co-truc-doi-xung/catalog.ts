@@ -26,7 +26,13 @@ import type { PaperId } from "./paper";
 
 export type VisualSpec =
   // A shape or letter on its own, with or without its axes.
-  | { kind: "subject"; subject: Subject; axes?: boolean; width?: number }
+  | {
+      kind: "subject";
+      subject: Subject;
+      axes?: boolean;
+      axisLabel?: string;
+      width?: number;
+    }
   // Pictures side by side, each with a caption.
   | ({ kind: "gallery" } & GallerySpec)
   // A row of drawings; `tap`: each is a region of a `tapRegion` exercise.

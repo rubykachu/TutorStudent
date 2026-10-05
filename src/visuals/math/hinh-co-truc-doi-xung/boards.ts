@@ -59,6 +59,42 @@ export const POINT_EXERCISE: MirrorSpec = {
   nameShift: { A: [-0.4, -0.35] },
 };
 
+// A question that names a column: the columns are numbered from 1.
+export const COLUMN_QUESTION: MirrorSpec = {
+  label:
+    "Lưới có các cột đánh số từ 1, đường thẳng d đi qua cột 5 và điểm P ở cột 2",
+  cols: 9,
+  rows: 3,
+  axis: { kind: "v", at: 4 },
+  parts: [{ kind: "dot", c: [1, 1] }],
+  names: { P: [1, 1] },
+  nameShift: { P: [0, -0.5] },
+  numbering: "cols",
+};
+
+// A question that names a row: the rows are numbered from 1.
+export const ROW_QUESTION: MirrorSpec = {
+  label:
+    "Lưới có các hàng đánh số từ 1, đường thẳng d nằm ngang đi qua hàng 4 và điểm Q ở hàng 1",
+  cols: 5,
+  rows: 8,
+  axis: { kind: "h", at: 3 },
+  parts: [{ kind: "dot", c: [2, 0] }],
+  names: { Q: [2, 0] },
+  nameShift: { Q: [0.5, 0] },
+  numbering: "rows",
+};
+
+// Hint of the tip on a horizontal axis: how to count, with other numbers
+// than the exercises.
+export const POINT_DEMO_HORIZONTAL: MirrorSpec = {
+  label: "Cách đếm ô từ điểm tới đường thẳng d nằm ngang",
+  cols: 5,
+  rows: 7,
+  axis: { kind: "h", at: 3 },
+  parts: [{ kind: "dot", c: [2, 1] }],
+};
+
 // Hint: how to count, with other numbers than the exercise.
 export const POINT_DEMO: MirrorSpec = {
   label: "Cách đếm ô từ điểm tới đường thẳng d",
@@ -217,7 +253,7 @@ export const DIAGONAL_DEMO: MirrorSpec = {
   cols: 6,
   rows: 6,
   axis: { kind: "d", at: 0 },
-  parts: [{ kind: "dot", c: [4, 1] }],
+  parts: [{ kind: "dot", c: [5, 1] }],
 };
 
 export const DIAGONAL_GUIDED: MirrorSpec = {
@@ -506,6 +542,11 @@ export const BOOK_59: EdgeBoardSpec = {
   ],
 };
 
+// The lead-ins draw on the same short polyline (two sides of a unit square
+// turned like the corner of a bracket). Length 1 with one axis: join its ends
+// with a piece going down from the left end (an arch with a vertical axis);
+// length 2 with four axes: close the unit square; length 4 with two axes:
+// close a rectangle two squares wide or two squares tall, the only two ways.
 export const LEAD_59: EdgeBoardSpec = {
   label: "Đường gấp khúc ngắn trên lưới ô vuông",
   cols: 5,

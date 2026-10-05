@@ -5,9 +5,9 @@ import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 import { decorative } from "@/visuals/shared/markers";
 import { StepPlayer } from "@/visuals/shared/step-player";
 import { AXIS_CLASS, LineMark, Strokes } from "./draw";
-import { FoldGroup } from "./fold-view";
+import { FixedHalf, FoldGroup } from "./fold-view";
 import { angleDeg, type Line } from "./geometry";
-import { PAPERS, type PaperId, SHEET_TWICE } from "./paper";
+import { PAPERS, type PaperId, SHEETS_TWICE, type TwiceSheet } from "./paper";
 import { FRAME, SHAPES, type ShapeId } from "./shapes";
 
 // Pictures that play a fold frame by frame: a shape folding along its axis,
@@ -52,27 +52,29 @@ export type FoldStepsSpec = {
   shape: ShapeId;
   // Which axis of the shape the fold follows.
   axis: number;
+  // Folds along this line that is not an axis instead (an index into the
+  // shape's `fakes`).
+  fake?: number;
   frames: readonly Frame[];
 };
 
 export function FoldSteps({ spec }: { spec: FoldStepsSpec }) {
   const reduced = usePrefersReducedMotion();
   const def = SHAPES[spec.shape];
-  const axis = def.axes[spec.axis];
-  if (!axis) throw new Error(`${spec.shape} has no axis ${spec.axis}`);
+  const axis =
+    spec.fake === undefined ? def.axes[spec.axis] : def.fakes[spec.fake];
+  if (!axis) throw new Error(`${spec.shape} has no line to fold along`);
+  const label =
+    spec.fake === undefined
+      ? `${def.name} gấp đôi theo trục đối xứng`
+      : `${def.name} gấp đôi theo một đường không phải trục`;
   return (
-    <StepPlayer
-      steps={spec.frames.length}
-      label={`${def.name} gấp đôi theo trục đối xứng`}
-    >
+    <StepPlayer steps={spec.frames.length} label={label}>
       {(step) => {
         const frame = spec.frames[Math.min(step, spec.frames.length - 1)];
         if (!frame) return null;
         return (
-          <Captioned
-            caption={frame.caption}
-            label={`${def.name} gấp đôi theo trục đối xứng`}
-          >
+          <Captioned caption={frame.caption} label={label}>
             <FoldGroup
               strokes={def.strokes}
               axis={axis}
@@ -124,20 +126,16 @@ export function PaperOpen({ spec }: { spec: PaperOpenSpec }) {
 // fold line marked.
 export function PaperFolded({ paper: id }: { paper: PaperId }) {
   const paper = PAPERS[id];
+  const [x, y, w, h] = paper.foldedBox;
   return (
-    <div className="mx-auto w-full max-w-44">
+    <div className="mx-auto w-full max-w-36">
       <svg
-        viewBox={`0 0 ${FRAME} ${FRAME}`}
+        viewBox={`${x} ${y} ${w} ${h}`}
         role="img"
         aria-label={`${paper.name}, đã gấp đôi theo đường màu hồng`}
         className="h-auto w-full"
       >
-        <FoldGroup
-          strokes={paper.strokes}
-          axis={paper.fold}
-          t={1}
-          smoothly={false}
-        />
+        <FixedHalf strokes={paper.strokes} axis={paper.fold} />
         <g {...decorative}>
           <LineMark axis={paper.fold} className={AXIS_CLASS} dashed={false} />
         </g>
@@ -149,13 +147,25 @@ export function PaperFolded({ paper: id }: { paper: PaperId }) {
 // ---------------------------------------------------------------------------
 // The sheet folded twice, with a cut at the corner where the folds meet.
 
-export type PaperTwiceSpec = { frames: readonly (Frame & { u: number })[] };
+export type PaperTwiceSpec = {
+  // Which sheet is folded (default: the one cut at the corner).
+  sheet?: "corner" | "holes";
+  frames: readonly (Frame & { u: number })[];
+};
 
 // A piece of the open sheet: the strokes of the sheet cut to one quadrant.
-function Quadrant({ uid, clip }: { uid: string; clip: string }) {
+function Quadrant({
+  uid,
+  clip,
+  strokes,
+}: {
+  uid: string;
+  clip: string;
+  strokes: TwiceSheet["strokes"];
+}) {
   return (
     <g clipPath={`url(#${uid}-${clip})`}>
-      <Strokes strokes={SHEET_TWICE.strokes} />
+      <Strokes strokes={strokes} />
     </g>
   );
 }
@@ -170,7 +180,8 @@ function foldTransform(axis: Line, t: number): string {
 export function PaperTwice({ spec }: { spec: PaperTwiceSpec }) {
   const reduced = usePrefersReducedMotion();
   const uid = useId().replaceAll(":", "");
-  const { vertical, horizontal } = SHEET_TWICE;
+  const sheet = SHEETS_TWICE[spec.sheet ?? "corner"];
+  const { vertical, horizontal, strokes } = sheet;
   const style = (axis: Line, t: number) => ({
     transform: foldTransform(axis, t),
     transformOrigin: "0 0",
@@ -201,14 +212,14 @@ export function PaperTwice({ spec }: { spec: PaperTwiceSpec }) {
               <clipPath id={`${uid}-br`}>{rect(mid, mid, mid, mid)}</clipPath>
             </defs>
             <g {...decorative}>
-              <Quadrant uid={uid} clip="tl" />
+              <Quadrant uid={uid} clip="tl" strokes={strokes} />
               <g style={style(vertical, frame.t)}>
-                <Quadrant uid={uid} clip="tr" />
+                <Quadrant uid={uid} clip="tr" strokes={strokes} />
               </g>
               <g style={style(horizontal, frame.u)}>
-                <Quadrant uid={uid} clip="bl" />
+                <Quadrant uid={uid} clip="bl" strokes={strokes} />
                 <g style={style(vertical, frame.t)}>
-                  <Quadrant uid={uid} clip="br" />
+                  <Quadrant uid={uid} clip="br" strokes={strokes} />
                 </g>
               </g>
               <LineMark axis={vertical} className={AXIS_CLASS} />

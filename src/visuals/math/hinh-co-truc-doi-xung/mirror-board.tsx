@@ -11,6 +11,7 @@ import { decorative, stateSet } from "@/visuals/shared/markers";
 import { StepPlayer } from "@/visuals/shared/step-player";
 import {
   AXIS_CLASS,
+  AXIS_FILL_CLASS,
   MIRROR_FILL_CLASS,
   MIRROR_STROKE_CLASS,
   points,
@@ -157,12 +158,28 @@ function PartDrawing({
   }
 }
 
+// Where the name "d" of the axis stands: just past the end of the axis that
+// has room for it.
+function axisNameSpot(kind: MirrorSpec["axis"]["kind"], end: Pt): Pt {
+  switch (kind) {
+    case "v":
+      return [end[0], end[1] + 18];
+    case "h":
+      return [end[0] + 16, end[1]];
+    case "d":
+      return [end[0] + 15, end[1] + 15];
+    case "a":
+      return [end[0] + 15, end[1] - 15];
+  }
+}
+
 // The lattice with its axis and the given half of the drawing.
 export function Lattice({ spec, frame }: { spec: MirrorSpec; frame: Frame }) {
   const [a, b] = axisSegment(spec.axis, spec.cols, spec.rows).map(frame.at) as [
     Pt,
     Pt,
   ];
+  const [dx, dy] = axisNameSpot(spec.axis.kind, b);
   const lines: {
     key: string;
     x1: number;
@@ -205,6 +222,40 @@ export function Lattice({ spec, frame }: { spec: MirrorSpec; frame: Frame }) {
         strokeLinecap="round"
         className={AXIS_CLASS}
       />
+      <text
+        x={dx}
+        y={dy}
+        textAnchor="middle"
+        dominantBaseline="central"
+        fontSize={20}
+        stroke="none"
+        className={`font-heading font-bold ${AXIS_FILL_CLASS}`}
+      >
+        d
+      </text>
+      {spec.numbering &&
+        Array.from(
+          { length: spec.numbering === "cols" ? spec.cols : spec.rows },
+          (_, i) => {
+            const [x, y] =
+              spec.numbering === "cols" ? frame.at([i, 0]) : frame.at([0, i]);
+            return (
+              <text
+                // biome-ignore lint/suspicious/noArrayIndexKey: the numbers of a ruler never reorder
+                key={`n${i}`}
+                x={spec.numbering === "cols" ? x : x - 18}
+                y={spec.numbering === "cols" ? y - 18 : y}
+                textAnchor="middle"
+                dominantBaseline="central"
+                fontSize={18}
+                stroke="none"
+                className="fill-muted-foreground font-heading font-semibold"
+              >
+                {i + 1}
+              </text>
+            );
+          },
+        )}
       {spec.parts.map((part, i) => (
         <PartDrawing
           // biome-ignore lint/suspicious/noArrayIndexKey: parts never reorder
@@ -450,7 +501,8 @@ export type MirrorStillSpec = {
   board: MirrorSpec;
   // The finished drawing; or a one-point demonstration of how to count
   // (`demo`).
-  show: "solved" | "demo";
+  show: "solved" | "demo" | "given";
+  // `given`: only the lattice, the axis and the given half.
   // `demo`: the point whose mirror image is asked for, with its distance to
   // the axis counted out.
   from?: Pt;
@@ -647,8 +699,9 @@ function DemoCount({
         />
       )}
       <text
-        x={half(fx, ox)}
-        y={half(fy, oy) - frame.unit * 0.45}
+        // A walk straight down or up keeps its count beside the line.
+        x={half(fx, ox) + (fx === ox ? frame.unit * 0.6 : 0)}
+        y={half(fy, oy) - (fx === ox ? 0 : frame.unit * 0.45)}
         textAnchor="middle"
         dominantBaseline="central"
         fontSize={21}

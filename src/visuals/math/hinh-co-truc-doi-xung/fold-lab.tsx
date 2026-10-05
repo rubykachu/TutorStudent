@@ -51,9 +51,11 @@ function LineButton({
   onTap: () => void;
   label: string;
 }) {
-  const { axis } = candidate;
-  const startX = axis.p[0] + (axis.q[0] - axis.p[0]) * HIT_FROM;
-  const startY = axis.p[1] + (axis.q[1] - axis.p[1]) * HIT_FROM;
+  const { axis, end } = candidate;
+  // The outer part at the end that carries the letter.
+  const [from, to] = end === "q" ? [axis.p, axis.q] : [axis.q, axis.p];
+  const startX = from[0] + (to[0] - from[0]) * HIT_FROM;
+  const startY = from[1] + (to[1] - from[1]) * HIT_FROM;
   return (
     // biome-ignore lint/a11y/useSemanticElements: an SVG has no <button>; a focusable group with the button role is the equivalent inside a drawing
     <g
@@ -75,7 +77,7 @@ function LineButton({
       {...stateSet(stateKey, 1)}
     >
       <polygon
-        points={bandPoints([startX, startY], axis.q, HIT_HALF_WIDTH)}
+        points={bandPoints([startX, startY], to, HIT_HALF_WIDTH)}
         fill="transparent"
       />
     </g>
@@ -168,7 +170,12 @@ export function FoldLab({
             ))}
           </g>
           {candidates.map((c) => (
-            <LineBadge key={c.letter} axis={c.axis} letter={c.letter} />
+            <LineBadge
+              key={c.letter}
+              axis={c.axis}
+              letter={c.letter}
+              end={c.end}
+            />
           ))}
           {candidates.map((c, i) => (
             <LineButton
@@ -267,6 +274,7 @@ function PickShape({
           key={c.letter}
           axis={c.axis}
           letter={c.letter}
+          end={c.end}
           scale={small ? SMALL_BADGE : 1}
         />
       ))}

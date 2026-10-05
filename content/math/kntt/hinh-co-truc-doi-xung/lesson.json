@@ -54,7 +54,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Cánh bướm, chiếc lá và cổng đền đều có hai nửa giống hệt nhau. Bạn hãy xem các hình này."
+              "text": "Cánh bướm, chiếc lá, cổng đền và ngôi nhà đều có hai nửa giống hệt nhau. Bạn hãy xem các hình này."
             },
             {
               "type": "visual",
@@ -235,7 +235,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Gạch lát nghiêng có dạng hình bình hành. Cùng làm: chạm vào từng đường để gấp hình bình hành."
+              "text": "Gạch lát nghiêng có dạng hình bình hành lệch. Cùng làm: chạm vào từng đường để gấp hình bình hành này."
             },
             {
               "type": "visual",
@@ -271,7 +271,7 @@
     },
     {
       "id": "hinh-co-truc-doi-xung.section.hinh-deu",
-      "title": "Hình đều có nhiều trục",
+      "title": "Hình có nhiều trục đối xứng",
       "sourceRef": "Sách bài tập tr.78 (hình 5.1), tr.80 (bài 5.1), tr.118 (lời giải bài 5.1)",
       "minutes": 5,
       "blocks": [
@@ -280,7 +280,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Gạch lát nền, tổ ong và đĩa tròn có các hình đều. Cùng làm: chạm vào từng thẻ để xem các trục đối xứng."
+              "text": "Gạch lát nền có hình vuông, ngăn tổ ong có hình lục giác đều, chiếc đĩa có hình tròn. Cùng làm: chạm vào từng thẻ để xem các trục đối xứng."
             },
             {
               "type": "visual",
@@ -306,8 +306,8 @@
           "type": "tip",
           "id": "hinh-co-truc-doi-xung.tip.dem-truc-hinh-deu",
           "kind": "làm nhanh",
-          "title": "Đếm trục hình đều",
-          "text": "Hình có các cạnh bằng nhau và các góc bằng nhau thì có bao nhiêu cạnh sẽ có bấy nhiêu trục. Hình có 4 cạnh như vậy có 4 trục.",
+          "title": "Đếm nhanh số trục",
+          "text": "Tam giác đều, hình vuông, lục giác đều: hình có bao nhiêu cạnh thì có bấy nhiêu trục. Hình vuông có 4 cạnh nên có 4 trục.",
           "visualId": "hinh-co-truc-doi-xung.visual.hinh-deu-quy-tac"
         },
         {
@@ -359,7 +359,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Trục đối xứng của một chữ có thể thẳng đứng hoặc nằm ngang. Chữ H có hai trục, còn chữ N không có trục nào.",
+              "text": "Trục đối xứng của một chữ có thể thẳng đứng hoặc nằm ngang. Chữ I có hai trục, còn chữ L không có trục nào.",
               "rule": true
             },
             {
@@ -370,14 +370,14 @@
         }
       ],
       "checkIds": [
-        "hinh-co-truc-doi-xung.ex.s6-chu-t-truc",
-        "hinh-co-truc-doi-xung.ex.s6-chu-l-bao-nhieu"
+        "hinh-co-truc-doi-xung.ex.s6-chu-u-truc",
+        "hinh-co-truc-doi-xung.ex.s6-chu-f-bao-nhieu"
       ],
       "practiceIds": ["hinh-co-truc-doi-xung.ex.s6-cham-chu-mot-truc"],
       "recap": {
         "type": "visual",
         "visualId": "hinh-co-truc-doi-xung.visual.chu-cai-quy-tac",
-        "caption": "Trục đối xứng của một chữ có thể thẳng đứng hoặc nằm ngang. Chữ H có hai trục, còn chữ N không có trục nào."
+        "caption": "Trục đối xứng của một chữ có thể thẳng đứng hoặc nằm ngang. Chữ I có hai trục, còn chữ L không có trục nào."
       }
     },
     {
@@ -391,7 +391,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Cổng đền, biển báo và biểu tượng có nhiều kiểu hình. Cùng làm: chạm vào từng thẻ để xem số trục đối xứng."
+              "text": "Biển báo, hình trái tim, mũi tên và đám mây có nhiều kiểu hình. Cùng làm: chạm vào từng thẻ để xem số trục đối xứng."
             },
             {
               "type": "visual",
@@ -404,7 +404,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Một hình có thể không có trục, có một trục hay có nhiều trục đối xứng.",
+              "text": "Muốn biết đồ vật có trục không, hãy tưởng tượng gấp đôi nó: hai nửa chồng khít thì có trục.",
               "rule": true
             },
             {
@@ -422,7 +422,7 @@
       "recap": {
         "type": "visual",
         "visualId": "hinh-co-truc-doi-xung.visual.so-truc-tong-hop",
-        "caption": "Một hình có thể không có trục, có một trục hay có nhiều trục đối xứng."
+        "caption": "Muốn biết đồ vật có trục không, hãy tưởng tượng gấp đôi nó: hai nửa chồng khít thì có trục."
       }
     },
     {
@@ -436,7 +436,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Cho điểm A và đường thẳng d. Xem hình chạy từng bước để tìm điểm A′ đối xứng với A qua d."
+              "text": "Khi soi gương, hình của bạn ở bên kia mặt gương. Cho điểm A và đường thẳng d: xem hình chạy từng bước để tìm điểm A′ đối xứng với A qua d."
             },
             {
               "type": "visual",
@@ -495,7 +495,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Dấu cộng này mới có nửa trái. Xem hình chạy từng bước để vẽ nửa phải đối xứng qua d."
+              "text": "Bạn vẽ con bướm trên giấy kẻ ô: vẽ cánh trái rồi vẽ nốt cánh phải. Xem hình chạy từng bước để vẽ nửa phải của dấu cộng đối xứng qua d."
             },
             {
               "type": "visual",
@@ -521,9 +521,9 @@
           "type": "tip",
           "id": "hinh-co-truc-doi-xung.tip.dem-o-tu-truc",
           "kind": "làm nhanh",
-          "title": "Tìm điểm đối xứng trên lưới",
-          "text": "Trục d thẳng đứng thì đếm số ô từ điểm tới d. Rồi đếm số ô bằng vậy ở bên kia d, trên cùng hàng.",
-          "visualId": "hinh-co-truc-doi-xung.visual.diem-dem-o"
+          "title": "Trục d nằm ngang",
+          "text": "Trục d nằm ngang thì đếm số ô từ điểm tới d theo cột. Rồi đếm số ô bằng vậy ở bên kia d, trên cùng cột.",
+          "visualId": "hinh-co-truc-doi-xung.visual.diem-dem-o-ngang"
         },
         {
           "type": "group",
@@ -561,7 +561,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Có hình, trục d chạy xiên qua các ô vuông. Xem hình chạy từng bước để vẽ thêm phần đối xứng."
+              "text": "Gạch lát nền đôi khi xếp theo đường chéo. Ở hình này, trục d đi chéo qua góc các ô vuông."
             },
             {
               "type": "visual",
@@ -574,7 +574,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Với trục nằm nghiêng, đi ngang từ điểm tới trục. Rồi đi dọc cùng số ô, sang bên kia trục.",
+              "text": "Với trục đi theo đường chéo của các ô vuông, đi ngang từ điểm tới trục. Rồi đi dọc cùng số ô, sang bên kia trục.",
               "rule": true
             },
             {
@@ -605,7 +605,7 @@
       "recap": {
         "type": "visual",
         "visualId": "hinh-co-truc-doi-xung.visual.cheo-quy-tac",
-        "caption": "Với trục nằm nghiêng, đi ngang từ điểm tới trục. Rồi đi dọc cùng số ô, sang bên kia trục."
+        "caption": "Với trục đi theo đường chéo của các ô vuông, đi ngang từ điểm tới trục. Rồi đi dọc cùng số ô, sang bên kia trục."
       }
     },
     {
@@ -619,7 +619,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Bạn gấp đôi mảnh giấy dài 5 cm, rộng 3 cm hai lần rồi cắt một hình chữ nhật nhỏ ở góc. Xem hình chạy từng bước mở tờ giấy ra."
+              "text": "Bạn gấp đôi mảnh giấy dài 5 cm, rộng 3 cm hai lần. Rồi cắt một hình chữ nhật nhỏ ở góc có hai nếp gấp."
             },
             {
               "type": "visual",
@@ -637,7 +637,7 @@
             },
             {
               "type": "visual",
-              "visualId": "hinh-co-truc-doi-xung.visual.gap-giay-quy-tac"
+              "visualId": "hinh-co-truc-doi-xung.visual.gap-giay-lo"
             }
           ]
         },
@@ -714,11 +714,11 @@
             },
             {
               "type": "note",
-              "text": "Trục đối xứng của một chữ có thể thẳng đứng hoặc nằm ngang. Chữ H có hai trục, còn chữ N không có trục nào."
+              "text": "Trục đối xứng của một chữ có thể thẳng đứng hoặc nằm ngang. Chữ I có hai trục, còn chữ L không có trục nào."
             },
             {
               "type": "note",
-              "text": "Một hình có thể không có trục, có một trục hay có nhiều trục đối xứng."
+              "text": "Muốn biết đồ vật có trục không, hãy tưởng tượng gấp đôi nó: hai nửa chồng khít thì có trục."
             },
             {
               "type": "visual",
@@ -739,7 +739,7 @@
             },
             {
               "type": "note",
-              "text": "Với trục nằm nghiêng, đi ngang từ điểm tới trục. Rồi đi dọc cùng số ô, sang bên kia trục."
+              "text": "Với trục đi theo đường chéo của các ô vuông, đi ngang từ điểm tới trục. Rồi đi dọc cùng số ô, sang bên kia trục."
             },
             {
               "type": "visual",
@@ -760,7 +760,7 @@
             },
             {
               "type": "note",
-              "text": "Chữ số 0, 1 và 8 có hai trục đối xứng. Gấp đôi theo đường thẳng đứng ở giữa hai chữ số 2 và 5 thì chúng khít nhau."
+              "text": "Gấp chữ hay chữ số theo đường thẳng đứng hoặc nằm ngang, hai nửa chồng khít thì đường đó là trục."
             },
             {
               "type": "visual",
@@ -770,7 +770,7 @@
         }
       ],
       "checkIds": [
-        "hinh-co-truc-doi-xung.ex.l51-nam-canh",
+        "hinh-co-truc-doi-xung.ex.l51-hinh-thoi",
         "hinh-co-truc-doi-xung.ex.sbt-5-1",
         "hinh-co-truc-doi-xung.ex.l52-cong",
         "hinh-co-truc-doi-xung.ex.l52-la",
@@ -808,8 +808,8 @@
       "practiceIds": [],
       "recap": {
         "type": "visual",
-        "visualId": "hinh-co-truc-doi-xung.visual.chu-cai-quy-tac",
-        "caption": "Trục đối xứng của một chữ có thể thẳng đứng hoặc nằm ngang. Chữ H có hai trục, còn chữ N không có trục nào."
+        "visualId": "hinh-co-truc-doi-xung.visual.truc-nha-quy-tac",
+        "caption": "Gấp hình theo đường thẳng d, nếu hai nửa chồng khít nhau thì d là trục đối xứng."
       },
       "bookPractice": true
     }
@@ -875,7 +875,7 @@
       "recap": {
         "type": "visual",
         "visualId": "hinh-co-truc-doi-xung.visual.chu-cai-quy-tac",
-        "caption": "Trục đối xứng của một chữ có thể thẳng đứng hoặc nằm ngang. Chữ H có hai trục, còn chữ N không có trục nào."
+        "caption": "Trục đối xứng của một chữ có thể thẳng đứng hoặc nằm ngang. Chữ I có hai trục, còn chữ L không có trục nào."
       }
     },
     {
@@ -885,7 +885,7 @@
       "recap": {
         "type": "visual",
         "visualId": "hinh-co-truc-doi-xung.visual.so-truc-tong-hop",
-        "caption": "Một hình có thể không có trục, có một trục hay có nhiều trục đối xứng."
+        "caption": "Muốn biết đồ vật có trục không, hãy tưởng tượng gấp đôi nó: hai nửa chồng khít thì có trục."
       }
     },
     {
@@ -924,7 +924,7 @@
       "recap": {
         "type": "visual",
         "visualId": "hinh-co-truc-doi-xung.visual.cheo-quy-tac",
-        "caption": "Với trục nằm nghiêng, đi ngang từ điểm tới trục. Rồi đi dọc cùng số ô, sang bên kia trục."
+        "caption": "Với trục đi theo đường chéo của các ô vuông, đi ngang từ điểm tới trục. Rồi đi dọc cùng số ô, sang bên kia trục."
       }
     },
     {
@@ -962,12 +962,12 @@
         "text": "Cánh bướm và cổng đền có nửa trái giống hệt nửa phải, nên gấp đôi là khít. Hai hình còn lại có hai nửa khác nhau.",
         "wrong": [
           {
-            "optionId": "rang",
-            "text": "Con rắn uốn lượn nên nửa trái của biểu tượng này khác nửa phải."
+            "optionId": "gach",
+            "text": "Gấp đôi hình bình hành lệch này thế nào thì hai nửa cũng bị lệch."
           },
           {
-            "optionId": "gach",
-            "text": "Gấp đôi hình bình hành này thế nào thì hai nửa cũng bị lệch."
+            "optionId": "tam",
+            "text": "Tam giác có ba cạnh khác nhau nên hai nửa của nó lệch nhau."
           }
         ]
       },
@@ -987,10 +987,10 @@
           }
         },
         {
-          "id": "rang",
+          "id": "tam",
           "content": {
             "type": "visual",
-            "visualId": "hinh-co-truc-doi-xung.visual.thumb-medical"
+            "visualId": "hinh-co-truc-doi-xung.visual.thumb-scalene"
           }
         },
         {
@@ -1056,57 +1056,57 @@
             "index": 0
           }
         ],
-        "hintVisualId": "hinh-co-truc-doi-xung.visual.truc-nha-cac-buoc"
+        "hintVisualId": "hinh-co-truc-doi-xung.visual.goi-y-gap-thu"
       },
       "difficulty": 1,
       "explain": {
-        "text": "Hai cánh bướm xòe rộng giống hệt nhau, nên gấp đôi theo thân là khít.",
+        "text": "Mặt trống đồng hình tròn gấp đôi theo đường nào qua tâm cũng khít, vì hai nửa giống hệt nhau.",
         "wrong": [
           {
-            "optionId": "ran",
-            "text": "Thân rắn uốn lượn nên nửa trái khác nửa phải."
+            "optionId": "hoi",
+            "text": "Dấu hỏi có nét cong ở trên và chấm ở dưới, nên nửa trái khác nửa phải."
           },
           {
-            "optionId": "gach",
-            "text": "Gấp đôi viên gạch hình bình hành thì hai nửa bị lệch."
+            "optionId": "chan",
+            "text": "Các ngón chân lệch về một phía nên hai nửa bàn chân khác nhau."
           },
           {
-            "optionId": "chu-n",
-            "text": "Gấp đôi chữ N thì hai nửa không chồng khít nhau."
+            "optionId": "may",
+            "text": "Đám mây bị gió thổi lệch về một phía nên hai nửa khác nhau."
           }
         ]
       },
       "options": [
         {
-          "id": "buom",
+          "id": "trong",
           "content": {
             "type": "text",
-            "text": "Cánh bướm đang xòe rộng"
+            "text": "Mặt trống đồng hình tròn"
           }
         },
         {
-          "id": "ran",
+          "id": "hoi",
           "content": {
             "type": "text",
-            "text": "Con rắn đang uốn lượn"
+            "text": "Dấu hỏi viết trên giấy"
           }
         },
         {
-          "id": "gach",
+          "id": "chan",
           "content": {
             "type": "text",
-            "text": "Viên gạch hình bình hành"
+            "text": "Bàn chân trái trên cát"
           }
         },
         {
-          "id": "chu-n",
+          "id": "may",
           "content": {
             "type": "text",
-            "text": "Chữ N viết đậm"
+            "text": "Đám mây bị gió thổi lệch"
           }
         }
       ],
-      "answer": ["buom"],
+      "answer": ["trong"],
       "multiple": false
     },
     {
@@ -1116,11 +1116,11 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Bạn gấp hình ngôi nhà theo từng đường a, b, c, d. Gấp theo đường nào thì hai nửa chồng khít nhau?"
+          "text": "Bạn gấp tấm thiệp hình cánh bướm theo từng đường a, b, c, d. Gấp theo đường nào thì hai nửa chồng khít nhau?"
         },
         {
           "type": "visual",
-          "visualId": "hinh-co-truc-doi-xung.visual.lines-house"
+          "visualId": "hinh-co-truc-doi-xung.visual.lines-butterfly"
         },
         {
           "type": "note",
@@ -1134,19 +1134,19 @@
             "index": 1
           }
         ],
-        "hintVisualId": "hinh-co-truc-doi-xung.visual.truc-nha-cac-buoc"
+        "hintVisualId": "hinh-co-truc-doi-xung.visual.goi-y-gap-thu"
       },
       "difficulty": 1,
       "explain": {
-        "text": "Đường b chia ngôi nhà thành hai nửa giống hệt nhau, nên gấp theo b là khít. Đó là trục đối xứng của ngôi nhà.",
+        "text": "Đường c chạy dọc giữa thân bướm, chia tấm thiệp thành hai nửa giống hệt nhau. Gấp theo c là khít, nên c là trục đối xứng.",
         "wrong": [
           {
             "optionId": "a",
-            "text": "Gấp theo đường ngang a thì mái nhà nằm trên, tường nằm dưới, hai nửa không khít."
+            "text": "Gấp theo đường ngang a thì cánh trên chồng lên cánh dưới, hai nửa không khít."
           },
           {
-            "optionId": "c",
-            "text": "Đường c lệch khỏi giữa nhà nên hai nửa to nhỏ khác nhau."
+            "optionId": "b",
+            "text": "Đường b lệch khỏi thân bướm nên hai nửa to nhỏ khác nhau."
           },
           {
             "optionId": "d",
@@ -1184,7 +1184,7 @@
           }
         }
       ],
-      "answer": ["b"],
+      "answer": ["c"],
       "multiple": false
     },
     {
@@ -1211,7 +1211,7 @@
         "wrong": [
           {
             "optionId": "cheo",
-            "text": "Đường chéo là đoạn nối hai đỉnh không nằm cạnh nhau, không phải đường gấp cho hai nửa khít."
+            "text": "Đường chéo là tên của đoạn nối hai đỉnh đối nhau, còn đường gấp cho hai nửa khít có tên riêng là trục đối xứng."
           }
         ]
       },
@@ -1238,10 +1238,10 @@
           }
         },
         {
-          "id": "goc",
+          "id": "ngang",
           "content": {
             "type": "text",
-            "text": "Góc của hình"
+            "text": "Đường nằm ngang của hình"
           }
         }
       ],
@@ -1255,7 +1255,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Bạn gấp cánh cổng đền theo từng đường a, b, c, d. Gấp theo đường nào thì hai nửa chồng khít nhau?"
+          "text": "Bạn gấp hình cổng đền theo từng đường a, b, c, d. Gấp theo đường nào thì hai nửa chồng khít nhau?"
         },
         {
           "type": "visual",
@@ -1332,7 +1332,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Bạn gấp một tấm bìa hình chữ nhật theo từng đường a, b, c, d. Chọn tất cả các đường là trục đối xứng."
+          "text": "Bạn gấp một tấm bìa hình chữ nhật đứng theo từng đường a, b, c, d. Chọn tất cả các đường là trục đối xứng."
         },
         {
           "type": "visual",
@@ -1346,7 +1346,7 @@
             "index": 0
           }
         ],
-        "hintVisualId": "hinh-co-truc-doi-xung.visual.truc-nha-cac-buoc"
+        "hintVisualId": "hinh-co-truc-doi-xung.visual.goi-y-gap-sai"
       },
       "difficulty": 1,
       "explain": {
@@ -1459,7 +1459,7 @@
             "index": 0
           }
         ],
-        "hintVisualId": "hinh-co-truc-doi-xung.visual.truc-nha-cac-buoc"
+        "hintVisualId": "hinh-co-truc-doi-xung.visual.goi-y-gap-sai"
       },
       "difficulty": 2,
       "explain": {
@@ -1506,7 +1506,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Bạn gấp tấm gạch hình bình hành trong hình theo đường chéo. Hai nửa có chồng khít nhau không?"
+          "text": "Bạn gấp tấm gạch hình bình hành lệch trong hình theo đường chéo. Hai nửa có chồng khít nhau không?"
         },
         {
           "type": "visual",
@@ -1524,15 +1524,15 @@
             "index": 0
           }
         ],
-        "hintVisualId": "hinh-co-truc-doi-xung.visual.truc-nha-cac-buoc"
+        "hintVisualId": "hinh-co-truc-doi-xung.visual.goi-y-gap-sai"
       },
       "difficulty": 1,
       "explain": {
-        "text": "Hình bình hành này không có trục đối xứng. Gấp theo đường chéo, hai nửa bị lệch nhau.",
+        "text": "Hình bình hành lệch này không có trục đối xứng. Gấp theo đường chéo, hai nửa bị lệch nhau.",
         "wrong": [
           {
             "optionId": "co",
-            "text": "Hai nửa chỉ khít khi gấp theo trục. Hình bình hành này không có trục nào."
+            "text": "Hai nửa chỉ khít khi gấp theo trục. Hình bình hành lệch này không có trục nào."
           }
         ]
       },
@@ -1572,11 +1572,11 @@
             "index": 0
           }
         ],
-        "hintVisualId": "hinh-co-truc-doi-xung.visual.truc-nha-cac-buoc"
+        "hintVisualId": "hinh-co-truc-doi-xung.visual.goi-y-gap-thu"
       },
       "difficulty": 2,
       "explain": {
-        "text": "Hình thang cân có một trục, hình chữ nhật và hình thoi mỗi hình có hai trục. Hình bình hành này không có trục nào.",
+        "text": "Hình thang cân có một trục, hình chữ nhật và hình thoi mỗi hình có hai trục. Hình bình hành lệch này không có trục nào.",
         "wrong": [
           {
             "optionId": "binh",
@@ -1637,7 +1637,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Hình lục giác đều có 6 cạnh bằng nhau nên có 6 trục đối xứng."
+        "text": "Hình lục giác đều có 6 cạnh bằng nhau và 6 góc bằng nhau, nên có 6 trục đối xứng."
       },
       "answer": {
         "kind": "value",
@@ -1723,7 +1723,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Một hình lục giác đều và một hình tam giác đều đặt cạnh nhau. Cả hai hình có tất cả bao nhiêu trục đối xứng?"
+          "text": "Bạn có một hình lục giác đều và một hình tam giác đều. Đếm trục của từng hình rồi cộng lại: được bao nhiêu trục?"
         }
       ],
       "hints": {
@@ -1748,17 +1748,17 @@
       }
     },
     {
-      "id": "hinh-co-truc-doi-xung.ex.s6-chu-t-truc",
+      "id": "hinh-co-truc-doi-xung.ex.s6-chu-u-truc",
       "type": "choice",
       "cardIds": [],
       "prompt": [
         {
           "type": "note",
-          "text": "Chữ T có đúng một trục đối xứng. Trục đó thẳng đứng hay nằm ngang?"
+          "text": "Chữ U có đúng một trục đối xứng. Trục đó thẳng đứng hay nằm ngang?"
         },
         {
           "type": "visual",
-          "visualId": "hinh-co-truc-doi-xung.visual.chu-t"
+          "visualId": "hinh-co-truc-doi-xung.visual.chu-u"
         }
       ],
       "hints": {
@@ -1771,11 +1771,11 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Gấp chữ T đôi theo nét đứng ở giữa thì hai nửa khít nhau. Vậy trục của chữ T thẳng đứng.",
+        "text": "Gấp chữ U đôi theo đường thẳng đứng ở giữa thì nửa trái khít nửa phải. Vậy trục của chữ U thẳng đứng.",
         "wrong": [
           {
             "optionId": "ngang",
-            "text": "Gấp chữ T theo đường nằm ngang thì nét ngang ở trên, nét đứng ở dưới, hai nửa không khít."
+            "text": "Gấp chữ U theo đường nằm ngang thì phần cong ở dưới, hai đầu hở ở trên, hai nửa không khít."
           }
         ]
       },
@@ -1799,17 +1799,17 @@
       "multiple": false
     },
     {
-      "id": "hinh-co-truc-doi-xung.ex.s6-chu-l-bao-nhieu",
+      "id": "hinh-co-truc-doi-xung.ex.s6-chu-f-bao-nhieu",
       "type": "numeric",
       "cardIds": [],
       "prompt": [
         {
           "type": "note",
-          "text": "Chữ L có bao nhiêu trục đối xứng?"
+          "text": "Chữ F có bao nhiêu trục đối xứng?"
         },
         {
           "type": "visual",
-          "visualId": "hinh-co-truc-doi-xung.visual.chu-l"
+          "visualId": "hinh-co-truc-doi-xung.visual.chu-f"
         }
       ],
       "hints": {
@@ -1822,7 +1822,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Gấp chữ L theo đường nào thì hai nửa cũng không khít. Chữ L không có trục đối xứng nào."
+        "text": "Gấp chữ F theo đường nào thì hai nửa cũng không khít. Chữ F không có trục đối xứng nào."
       },
       "answer": {
         "kind": "value",
@@ -1852,10 +1852,10 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Chữ E có một trục nằm ngang, chữ T có một trục thẳng đứng. Chữ H có hai trục, còn chữ L không có trục nào."
+        "text": "Chữ K có một trục nằm ngang, chữ W có một trục thẳng đứng. Chữ O có hai trục, còn chữ P không có trục nào."
       },
       "visualId": "hinh-co-truc-doi-xung.visual.cham-chu-mot-truc",
-      "answer": ["chu-e", "chu-t"]
+      "answer": ["chu-k", "chu-w"]
     },
     {
       "id": "hinh-co-truc-doi-xung.ex.s7-khong-co-truc",
@@ -1874,11 +1874,11 @@
             "index": 0
           }
         ],
-        "hintVisualId": "hinh-co-truc-doi-xung.visual.truc-nha-cac-buoc"
+        "hintVisualId": "hinh-co-truc-doi-xung.visual.goi-y-gap-thu"
       },
       "difficulty": 1,
       "explain": {
-        "text": "Biểu tượng có con rắn uốn lượn, nên nửa trái khác nửa phải. Ba hình còn lại gấp đôi là khít.",
+        "text": "Tam giác có ba cạnh khác nhau nên nửa trái khác nửa phải. Ba hình còn lại gấp đôi là khít.",
         "wrong": [
           {
             "optionId": "buom",
@@ -1910,10 +1910,10 @@
           }
         },
         {
-          "id": "rang",
+          "id": "tam",
           "content": {
             "type": "visual",
-            "visualId": "hinh-co-truc-doi-xung.visual.thumb-medical"
+            "visualId": "hinh-co-truc-doi-xung.visual.thumb-scalene"
           }
         },
         {
@@ -1924,7 +1924,7 @@
           }
         }
       ],
-      "answer": ["rang"],
+      "answer": ["tam"],
       "multiple": false
     },
     {
@@ -1934,7 +1934,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Ngôi sao năm cánh đều có các cánh giống hệt nhau. Mỗi trục đi qua đỉnh một cánh."
+          "text": "Ngôi sao này có năm cánh giống hệt nhau."
         },
         {
           "type": "visual",
@@ -1955,7 +1955,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Ngôi sao có 5 cánh. Mỗi cánh có một trục đi qua đỉnh của nó, nên có 5 trục."
+        "text": "Gấp ngôi sao theo đường đi qua đỉnh một cánh và tâm ngôi sao thì hai nửa khít nhau. Có 5 đường như vậy, nên có 5 trục."
       },
       "answer": {
         "kind": "value",
@@ -1985,7 +1985,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Cánh bướm và chiếc lá mỗi hình có một trục đi dọc giữa hình. Hình chữ nhật có 2 trục, ngôi sao có 5 trục.",
+        "text": "Cổng đền và ngôi nhà mỗi hình có một trục đi dọc giữa hình. Hình chữ nhật có 2 trục, ngôi sao có 5 trục.",
         "wrong": [
           {
             "optionId": "chu",
@@ -1999,17 +1999,17 @@
       },
       "options": [
         {
-          "id": "buom",
+          "id": "cong",
           "content": {
             "type": "visual",
-            "visualId": "hinh-co-truc-doi-xung.visual.thumb-butterfly"
+            "visualId": "hinh-co-truc-doi-xung.visual.thumb-gate"
           }
         },
         {
-          "id": "la",
+          "id": "nha",
           "content": {
             "type": "visual",
-            "visualId": "hinh-co-truc-doi-xung.visual.thumb-leaf"
+            "visualId": "hinh-co-truc-doi-xung.visual.thumb-house"
           }
         },
         {
@@ -2027,7 +2027,7 @@
           }
         }
       ],
-      "answer": ["buom", "la"],
+      "answer": ["cong", "nha"],
       "multiple": true
     },
     {
@@ -2097,7 +2097,7 @@
           },
           {
             "optionId": "xien",
-            "text": "Đoạn nối hai điểm đối xứng cắt d tạo góc vuông, không phải góc xiên."
+            "text": "Đoạn nối hai điểm đối xứng cắt d tạo góc vuông, không phải góc nghiêng."
           }
         ]
       },
@@ -2217,6 +2217,10 @@
           "text": "Trục d thẳng đứng, đi qua cột 5. Điểm P ở cột 2."
         },
         {
+          "type": "visual",
+          "visualId": "hinh-co-truc-doi-xung.visual.cot-cua-diem"
+        },
+        {
           "type": "note",
           "text": "Điểm P′ đối xứng với P qua d ở cột nào? Nhập số của cột."
         }
@@ -2267,7 +2271,7 @@
         "wrong": [
           {
             "optionId": "to",
-            "text": "Tô màu làm sau cùng, khi hình đã vẽ xong."
+            "text": "Phải tìm điểm đối xứng trước, vì chưa có điểm thì chưa nối được."
           },
           {
             "optionId": "do",
@@ -2291,7 +2295,7 @@
           "id": "to",
           "content": {
             "type": "text",
-            "text": "Tô màu cho cả hình"
+            "text": "Nối các đỉnh đã có rồi mới tìm điểm đối xứng"
           }
         },
         {
@@ -2346,7 +2350,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Trục d nằm nghiêng. Từ điểm A đi ngang 2 ô tới trục, rồi đi dọc cùng số ô, sang bên kia trục để tới A′."
+          "text": "Trục d đi theo đường chéo của các ô vuông. Từ điểm A đi ngang 2 ô tới trục, rồi đi dọc cùng số ô, sang bên kia trục để tới A′."
         },
         {
           "type": "note",
@@ -2381,7 +2385,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Trục d nằm nghiêng. Điểm B cách d 3 ô theo hàng ngang."
+          "text": "Trục d đi theo đường chéo của các ô vuông. Điểm B cách d 3 ô theo hàng ngang."
         },
         {
           "type": "note",
@@ -2398,7 +2402,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Với trục nằm nghiêng, sau khi đi ngang tới trục ta đi dọc cùng số ô, sang bên kia trục. Vậy đi dọc 3 ô.",
+        "text": "Trục đi theo đường chéo của các ô vuông. Sau khi đi ngang tới trục, ta đi dọc cùng số ô sang bên kia trục, tức 3 ô.",
         "wrong": [
           {
             "optionId": "ngang",
@@ -2481,7 +2485,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Bạn gấp đôi một tờ giấy một lần rồi cắt một hình. Khi mở tờ giấy ra, đường nào là trục đối xứng của hình?"
+          "text": "Bạn gấp đôi một tờ giấy một lần rồi cắt một hình. Khi mở tờ giấy ra, đường nào chắc chắn là trục đối xứng của hình?"
         }
       ],
       "hints": {
@@ -2494,7 +2498,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Hai nửa của hình cắt ra giống hệt nhau, vì chúng cùng được cắt một lần. Nếp gấp nằm giữa hai nửa nên là trục đối xứng.",
+        "text": "Hai nửa của hình cắt ra giống hệt nhau, vì chúng cùng được cắt một lần. Nếp gấp nằm giữa hai nửa nên chắc chắn là trục đối xứng.",
         "wrong": [
           {
             "optionId": "canh",
@@ -2502,7 +2506,7 @@
           },
           {
             "optionId": "cheo",
-            "text": "Đường chéo của tờ giấy không phải nếp gấp, nên không phải trục của hình cắt."
+            "text": "Hình cắt ra có trục chắc chắn là nếp gấp, còn đường chéo của tờ giấy thì chưa chắc làm hai nửa khít nhau."
           },
           {
             "optionId": "khong",
@@ -2567,7 +2571,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Lỗ được cắt qua hai lớp giấy. Mở ra, mỗi lớp có một lỗ, nên có 2 lỗ."
+        "text": "Mở ra, lỗ có thêm một lỗ đối xứng với nó qua nếp gấp. Vậy tờ giấy có 2 lỗ."
       },
       "answer": {
         "kind": "value",
@@ -2598,11 +2602,11 @@
             "index": 0
           }
         ],
-        "hintVisualId": "hinh-co-truc-doi-xung.visual.gap-giay-cac-buoc"
+        "hintVisualId": "hinh-co-truc-doi-xung.visual.gap-giay-lo-hai-lan"
       },
       "difficulty": 2,
       "explain": {
-        "text": "Mỗi lần gấp đôi làm số lớp giấy gấp đôi. Gấp hai lần có 2 · 2 = 4 lớp, nên lỗ cắt ra thành 4 lỗ.",
+        "text": "Mở ra từng nếp: mỗi nếp làm số lỗ gấp đôi, vì mỗi lỗ có thêm một lỗ đối xứng qua nếp đó. Hai nếp thì 2 · 2 = 4 lỗ.",
         "tex": "2 \\cdot 2 = 4"
       },
       "answer": {
@@ -2636,16 +2640,16 @@
         "text": "Chiếc lá có nửa trái giống hệt nửa phải, nên gấp đôi theo gân giữa là khít.",
         "wrong": [
           {
-            "optionId": "rang",
-            "text": "Con rắn uốn lượn làm hai nửa của biểu tượng này khác nhau."
-          },
-          {
-            "optionId": "gach",
-            "text": "Hình bình hành này gấp đôi thế nào thì hai nửa cũng lệch."
+            "optionId": "may",
+            "text": "Đám mây bị gió thổi lệch về một phía nên hai nửa khác nhau."
           },
           {
             "optionId": "chu-n",
             "text": "Chữ N gấp đôi thì hai nửa không chồng khít nhau."
+          },
+          {
+            "optionId": "chu-p",
+            "text": "Chữ P gấp đôi thì hai nửa không chồng khít nhau."
           }
         ]
       },
@@ -2658,17 +2662,10 @@
           }
         },
         {
-          "id": "rang",
+          "id": "may",
           "content": {
             "type": "visual",
-            "visualId": "hinh-co-truc-doi-xung.visual.thumb-medical"
-          }
-        },
-        {
-          "id": "gach",
-          "content": {
-            "type": "visual",
-            "visualId": "hinh-co-truc-doi-xung.visual.thumb-parallelogram"
+            "visualId": "hinh-co-truc-doi-xung.visual.thumb-cloud"
           }
         },
         {
@@ -2676,6 +2673,13 @@
           "content": {
             "type": "visual",
             "visualId": "hinh-co-truc-doi-xung.visual.thumb-glyph-n"
+          }
+        },
+        {
+          "id": "chu-p",
+          "content": {
+            "type": "visual",
+            "visualId": "hinh-co-truc-doi-xung.visual.thumb-glyph-p"
           }
         }
       ],
@@ -2702,10 +2706,10 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Cánh bướm và ngôi nhà có hai nửa giống hệt nhau, nên gấp đôi là khít. Hình bình hành và con rắn thì không."
+        "text": "Ngôi nhà và mặt trống đồng có hai nửa giống hệt nhau, nên gấp đôi là khít. Chữ Z và đám mây lệch thì không."
       },
       "visualId": "hinh-co-truc-doi-xung.visual.cham-gap-doi",
-      "answer": ["buom", "ngoi-nha"]
+      "answer": ["ngoi-nha", "mat-trong"]
     },
     {
       "id": "hinh-co-truc-doi-xung.ex.s2-on-nhieu-truc",
@@ -2727,7 +2731,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Mỗi hình khác nhau. Hình bình hành không có trục, ngôi nhà có một trục, hình vuông có nhiều trục.",
+        "text": "Mỗi hình khác nhau. Hình bình hành lệch không có trục, ngôi nhà có một trục, hình vuông có nhiều trục.",
         "wrong": [
           {
             "optionId": "mot",
@@ -2755,21 +2759,21 @@
           "id": "mot",
           "content": {
             "type": "text",
-            "text": "Luôn có đúng một trục"
+            "text": "Hình nào cũng có đúng một trục"
           }
         },
         {
           "id": "hai",
           "content": {
             "type": "text",
-            "text": "Luôn có đúng hai trục"
+            "text": "Đúng hai trục, không hơn không kém"
           }
         },
         {
           "id": "khong",
           "content": {
             "type": "text",
-            "text": "Luôn không có trục nào"
+            "text": "Không hình nào có trục đối xứng"
           }
         }
       ],
@@ -2881,7 +2885,7 @@
             "index": 0
           }
         ],
-        "hintVisualId": "hinh-co-truc-doi-xung.visual.truc-nha-cac-buoc"
+        "hintVisualId": "hinh-co-truc-doi-xung.visual.goi-y-gap-sai"
       },
       "difficulty": 2,
       "explain": {
@@ -3019,7 +3023,7 @@
             "index": 0
           }
         ],
-        "hintVisualId": "hinh-co-truc-doi-xung.visual.truc-nha-cac-buoc"
+        "hintVisualId": "hinh-co-truc-doi-xung.visual.goi-y-gap-sai"
       },
       "difficulty": 1,
       "explain": {
@@ -3088,7 +3092,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Hình tam giác đều có 3 cạnh bằng nhau nên có 3 trục đối xứng."
+        "text": "Hình tam giác đều có 3 cạnh bằng nhau và 3 góc bằng nhau, nên có 3 trục đối xứng."
       },
       "answer": {
         "kind": "value",
@@ -3118,7 +3122,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Hình vuông có 4 trục và hình lục giác đều có 6 trục. Hình thang cân chỉ có 1 trục, còn hình bình hành này không có trục nào.",
+        "text": "Hình vuông có 4 trục và hình lục giác đều có 6 trục. Hình thang cân chỉ có 1 trục, còn hình bình hành lệch này không có trục nào.",
         "wrong": [
           {
             "optionId": "thang",
@@ -3126,7 +3130,7 @@
           },
           {
             "optionId": "binh",
-            "text": "Hình bình hành này không có trục đối xứng nào."
+            "text": "Hình bình hành lệch này không có trục đối xứng nào."
           }
         ]
       },
@@ -3183,67 +3187,67 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Chữ H gấp đôi theo nét ngang hay theo trục đứng ở giữa đều khít, nên có hai trục.",
+        "text": "Chữ O gấp đôi theo đường thẳng đứng hay theo đường nằm ngang đều khít, nên có hai trục.",
         "wrong": [
           {
-            "optionId": "n",
-            "text": "Chữ N không có trục nào."
+            "optionId": "c",
+            "text": "Chữ C chỉ có một trục nằm ngang."
           },
           {
-            "optionId": "l",
-            "text": "Chữ L không có trục nào."
+            "optionId": "z",
+            "text": "Chữ Z không có trục nào."
           },
           {
-            "optionId": "t",
-            "text": "Chữ T chỉ có một trục thẳng đứng."
+            "optionId": "f",
+            "text": "Chữ F không có trục nào."
           }
         ]
       },
       "options": [
         {
-          "id": "h",
+          "id": "o",
           "content": {
             "type": "visual",
-            "visualId": "hinh-co-truc-doi-xung.visual.thumb-glyph-h"
+            "visualId": "hinh-co-truc-doi-xung.visual.thumb-glyph-o"
           }
         },
         {
-          "id": "n",
+          "id": "c",
           "content": {
             "type": "visual",
-            "visualId": "hinh-co-truc-doi-xung.visual.thumb-glyph-n"
+            "visualId": "hinh-co-truc-doi-xung.visual.thumb-glyph-c"
           }
         },
         {
-          "id": "l",
+          "id": "z",
           "content": {
             "type": "visual",
-            "visualId": "hinh-co-truc-doi-xung.visual.thumb-glyph-l"
+            "visualId": "hinh-co-truc-doi-xung.visual.thumb-glyph-z"
           }
         },
         {
-          "id": "t",
+          "id": "f",
           "content": {
             "type": "visual",
-            "visualId": "hinh-co-truc-doi-xung.visual.thumb-glyph-t"
+            "visualId": "hinh-co-truc-doi-xung.visual.thumb-glyph-f"
           }
         }
       ],
-      "answer": ["h"],
+      "answer": ["o"],
       "multiple": false
     },
     {
-      "id": "hinh-co-truc-doi-xung.ex.s6-on-chu-e-truc",
+      "id": "hinh-co-truc-doi-xung.ex.s6-on-chu-c-truc",
       "type": "choice",
       "cardIds": ["hinh-co-truc-doi-xung.card.chu-cai-chu-so"],
       "prompt": [
         {
           "type": "note",
-          "text": "Chữ E có đúng một trục đối xứng. Trục đó thẳng đứng hay nằm ngang?"
+          "text": "Chữ C có đúng một trục đối xứng. Trục đó thẳng đứng hay nằm ngang?"
         },
         {
           "type": "visual",
-          "visualId": "hinh-co-truc-doi-xung.visual.chu-e"
+          "visualId": "hinh-co-truc-doi-xung.visual.chu-c"
         }
       ],
       "hints": {
@@ -3256,11 +3260,11 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Gấp chữ E đôi theo đường nằm ngang ở giữa thì nửa trên khít nửa dưới. Vậy trục của chữ E nằm ngang.",
+        "text": "Gấp chữ C đôi theo đường nằm ngang ở giữa thì nửa trên khít nửa dưới. Vậy trục của chữ C nằm ngang.",
         "wrong": [
           {
             "optionId": "dung",
-            "text": "Gấp chữ E theo đường thẳng đứng thì nét dọc ở bên trái, ba nét ngang ở bên phải, hai nửa không khít."
+            "text": "Gấp chữ C theo đường thẳng đứng thì nét cong ở bên trái, chỗ hở ở bên phải, hai nửa không khít."
           }
         ]
       },
@@ -3290,7 +3294,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Hình nào có nhiều trục đối xứng nhất?"
+          "text": "Đồ vật nào có nhiều trục đối xứng nhất?"
         }
       ],
       "hints": {
@@ -3303,45 +3307,45 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Hình tròn có vô số trục, nhiều hơn mọi hình còn lại. Hình lục giác đều có 6 trục, hình vuông có 4 trục, hình tam giác đều có 3 trục.",
+        "text": "Bánh xe tròn trơn có vô số trục, nhiều hơn mọi đồ vật còn lại. Biển báo tam giác đều có 3 trục, quyển sách có 2 trục, cổng đền có 1 trục.",
         "wrong": [
           {
-            "optionId": "luc",
-            "text": "Hình lục giác đều có 6 trục, ít hơn vô số trục của hình tròn."
+            "optionId": "bien",
+            "text": "Biển báo tam giác đều có 3 trục, ít hơn vô số trục của bánh xe."
           }
         ]
       },
       "options": [
         {
-          "id": "tron",
+          "id": "xe",
           "content": {
             "type": "text",
-            "text": "Hình tròn"
+            "text": "Bánh xe tròn trơn"
           }
         },
         {
-          "id": "luc",
+          "id": "cong",
           "content": {
             "type": "text",
-            "text": "Hình lục giác đều"
+            "text": "Cổng đền"
           }
         },
         {
-          "id": "vuong",
+          "id": "sach",
           "content": {
             "type": "text",
-            "text": "Hình vuông"
+            "text": "Quyển sách hình chữ nhật"
           }
         },
         {
-          "id": "tam",
+          "id": "bien",
           "content": {
             "type": "text",
-            "text": "Hình tam giác đều"
+            "text": "Biển báo hình tam giác đều"
           }
         }
       ],
-      "answer": ["tron"],
+      "answer": ["xe"],
       "multiple": false
     },
     {
@@ -3364,7 +3368,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Hình bình hành lệch và biểu tượng có con rắn đều không có trục. Chiếc lá có một trục, dấu cộng có bốn trục.",
+        "text": "Tam giác có ba cạnh khác nhau và hình bình hành lệch đều không có trục. Chiếc lá có một trục, dấu cộng có bốn trục.",
         "wrong": [
           {
             "optionId": "la",
@@ -3372,23 +3376,23 @@
           },
           {
             "optionId": "cong",
-            "text": "Dấu cộng có bốn cánh giống nhau nên có bốn trục."
+            "text": "Gấp dấu cộng theo đường thẳng đứng, đường nằm ngang hay hai đường chéo, hai nửa đều khít: có 4 trục."
           }
         ]
       },
       "options": [
         {
+          "id": "tam",
+          "content": {
+            "type": "visual",
+            "visualId": "hinh-co-truc-doi-xung.visual.thumb-scalene"
+          }
+        },
+        {
           "id": "binh",
           "content": {
             "type": "visual",
             "visualId": "hinh-co-truc-doi-xung.visual.thumb-parallelogram"
-          }
-        },
-        {
-          "id": "rang",
-          "content": {
-            "type": "visual",
-            "visualId": "hinh-co-truc-doi-xung.visual.thumb-medical"
           }
         },
         {
@@ -3406,7 +3410,7 @@
           }
         }
       ],
-      "answer": ["binh", "rang"],
+      "answer": ["tam", "binh"],
       "multiple": true
     },
     {
@@ -3473,6 +3477,10 @@
           {
             "optionId": "khong",
             "text": "Điểm nào cũng có điểm đối xứng qua d. Với điểm nằm trên d thì đó là chính nó."
+          },
+          {
+            "optionId": "doc",
+            "text": "M nằm trên d, cách d 0 ô, nên điểm đối xứng không rời M ô nào."
           }
         ]
       },
@@ -3492,10 +3500,10 @@
           }
         },
         {
-          "id": "xa",
+          "id": "doc",
           "content": {
             "type": "text",
-            "text": "Ở rất xa d"
+            "text": "Trên d, cách M một ô"
           }
         },
         {
@@ -3517,6 +3525,10 @@
         {
           "type": "note",
           "text": "Trục d nằm ngang, đi qua hàng 4. Điểm Q ở hàng 1."
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-co-truc-doi-xung.visual.hang-cua-diem"
         },
         {
           "type": "note",
@@ -3609,7 +3621,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Trục d nằm nghiêng. Từ điểm C đi ngang 5 ô tới trục."
+          "text": "Trục d đi theo đường chéo của các ô vuông. Từ điểm C đi ngang 5 ô tới trục."
         },
         {
           "type": "note",
@@ -3717,8 +3729,8 @@
         "text": "Mỗi nếp gấp là một trục đối xứng của hình cắt. Hai nếp gấp nên có ít nhất hai trục.",
         "wrong": [
           {
-            "optionId": "cheo",
-            "text": "Đường chéo của tờ giấy không phải là nếp gấp, nên không phải trục."
+            "optionId": "canh",
+            "text": "Cạnh của tờ giấy không phải nếp gấp, nên không chia hình cắt thành hai nửa giống nhau."
           }
         ]
       },
@@ -3738,10 +3750,10 @@
           }
         },
         {
-          "id": "cheo",
+          "id": "canh",
           "content": {
             "type": "text",
-            "text": "Đường chéo của tờ giấy"
+            "text": "Một cạnh của tờ giấy"
           }
         }
       ],
@@ -3772,7 +3784,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Mỗi lỗ cắt qua hai lớp giấy nên thành hai lỗ. Hai lỗ cắt thành 2 · 2 = 4 lỗ.",
+        "text": "Mỗi lỗ có thêm một lỗ đối xứng với nó qua nếp gấp, nên thành hai lỗ. Hai lỗ cắt thành 2 · 2 = 4 lỗ.",
         "tex": "2 \\cdot 2 = 4"
       },
       "answer": {
@@ -3784,13 +3796,13 @@
       }
     },
     {
-      "id": "hinh-co-truc-doi-xung.ex.l51-nam-canh",
+      "id": "hinh-co-truc-doi-xung.ex.l51-hinh-thoi",
       "type": "numeric",
       "cardIds": [],
       "prompt": [
         {
           "type": "note",
-          "text": "Một hình có 5 cạnh bằng nhau và 5 góc bằng nhau. Hình đó có bao nhiêu trục đối xứng?"
+          "text": "Hình thoi có 4 cạnh bằng nhau, nhưng các góc của nó không bằng nhau. Hình thoi có bao nhiêu trục đối xứng?"
         }
       ],
       "leadsTo": "hinh-co-truc-doi-xung.ex.sbt-5-1",
@@ -3804,14 +3816,14 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Hình có các cạnh bằng nhau và các góc bằng nhau thì có bao nhiêu cạnh sẽ có bấy nhiêu trục. Hình này có 5 cạnh nên có 5 trục."
+        "text": "Hình thoi có hai trục, là hai đường chéo. Hình có 4 cạnh bằng nhau chưa chắc có 4 trục: các góc cũng phải bằng nhau."
       },
       "answer": {
         "kind": "value",
-        "value": 5
+        "value": 2
       },
       "check": {
-        "expr": "5"
+        "expr": "2"
       }
     },
     {
@@ -3836,12 +3848,12 @@
             "index": 0
           }
         ],
-        "hintVisualId": "hinh-co-truc-doi-xung.visual.goi-y-dem-canh",
+        "hintVisualId": "hinh-co-truc-doi-xung.visual.goi-y-dem-truc",
         "solutionVisualId": "hinh-co-truc-doi-xung.visual.sbt-5-1-giai"
       },
       "difficulty": 2,
       "explain": {
-        "text": "Hình đều có bao nhiêu cạnh thì có bấy nhiêu trục: tam giác đều 3 trục, hình vuông 4 trục, lục giác đều 6 trục. Hình tròn gấp theo đường nào qua tâm cũng khít, nên có vô số trục."
+        "text": "Tam giác đều có 3 trục, hình vuông 4 trục, lục giác đều 6 trục. Hình tròn gấp theo đường nào qua tâm cũng khít, nên có vô số trục."
       },
       "left": [
         {
@@ -4012,12 +4024,12 @@
             "index": 0
           }
         ],
-        "hintVisualId": "hinh-co-truc-doi-xung.visual.truc-nha-cac-buoc",
+        "hintVisualId": "hinh-co-truc-doi-xung.visual.goi-y-gap-sai",
         "solutionVisualId": "hinh-co-truc-doi-xung.visual.sbt-5-2-giai"
       },
       "difficulty": 3,
       "explain": {
-        "text": "Hình bình hành không có trục nào. Hình thang cân có 1 trục, hình chữ nhật và hình thoi mỗi hình có 2 trục."
+        "text": "Hình bình hành lệch không có trục nào. Hình thang cân có 1 trục, hình chữ nhật và hình thoi mỗi hình có 2 trục."
       },
       "visualId": "hinh-co-truc-doi-xung.visual.sbt-5-2-chon",
       "validatorId": "chon-truc",
@@ -4093,6 +4105,10 @@
         {
           "type": "note",
           "text": "Chữ số 1 viết bằng một nét thẳng đứng. Chữ số 1 có bao nhiêu trục đối xứng?"
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-co-truc-doi-xung.visual.chu-so-1"
         }
       ],
       "leadsTo": "hinh-co-truc-doi-xung.ex.sbt-5-3b",
@@ -4173,7 +4189,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Cổng đền và chiếc lá gấp đôi là khít, nên có trục đối xứng. Hình bình hành lệch và hình năm ô vuông lệch không có trục nào.",
+        "text": "Cổng đền và chiếc lá gấp đôi là khít, nên có trục đối xứng. Hình bình hành lệch và tam giác có ba cạnh khác nhau không có trục nào.",
         "wrong": [
           {
             "optionId": "binh",
@@ -4181,7 +4197,7 @@
           },
           {
             "optionId": "lech",
-            "text": "Hình năm ô vuông lệch này gấp thế nào cũng không khít."
+            "text": "Tam giác có ba cạnh khác nhau này gấp thế nào cũng không khít."
           }
         ]
       },
@@ -4211,7 +4227,7 @@
           "id": "lech",
           "content": {
             "type": "visual",
-            "visualId": "hinh-co-truc-doi-xung.visual.thumb-pentomino"
+            "visualId": "hinh-co-truc-doi-xung.visual.thumb-scalene"
           }
         }
       ],
@@ -4244,7 +4260,7 @@
             "index": 1
           }
         ],
-        "hintVisualId": "hinh-co-truc-doi-xung.visual.truc-nha-cac-buoc",
+        "hintVisualId": "hinh-co-truc-doi-xung.visual.goi-y-gap-thu",
         "solutionVisualId": "hinh-co-truc-doi-xung.visual.sbt-5-4-giai"
       },
       "difficulty": 2,
@@ -4304,7 +4320,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Dấu cộng có 4 cánh giống nhau nên có 4 trục: hai đường thẳng giữa các cánh và hai đường chéo."
+        "text": "Gấp dấu cộng theo đường thẳng đứng, đường nằm ngang đi qua giữa các cánh, hay theo hai đường chéo, hai nửa đều chồng khít. Vậy có 4 trục."
       },
       "visualId": "hinh-co-truc-doi-xung.visual.chon-truc-dau-cong",
       "validatorId": "chon-truc",
@@ -4332,12 +4348,12 @@
             "index": 0
           }
         ],
-        "hintVisualId": "hinh-co-truc-doi-xung.visual.goi-y-dem-canh",
+        "hintVisualId": "hinh-co-truc-doi-xung.visual.goi-y-gap-thu",
         "solutionVisualId": "hinh-co-truc-doi-xung.visual.sbt-5-5-giai"
       },
       "difficulty": 3,
       "explain": {
-        "text": "Hình bên trái không có trục. Ngôi sao năm cánh có 5 trục, mỗi trục đi qua đỉnh một cánh. Hình bậc thang có 2 trục là hai đường chéo."
+        "text": "Hình bên trái không có trục. Ngôi sao năm cánh có 5 trục, mỗi trục đi qua đỉnh một cánh. Hình bốn ô vuông xếp chéo có 2 trục là hai đường chéo."
       },
       "visualId": "hinh-co-truc-doi-xung.visual.sbt-5-5-chon",
       "validatorId": "chon-truc",
@@ -4459,7 +4475,7 @@
       },
       "difficulty": 3,
       "explain": {
-        "text": "Cần đặt ba điểm: đầu bên phải của nửa vòng tròn, mắt và đầu mép miệng. Mỗi điểm cách d cùng số ô với điểm ở bên trái, trên cùng hàng."
+        "text": "Cần đặt ba điểm: điểm đối xứng của điểm xa d nhất trên nửa vòng tròn, mắt và đầu mép miệng. Mỗi điểm cách d cùng số ô với điểm ở bên trái, trên cùng hàng."
       },
       "visualId": "hinh-co-truc-doi-xung.visual.sbt-5-6b-ve",
       "validatorId": "ve-doi-xung",
@@ -4851,7 +4867,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Thêm một đoạn nối hai đầu của hình thì hình có hình chữ U, và chữ U gấp khít theo đường chéo. Vậy hình có đúng một trục."
+        "text": "Thêm một đoạn đi xuống từ đầu bên trái thì được hình giống chữ ∩. Gấp theo đường thẳng đứng ở giữa thì hai nửa khít, nên hình có đúng một trục."
       },
       "visualId": "hinh-co-truc-doi-xung.visual.l59",
       "validatorId": "ve-gap-khuc",
@@ -4890,12 +4906,12 @@
             "index": 1
           }
         ],
-        "hintVisualId": "hinh-co-truc-doi-xung.visual.truc-nha-cac-buoc",
+        "hintVisualId": "hinh-co-truc-doi-xung.visual.goi-y-ve-hinh",
         "solutionVisualId": "hinh-co-truc-doi-xung.visual.sbt-5-9a-giai"
       },
       "difficulty": 3,
       "explain": {
-        "text": "Mỗi đoạn của lưới dài 1 đơn vị. Chọn các đoạn nối liền nhau cho đủ độ dài. Rồi gấp thử theo các trục để đếm, sao cho hình có đúng số trục đề cho."
+        "text": "Nối hai đầu của hình đã cho bằng 4 đoạn để được hình chữ L. Hình chữ L có một trục là đường chéo đi qua góc của nó."
       },
       "visualId": "hinh-co-truc-doi-xung.visual.sbt-5-9-ve",
       "validatorId": "ve-gap-khuc",
@@ -4911,7 +4927,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Vẽ thêm một đường gấp khúc dài 2 đơn vị để hình có đúng hai trục đối xứng."
+          "text": "Vẽ thêm một đường gấp khúc dài 4 đơn vị để hình có đúng hai trục đối xứng."
         }
       ],
       "leadsTo": "hinh-co-truc-doi-xung.ex.sbt-5-9b",
@@ -4925,12 +4941,12 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Thử vài cách vẽ, mỗi lần gấp theo các trục để đếm. Hình đúng hai trục khi có hai đường gấp mà hai nửa đều khít nhau."
+        "text": "Nối hai đầu của hình thành một hình chữ nhật: rộng 2 ô và cao 1 ô, hoặc rộng 1 ô và cao 2 ô. Hình chữ nhật có hai trục: một thẳng đứng, một nằm ngang."
       },
       "visualId": "hinh-co-truc-doi-xung.visual.l59",
       "validatorId": "ve-gap-khuc",
       "params": {
-        "length": 2,
+        "length": 4,
         "axes": 2
       }
     },
@@ -4964,12 +4980,12 @@
             "index": 1
           }
         ],
-        "hintVisualId": "hinh-co-truc-doi-xung.visual.truc-nha-cac-buoc",
+        "hintVisualId": "hinh-co-truc-doi-xung.visual.goi-y-ve-hinh",
         "solutionVisualId": "hinh-co-truc-doi-xung.visual.sbt-5-9b-giai"
       },
       "difficulty": 3,
       "explain": {
-        "text": "Mỗi đoạn của lưới dài 1 đơn vị. Chọn các đoạn nối liền nhau cho đủ độ dài. Rồi gấp thử theo các trục để đếm, sao cho hình có đúng số trục đề cho."
+        "text": "Vẽ thêm để được hai ô vuông chạm nhau ở một góc. Hai ô vuông chạm góc có hai trục, là hai đường chéo."
       },
       "visualId": "hinh-co-truc-doi-xung.visual.sbt-5-9-ve",
       "validatorId": "ve-gap-khuc",
@@ -5038,12 +5054,12 @@
             "index": 1
           }
         ],
-        "hintVisualId": "hinh-co-truc-doi-xung.visual.truc-nha-cac-buoc",
+        "hintVisualId": "hinh-co-truc-doi-xung.visual.goi-y-ve-hinh",
         "solutionVisualId": "hinh-co-truc-doi-xung.visual.sbt-5-9c-giai"
       },
       "difficulty": 3,
       "explain": {
-        "text": "Mỗi đoạn của lưới dài 1 đơn vị. Chọn các đoạn nối liền nhau cho đủ độ dài. Rồi gấp thử theo các trục để đếm, sao cho hình có đúng số trục đề cho."
+        "text": "Vẽ thêm 8 đoạn để hình thành dấu cộng năm ô vuông. Dấu cộng có bốn trục: đường thẳng đứng, đường nằm ngang và hai đường chéo."
       },
       "visualId": "hinh-co-truc-doi-xung.visual.sbt-5-9-ve",
       "validatorId": "ve-gap-khuc",
@@ -5059,11 +5075,11 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Ba thẻ số 1, 8 và 0 đều có trục nằm ngang. Ghép ba thẻ đó thành các số có ba chữ số, ta được mấy số?"
+          "text": "Ba thẻ chữ H, X và E đều có trục nằm ngang. Xếp ba thẻ cạnh nhau thành một dãy chữ."
         },
         {
           "type": "note",
-          "text": "Nhập số cách ghép."
+          "text": "Có mấy cách xếp? Nhập số cách xếp."
         }
       ],
       "leadsTo": "hinh-co-truc-doi-xung.ex.sbt-5-10",
@@ -5077,15 +5093,14 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Có 3 cách chọn chữ số đầu, rồi 2 cách chọn chữ số thứ hai, nên 3 · 2 = 6 cách xếp. Hai cách đặt số 0 ở đầu không phải số có ba chữ số, nên còn 6 − 2 = 4 số.",
-        "tex": "3 \\cdot 2 \\cdot 1 = 6 \\quad 6 - 2 = 4"
+        "text": "Liệt kê các dãy: H X E, H E X, X H E, X E H, E H X, E X H. Có 6 cách xếp, và dãy nào cũng có trục nằm ngang."
       },
       "answer": {
         "kind": "value",
-        "value": 4
+        "value": 6
       },
       "check": {
-        "expr": "3 · 2 - 2"
+        "expr": "6"
       }
     },
     {
@@ -5095,11 +5110,15 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Thẻ 2 và thẻ 5 gấp lại khít nhau qua một đường thẳng đứng. Ghép thẻ 2 bên trái, thẻ 8 ở giữa, thẻ 5 bên phải."
+          "text": "Thẻ b và thẻ d gấp lại khít nhau qua một đường thẳng đứng. Xếp ba thẻ b, d và H thành một dãy có trục đối xứng thẳng đứng."
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-co-truc-doi-xung.visual.l510-the"
         },
         {
           "type": "note",
-          "text": "Số có ba chữ số đó bằng bao nhiêu?"
+          "text": "Thẻ H đứng ở vị trí thứ mấy, đếm từ trái sang phải? Nhập số."
         }
       ],
       "leadsTo": "hinh-co-truc-doi-xung.ex.sbt-5-10",
@@ -5113,14 +5132,14 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Đọc các thẻ từ trái sang phải: 2, 8, 5. Số có ba chữ số đó là 285."
+        "text": "Thẻ b và thẻ d gấp khít nhau qua đường thẳng đứng, nên chúng đứng hai bên trục. Thẻ H có trục thẳng đứng nên đứng giữa, ở vị trí thứ 2."
       },
       "answer": {
         "kind": "value",
-        "value": 285
+        "value": 2
       },
       "check": {
-        "expr": "285"
+        "expr": "2"
       }
     },
     {
@@ -5158,7 +5177,7 @@
       },
       "difficulty": 3,
       "explain": {
-        "text": "Thẻ 0, 1 và 8 đều có trục nằm ngang, ghép được 4 số: 108, 180, 801 và 810. Thẻ 2 và thẻ 5 đứng hai bên một thẻ 0, 1 hoặc 8 ghép được 6 số. Vậy có tất cả 4 + 6 = 10 số.",
+        "text": "Thẻ 0, 1 và 8 đều có trục nằm ngang, ghép được 4 số: 108, 180, 801 và 810. Thẻ 2 và thẻ 5 đứng hai bên một thẻ 0, 1 hoặc 8 ghép được 6 số: 205, 215, 285, 502, 512 và 582. Mỗi thẻ chỉ có một tấm, nên không có số 181 hay 888.",
         "tex": "4 + 6 = 10"
       },
       "answer": {

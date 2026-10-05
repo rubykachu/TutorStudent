@@ -127,3 +127,29 @@ export function FoldGroup({
     </g>
   );
 }
+
+// A sheet of paper as it lies folded: the half that stays, with the sheet's
+// edge drawn solid and the cut drawn dashed, as in the workbook.
+export function FixedHalf({
+  strokes,
+  axis,
+}: {
+  strokes: readonly ShapeStroke[];
+  axis: Line;
+}) {
+  const uid = useId().replaceAll(":", "");
+  const side = movingSide(axis);
+  return (
+    <g {...decorative}>
+      <defs>
+        <clipPath id={`${uid}-half`}>
+          <polygon points={halfPlane(axis, side === 1 ? -1 : 1)} />
+        </clipPath>
+      </defs>
+      <g clipPath={`url(#${uid}-half)`}>
+        <Strokes strokes={strokes.filter((s) => !s.fill)} fillClass="none" />
+        <Strokes strokes={strokes.filter((s) => s.fill)} dashed />
+      </g>
+    </g>
+  );
+}

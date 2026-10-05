@@ -4,11 +4,25 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { collectVisualRefs } from "@/content/check";
 import {
+  BOOK_58A,
+  BOOK_59,
+  COLUMN_QUESTION,
+  DIAGONAL_DEMO,
+  DIAGONAL_EXERCISE,
+  LEAD_58A,
+  LEAD_59,
+  ROW_QUESTION,
+} from "@/visuals/math/hinh-co-truc-doi-xung/boards";
+import {
   AxisCards,
   FoldCards,
 } from "@/visuals/math/hinh-co-truc-doi-xung/cards";
 import { EdgeBoard } from "@/visuals/math/hinh-co-truc-doi-xung/edge-board";
-import { solveEdges } from "@/visuals/math/hinh-co-truc-doi-xung/edges";
+import {
+  candidateEdges,
+  figureAxes,
+  solveEdges,
+} from "@/visuals/math/hinh-co-truc-doi-xung/edges";
 import {
   AxisPicker,
   FoldLab,
@@ -33,10 +47,17 @@ import {
   HORIZONTAL_MIDDLE,
   VERTICAL_MIDDLE,
 } from "@/visuals/math/hinh-co-truc-doi-xung/glyphs";
-import { mirrorPoint } from "@/visuals/math/hinh-co-truc-doi-xung/lattice";
 import {
+  chain,
+  isChain,
+  mirrorPoint,
+} from "@/visuals/math/hinh-co-truc-doi-xung/lattice";
+import {
+  BADGE_RADIUS,
+  badgeSpot,
   candidateIsAxis,
   candidatesOf,
+  type PickGroup,
 } from "@/visuals/math/hinh-co-truc-doi-xung/lines";
 import { LESSON_SLUG } from "@/visuals/math/hinh-co-truc-doi-xung/logic";
 import { MirrorBoard } from "@/visuals/math/hinh-co-truc-doi-xung/mirror-board";
@@ -46,6 +67,7 @@ import {
   solvedMirror,
   tappablePoints,
 } from "@/visuals/math/hinh-co-truc-doi-xung/mirror-model";
+import { PAPERS } from "@/visuals/math/hinh-co-truc-doi-xung/paper";
 import {
   SHAPE_IDS,
   SHAPES,
@@ -587,5 +609,203 @@ describe("the touchable pictures", () => {
         el.getAttribute("data-region"),
       ),
     ).toEqual(entry?.regions);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Fixes of review round 1
+
+const exerciseOf = (suffix: string) =>
+  lesson.exercises.find((e) => e.id === `${LESSON_SLUG}.ex.${suffix}`) as
+    | { answer?: { value?: number }; params?: Record<string, number> }
+    | undefined;
+
+describe("pictures used as options fit a landscape iPad", () => {
+  it("every option picture is drawn small", () => {
+    const thumbs = Object.entries(VISUAL_SPECS).filter(([key]) =>
+      key.startsWith("thumb-"),
+    );
+    expect(thumbs.length).toBeGreaterThan(5);
+    for (const [key, spec] of thumbs) {
+      if (spec.kind !== "subject") throw new Error(key);
+      expect(spec.width, key).toBeLessThanOrEqual(90);
+    }
+  });
+});
+
+describe("the names of the lines of a picture do not crowd each other", () => {
+  it("every pair of names keeps a badge's width between them", () => {
+    const pictures = Object.entries(VISUAL_SPECS).flatMap(
+      ([key, spec]): (readonly [string, PickGroup])[] =>
+        spec.kind === "axisPicker"
+          ? spec.groups.map((g, n) => [`${key}#${n}`, g] as const)
+          : spec.kind === "foldLab" || spec.kind === "lines"
+            ? [[key, spec] as const]
+            : [],
+    );
+    expect(pictures.length).toBeGreaterThan(10);
+    for (const [key, group] of pictures) {
+      const spots = candidatesOf(group.shape, group.lines).map((c) =>
+        badgeSpot(c.axis, c.end),
+      );
+      spots.forEach((a, i) => {
+        spots.slice(i + 1).forEach((b) => {
+          const gap = Math.hypot(a[0] - b[0], a[1] - b[1]);
+          expect(gap, key).toBeGreaterThanOrEqual(2 * BADGE_RADIUS + 4);
+        });
+      });
+    }
+  });
+});
+
+describe("the figures of exercise 5.5 are the workbook's", () => {
+  it("eight squares with no axis, a star with five, four squares in a chain with two", () => {
+    expect(SHAPES.pentomino.axes).toHaveLength(0);
+    expect(SHAPES.star.axes).toHaveLength(5);
+    expect(SHAPES.staircase.axes).toHaveLength(2);
+    expect(SHAPES.staircase.strokes).toHaveLength(4);
+  });
+});
+
+describe("the paper of exercise 5.7 and the example", () => {
+  it("the diamond has clearly sharp corners: the cut half is a narrow triangle", () => {
+    const [tip, top, bottom] = (PAPERS.t.strokes[1] as { pts: readonly Pt[] })
+      .pts as [Pt, Pt, Pt];
+    // The corner of the open diamond on the fold is twice the angle between
+    // the fold and the side of the triangle.
+    const corner =
+      2 * Math.atan2(120 - tip[0], (bottom[1] - top[1]) / 2) * (180 / Math.PI);
+    expect(corner).toBeLessThan(65);
+  });
+});
+
+describe("the polylines of exercise 5.9 and its lead-ins", () => {
+  const solutions = (length: number, axes: number) => {
+    const edges = candidateEdges(LEAD_59);
+    const found: string[] = [];
+    const walk = (from: number, chosen: number[]) => {
+      if (chosen.length === length) {
+        const picked = chosen.map((i) => edges[i] as (typeof edges)[number]);
+        if (isChain(picked) && figureAxes(LEAD_59, picked).length === axes) {
+          found.push(picked.map((e) => `${e[0]}-${e[1]}`).join(" "));
+        }
+        return;
+      }
+      for (let i = from; i < edges.length; i++) walk(i + 1, [...chosen, i]);
+    };
+    walk(0, []);
+    return found;
+  };
+
+  it("the lead-in with four pieces and two axes has exactly the two rectangles, joined to the given polyline", () => {
+    const found = solutions(4, 2);
+    expect(found).toHaveLength(2);
+    const joined = found.every((solution) =>
+      ["1,1", "2,2"].some((end) => solution.includes(end)),
+    );
+    expect(joined).toBe(true);
+  });
+
+  it("the other lead-ins can be solved", () => {
+    expect(solutions(1, 1).length).toBeGreaterThan(0);
+    expect(solutions(2, 4).length).toBeGreaterThan(0);
+  });
+
+  it("the solutions shown for the workbook's 5.9a and 5.9b are made of pieces of the lattice and have the axes asked", () => {
+    const paths: [string, readonly Pt[], number][] = [
+      ["sbt-5-9a-giai", pathOf("sbt-5-9a-giai"), 1],
+      ["sbt-5-9b-giai", pathOf("sbt-5-9b-giai"), 2],
+    ];
+    for (const [key, path, axes] of paths) {
+      const pieces = chain(path);
+      const free = new Set(
+        candidateEdges(BOOK_59).map((e) => `${e[0]}-${e[1]}`),
+      );
+      expect(
+        pieces.every(
+          (e) => free.has(`${e[0]}-${e[1]}`) || free.has(`${e[1]}-${e[0]}`),
+        ),
+        key,
+      ).toBe(true);
+      expect(isChain(pieces), key).toBe(true);
+      expect(figureAxes(BOOK_59, pieces), key).toHaveLength(axes);
+    }
+  });
+});
+
+function pathOf(key: string): readonly Pt[] {
+  const spec = VISUAL_SPECS[key];
+  if (spec?.kind !== "edgesStill" || !spec.path) throw new Error(key);
+  return spec.path;
+}
+
+describe("the hint of 5.8 and the exercises of the diagonal axis", () => {
+  it("counts out a point that is not a corner or an answer of the exercise or of 5.8a", () => {
+    const used = new Set<string>();
+    for (const board of [DIAGONAL_EXERCISE, BOOK_58A, LEAD_58A]) {
+      for (const part of board.parts)
+        for (const anchor of anchorsOf(part)) used.add(anchor.join(","));
+      for (const point of requiredPoints(board)) used.add(point.join(","));
+    }
+    const dot = DIAGONAL_DEMO.parts.flatMap(anchorsOf)[0] as Pt;
+    expect(used.has(dot.join(","))).toBe(false);
+    expect(used.has(mirrorPoint(dot, DIAGONAL_DEMO.axis).join(","))).toBe(
+      false,
+    );
+  });
+});
+
+describe("the questions that name a column or a row", () => {
+  it("the numbered boards agree with the answers of the lesson", () => {
+    // Columns and rows are numbered from 1; the axis is the lattice line at
+    // `at` (0 for the first).
+    const image = (board: typeof COLUMN_QUESTION, axis: "x" | "y") => {
+      const dot = board.parts.flatMap(anchorsOf)[0] as Pt;
+      return mirrorPoint(dot, board.axis)[axis === "x" ? 0 : 1] + 1;
+    };
+    expect(image(COLUMN_QUESTION, "x")).toBe(
+      exerciseOf("s9-cot-cua-diem-doi-xung")?.answer?.value,
+    );
+    expect(image(ROW_QUESTION, "y")).toBe(
+      exerciseOf("s9-on-hang-cua-diem")?.answer?.value,
+    );
+  });
+});
+
+describe("the lead-ins of exercise 5.10", () => {
+  const strokesOf = (ids: GlyphId[]) =>
+    ids.flatMap((id, n) =>
+      GLYPHS[id].map((s) => ({
+        closed: s.closed,
+        pts: s.pts.map(([x, y]): Pt => [x + n * 14, y]),
+      })),
+    );
+  const orders = (ids: GlyphId[]): GlyphId[][] =>
+    ids.length <= 1
+      ? [ids]
+      : ids.flatMap((id, i) =>
+          orders([...ids.slice(0, i), ...ids.slice(i + 1)]).map((rest) => [
+            id,
+            ...rest,
+          ]),
+        );
+
+  it("three cards with a horizontal axis make six rows of letters, each with a horizontal axis", () => {
+    const rows = orders(["H", "X", "E"]);
+    expect(rows).toHaveLength(exerciseOf("l510-ba-the")?.answer?.value ?? 0);
+    for (const row of rows) {
+      expect(isAxisOf(strokesOf(row), { p: [-2, 8], q: [44, 8] }, 0.1)).toBe(
+        true,
+      );
+    }
+  });
+
+  it("b and d are mirror images, so b, H, d is symmetric about its middle", () => {
+    expect(
+      isAxisOf(strokesOf(["b", "H", "d"]), { p: [19, -2], q: [19, 18] }, 0.1),
+    ).toBe(true);
+    expect(
+      isAxisOf(strokesOf(["b", "d", "H"]), { p: [19, -2], q: [19, 18] }, 0.1),
+    ).toBe(false);
   });
 });

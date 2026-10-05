@@ -43,6 +43,14 @@ export const SHAPE_IDS = [
   "pentomino",
   "staircase",
   "sheet",
+  "scalene",
+  "cloud",
+  "heart",
+  "arrow",
+  "nosign",
+  "tallrect",
+  "flatrhombus",
+  "slantleft",
 ] as const;
 export type ShapeId = (typeof SHAPE_IDS)[number];
 
@@ -82,6 +90,8 @@ function across(a: Pt, b: Pt, extra = 14): Line {
     [b[0] + ux * extra, b[1] + uy * extra],
   );
 }
+
+const midpoint = (a: Pt, b: Pt): Pt => [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
 
 const closed = (pts: readonly Pt[], more: Partial<ShapeStroke> = {}) => ({
   pts,
@@ -153,7 +163,7 @@ function star(): ShapeDef {
     axes: Array.from({ length: 5 }, (_, i) =>
       through(centre, -90 + 72 * i, 104),
     ),
-    fakes: [0, 36, 108].map((deg) => through(centre, deg, 104)),
+    fakes: [through(centre, 0, 104)],
   };
 }
 
@@ -168,18 +178,30 @@ function circle(): ShapeDef {
   };
 }
 
-function rectangle(): ShapeDef {
+// A rectangle `halfWidth` to each side of the middle and `halfHeight` above
+// and below it.
+function rectangleOf(
+  id: ShapeId,
+  name: string,
+  halfWidth: number,
+  halfHeight: number,
+): ShapeDef {
+  const [left, right] = [120 - halfWidth, 120 + halfWidth];
+  const [top, bottom] = [120 - halfHeight, 120 + halfHeight];
   const corners: Pt[] = [
-    [42, 72],
-    [198, 72],
-    [198, 168],
-    [42, 168],
+    [left, top],
+    [right, top],
+    [right, bottom],
+    [left, bottom],
   ];
   return {
-    id: "rectangle",
-    name: "Hình chữ nhật",
+    id,
+    name,
     strokes: [closed(corners, { fill: true })],
-    axes: [through(CENTRE, 90, 90), through(CENTRE, 0, 114)],
+    axes: [
+      through(CENTRE, 90, Math.min(REACH, halfHeight + 42)),
+      through(CENTRE, 0, Math.min(REACH + 8, halfWidth + 36)),
+    ],
     fakes: [
       across(corners[0] as Pt, corners[2] as Pt),
       across(corners[1] as Pt, corners[3] as Pt),
@@ -187,21 +209,32 @@ function rectangle(): ShapeDef {
   };
 }
 
-function rhombus(): ShapeDef {
+// A rhombus whose diagonals are `2 * halfWide` across and `2 * halfTall` tall.
+function rhombusOf(
+  id: ShapeId,
+  name: string,
+  halfWide: number,
+  halfTall: number,
+): ShapeDef {
   const corners: Pt[] = [
-    [30, 120],
-    [120, 68],
-    [210, 120],
-    [120, 172],
+    [120 - halfWide, 120],
+    [120, 120 - halfTall],
+    [120 + halfWide, 120],
+    [120, 120 + halfTall],
   ];
-  const mid = (a: Pt, b: Pt): Pt => [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
   const [a, b, c, d] = corners as [Pt, Pt, Pt, Pt];
   return {
-    id: "rhombus",
-    name: "Hình thoi",
+    id,
+    name,
     strokes: [closed(corners, { fill: true })],
-    axes: [through(CENTRE, 0, 114), through(CENTRE, 90, 70)],
-    fakes: [across(mid(a, b), mid(c, d)), across(mid(b, c), mid(d, a))],
+    axes: [
+      through(CENTRE, 0, halfWide + 24),
+      through(CENTRE, 90, halfTall + 18),
+    ],
+    fakes: [
+      across(midpoint(a, b), midpoint(c, d)),
+      across(midpoint(b, c), midpoint(d, a)),
+    ],
   };
 }
 
@@ -223,25 +256,26 @@ function trapezoid(): ShapeDef {
   };
 }
 
-function parallelogram(): ShapeDef {
+// A parallelogram that leans right (`lean` 1) or left (`lean` -1).
+function parallelogramOf(id: ShapeId, name: string, lean: 1 | -1): ShapeDef {
+  const lower = (x: number) => (lean === 1 ? x : 240 - x);
   const corners: Pt[] = [
-    [72, 72],
-    [204, 72],
-    [168, 168],
-    [36, 168],
+    [lower(72), 72],
+    [lower(204), 72],
+    [lower(168), 168],
+    [lower(36), 168],
   ];
   const [a, b, c, d] = corners as [Pt, Pt, Pt, Pt];
-  const mid = (p: Pt, q: Pt): Pt => [(p[0] + q[0]) / 2, (p[1] + q[1]) / 2];
   return {
-    id: "parallelogram",
-    name: "Hình bình hành",
+    id,
+    name,
     strokes: [closed(corners, { fill: true })],
     axes: [],
     fakes: [
       across(a, c),
       across(b, d),
-      across(mid(a, d), mid(b, c)),
-      across(mid(a, b), mid(c, d)),
+      across(midpoint(a, d), midpoint(b, c)),
+      across(midpoint(a, b), midpoint(c, d)),
     ],
   };
 }
@@ -321,7 +355,7 @@ function butterfly(): ShapeDef {
       ...pair(spot(176, 166, 7), { closed: true, thin: true }),
     ],
     axes: [VERTICAL],
-    fakes: [HORIZONTAL, through([150, 122], 90, 100), through(CENTRE, 45, 104)],
+    fakes: [HORIZONTAL, through([150, 122], 90, 100), through(CENTRE, 62, 104)],
   };
 }
 
@@ -511,7 +545,7 @@ function medical(): ShapeDef {
         [92, 190],
         [148, 190],
       ]),
-      open(snake, { thin: true }),
+      open(snake),
     ],
     axes: [],
     fakes: [VERTICAL, HORIZONTAL],
@@ -531,53 +565,169 @@ function latticePolygon(
   return corners.map(([x, y]): Pt => [dx + x * unit, dy + y * unit]);
 }
 
-// Five squares with no axis of symmetry (the shape of the letter F).
+// Eight squares with no axis of symmetry: the first figure of the workbook's
+// exercise on drawing every axis, redrawn square for square.
 function pentomino(): ShapeDef {
   const corners: Pt[] = [
     [1, 0],
-    [3, 0],
-    [3, 1],
+    [2, 0],
     [2, 1],
+    [4, 1],
+    [4, 2],
+    [3, 2],
+    [3, 4],
+    [2, 4],
     [2, 3],
-    [1, 3],
-    [1, 2],
+    [0, 3],
     [0, 2],
-    [0, 1],
-    [1, 1],
+    [1, 2],
   ];
   const [a, b] = [through(CENTRE, 90, 96), through(CENTRE, 0, 96)];
   return {
     id: "pentomino",
-    name: "Hình năm ô vuông lệch",
-    strokes: [closed(latticePolygon(corners, 48, 3, 3), { fill: true })],
+    name: "Hình tám ô vuông lệch",
+    strokes: [closed(latticePolygon(corners, 44, 4, 4), { fill: true })],
     axes: [],
     fakes: [a, b, through(CENTRE, 45, 100), through(CENTRE, 135, 100)],
   };
 }
 
-// A band of squares one step wide, running down the diagonal: its two axes
-// are the two diagonals.
+// Four squares meeting corner to corner along a diagonal (the third figure
+// of the same exercise): its two axes are the two diagonals.
 function staircase(): ShapeDef {
-  const corners: Pt[] = [
-    [0, 0],
-    [2, 0],
-    [2, 1],
-    [3, 1],
-    [3, 2],
-    [4, 2],
-    [4, 4],
-    [2, 4],
-    [2, 3],
-    [1, 3],
-    [1, 2],
-    [0, 2],
-  ];
+  const unit = 44;
+  const square = (i: number) =>
+    closed(
+      latticePolygon(
+        [
+          [i, i],
+          [i + 1, i],
+          [i + 1, i + 1],
+          [i, i + 1],
+        ],
+        unit,
+        4,
+        4,
+      ),
+      { fill: true },
+    );
   return {
     id: "staircase",
-    name: "Hình bậc thang",
-    strokes: [closed(latticePolygon(corners, 38, 4, 4), { fill: true })],
+    name: "Bốn ô vuông xếp chéo",
+    strokes: [0, 1, 2, 3].map(square),
     axes: [through(CENTRE, 45, 108), through(CENTRE, 135, 108)],
     fakes: [through(CENTRE, 90, 96), through(CENTRE, 0, 96)],
+  };
+}
+
+// A triangle whose three sides all differ: no axis.
+function scalene(): ShapeDef {
+  const corners: Pt[] = [
+    [34, 184],
+    [196, 160],
+    [88, 56],
+  ];
+  const [a, b, c] = corners as [Pt, Pt, Pt];
+  return {
+    id: "scalene",
+    name: "Hình tam giác có ba cạnh khác nhau",
+    strokes: [closed(corners, { fill: true })],
+    axes: [],
+    fakes: [across(a, midpoint(b, c)), across(b, midpoint(a, c))],
+  };
+}
+
+// A cloud pushed to one side by the wind: no axis.
+function cloud(): ShapeDef {
+  const outline = smooth(
+    [
+      [34, 160],
+      [30, 124],
+      [62, 108],
+      [70, 74],
+      [110, 58],
+      [146, 76],
+      [186, 70],
+      [214, 98],
+      [200, 132],
+      [214, 160],
+      [170, 176],
+      [100, 170],
+    ],
+    true,
+  );
+  return {
+    id: "cloud",
+    name: "Đám mây lệch",
+    strokes: [closed(outline, { fill: true })],
+    axes: [],
+    fakes: [VERTICAL, HORIZONTAL],
+  };
+}
+
+// A heart: one vertical axis.
+function heart(): ShapeDef {
+  const right = smooth(
+    [
+      [120, 76],
+      [146, 44],
+      [186, 48],
+      [208, 82],
+      [194, 128],
+      [150, 170],
+      [120, 204],
+    ],
+    false,
+  );
+  return {
+    id: "heart",
+    name: "Hình trái tim",
+    strokes: [closed(mirroredOutline(right, 120), { fill: true })],
+    axes: [through([120, 126], 90, 100)],
+    fakes: [HORIZONTAL, through([150, 126], 90, 100), through(CENTRE, 45, 104)],
+  };
+}
+
+// An arrow pointing up: one vertical axis.
+function arrow(): ShapeDef {
+  const right: Pt[] = [
+    [120, 30],
+    [186, 104],
+    [148, 104],
+    [148, 206],
+  ];
+  const left = right
+    .slice(1)
+    .map((p): Pt => [2 * 120 - p[0], p[1]])
+    .reverse();
+  return {
+    id: "arrow",
+    name: "Mũi tên chỉ lên",
+    strokes: [closed([...right, ...left], { fill: true })],
+    axes: [through([120, 118], 90, 100)],
+    fakes: [HORIZONTAL, through([140, 118], 90, 100), through(CENTRE, 45, 104)],
+  };
+}
+
+// A "no entry" sign: a ring with a bar across it, two axes.
+function nosign(): ShapeDef {
+  return {
+    id: "nosign",
+    name: "Biển báo cấm",
+    strokes: [
+      closed(regularPolygon(90, 120, 120, 88, 0), { fill: true }),
+      closed(
+        [
+          [58, 100],
+          [182, 100],
+          [182, 140],
+          [58, 140],
+        ],
+        { fill: true },
+      ),
+    ],
+    axes: [through(CENTRE, 90, 96), through(CENTRE, 0, 96)],
+    fakes: [through(CENTRE, 45, 100), through(CENTRE, 135, 100)],
   };
 }
 
@@ -614,10 +764,10 @@ const DEFS: Record<ShapeId, ShapeDef> = {
   hexagon: regular("Hình lục giác đều", "hexagon", 6, 88, 0, [15, 45]),
   star: star(),
   circle: circle(),
-  rectangle: rectangle(),
-  rhombus: rhombus(),
+  rectangle: rectangleOf("rectangle", "Hình chữ nhật", 78, 48),
+  rhombus: rhombusOf("rhombus", "Hình thoi", 90, 52),
   trapezoid: trapezoid(),
-  parallelogram: parallelogram(),
+  parallelogram: parallelogramOf("parallelogram", "Hình bình hành", 1),
   plus: plus(),
   butterfly: butterfly(),
   leaf: leaf(),
@@ -628,6 +778,18 @@ const DEFS: Record<ShapeId, ShapeDef> = {
   pentomino: pentomino(),
   staircase: staircase(),
   sheet: sheet(),
+  scalene: scalene(),
+  cloud: cloud(),
+  heart: heart(),
+  arrow: arrow(),
+  nosign: nosign(),
+  tallrect: rectangleOf("tallrect", "Hình chữ nhật đứng", 48, 84),
+  flatrhombus: rhombusOf("flatrhombus", "Hình thoi dẹt", 104, 36),
+  slantleft: parallelogramOf(
+    "slantleft",
+    "Hình bình hành nghiêng sang trái",
+    -1,
+  ),
 };
 
 export const SHAPES: Readonly<Record<ShapeId, ShapeDef>> = DEFS;

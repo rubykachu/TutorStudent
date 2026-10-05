@@ -1,26 +1,25 @@
 import { decorative } from "@/visuals/shared/markers";
 import type { Line } from "./geometry";
-import { FRAME } from "./shapes";
+import { BADGE_RADIUS, badgeSpot } from "./lines";
 
-const BUBBLE = 14;
 const BADGE_CLASS = "fill-surface stroke-border";
 
 // The letter that names a line, in a small round badge at the line's end.
 export function LineBadge({
   axis,
   letter,
+  end = "q",
   scale = 1,
 }: {
   axis: Line;
   letter: string;
+  // The end of the line the badge stands at.
+  end?: "p" | "q";
   // Bigger when the picture is shown small (several shapes side by side).
   scale?: number;
 }) {
-  // Kept inside the frame, so a line that ends at the edge keeps its badge.
-  const radius = BUBBLE * scale;
-  const limit = FRAME - radius - 2;
-  const x = Math.max(radius + 2, Math.min(limit, axis.q[0]));
-  const y = Math.max(radius + 2, Math.min(limit, axis.q[1]));
+  const radius = BADGE_RADIUS * scale;
+  const [x, y] = badgeSpot(axis, end, scale);
   return (
     <g {...decorative}>
       <circle

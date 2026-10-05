@@ -1,6 +1,6 @@
 import type { VisualState } from "@/visuals/registry";
-import { isAxisOf, type Line } from "./geometry";
-import { SHAPES, type ShapeId } from "./shapes";
+import { isAxisOf, type Line, type Pt } from "./geometry";
+import { FRAME, SHAPES, type ShapeId } from "./shapes";
 
 // The candidate lines of a shape (its axes and some lines that only look like
 // axes) as the child meets them: named a, b, c ... in the order a picture
@@ -14,24 +14,65 @@ export type Candidate = {
   isAxis: boolean;
   // The name the child reads on the line: a, b, c ...
   letter: string;
+  // The end of the line its name stands at, chosen so that no two names
+  // crowd each other (lines side by side, lines meeting at the middle).
+  end: "p" | "q";
 };
 
 const LETTERS = "abcdefghij";
+
+// The radius of a name badge, and the room it keeps from the frame's edge.
+export const BADGE_RADIUS = 14;
+
+// Where a name stands at the end of `axis`: kept inside the frame, so a line
+// that ends at its edge keeps its name.
+export function badgeSpot(axis: Line, end: "p" | "q", scale = 1): Pt {
+  const radius = BADGE_RADIUS * scale;
+  const limit = FRAME - radius - 2;
+  const [x, y] = axis[end];
+  return [
+    Math.max(radius + 2, Math.min(limit, x)),
+    Math.max(radius + 2, Math.min(limit, y)),
+  ];
+}
+
+// The end of each line its name goes to: the end farthest from the names
+// already placed (the second of two near-parallel lines goes to the other
+// end; of lines meeting in the middle, each takes a free end).
+function chooseEnds(axes: readonly Line[]): ("p" | "q")[] {
+  const placed: Pt[] = [];
+  return axes.map((axis) => {
+    const gap = (end: "p" | "q") =>
+      Math.min(
+        Infinity,
+        ...placed.map((other) => {
+          const spot = badgeSpot(axis, end);
+          return Math.hypot(spot[0] - other[0], spot[1] - other[1]);
+        }),
+      );
+    const end = gap("p") > gap("q") ? "p" : "q";
+    placed.push(badgeSpot(axis, end));
+    return end;
+  });
+}
 
 export function candidatesOf(
   shape: ShapeId,
   refs: readonly LineRef[],
 ): Candidate[] {
   const def = SHAPES[shape];
-  return refs.map((ref, n) => {
+  const axes = refs.map((ref) => {
     const axis = (ref.src === "axis" ? def.axes : def.fakes)[ref.i];
     if (!axis) throw new Error(`${shape} has no ${ref.src} ${ref.i}`);
-    return {
-      axis,
-      isAxis: ref.src === "axis",
-      letter: LETTERS[n] ?? String(n),
-    };
+    return axis;
   });
+  const ends = chooseEnds(axes);
+  return refs.map((ref, n) => ({
+    axis: axes[n] as Line,
+    isAxis: ref.src === "axis",
+    letter: LETTERS[n] ?? String(n),
+    end: ends[n] as "p" | "q",
+  }));
 }
 
 // Every line of the shape: its axes first, then the lines that are not.

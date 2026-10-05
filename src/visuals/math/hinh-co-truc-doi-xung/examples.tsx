@@ -22,6 +22,7 @@ export function fromSpec(spec: VisualSpec): ComponentType<VisualProps> {
           <SubjectFigure
             subject={spec.subject}
             axes={spec.axes}
+            axisLabel={spec.axisLabel}
             maxWidth={spec.width}
           />
         );

@@ -118,6 +118,7 @@ export function LineMark({
 }
 
 export const AXIS_CLASS = CONCEPT_CLASSES[AXIS_COLOR].stroke;
+export const AXIS_FILL_CLASS = CONCEPT_CLASSES[AXIS_COLOR].fill;
 export const MIRROR_STROKE_CLASS = CONCEPT_CLASSES[MIRROR_COLOR].stroke;
 export const MIRROR_FILL_CLASS = CONCEPT_CLASSES[MIRROR_COLOR].fill;
 

@@ -1,7 +1,7 @@
 import { CONCEPT_CLASSES } from "@/visuals/shared/concept";
 import { decorative } from "@/visuals/shared/markers";
 import { Region, RegionSvg } from "@/visuals/shared/region";
-import { AXIS_CLASS, LineMark, Strokes } from "./draw";
+import { AXIS_CLASS, AXIS_FILL_CLASS, LineMark, Strokes } from "./draw";
 import type { Line, Pt } from "./geometry";
 import {
   GLYPH_AXES,
@@ -78,10 +78,13 @@ export function axisCountText(count: number | null): string {
 export function SubjectDrawing({
   subject,
   axes = false,
+  axisLabel,
   thin = false,
 }: {
   subject: Subject;
   axes?: boolean;
+  // The name written beside the first axis, as the workbook writes "d".
+  axisLabel?: string;
   // A small drawing (a thumbnail) uses thicker lines for its size.
   thin?: boolean;
 }) {
@@ -107,7 +110,28 @@ export function SubjectDrawing({
           ))}
         </g>
       )}
+      {axes && axisLabel && (
+        <AxisLabel axis={subjectAxes(subject)[0]} text={axisLabel} />
+      )}
     </>
+  );
+}
+
+function AxisLabel({ axis, text }: { axis: Line | undefined; text: string }) {
+  if (!axis) return null;
+  return (
+    <text
+      x={axis.p[0] + 18}
+      y={axis.p[1] + 4}
+      textAnchor="middle"
+      dominantBaseline="central"
+      fontSize={26}
+      stroke="none"
+      className={`font-heading font-bold ${AXIS_FILL_CLASS}`}
+      {...decorative}
+    >
+      {text}
+    </text>
   );
 }
 
@@ -115,10 +139,12 @@ export function SubjectDrawing({
 export function SubjectFigure({
   subject,
   axes = false,
+  axisLabel,
   maxWidth = 280,
 }: {
   subject: Subject;
   axes?: boolean;
+  axisLabel?: string;
   maxWidth?: number;
 }) {
   const count = subjectAxisCount(subject);
@@ -130,7 +156,7 @@ export function SubjectFigure({
         aria-label={`${subjectName(subject)}${axes ? `, ${axisCountText(count).toLowerCase()}` : ""}`}
         className="h-auto w-full"
       >
-        <SubjectDrawing subject={subject} axes={axes} />
+        <SubjectDrawing subject={subject} axes={axes} axisLabel={axisLabel} />
       </svg>
     </div>
   );
@@ -237,7 +263,12 @@ export function LinesFigure({ spec }: { spec: LinesSpec }) {
           ))}
         </g>
         {candidates.map((c) => (
-          <LineBadge key={c.letter} axis={c.axis} letter={c.letter} />
+          <LineBadge
+            key={c.letter}
+            axis={c.axis}
+            letter={c.letter}
+            end={c.end}
+          />
         ))}
       </svg>
     </div>

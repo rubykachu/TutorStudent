@@ -34,6 +34,15 @@ export const GLYPH_IDS = [
   "6",
   "8",
   "9",
+  "I",
+  "U",
+  "C",
+  "O",
+  "F",
+  "K",
+  "W",
+  "b",
+  "d",
 ] as const;
 export type GlyphId = (typeof GLYPH_IDS)[number];
 
@@ -49,7 +58,12 @@ const mirrored = (stroke: Stroke): Stroke => ({
   pts: stroke.pts.map((p) => reflect(p, VERTICAL_MIDDLE)),
 });
 
-const TWO = open([0, 3], [3, 0], [7, 0], [10, 3], [10, 6], [0, 16], [10, 16]);
+// The squared 2 of the workbook's cards: its mirror image is a 5.
+const TWO = open([0, 0], [10, 0], [10, 8], [0, 8], [0, 16], [10, 16]);
+const SMALL_B: readonly Stroke[] = [
+  open([0, 0], [0, 16]),
+  loop([0, 8], [7, 8], [10, 10], [10, 14], [7, 16], [0, 16]),
+];
 const NINE_LOOP = loop(
   [2, 0],
   [8, 0],
@@ -117,6 +131,19 @@ export const GLYPHS: Readonly<Record<GlyphId, readonly Stroke[]>> = {
     ),
   ],
   "9": NINE,
+  I: [open([0, 0], [10, 0]), open([5, 0], [5, 16]), open([0, 16], [10, 16])],
+  U: [open([0, 0], [0, 12], [3, 16], [7, 16], [10, 12], [10, 0])],
+  C: [
+    open([10, 3], [7, 0], [3, 0], [0, 3], [0, 13], [3, 16], [7, 16], [10, 13]),
+  ],
+  O: [
+    loop([3, 0], [7, 0], [10, 3], [10, 13], [7, 16], [3, 16], [0, 13], [0, 3]),
+  ],
+  F: [open([0, 16], [0, 0], [10, 0]), open([0, 8], [7, 8])],
+  K: [open([0, 0], [0, 16]), open([10, 0], [0, 8], [10, 16])],
+  W: [open([0, 0], [2.5, 16], [5, 6], [7.5, 16], [10, 0])],
+  b: SMALL_B,
+  d: SMALL_B.map(mirrored),
 };
 
 // Which of the two middle lines are axes of the glyph: "v" the vertical one,
@@ -144,6 +171,15 @@ export const GLYPH_AXES: Readonly<Record<GlyphId, readonly ("v" | "h")[]>> = {
   "6": [],
   "8": ["v", "h"],
   "9": [],
+  I: ["v", "h"],
+  U: ["v"],
+  C: ["h"],
+  O: ["v", "h"],
+  F: [],
+  K: ["h"],
+  W: ["v"],
+  b: [],
+  d: [],
 };
 
 export const GLYPH_NAME: Readonly<Record<GlyphId, string>> = {
@@ -169,4 +205,13 @@ export const GLYPH_NAME: Readonly<Record<GlyphId, string>> = {
   "6": "Chữ số 6",
   "8": "Chữ số 8",
   "9": "Chữ số 9",
+  I: "Chữ I",
+  U: "Chữ U",
+  C: "Chữ C",
+  O: "Chữ O",
+  F: "Chữ F",
+  K: "Chữ K",
+  W: "Chữ W",
+  b: "Chữ b",
+  d: "Chữ d",
 };
