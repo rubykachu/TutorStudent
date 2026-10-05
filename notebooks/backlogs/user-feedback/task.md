@@ -81,7 +81,7 @@ Sizes: S is up to about 2 files of code plus tests; M is up to about 5. A task t
 ### T9a. Button, sheet, thank-you and context, as components (M)
 
 - Files: `src/user-feedback/feedback-button.tsx`, `src/user-feedback/feedback-sheet.tsx`, `src/user-feedback/context.ts` (new: builds the report context from lesson, section, step, screen), `tests/user-feedback/feedback-sheet.test.tsx`, `tests/user-feedback/context.test.ts`.
-- Do: `spec.md` sections 3.2, 3.4: icon button with `aria-label`, label text from `md`, sheet with five chips in one column, one tap sends, thank-you with `role="status"` as soon as the outbox write resolves, auto-close after 3 s except under reduced motion, "Đã gửi" per reason and item while the screen is open.
+- Do: `spec.md` sections 3.2, 3.4: icon button with `aria-label`, label text from `md`, sheet with five chips in one column, one tap sends, thank-you with `role="status"` as soon as the outbox write resolves, auto-close after 5 s except under reduced motion, "Đã gửi" per reason and item while the screen is open.
 - Acceptance: `context` produces the right `screen`, `section`, `sectionNumber`, `item`, `step` for each screen kind of section 3.1, including a step reached through "Quay lại"; the thank-you shows with a `sendFeedback` that never resolves its network part (offline, slow) as well as after success; a sent reason is disabled for the same item and open for another.
 - Verify: `pnpm test tests/user-feedback/`.
 

@@ -1,6 +1,6 @@
 # Spec: in-app feedback ("Góp ý")
 
-Status: planned, no app code yet. The owner's decisions are in section 2; every other choice is marked **(theo đề xuất)** with its reason and can be changed before the build starts. The private issue repo `rubykachu/owlyeah-feedback` exists with its labels, issue form and README (section 7.4).
+Status: building. The owner's decisions are in section 2; every other choice is marked **(theo đề xuất)** with its reason and can be changed before the build starts. The private issue repo `rubykachu/owlyeah-feedback` exists with its labels, issue form and README (section 7.4).
 
 Builds on: `docs/spec.md` sections "Tiến độ và đồng bộ" (R2 store, key builder), "Truy cập và bảo mật" (family cookie, Origin check, parent PIN), "Offline và PWA" (network status, nothing stored by the worker under `/api`). The build updates `docs/spec.md`, `docs/architecture.md` and `docs/operations.md` to match this file (task list, docs task).
 
@@ -19,11 +19,15 @@ Out of scope: replying to the sender in the app; screenshots or recordings; feed
 - A "Góp ý" action on lesson and exercise screens, usable by the child and the parent.
 - Child: quick reason chips only, very simple, big targets.
 - Parent: the same reasons plus an optional note of at most 500 characters.
-- Reasons and labels: Khó hiểu `ly-do:kho-hieu`; Sai nội dung hoặc đáp án `ly-do:sai-noi-dung`; Hình hoặc video bị lỗi `ly-do:loi-hinh-video`; Dài quá, chán `ly-do:dai-chan`; Hay, bé thích `ly-do:thich`.
+- Reasons and labels: Khó hiểu `ly-do:kho-hieu`; Sai nội dung hoặc đáp án `ly-do:sai-noi-dung`; Hình hoặc video bị lỗi `ly-do:loi-hinh-video`; Dài quá, chán `ly-do:dai-chan`; Hay, mình thích `ly-do:thich` (the chip says "mình", the way the child speaks; the label slug is unchanged).
 - Flow: the app POSTs `/api/feedback` (family cookie, Origin check, rate limit per family and per IP, strict zod). The server stores the report in the private bucket `tutor-progress` first, through the key builder, then creates an issue in a private GitHub repo with a fine-grained token `GITHUB_FEEDBACK_TOKEN` (Issues read and write on that repo only), set in Vercel. Token missing or GitHub failing: the report stays queued in R2 and is forwarded later. The child always sees a friendly thank-you.
 - Issue title `[Góp ý] <Lý do> · <Bài title> · <Phần n>`; labels `feedback`, `nguon:be` or `nguon:phu-huynh`, `ly-do:*`, `bai:<slug>`, `mon:<subject>`, `lop:<grade>`, `trang-thai:moi`; body: a readable part (Lý do, Người gửi, Bài/Phần/Câu, Ghi chú) and a hidden `<!-- feedback-data {json} -->` block with `v`, `lesson`, `section`, `item`, `screen`, `reason`, `source`, `app` (deploy SHA), `device` (coarse kind and OS), `family` (salted HMAC of the family id), `at` (Asia/Ho_Chi_Minh).
 - No child names, family codes or profile names anywhere. The note is sanitized (no markdown or HTML injection, no `@` mentions) and capped at 500 characters.
 - Repo: private, `rubykachu/owlyeah-feedback`.
+
+## Decisions after the plan review
+
+Taken by the coordinator on the owner's behalf, following the recommendations: the chip reads "Hay, mình thích" (label `ly-do:thich` unchanged); the parent PIN is asked for every note; the thank-you closes after 5 s, not 3, and has a close button; opening the sheet pauses narration and video and nothing resumes them; the README of `rubykachu/owlyeah-feedback` shows the hidden block of section 6.2 (with `id` and `step`).
 
 ## 3. UX
 
@@ -49,9 +53,11 @@ While the child looks back at an earlier screen ("Quay lại"), the context is t
    - `TriangleAlert` "Sai nội dung hoặc đáp án"
    - `ImageOff` "Hình hoặc video bị lỗi"
    - `Hourglass` "Dài quá, chán"
-   - `Heart` "Hay, bé thích"
-3. One tap sends (no second "Gửi" step for the child) and the sheet turns into the thank-you as soon as the report is in the device outbox, without waiting for the network (section 3.5): the owl (`happy`), "Cảm ơn bạn! Cú đã ghi lại rồi." and one button "Học tiếp" that closes it; it also closes by itself after 3 seconds (not with reduced motion: then it waits for the tap). The thank-you is the same whether the report was sent, queued or refused (section 8).
+   - `Heart` "Hay, mình thích"
+3. One tap sends (no second "Gửi" step for the child) and the sheet turns into the thank-you as soon as the report is in the device outbox, without waiting for the network (section 3.5): the owl (`happy`), "Cảm ơn bạn! Cú đã ghi lại rồi.", one button "Học tiếp" and the sheet's close button, both closing it; it also closes by itself after 5 seconds (`FEEDBACK_THANKS_CLOSE_MS`; not with reduced motion: then it waits for the tap). The thank-you is the same whether the report was sent, queued or refused (section 8).
 4. Back on the screen, the same reason for the same item cannot be sent again while the screen stays open: its chip shows "Đã gửi" and is disabled; other reasons stay open.
+
+Opening the sheet pauses any narration or video playing on the screen; closing it does not resume them (the child taps play again).
 
 Sounds: the chips use the normal button press; the thank-you plays nothing extra. The background music rules do not change (the sheet opens on learning screens, which play none).
 
