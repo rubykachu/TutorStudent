@@ -114,6 +114,7 @@ describe("forwarding", () => {
       [json(502, {}), "github-5xx"],
       [json(403, {}, { "retry-after": "60" }), "github-rate"],
     ] as const) {
+      const counted = code === "github-5xx" ? 1 : 0;
       const h = await seeded(2);
       const gh = fakeGithub();
       gh.answer(json(201, {}), json(201, {}), json(201, {}), answer);
@@ -123,7 +124,7 @@ describe("forwarding", () => {
       expect(await h.pending()).toEqual([reportId(1), reportId(2)]);
       expect((await h.record(reportId(1)))?.forward).toMatchObject({
         state: "pending",
-        attempts: 1,
+        attempts: counted,
         claimedAt: null,
         lastError: code,
       });
@@ -201,6 +202,20 @@ describe("forwarding", () => {
       lastError: "github-5xx",
     });
     expect(await h.pending()).toEqual([]);
+  });
+
+  it("does not count a token or rate failure as an attempt", async () => {
+    const h = await seeded(1);
+    await patch(h.store, reportId(1), { attempts: FEEDBACK_MAX_ATTEMPTS - 1 });
+    const gh = fakeGithub();
+    gh.answer(json(201, {}), json(201, {}), json(201, {}), json(401, {}));
+    await forwarder(gh).pass(h.store, fresh(1));
+    expect((await h.record(reportId(1)))?.forward).toMatchObject({
+      state: "pending",
+      attempts: FEEDBACK_MAX_ATTEMPTS - 1,
+      lastError: "github-401",
+    });
+    expect(await h.pending()).toEqual([reportId(1)]);
   });
 
   it("removes a missing record's id and never resends a sent one", async () => {

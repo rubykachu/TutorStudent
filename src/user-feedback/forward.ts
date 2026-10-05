@@ -37,6 +37,13 @@ type Outcome = "next" | "stop";
 
 const HOUR_MS = 3_600_000;
 
+const NOT_COUNTED: ReadonlySet<ForwardError> = new Set([
+  "no-token",
+  "github-401",
+  "github-403",
+  "github-rate",
+]);
+
 export function createForwarder(deps: ForwarderDeps) {
   const { prefix, github, now, log } = deps;
   let offLogged = false;
@@ -144,10 +151,17 @@ export function createForwarder(deps: ForwarderDeps) {
       await removePending(store, prefix, id);
       return "next";
     }
+    // A bad or expired token, or GitHub's rate limit, says nothing about this
+    // report: the attempt is given back, so a token outage never uses up the
+    // attempts of the reports waiting behind it.
+    const attempts = NOT_COUNTED.has(result.code)
+      ? forward.attempts
+      : claim.attempts;
     const givenUp =
-      result.code === "github-422" || claim.attempts >= FEEDBACK_MAX_ATTEMPTS;
+      result.code === "github-422" || attempts >= FEEDBACK_MAX_ATTEMPTS;
     await writeForward(store, key, claimed, claimEtag, {
       ...claim,
+      attempts,
       state: givenUp ? "failed" : "pending",
       claimedAt: null,
       lastError: result.code,

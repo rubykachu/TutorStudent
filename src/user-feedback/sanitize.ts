@@ -13,6 +13,22 @@ function cut(text: string, max: number): string {
   return chars.length <= max ? text : chars.slice(0, max).join("");
 }
 
+// Breaks what GitHub would turn into a link or a reference: the colon of
+// `://`, the dot of `www.` and the hyphen of `GH-<n>`. Repeated until nothing
+// changes, since a removal can join its neighbours into a new match
+// (`http:://` -> `http://`).
+function unlinked(text: string): string {
+  let current = text;
+  for (;;) {
+    const next = current
+      .replace(/:\/\//g, "//")
+      .replace(/www\./gi, "www")
+      .replace(/\b(GH)-(?=\d)/gi, "$1 ");
+    if (next === current) return current;
+    current = next;
+  }
+}
+
 // One line of display text (a lesson or section title): letters with their
 // marks, digits, spaces and `.,:;()/'–-` only, so no markdown, HTML, mention
 // or table syntax survives. The colon of `://` and the dot of `www.` are
@@ -23,11 +39,9 @@ export function plainText(text: string, max: number): string {
     .replace(CONTROLS, " ")
     .replace(FORMATS, "")
     .replace(/[^\p{L}\p{M}\p{Nd} .,:;()/'–-]/gu, "")
-    .replace(/:\/\//g, "//")
-    .replace(/www\./gi, "www")
     .replace(/\s+/g, " ")
     .trim();
-  return cut(cleaned, max).trim();
+  return cut(unlinked(cleaned), max).trim();
 }
 
 // Lines of text kept in a row; the next ones join the last kept line.

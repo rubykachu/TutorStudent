@@ -127,7 +127,7 @@ Sizes: S is up to about 2 files of code plus tests; M is up to about 5. A task t
 
 ## Slice 6: security review
 
-### T14. Security review (M, fresh Opus subagent, read-only)
+### T14. Security review (M, fresh Opus subagent, read-only) [x]
 
 - Scope: every commit of T1 to T13 (`git diff <base>..HEAD -- . ':!content' ':!src/visuals' ':!video' ':!public/media'`, `<base>` being the commit before T1, written into the handover when T1 starts), so a file outside a guessed path list is never missed. No external calls, no edits.
 - Checklist: Origin and cookie order; family id only from the cookie; schema strictness and size caps before parsing; every sanitizer path against markdown, HTML, mentions, links, `-->`, Unicode tricks; labels only from enums and slugs; token never logged, returned, thrown or bundled; logs free of note, titles, family id, pseudonym; rate limits keyed right (family and IP) and memory bounded; R2 keys only from `syncKey`; duplicate, claim and retry paths cannot create unbounded or doubled issues; GitHub secondary-limit answers stop the pass; `after()` failures do not lose a stored report; the PIN step cannot be bypassed to reach the note; privacy sentence present; Nghị định 13 notes of `spec.md` section 7.2 still true of the code.
@@ -178,8 +178,9 @@ Base commit (the commit before T1, for the security review diff): `e706002`.
 
 Coordinator decisions on the reviewer's open questions (recorded in `spec.md`): chip label "Hay, mình thích"; PIN asked for every note; thank-you closes after 5 s and has a close button; opening the sheet pauses narration and video (no auto-resume); the repo README's hidden-block example updated to match section 6.2.
 
-Done: T1 to T13 (build of the route passes in a temp worktree; `lesson:walk luy-thua` shows no overlap on phone, iPad, iPad landscape, its only failures being the gitignored media missing in the worktree). The overview's button sits in the `PageTopBar` above the overview (the same top row as the lesson page), not inside the overview's own header.
-Next: T14 (security review, fresh Opus subagent). Checkpoint B screenshots (iPad and phone: child sheet, thank-you, PIN step, parent form) are written by `e2e/user-feedback.spec.ts` into `test-results/` of the run.
+Done: T1 to T14 (build of the route passes in a temp worktree; `lesson:walk luy-thua` shows no overlap on phone, iPad, iPad landscape, its only failures being the gitignored media missing in the worktree). The overview's button sits in the `PageTopBar` above the overview (the same top row as the lesson page), not inside the overview's own header.
+README of `rubykachu/owlyeah-feedback` updated through the contents API (commit `584e6f9`, by `rubykachu`): the hidden-block example has `id` and `step`.
+Next: T16 rollout (T15 token done by the owner). Checkpoint B screenshots (iPad and phone: child sheet, thank-you, PIN step, parent form) are written by `e2e/user-feedback.spec.ts` into `test-results/` of the run.
 
 Deploy coordination (another agent deploys Bài 21 `hinh-co-truc-doi-xung` tonight): right before `deploy:prod`, read the production SHA (last "Bản đang chạy" line of `docs/operations.md`, or `npx vercel ls --prod`); the pinned SHA must contain it (`git merge-base --is-ancestor <prod> <ours>`), else re-pin to a commit with both and re-run lint, typecheck, `content:check`, build. Never deploy while the other deploy runs; if "Bản đang chạy" changed in the last 10 minutes by another deploy, re-check. Every published lesson at the SHA must have its media (`pnpm media:upload --all --dry-run` reports 0).
 
@@ -203,4 +204,10 @@ Checkpoint A (issue format; the owner approved building and deploying without wa
 
 ## Security review
 
-Not run yet (T14).
+Run on 06/10/2026 by a fresh Opus subagent over `git diff e706002..<T13 commit>` (read only). No Critical, no High.
+
+- Medium M1, fixed: `plainText` removed `://` and `www.` in one pass, so `http:://x` and `www..x` became links again; it now repeats until nothing changes and also breaks `GH-<n>` references. Tests: `tests/user-feedback/sanitize.test.ts` ("drops markdown, HTML, mentions and links", "breaks GitHub issue references").
+- Low L2, fixed: a token or rate failure (`no-token`, `github-401`, `github-403`, `github-rate`) no longer uses up an attempt, so a token outage cannot push waiting reports to `failed`. Test: `tests/api/feedback-forward.test.ts` ("does not count a token or rate failure as an attempt").
+- Low L1, leftover: a GitHub timeout after the issue was created, or a failed record update, can make a second issue (bounded by the attempt cap and the hourly cap; triage marks `trang-thai:trung` by the hidden `id`). Upgrade: search the repo for the report id before resending a report whose last error was `timeout` or `github-other`.
+- Low L3, leftover: `lesson` is checked only as a slug, so a family with a valid code can create stray `bai:*` labels (bounded by the rate limits). Upgrade: a build-time lesson catalog for the route.
+- Low L4, accepted: the PIN step is a UI gate only; `source` is a device claim (as `spec.md` section 3.3 says) and a note is sanitized and fenced either way.

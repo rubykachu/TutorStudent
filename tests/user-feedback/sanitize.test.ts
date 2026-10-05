@@ -19,6 +19,10 @@ describe("plainText", () => {
       "**bold** _it_ ~~s~~ # h | t",
       "https://evil.example/x",
       "www.evil.example",
+      "http:://evil.example/x",
+      "http:::////evil.example",
+      "www..evil.example",
+      "wwww..evil.example",
     ];
     for (const text of hostile) {
       const out = plainText(text, 120);
@@ -26,6 +30,10 @@ describe("plainText", () => {
       expect(out).not.toContain("://");
       expect(out.toLowerCase()).not.toContain("www.");
     }
+  });
+
+  it("breaks GitHub issue references", () => {
+    expect(plainText("GH-1 gh-22", 120)).toBe("GH 1 gh 22");
   });
 
   it("turns controls into spaces, drops bidi overrides, collapses and cuts", () => {
