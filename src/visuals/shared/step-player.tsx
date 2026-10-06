@@ -1,8 +1,9 @@
 "use client";
 
 import { Pause, Play, RotateCcw, StepForward } from "lucide-react";
-import { type ReactNode, useEffect, useState } from "react";
+import { type ReactNode, useEffect, useRef, useState } from "react";
 import { VISUAL_STEP_MS } from "@/lib/config";
+import { useMostlyInView } from "@/lib/use-mostly-in-view";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 import {
   STEP_ATTR,
@@ -28,8 +29,10 @@ const SECONDARY_BUTTON = `${BUTTON} border-2 border-border bg-surface text-foreg
 // the bottom bar's filled "Tiếp" button.
 const STEP_BUTTON = `${BUTTON} border-2 border-primary bg-surface text-primary`;
 
-// Drives an explainer visual through its steps. It plays on its own, and the
-// child can pause or replay it; with reduced motion it never moves by itself
+// Drives an explainer visual through its steps. It plays on its own, but only
+// while at least half of it is on screen: on a long page (a lesson's "Mẹo
+// hay" list) an animation further down waits for the child to scroll to it
+// instead of having finished unseen. The child can pause or replay it; with reduced motion it never moves by itself
 // and advances only when the child taps "Bước tiếp", named and drawn apart
 // from the bottom bar's "Tiếp" that leaves the screen. Once the last step is
 // on screen only "Xem lại" is left: a "Phát" there would read as if there
@@ -43,14 +46,16 @@ export function StepPlayer({
   const reducedMotion = usePrefersReducedMotion();
   const [step, setStep] = useState(0);
   const [playing, setPlaying] = useState(true);
+  const figure = useRef<HTMLElement>(null);
+  const inView = useMostlyInView(figure);
   const last = steps - 1;
   const atEnd = step >= last;
 
   useEffect(() => {
-    if (reducedMotion || !playing || step >= last) return;
+    if (reducedMotion || !playing || !inView || step >= last) return;
     const timer = setTimeout(() => setStep(step + 1), stepMs);
     return () => clearTimeout(timer);
-  }, [reducedMotion, playing, step, last, stepMs]);
+  }, [reducedMotion, playing, inView, step, last, stepMs]);
 
   function replay() {
     setStep(0);
@@ -59,6 +64,7 @@ export function StepPlayer({
 
   return (
     <figure
+      ref={figure}
       aria-label={label}
       className="flex w-full flex-col items-center gap-4"
       {...{

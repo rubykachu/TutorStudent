@@ -22,7 +22,6 @@ import {
 import {
   NarrationMiniPlayer,
   NarrationPlayer,
-  useMostlyInView,
   useNarration,
 } from "@/learn/narration";
 import {
@@ -30,6 +29,7 @@ import {
   useFollowReading,
 } from "@/learn/use-follow-reading";
 import { lessonHeading } from "@/lib/lesson-label";
+import { useMostlyInView } from "@/lib/use-mostly-in-view";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 import { Owl } from "@/mascot/owl";
 import type { Lesson, LessonOverview } from "@/schema/content";

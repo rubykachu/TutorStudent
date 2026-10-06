@@ -26,7 +26,10 @@ export const CONTENT_INCLUDE_DRAFT: boolean =
   process.env.NODE_ENV !== "production";
 
 // How long an explainer animation shows each step before auto-advancing.
-export const VISUAL_STEP_MS = 1800;
+// A step's own movement takes up to about 0.7 s, so 3 s leaves the finished
+// picture still for over 2 s: time for a slow reader to read the step's
+// caption and look at the change before the next one starts.
+export const VISUAL_STEP_MS = 3000;
 
 // Progress stays on the device until family sync exists; every local record
 // still carries a family id so it can later be claimed by a real family.

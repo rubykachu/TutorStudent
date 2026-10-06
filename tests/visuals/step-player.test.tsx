@@ -47,6 +47,33 @@ describe("StepPlayer", () => {
       restore = stubMatchMedia(null);
     });
 
+    it("waits while it is off screen and plays once scrolled to", () => {
+      let report: (ratio: number) => void = () => {};
+      const original = globalThis.IntersectionObserver;
+      globalThis.IntersectionObserver = class {
+        constructor(callback: IntersectionObserverCallback) {
+          report = (ratio) =>
+            callback(
+              [{ intersectionRatio: ratio } as IntersectionObserverEntry],
+              this as unknown as IntersectionObserver,
+            );
+        }
+        observe() {}
+        disconnect() {}
+      } as unknown as typeof IntersectionObserver;
+      try {
+        renderPlayer();
+        act(() => report(0));
+        advance(VISUAL_STEP_MS * 5);
+        expect(screen.getByText("Cảnh 1")).toBeInTheDocument();
+        act(() => report(1));
+        advance(VISUAL_STEP_MS);
+        expect(screen.getByText("Cảnh 2")).toBeInTheDocument();
+      } finally {
+        globalThis.IntersectionObserver = original;
+      }
+    });
+
     it("advances on its own and stops at the last step", () => {
       renderPlayer();
       expect(screen.getByText("Cảnh 1")).toBeInTheDocument();
