@@ -84,11 +84,11 @@ Adding a lint rule: create `src/content/lint/<rule>.ts`, register it in `lint/in
 
 ## Content authoring pipeline
 
-`import-source` (PDF pages to `sources/`) then `lesson-author` (lesson.json with overview, tips and an explanation per exercise; calls `lesson-visual` for figures, runs `lesson:walk`) then `lesson-review` (fresh subagent; writes `review.md`, sets `reviewedHash`, publishes; then `pnpm content:lock <lesson>` locks that lesson's ids and only those) then `lesson-author` again for `lesson-video` and narration. A published lesson gains tips without a new lesson review: `tips.json` beside `lesson.json`, reviewed on its own (`lesson-review`, `pnpm content:hash <lesson> --tips --approve`). Skills live in `.claude/skills/`; which model runs each step is in `.claude/rules/agents.md`. Recurring review errors go to `docs/lessons-learned/`, which author and reviewer read first.
+`import-source` (PDF pages to `sources/`) then `lesson-author` (lesson.json with overview, tips and an explanation per exercise; calls `lesson-visual` for figures, runs `lesson:walk`) then `lesson-review` (fresh subagent; writes `review.md`, sets `reviewedHash`, publishes; then `pnpm content:lock <lesson>` locks that lesson's ids and only those) then `lesson-author` again for `lesson-video` and narration. A published lesson gains tips without a new lesson review: `tips.json` beside `lesson.json`, reviewed on its own (`lesson-review`, `pnpm content:hash <lesson> --tips --approve`). Skills live in `.claude/skills/`; which model runs each step is in `.claude/rules/agents.md`. Recurring review errors go to `docs/lessons-learned/`, which author and reviewer read first. Reports from the app's "Góp ý" button (issues in `rubykachu/owlyeah-feedback`) come back through skill `feedback-triage`, which runs the same pipeline for each fix.
 
 ## Conventions
 
-Kept in `.claude/rules/` so each is stated once: `content.md` (ids, rule and guide markers, review hash, textbook copying, review lessons and book-practice sections), `video.md` (verbatim quotes, caches, shared sounds), `agents.md` (model choice, handovers, external writes, commit hygiene).
+Kept in `.claude/rules/` so each is stated once: `content.md` (ids, rule and guide markers, review hash, textbook copying, review lessons and book-practice sections), `video.md` (verbatim quotes, caches, shared sounds), `agents.md` (model choice, handovers, external writes, deploy rules, temporary files, commit hygiene).
 
 ## Where state lives
 

@@ -448,38 +448,7 @@ Bucket `tutor-progress` có hai quy tắc lifecycle (`prod-feedback-365d`, `dev-
 
 ### Gom và sửa (agent làm khi chủ dự án yêu cầu)
 
-1. **Đọc issue đang mở** bằng token của `rubykachu` (không dựa vào tài khoản đang bật):
-
-   ```bash
-   GH_TOKEN="$(gh auth token -u rubykachu)" gh issue list \
-     --repo rubykachu/owlyeah-feedback --state open --label feedback --label trang-thai:moi \
-     --limit 200 --json number,title,labels,body,createdAt \
-     | jq '[.[] | {number, createdAt, labels: [.labels[].name],
-         data: (.body | capture("<!-- feedback-data (?<j>.*) -->").j | fromjson)}]'
-   ```
-
-2. **Gom nhóm** theo `data.lesson`, rồi `data.item` (hay `data.step` khi không có item), rồi `data.reason`. Đếm số báo cáo mỗi nhóm, giữ ghi chú của phụ huynh, bỏ trùng cùng `data.id`. Nhóm `ly-do:thich` là tín hiệu, không phải việc sửa.
-3. **Đề xuất** một cách sửa mỗi nhóm trong backlog `notebooks/backlogs/feedback-<yyyy-mm-dd>/task.md`: `sai-noi-dung` thì đối chiếu ảnh SGK trước, là sửa nội dung; `kho-hieu`, `dai-chan` là sửa lời, tách hay đổi nhịp; `loi-hinh-video` là sửa visual hay video. Chủ dự án duyệt danh sách trước khi sửa nội dung.
-4. **Chạy quy trình bài học** cho mỗi việc đã duyệt: `lesson-author` (hay `lesson-visual`, `lesson-video`), một subagent `lesson-review` mới, `content:check`, bộ kiểm thường lệ, một commit mỗi bài. Trong lúc làm, đổi nhãn:
-
-   ```bash
-   GH_TOKEN="$(gh auth token -u rubykachu)" gh issue edit <n> --repo rubykachu/owlyeah-feedback \
-     --remove-label trang-thai:moi --add-label trang-thai:dang-xu-ly
-   ```
-
-5. **Đóng kèm commit** khi đã commit (và đã deploy, nếu bé thấy lỗi trên production):
-
-   ```bash
-   GH_TOKEN="$(gh auth token -u rubykachu)" gh issue close <n> --repo rubykachu/owlyeah-feedback \
-     --reason completed --comment "Đã sửa trong <sha ngắn>: <một dòng>"
-   GH_TOKEN="$(gh auth token -u rubykachu)" gh issue edit <n> --repo rubykachu/owlyeah-feedback \
-     --remove-label trang-thai:dang-xu-ly --add-label trang-thai:da-sua
-   ```
-
-   Không sửa: `trang-thai:khong-sua` kèm lý do, `--reason "not planned"`. Trùng: `trang-thai:trung` và link tới issue giữ lại. Commit ghi tên issue (`Feedback: rubykachu/owlyeah-feedback#12, #15`).
-6. **Kiểm hàng chờ** như ở "Nơi dữ liệu nằm".
-
-Bình luận, gắn nhãn và đóng issue là ghi ra GitHub: agent chỉ làm trong phiên chủ dự án yêu cầu gom góp ý.
+Agent làm theo skill `feedback-triage` (`.claude/skills/feedback-triage/SKILL.md`): liệt kê issue đang mở bằng token của `rubykachu`, đọc khối ẩn `feedback-data`, gom theo bài và câu, đề xuất sửa cho chủ dự án, sửa qua quy trình bài học, deploy, rồi bình luận tiếng Việt, đổi `trang-thai:moi` thành `trang-thai:da-sua` (hay `khong-sua`, `trung` kèm lý do) và đóng. Bình luận, gắn nhãn và đóng issue là ghi ra GitHub: agent chỉ làm trong phiên chủ dự án yêu cầu xử lý góp ý.
 
 ## Khi có lỗi
 
