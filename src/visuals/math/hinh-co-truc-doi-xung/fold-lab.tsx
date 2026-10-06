@@ -196,14 +196,16 @@ export function FoldLab({
         </svg>
       </div>
       <p
-        className={`flex min-h-14 items-center justify-center gap-2 text-center text-caption ${chosen && fold.settled ? "font-semibold" : "text-muted-foreground"}`}
+        className={`flex min-h-20 items-center justify-center gap-2 text-center text-caption ${chosen && fold.settled ? "font-semibold" : "text-muted-foreground"}`}
         aria-live="polite"
         data-fold-verdict
       >
         {!chosen ? (
           "Bạn chạm vào một đường, hình sẽ gấp đôi theo đường đó."
-        ) : !fold.settled ? (
+        ) : fold.switching ? (
           `Hình mở ra trước, rồi gấp đôi theo đường ${chosen.letter}.`
+        ) : !fold.settled ? (
+          `Đang gấp đôi theo đường ${chosen.letter}.`
         ) : chosen.isAxis ? (
           <>
             <Check aria-hidden className="size-5 shrink-0 text-correct" />
@@ -216,24 +218,23 @@ export function FoldLab({
           </>
         )}
       </p>
-      {/* Kept in the layout while hidden, so the lines below never jump. */}
-      <button
-        type="button"
-        className={`${ACTION_BUTTON} ${chosen ? "" : "invisible"}`}
-        disabled={locked || !chosen}
-        aria-hidden={!chosen || undefined}
-        onClick={fold.open}
-        data-fold-open
-      >
-        <RotateCcw aria-hidden className="size-5" />
-        Mở hình ra
-      </button>
-      <p
-        className="text-center text-caption text-muted-foreground"
-        aria-live="polite"
-      >
-        {`Đã thử ${count}/${total}`}
-      </p>
+      <div className="flex items-center gap-3">
+        {/* Kept in the layout while hidden, so nothing beside it moves. */}
+        <button
+          type="button"
+          className={`${ACTION_BUTTON} ${chosen ? "" : "invisible"}`}
+          disabled={locked || !chosen}
+          aria-hidden={!chosen || undefined}
+          onClick={fold.open}
+          data-fold-open
+        >
+          <RotateCcw aria-hidden className="size-5" />
+          Mở hình ra
+        </button>
+        <p className="text-caption text-muted-foreground" aria-live="polite">
+          {`Đã thử ${count}/${total}`}
+        </p>
+      </div>
       {finished && !shown && shownState === undefined && (
         <DoneLine>{spec.done}</DoneLine>
       )}

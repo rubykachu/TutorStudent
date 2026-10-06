@@ -76,13 +76,15 @@ export function useFold(target: number, key: string) {
 // line again opens the shape, and tapping another line first opens the shape,
 // then folds it along the new line. `line` is the line the drawing folds
 // along (null: the shape lies open), `t` how far it is folded, `target` the
-// line the child last chose (null after opening). With reduced motion every
-// change is instant.
+// line the child last chose (null after opening), `settled` whether the fold
+// along `target` has finished, so a verdict never shows before the child has
+// seen the halves land. With reduced motion every change is instant.
 export function useLineFold() {
   const reduced = usePrefersReducedMotion();
   const [line, setLine] = useState<number | null>(null);
   const [folded, setFolded] = useState(false);
   const [target, setTarget] = useState<number | null>(null);
+  const [landed, setLanded] = useState(false);
   const timers = useRef<number[]>([]);
   const frames = useRef<number[]>([]);
 
@@ -104,6 +106,10 @@ export function useLineFold() {
   function after(ms: number, run: () => void) {
     timers.current.push(window.setTimeout(run, ms));
   }
+  function fold() {
+    setFolded(true);
+    after(FOLD_MS, () => setLanded(true));
+  }
   // Folds along `i` from the open shape: the open drawing is painted once
   // before the fold starts, so the turn is animated from the whole shape.
   function foldAlong(i: number) {
@@ -111,13 +117,14 @@ export function useLineFold() {
     setFolded(false);
     frames.current.push(
       requestAnimationFrame(() =>
-        frames.current.push(requestAnimationFrame(() => setFolded(true))),
+        frames.current.push(requestAnimationFrame(fold)),
       ),
     );
   }
 
   function open() {
     clear();
+    setLanded(false);
     setTarget(null);
     setFolded(false);
     if (reduced) setLine(null);
@@ -130,6 +137,7 @@ export function useLineFold() {
       return;
     }
     clear();
+    setLanded(reduced);
     setTarget(i);
     if (reduced) {
       setLine(i);
@@ -138,7 +146,7 @@ export function useLineFold() {
       foldAlong(i);
     } else if (line === i) {
       // Still opening along this line: fold it back.
-      setFolded(true);
+      fold();
     } else {
       setFolded(false);
       after(FOLD_MS, () => foldAlong(i));
@@ -149,8 +157,9 @@ export function useLineFold() {
     line,
     t: folded ? 1 : 0,
     target,
-    // The chosen line is folded (or folding) and nothing else is pending.
-    settled: target !== null && line === target && folded,
+    settled: target !== null && line === target && folded && landed,
+    // Opening along one line before folding along the chosen one.
+    switching: target !== null && line !== null && line !== target,
     reduced,
     tap,
     open,

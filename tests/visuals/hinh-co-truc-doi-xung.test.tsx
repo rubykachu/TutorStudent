@@ -517,6 +517,12 @@ describe("the touchable pictures", () => {
       render(<FoldLab spec={spec} />);
       tap("a");
       expect(state()).toEqual(["a", "0"]);
+      // The verdict waits until the halves have landed.
+      act(() => vi.advanceTimersByTime(100));
+      expect(state()).toEqual(["a", "1"]);
+      expect(
+        screen.getByText("Đang gấp đôi theo đường a."),
+      ).toBeInTheDocument();
       settle();
       expect(state()).toEqual(["a", "1"]);
       expect(screen.getByText(/Vậy đường a là trục đối xứng/)).toBeVisible();
