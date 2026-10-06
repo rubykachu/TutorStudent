@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 import { CONCEPT_CLASSES } from "@/visuals/shared/concept";
 import { decorative } from "@/visuals/shared/markers";
@@ -13,7 +13,8 @@ import type { ShapeStroke } from "./shapes";
 // fold that fits shows one drawing and a fold that does not fit shows pieces
 // sticking out. `t` is how far the fold has gone: 0 open, 1 folded.
 
-const FOLD_MS = 700;
+// How long one fold or unfold takes.
+export const FOLD_MS = 700;
 const BIG = 600;
 
 const FIXED_FILL = CONCEPT_CLASSES.sky.fill;
@@ -68,6 +69,92 @@ export function useFold(target: number, key: string) {
     return () => cancelAnimationFrame(frame);
   }, [reduced, target, key]);
   return { t: reduced ? target : t, reduced };
+}
+
+// The fold of a picture where the child chooses the line. One line is folded
+// at a time, and every fold starts from the whole shape: tapping the folded
+// line again opens the shape, and tapping another line first opens the shape,
+// then folds it along the new line. `line` is the line the drawing folds
+// along (null: the shape lies open), `t` how far it is folded, `target` the
+// line the child last chose (null after opening). With reduced motion every
+// change is instant.
+export function useLineFold() {
+  const reduced = usePrefersReducedMotion();
+  const [line, setLine] = useState<number | null>(null);
+  const [folded, setFolded] = useState(false);
+  const [target, setTarget] = useState<number | null>(null);
+  const timers = useRef<number[]>([]);
+  const frames = useRef<number[]>([]);
+
+  function clear() {
+    for (const id of timers.current) clearTimeout(id);
+    for (const id of frames.current) cancelAnimationFrame(id);
+    timers.current = [];
+    frames.current = [];
+  }
+  // Nothing pending may fire once the picture is gone.
+  useEffect(
+    () => () => {
+      for (const id of timers.current) clearTimeout(id);
+      for (const id of frames.current) cancelAnimationFrame(id);
+    },
+    [],
+  );
+
+  function after(ms: number, run: () => void) {
+    timers.current.push(window.setTimeout(run, ms));
+  }
+  // Folds along `i` from the open shape: the open drawing is painted once
+  // before the fold starts, so the turn is animated from the whole shape.
+  function foldAlong(i: number) {
+    setLine(i);
+    setFolded(false);
+    frames.current.push(
+      requestAnimationFrame(() =>
+        frames.current.push(requestAnimationFrame(() => setFolded(true))),
+      ),
+    );
+  }
+
+  function open() {
+    clear();
+    setTarget(null);
+    setFolded(false);
+    if (reduced) setLine(null);
+    else after(FOLD_MS, () => setLine(null));
+  }
+
+  function tap(i: number) {
+    if (line === i && target === i && (folded || reduced)) {
+      open();
+      return;
+    }
+    clear();
+    setTarget(i);
+    if (reduced) {
+      setLine(i);
+      setFolded(true);
+    } else if (line === null) {
+      foldAlong(i);
+    } else if (line === i) {
+      // Still opening along this line: fold it back.
+      setFolded(true);
+    } else {
+      setFolded(false);
+      after(FOLD_MS, () => foldAlong(i));
+    }
+  }
+
+  return {
+    line,
+    t: folded ? 1 : 0,
+    target,
+    // The chosen line is folded (or folding) and nothing else is pending.
+    settled: target !== null && line === target && folded,
+    reduced,
+    tap,
+    open,
+  };
 }
 
 export function FoldGroup({

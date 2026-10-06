@@ -1,13 +1,14 @@
 "use client";
 
-import { Check, X } from "lucide-react";
+import { Check, RotateCcw, X } from "lucide-react";
 import { useState } from "react";
 import type { VisualProps, VisualState } from "@/visuals/registry";
+import { ACTION_BUTTON } from "@/visuals/shared/action-button";
 import { DoneLine, ShownLine } from "@/visuals/shared/guided-feedback";
 import { useGuidedTask } from "@/visuals/shared/guided-step";
 import { decorative, stateSet } from "@/visuals/shared/markers";
 import { AXIS_CLASS, LineMark, Strokes } from "./draw";
-import { FoldGroup, useFold } from "./fold-view";
+import { FoldGroup, useLineFold } from "./fold-view";
 import { bandPoints } from "./layout";
 import { LineBadge } from "./line-badge";
 import {
@@ -91,7 +92,9 @@ function allTested(total: number): VisualState {
 }
 
 // ---------------------------------------------------------------------------
-// "Gấp thử": fold along the line the child taps.
+// "Gấp thử": fold along the line the child taps. Tapping the folded line
+// again opens the shape (so does "Mở hình ra"); tapping another line opens
+// the shape first, then folds it along that line.
 
 export type FoldLabSpec = {
   shape: ShapeId;
@@ -111,17 +114,17 @@ export function FoldLab({
   const total = candidates.length;
   const [own, setOwn] = useState<VisualState>({});
   const [shown, setShown] = useState(false);
-  const [selected, setSelected] = useState<number | null>(null);
   const tested = (i: number) =>
     (shownState ?? (shown ? allTested(total) : own))[`l${i}`] === 1;
   const count = candidates.filter((_, i) => tested(i)).length;
   const finished = count === total;
   const locked = disabled || shownState !== undefined;
-  const chosen = selected === null ? undefined : candidates[selected];
-  const { t, reduced } = useFold(1, `${selected}`);
+  const fold = useLineFold();
+  const drawn = fold.line === null ? undefined : candidates[fold.line];
+  const chosen = fold.target === null ? undefined : candidates[fold.target];
 
   function tap(index: number) {
-    setSelected(index);
+    fold.tap(index);
     const next = { ...own, [`l${index}`]: 1 };
     setOwn(next);
     onStateChange?.(next);
@@ -141,13 +144,15 @@ export function FoldLab({
           role="group"
           aria-label={`${def.name}: chạm vào một đường để gấp hình theo đường đó`}
           className="h-auto w-full"
+          data-fold-line={drawn?.letter ?? ""}
+          data-fold-t={fold.t}
         >
-          {chosen ? (
+          {drawn ? (
             <FoldGroup
               strokes={def.strokes}
-              axis={chosen.axis}
-              t={t}
-              smoothly={!reduced}
+              axis={drawn.axis}
+              t={fold.t}
+              smoothly={!fold.reduced}
             />
           ) : (
             <Strokes strokes={def.strokes} />
@@ -165,7 +170,7 @@ export function FoldLab({
                       : "stroke-retry"
                 }
                 dashed={!tested(i) || !c.isAxis}
-                width={selected === i ? 4.5 : 3}
+                width={fold.target === i ? 6 : 3}
               />
             ))}
           </g>
@@ -182,7 +187,7 @@ export function FoldLab({
               key={c.letter}
               candidate={c}
               stateKey={`l${i}`}
-              pressed={selected === i}
+              pressed={fold.target === i}
               disabled={locked}
               onTap={() => tap(i)}
               label={`Đường ${c.letter}`}
@@ -191,26 +196,38 @@ export function FoldLab({
         </svg>
       </div>
       <p
-        className={`flex min-h-14 items-center justify-center gap-2 text-center text-caption ${chosen ? "font-semibold" : "text-muted-foreground"}`}
+        className={`flex min-h-14 items-center justify-center gap-2 text-center text-caption ${chosen && fold.settled ? "font-semibold" : "text-muted-foreground"}`}
         aria-live="polite"
         data-fold-verdict
       >
-        {chosen ? (
-          chosen.isAxis ? (
-            <>
-              <Check aria-hidden className="size-5 shrink-0 text-correct" />
-              {`Gấp theo đường ${chosen.letter}: hai nửa chồng khít. Đường ${chosen.letter} là trục đối xứng.`}
-            </>
-          ) : (
-            <>
-              <X aria-hidden className="size-5 shrink-0 text-retry" />
-              {`Gấp theo đường ${chosen.letter}: hai nửa không chồng khít. Đường ${chosen.letter} không phải trục.`}
-            </>
-          )
+        {!chosen ? (
+          "Bạn chạm vào một đường, hình sẽ gấp đôi theo đường đó."
+        ) : !fold.settled ? (
+          `Hình mở ra trước, rồi gấp đôi theo đường ${chosen.letter}.`
+        ) : chosen.isAxis ? (
+          <>
+            <Check aria-hidden className="size-5 shrink-0 text-correct" />
+            {`Gấp theo đường ${chosen.letter} thì hai nửa chồng khít lên nhau. Vậy đường ${chosen.letter} là trục đối xứng.`}
+          </>
         ) : (
-          "Chạm vào một đường để gấp hình theo đường đó."
+          <>
+            <X aria-hidden className="size-5 shrink-0 text-retry" />
+            {`Gấp theo đường ${chosen.letter} thì hai nửa không chồng khít. Vậy đường ${chosen.letter} không phải trục đối xứng.`}
+          </>
         )}
       </p>
+      {/* Kept in the layout while hidden, so the lines below never jump. */}
+      <button
+        type="button"
+        className={`${ACTION_BUTTON} ${chosen ? "" : "invisible"}`}
+        disabled={locked || !chosen}
+        aria-hidden={!chosen || undefined}
+        onClick={fold.open}
+        data-fold-open
+      >
+        <RotateCcw aria-hidden className="size-5" />
+        Mở hình ra
+      </button>
       <p
         className="text-center text-caption text-muted-foreground"
         aria-live="polite"

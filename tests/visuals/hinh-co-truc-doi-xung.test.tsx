@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
-import { fireEvent, render, screen } from "@testing-library/react";
-import { describe, expect, it, vi } from "vitest";
+import { act, fireEvent, render, screen } from "@testing-library/react";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { collectVisualRefs } from "@/content/check";
 import {
   BOOK_58A,
@@ -27,6 +27,7 @@ import {
   AxisPicker,
   FoldLab,
 } from "@/visuals/math/hinh-co-truc-doi-xung/fold-lab";
+import { FOLD_MS } from "@/visuals/math/hinh-co-truc-doi-xung/fold-view";
 import {
   angleDeg,
   axisAngles,
@@ -484,16 +485,105 @@ describe("the touchable pictures", () => {
     expect(screen.getByText(spec.done)).toBeInTheDocument();
   });
 
-  it("the fold lab says whether the tapped line is an axis", () => {
+  describe("the fold lab folds one line at a time from the whole shape", () => {
     const spec = VISUAL_SPECS["chu-nhat-gap-thu"];
     if (spec?.kind !== "foldLab") throw new Error("not a fold lab");
-    render(<FoldLab spec={spec} />);
-    // a: axis, b: diagonal, c: axis, d: diagonal
-    fireEvent.click(screen.getByRole("button", { name: "Đường a" }));
-    expect(screen.getByText(/Đường a là trục đối xứng/)).toBeInTheDocument();
-    fireEvent.click(screen.getByRole("button", { name: "Đường b" }));
-    expect(screen.getByText(/Đường b không phải trục/)).toBeInTheDocument();
-    expect(screen.getByText("Đã thử 2/4")).toBeInTheDocument();
+    const picture = () =>
+      screen.getByRole("group", { name: /chạm vào một đường/ });
+    const state = () => [
+      picture().getAttribute("data-fold-line"),
+      picture().getAttribute("data-fold-t"),
+    ];
+    const tap = (letter: string) =>
+      fireEvent.click(screen.getByRole("button", { name: `Đường ${letter}` }));
+    // Long enough for one fold or unfold and the two frames before a fold.
+    const settle = () => act(() => vi.advanceTimersByTime(FOLD_MS + 50));
+
+    beforeEach(() => {
+      vi.useFakeTimers({
+        toFake: [
+          "setTimeout",
+          "clearTimeout",
+          "requestAnimationFrame",
+          "cancelAnimationFrame",
+        ],
+      });
+    });
+    afterEach(() => {
+      vi.useRealTimers();
+    });
+
+    it("tapping the folded line again opens the shape", () => {
+      render(<FoldLab spec={spec} />);
+      tap("a");
+      expect(state()).toEqual(["a", "0"]);
+      settle();
+      expect(state()).toEqual(["a", "1"]);
+      expect(screen.getByText(/Vậy đường a là trục đối xứng/)).toBeVisible();
+      tap("a");
+      expect(state()).toEqual(["a", "0"]);
+      settle();
+      expect(state()).toEqual(["", "0"]);
+      expect(
+        screen.getByText(
+          "Bạn chạm vào một đường, hình sẽ gấp đôi theo đường đó.",
+        ),
+      ).toBeInTheDocument();
+      expect(screen.getByText("Đã thử 1/4")).toBeInTheDocument();
+    });
+
+    // a: axis, b: diagonal, c: axis, e: diagonal
+    it("another line first opens the shape, then folds along the new line", () => {
+      render(<FoldLab spec={spec} />);
+      tap("a");
+      settle();
+      tap("b");
+      // Opening along a: the shape is not folded along b before it is whole.
+      expect(state()).toEqual(["a", "0"]);
+      expect(
+        screen.getByText("Hình mở ra trước, rồi gấp đôi theo đường b."),
+      ).toBeInTheDocument();
+      act(() => vi.advanceTimersByTime(FOLD_MS));
+      expect(state()).toEqual(["b", "0"]);
+      settle();
+      expect(state()).toEqual(["b", "1"]);
+      expect(
+        screen.getByText(/Vậy đường b không phải trục đối xứng/),
+      ).toBeInTheDocument();
+      expect(screen.getByRole("button", { name: "Đường b" })).toHaveAttribute(
+        "aria-pressed",
+        "true",
+      );
+      expect(screen.getByText("Đã thử 2/4")).toBeInTheDocument();
+    });
+
+    it("the open button opens the folded shape", () => {
+      render(<FoldLab spec={spec} />);
+      tap("c");
+      settle();
+      fireEvent.click(screen.getByRole("button", { name: "Mở hình ra" }));
+      settle();
+      expect(state()).toEqual(["", "0"]);
+    });
+
+    it("with reduced motion every change is instant", () => {
+      const matchMedia = window.matchMedia;
+      window.matchMedia = (query: string) => ({
+        ...matchMedia(query),
+        matches: query === "(prefers-reduced-motion: reduce)",
+      });
+      try {
+        render(<FoldLab spec={spec} />);
+        tap("a");
+        expect(state()).toEqual(["a", "1"]);
+        tap("b");
+        expect(state()).toEqual(["b", "1"]);
+        tap("b");
+        expect(state()).toEqual(["", "0"]);
+      } finally {
+        window.matchMedia = matchMedia;
+      }
+    });
   });
 
   it("the axis picker reports the lines marked and the validator judges them", () => {
