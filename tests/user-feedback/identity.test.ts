@@ -23,4 +23,20 @@ describe("appVersion", () => {
     expect(appVersion({})).toBe("dev");
     expect(appVersion({ APP_COMMIT_SHA: "not a sha" })).toBe("dev");
   });
+
+  // A production build from a push to GitHub has no APP_COMMIT_SHA; its
+  // reports must still name the commit.
+  it("falls back to the commit Vercel sets on every deployment", () => {
+    const vercel = "47e07fe3aa84588a80bfa5b73fc11bbda57bd39e";
+    expect(appVersion({ VERCEL_GIT_COMMIT_SHA: vercel })).toBe("47e07fe");
+    expect(
+      appVersion({ APP_COMMIT_SHA: "", VERCEL_GIT_COMMIT_SHA: vercel }),
+    ).toBe("47e07fe");
+    expect(
+      appVersion({
+        APP_COMMIT_SHA: "5fc3656aa1b2c3d4e5f60718293a4b5c6d7e8f90",
+        VERCEL_GIT_COMMIT_SHA: vercel,
+      }),
+    ).toBe("5fc3656");
+  });
 });

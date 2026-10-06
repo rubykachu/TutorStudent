@@ -19,11 +19,17 @@ export async function familyPseudonym(
   ).join("");
 }
 
-// The deployed commit, first 7 characters of `APP_COMMIT_SHA` (set by
-// `pnpm deploy:prod`), or `dev` when unset.
+// The deployed commit, first 7 characters: `APP_COMMIT_SHA` (set by
+// `pnpm deploy:prod`), else `VERCEL_GIT_COMMIT_SHA`, which Vercel sets on
+// every deployment it knows the commit of, including one built from a push
+// to GitHub that never went through `pnpm deploy:prod`. `dev` when neither
+// holds a commit (a local server).
 export function appVersion(
   env: Record<string, string | undefined> = process.env,
 ): string {
-  const sha = (env.APP_COMMIT_SHA ?? "").trim().toLowerCase();
-  return /^[0-9a-f]{7,40}$/.test(sha) ? sha.slice(0, 7) : "dev";
+  for (const value of [env.APP_COMMIT_SHA, env.VERCEL_GIT_COMMIT_SHA]) {
+    const sha = (value ?? "").trim().toLowerCase();
+    if (/^[0-9a-f]{7,40}$/.test(sha)) return sha.slice(0, 7);
+  }
+  return "dev";
 }
