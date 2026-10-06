@@ -15,6 +15,7 @@
 - Hình trước chữ: số, hạt, bàn cờ; chữ trên màn chỉ là nhãn ngắn ("cơ số", "3 thừa số").
 - Mỗi thứ hiện đúng lúc chữ tương ứng được đọc: `pop("#x", W("s03-noi", "nối"))`, không "0.8 giây sau đầu cảnh".
 - Cảnh không để màn trống chờ chữ nằm cuối câu dài: hình nền của cảnh (nhân vật, tiêu đề) hiện từ `start(sid)`, chi tiết hiện theo chữ.
+- Khung hình đầu tiên (video mới; không dựng lại video cũ chỉ vì luật này): ngay từ giây 0 (cả trong quãng đệm `PAUSE.leadIn` và câu chào), màn đã có tiêu đề của video hay hình ví dụ đứng cạnh cú; không bao giờ chỉ có mình cú trong lúc chào. Đặt chúng ở trạng thái hiện sẵn (không `pop` từ 0 ở đầu cảnh đầu); máy không kiểm luật này, nên soát khung `f-000` ở bước "Tự xem" của `SKILL.md`.
 - Màu mang nghĩa như trong bài và luôn kèm ký hiệu hình (● cơ số, ▲ số mũ).
 - `tl.set` với `className` không chạy (GSAP 3); đổi màu bằng thuộc tính cụ thể và `color("<token>")`.
 - `fromTo` trên phần tử dùng lại nhiều lần cần `immediateRender: false`.

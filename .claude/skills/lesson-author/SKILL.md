@@ -46,7 +46,7 @@ Bài viết cho trẻ lớp 6 học chậm, hay quên. Mọi bài theo các lu�
 - **Số nhỏ.** Câu luyện tập và ôn tính nhẩm được trong tối đa 2 phép tính (3³ = 27 được, 3⁴ = 81 thì không). Ví dụ mẫu được dài hơn khi có hình từng bước.
 - **Dạy thao tác nhập trước lần dùng đầu** (LL-04). Màn hướng dẫn là `group` có `"guide": "<thao tác>"`; `content:check` luật `[guides]` báo câu dùng thao tác trước màn đó. Thao tác cần dạy: phím "mũ" của `numeric` dạng luỹ thừa, nối cặp của `match` (kéo hay chạm), sắp xếp của `order`, chạm vùng của `tapRegion`. Mỗi thao tác dạy một lần cho cả app: trước khi dùng, tìm trong `content/**/lesson.json` màn hướng dẫn thao tác đó (vd `luy-thua.visual.bam-mu` dạy phím mũ); chưa có thì bài này đặt một màn hướng dẫn ngắn ngay trước câu section đầu tiên dùng nó, với số khác câu đó. Câu chỉ có trong kho ôn chỉ dùng thao tác đã dạy. Các dạng khác không cần màn này.
 - **Câu chuyện mở đầu phải có kết** trong cùng section, bằng kiến thức vừa học.
-- **`minutes` tính từ số màn**: khoảng 40 giây mỗi màn (block, câu hỏi, recap), làm tròn phút.
+- **`minutes` tính từ số màn**: khoảng 40 giây mỗi màn (block, câu hỏi, recap), làm tròn phút. Một bài nhắm 60–80 phút, kể cả phần bài tập sách bài tập. Kế hoạch (bước 6) vượt 80 phút thì **trước khi viết** đề xuất cách chia với phiên điều phối (mục "Chia một bài dài thành nhiều bài"), mỗi bài con khoảng 55 phút, và chờ đồng ý.
 - **Recap = một `visual` vẽ ví dụ có nhãn** (ký hiệu ● Cơ số ▲ Số mũ hay tương đương), câu cần nhớ ở `caption` (≤ 2 câu; màn recap hiện nó thành chữ thân bài phía trên hình).
 - **Section ngắn, card đủ câu.** Section ≤ 4 màn và ≤ 4 câu `checkIds` + `practiceIds`; card ≥ 3 exercise, đúng 1 câu trong `practiceIds`. Ý dài hơn thì tách section, mỗi section một ý.
 - **Chọn nhiều đáp án khi câu hỏi tự nhiên có nhiều đáp án đúng.** Mỗi bài có ít nhất 2 câu `choice` với `multiple: true` (vd "Chọn tất cả các luỹ thừa có cơ số 2", "Chọn tất cả lời thoại của cáo"), thường đặt ở kho ôn (mỗi card chỉ 1 câu luyện tập, mỗi section ≤ 4 câu). Đề mở đầu bằng "Chọn tất cả…", tập đáp án đúng có 2–3 ý trong 4 lựa chọn.
@@ -81,7 +81,7 @@ Subagent phụ soạn nội dung (nếu có) mở với `model: "sonnet"`. Sửa
 
 ## Chia một bài dài thành nhiều bài
 
-Dùng khi một bài của sách quá dài cho bé (hơn khoảng 60 phút các phần, hay chủ dự án yêu cầu tách). Luật máy và quy ước: `.claude/rules/content.md`, mục "Splitting a long lesson".
+Dùng khi kế hoạch một bài của sách vượt 80 phút (luật `minutes` ở mục "Sư phạm cho người học chậm"), hay chủ dự án yêu cầu tách. Đề xuất bảng chia (bước 1 dưới đây) với phiên điều phối trước khi viết bài con nào. Luật máy và quy ước: `.claude/rules/content.md`, mục "Splitting a long lesson".
 
 1. **Chia theo hình hay chủ đề, không chia theo số thứ tự phần.** Lập bảng: mỗi phần dạy và mỗi bài tập SBT thuộc bài nào. Bài tập cần nội dung của nhiều bài con thì xếp vào bài con đứng sau (bé học theo thứ tự). Phần tổng kết cần nội dung cả hai bài con thì xếp vào bài con cuối, hoặc bỏ khi bài đó còn dài.
 2. **Mỗi bài con là một bài đủ bộ.** Slug và tiêu đề riêng (bài đầu giữ slug cũ), `number` và `chapter` của sách, `part`, `order` = `number + (part − 1) / 10`; `overview` riêng mở bằng câu chào; thẻ, sticker, và đúng một phần `bookPractice` cuối bài chỉ chứa bài tập SBT của bài con đó (các `bookRef` của mọi bài con hợp lại đủ danh sách SBT của bài sách, mỗi `bookRef` đúng một lần: xem dòng "split into" của `content:check --stats`). Thời lượng mỗi bài con khoảng 55 phút (`minutes` theo luật bên trên).
@@ -103,7 +103,7 @@ Dùng cho phần "Ôn tập chương" của sách. Bài này chép nguyên văn 
 
 ## Phần bài tập sách bài tập (`bookPractice`)
 
-Dùng khi chủ dự án yêu cầu một bài thường có phần cuối chép đủ các bài tập của sách bài tập (SBT) thuộc bài, vì chúng xuất hiện trong bài kiểm tra. Làm sau khi các section thường của bài đã xong; không làm cho bài nào chủ dự án chưa nêu tên.
+**Mặc định cho mọi bài thường mới:** bài kết thúc bằng phần chép đủ 100% bài tập của sách bài tập (SBT) thuộc bài, vì chúng xuất hiện trong bài kiểm tra. Làm sau khi các section thường của bài đã xong. Bài viết trước khi có mặc định này (Toán Bài 1 đến 12, chương I và II, chưa có phần này) chỉ thêm khi chủ dự án nêu tên bài.
 
 - **Phần cuối, một phần duy nhất.** Section cuối của `sections` có `"bookPractice": true`, tên "Bài tập sách bài tập", `sourceRef` trỏ các trang `sbt-pNN` của nó. Bài `kind: "review"` không dùng cờ này (mỗi câu của nó đã có `bookRef`).
 - **Đủ mọi bài tập.** Mở mọi ảnh `sources/<môn>/<slug>/sbt-pNN.png` thuộc bài và lập danh sách số bài tập kèm từng ý a), b)... trước khi viết; thiếu ảnh thì dừng và báo. Mỗi bài tập, mỗi ý thành một câu trong `exercises`. Không bỏ, không gộp, không thêm bài tập của chính mình vào danh sách này.

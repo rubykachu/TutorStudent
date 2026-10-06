@@ -14,7 +14,7 @@ Nguồn duy nhất cho bước nhận yêu cầu, dùng bởi `/import-source` v
 
 1. **Nguồn.**
    - Đường dẫn PDF (hay ảnh). Không có thì hỏi trước tiên, không đoán.
-   - Sách: SGK, sách bài tập (SBT) hay cả hai. Có SBT thì nạp cả trang bài tập lẫn trang đáp án của bài (`--book sbt`, tệp `sbt-p<trang>.png`, `sourceRef` ghi "SBT tr.<n>"); trang đáp án là đáp án chuẩn để đối chiếu.
+   - Sách: SGK, sách bài tập (SBT) hay cả hai. Bài thường mới mặc định có phần bài tập sách bài tập (`lesson-author`, mục "Phần bài tập sách bài tập"), nên cần SBT; thiếu SBT thì hỏi chủ dự án. Có SBT thì nạp cả trang bài tập lẫn trang đáp án của bài (`--book sbt`, tệp `sbt-p<trang>.png`, `sourceRef` ghi "SBT tr.<n>"); trang đáp án là đáp án chuẩn để đối chiếu.
    - Môn, bộ sách: từ tên tệp (`toan` → `math`, `van`/`ngu-van` → `literature`, `dia`/`lich-su-dia-li` → `geography`; `kntt`/`ket-noi`, `ctst`/`chan-troi`, `cd`/`canh-dieu`), đối chiếu `content/subjects.json`. Bộ sách chưa có ở đó thì thêm lựa chọn "Thêm bộ sách <id> vào `content/subjects.json`". Tập (1 hay 2): từ tên tệp hay bìa.
    - Bài: theo số, tên hay khoảng trang. Mục lục: `pdftotext -f 1 -l 8 <pdf> -`, không thấy "Mục lục" thì đọc 8 trang cuối (`pdfinfo` cho số trang); không có lớp chữ thì `pdftoppm -f 1 -l 8 -r 60 -png <pdf> <scratchpad>/toc` rồi đọc ảnh. Dòng "Bài <n> … <trang>" cho trang đầu; trang cuối = trang đầu bài kế − 1. Số trong mục lục là số trang in.
    - Độ lệch: `--offset` = trang PDF − trang in. Ước từ một trang giữa sách (`pdftotext -f <k> -l <k>`, hay ảnh `pdftoppm` khi không có lớp chữ); kiểm lại bằng ảnh ở "Nạp nguồn". PDF SGK và PDF SBT có độ lệch riêng.
