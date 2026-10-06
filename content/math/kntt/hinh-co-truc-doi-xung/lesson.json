@@ -12,7 +12,7 @@
   "title": "Hình có trục đối xứng",
   "sourceRef": "Sách bài tập tr.78–83, lời giải tr.118–119",
   "status": "published",
-  "reviewedHash": "9bf7ec7bdb4fad23b8493cebb996bd55bfe3d56f4492a5725118899096ee59e2",
+  "reviewedHash": "216d56672fa7276ca31d661355563c52db3e0b9355ffb0b9dcda7041c792fedc",
   "overview": {
     "hook": {
       "text": "Chào bạn! Ở bài này, chúng ta sẽ tìm hiểu hình có trục đối xứng. Bạn thử nhìn cánh bướm hay chiếc lá trong vườn xem: hai nửa bên trái và bên phải có giống nhau không?"
@@ -170,7 +170,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Cánh cửa ra vào có hình chữ nhật. Cùng làm: chạm vào từng đường để gấp hình chữ nhật theo đường đó."
+              "text": "Cánh cửa ra vào có dạng hình chữ nhật. Cùng làm: bạn chạm vào từng đường để gấp đôi hình chữ nhật, rồi xem hai nửa có chồng khít không."
             },
             {
               "type": "visual",
@@ -183,7 +183,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Con diều có hình thoi. Cùng làm: chạm vào từng đường để gấp hình thoi theo đường đó."
+              "text": "Con diều có dạng hình thoi. Cùng làm: bạn chạm vào từng đường để gấp đôi hình thoi, rồi xem hai nửa có chồng khít không."
             },
             {
               "type": "visual",
@@ -236,7 +236,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Cùng làm: chạm vào từng đường để gấp hình thang cân theo đường đó."
+              "text": "Cái xô nhựa nhìn từ bên cạnh có dạng hình thang cân. Cùng làm: bạn chạm vào từng đường để gấp đôi hình thang cân, rồi xem hai nửa có chồng khít không."
             },
             {
               "type": "visual",
@@ -249,7 +249,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Gạch lát nghiêng có dạng hình bình hành lệch. Cùng làm: chạm vào từng đường để gấp hình bình hành này."
+              "text": "Nhiều viên gạch lát nền có dạng hình bình hành lệch như hình dưới đây. Cùng làm: bạn chạm vào từng đường để gấp đôi hình bình hành này, rồi xem hai nửa có chồng khít không."
             },
             {
               "type": "visual",
