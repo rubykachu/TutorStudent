@@ -20,20 +20,10 @@ Branding and contacts: the header, `<title>` and OG tags lead with Owl Yeah. The
 
 `OWLTQVWC-4KH5KJYX`, family id `OWLTQVWC`. It is printed on the public page, so treat that family as public: revoke it (add `OWLTQVWC` to `FAMILY_CODES_REVOKED`, see `docs/operations.md`) if it is abused, and update the page with a new code. The page only links to `https://app.toktiktak.click/unlock`; it never fills the code in for the user.
 
-## Deploy (owner, not done)
+## Deploy (done 08/10/2026)
 
-1. Create a separate Vercel project from this repo with **Root Directory** `landing/`, framework preset "Other", no build command, output directory `.` (the folder is served as is).
-2. Add the domain `toktiktak.click` (and `www.toktiktak.click` redirecting to it) to that project and set the DNS records Vercel shows.
-3. Open the site, check the share preview (`og:image` is `https://toktiktak.click/assets/share.png`).
-
-## Open item: support mailbox (owner, not done)
-
-Create the `support@toktiktak.click` mailbox or forward before launch; the Contact button and the footer point at it.
-
-## Open item (not done)
-
-Serving the app at `https://app.toktiktak.click`:
-
-- Add the domain `app.toktiktak.click` to the app's Vercel project (`tutor`).
-- The media bucket CORS allows only `https://owlyeah.vercel.app`; add `https://app.toktiktak.click` to the bucket CORS rule and to `docs/operations.md` (the media bucket line at the top and the CORS step). Until then, videos and narration fail on the new domain.
-- Until the app domain works, the "Open the app" links on the landing page lead nowhere.
+- Vercel project `owlyeah-landing` (account `rubykachu`), deployed from `landing/` with `npx vercel deploy --prod --yes`; no build step.
+- Domains: `toktiktak.click` on `owlyeah-landing`, `app.toktiktak.click` on the app project `tutor`. Cloudflare DNS holds the CNAME records Vercel proposed (applied through Domain Connect, proxy off).
+- Media bucket CORS allows `https://owlyeah.vercel.app` and `https://app.toktiktak.click`.
+- The support mailbox works (owner confirmed).
+- Not set up: `www.toktiktak.click`.
