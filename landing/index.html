@@ -19,12 +19,12 @@
     <meta property="og:title" content="toktiktak | Owl Yeah, the self-study app for grade 6" />
     <meta
       property="og:description"
-      content="Owl Yeah by toktiktak: short interactive lessons from Vietnamese grade 6 textbooks, visual hints instead of red marks, and review timed to memory."
+      content="Owl Yeah by toktiktak: short interactive lessons from Vietnamese grade 6 textbooks, visual hints rather than red marks, and review that returns to what a child is starting to forget."
     />
     <meta property="og:image" content="https://toktiktak.click/assets/share.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="The Owl Yeah owl mascot in a night sky with planets" />
+    <meta property="og:image:alt" content="The Owl Yeah owl mascot with the text Owl Yeah by toktiktak" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:locale:alternate" content="vi_VN" />
     <meta name="twitter:card" content="summary_large_image" />
@@ -48,6 +48,7 @@
   <body>
     <!-- Icon sprite (Lucide icon shapes), referenced with <use href="#i-name"> -->
     <svg width="0" height="0" class="sprite" aria-hidden="true">
+      <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" /></symbol>
       <symbol id="i-book" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" /><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" /></symbol>
       <symbol id="i-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="m10 8 6 4-6 4z" /></symbol>
       <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" /><path d="M9 18h6" /><path d="M10 22h4" /></symbol>
@@ -63,7 +64,7 @@
       <symbol id="i-external" viewBox="0 0 24 24"><path d="M15 3h6v6" /><path d="M10 14 21 3" /><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /></symbol>
     </svg>
 
-    <a class="skip" href="#main"><span data-l="en">Skip to content</span><span data-l="vi" lang="vi">Bỏ qua tới nội dung</span></a>
+    <a class="skip" href="#main"><span data-l="en">Skip to content</span><span data-l="vi" lang="vi">Chuyển đến nội dung chính</span></a>
 
     <header class="site-header">
       <div class="wrap header-row">
@@ -71,7 +72,7 @@
           <img src="assets/favicon.svg" alt="" width="36" height="36" />
           <span>toktiktak</span>
         </a>
-        <nav class="nav" data-aria-en="Main" data-aria-vi="Chính">
+        <nav class="nav" id="site-nav" data-aria-en="Main" data-aria-vi="Chính">
           <a href="#product"><span data-l="en">Product</span><span data-l="vi" lang="vi">Sản phẩm</span></a>
           <a href="#how"><span data-l="en">How it works</span><span data-l="vi" lang="vi">Cách học</span></a>
           <a href="#audience"><span data-l="en">Who it's for</span><span data-l="vi" lang="vi">Dành cho ai</span></a>
@@ -83,6 +84,9 @@
           <button type="button" data-set-lang="en" lang="en">EN</button>
           <button type="button" data-set-lang="vi" lang="vi">VI</button>
         </fieldset>
+        <button type="button" class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="site-nav" data-aria-en="Menu" data-aria-vi="Trình đơn">
+          <svg class="i" aria-hidden="true"><use href="#i-menu" /></svg>
+        </button>
       </div>
     </header>
 
@@ -97,7 +101,7 @@
               <span data-l="en">Self-study that sticks, for grade 6 learners</span><span data-l="vi" lang="vi">Tự học mà nhớ lâu, cho học sinh lớp 6</span>
             </h1>
             <p class="lead">
-              <span data-l="en">Owl Yeah turns Vietnamese grade 6 textbooks into short, interactive lessons: animations that explain, exercises that hint instead of scold, and review that brings back what is about to be forgotten. Made for iPad, works on phones.</span><span data-l="vi" lang="vi">Owl Yeah biến sách giáo khoa lớp 6 thành những bài học ngắn, tương tác: animation giải thích, bài tập gợi ý thay vì trách lỗi, và phần ôn đưa lại đúng những gì sắp quên. Dùng tốt nhất trên iPad, chạy được trên điện thoại.</span>
+              <span data-l="en">Owl Yeah turns Vietnamese grade 6 textbooks into short interactive lessons. Animations explain each idea, a wrong answer gets a hint rather than a red cross, and review brings back what a child is starting to forget. Made for iPad, works on phones.</span><span data-l="vi" lang="vi">Owl Yeah biến sách giáo khoa lớp 6 thành những bài học ngắn, có hình động giải thích. Làm sai thì được gợi ý chứ không bị gạch đỏ, và phần ôn nhắc lại đúng chỗ con sắp quên. Dùng tốt nhất trên iPad, điện thoại cũng dùng được.</span>
             </p>
             <div class="cta-row">
               <a class="btn btn-primary" href="#try">
@@ -112,7 +116,6 @@
             <ul class="chips">
               <li><span data-l="en">8 exercise types</span><span data-l="vi" lang="vi">8 dạng bài tập</span></li>
               <li><span data-l="en">3-step hints</span><span data-l="vi" lang="vi">Gợi ý 3 nấc</span></li>
-              <li><span data-l="en">Works offline</span><span data-l="vi" lang="vi">Học được khi mất mạng</span></li>
             </ul>
           </div>
           <div class="hero-art" aria-hidden="true">
@@ -145,31 +148,31 @@
             <li class="card">
               <span class="icon tone-violet"><svg class="i" aria-hidden="true"><use href="#i-play" /></svg></span>
               <h3><span data-l="en">Pictures before words</span><span data-l="vi" lang="vi">Hình trước, chữ sau</span></h3>
-              <p><span data-l="en">Interactive animations and short narrated videos in Vietnamese explain each idea. Text stays at two sentences per block.</span><span data-l="vi" lang="vi">Animation tương tác và video ngắn có giọng đọc tiếng Việt giải thích từng ý. Mỗi khối chữ không quá hai câu.</span></p>
+              <p><span data-l="en">Interactive animations and short narrated videos in Vietnamese explain each idea. Text is kept short, two sentences at a time.</span><span data-l="vi" lang="vi">Hình động tương tác và video ngắn có giọng đọc tiếng Việt giải thích từng ý. Mỗi khối chữ không quá hai câu.</span></p>
             </li>
             <li class="card">
               <span class="icon tone-amber"><svg class="i" aria-hidden="true"><use href="#i-bulb" /></svg></span>
               <h3><span data-l="en">Mistakes are safe</span><span data-l="vi" lang="vi">Sai không đáng sợ</span></h3>
-              <p><span data-l="en">A wrong answer gets encouragement first, then a visual hint, then a worked solution. No red marks, no countdowns, no leaderboards.</span><span data-l="vi" lang="vi">Trả lời sai thì được động viên trước, rồi gợi ý bằng hình, rồi xem lời giải. Không chữ đỏ, không đồng hồ đếm ngược, không bảng xếp hạng.</span></p>
+              <p><span data-l="en">A wrong answer gets encouragement first, then a visual hint, then a worked solution. Nothing is timed or ranked, so a child can take as long as they need.</span><span data-l="vi" lang="vi">Trả lời sai thì được động viên trước, rồi gợi ý bằng hình, rồi xem lời giải. Không tính giờ, không xếp hạng, nên con cứ thong thả làm bài.</span></p>
             </li>
             <li class="card">
               <span class="icon tone-teal"><svg class="i" aria-hidden="true"><use href="#i-review" /></svg></span>
               <h3><span data-l="en">Review what is fading</span><span data-l="vi" lang="vi">Ôn đúng chỗ sắp quên</span></h3>
-              <p><span data-l="en">A spaced-repetition model (FSRS) estimates how well each idea is remembered. One tap on “Review this lesson” asks up to ten ideas that are slipping most.</span><span data-l="vi" lang="vi">Thuật toán ôn cách quãng FSRS ước lượng mức nhớ của từng ý. Bấm “Ôn bài này” là app hỏi lại tối đa 10 ý đang dễ quên nhất.</span></p>
+              <p><span data-l="en">A spaced-repetition model (FSRS) estimates how well each idea is remembered. Tapping “Ôn bài này” (Review this lesson) quizzes the learner on up to ten ideas they are closest to forgetting.</span><span data-l="vi" lang="vi">Ứng dụng ước lượng con còn nhớ từng ý tới đâu. Bấm “Ôn bài này” là ứng dụng hỏi lại tối đa 10 ý con sắp quên nhất.</span></p>
             </li>
             <li class="card">
               <span class="icon tone-sky"><svg class="i" aria-hidden="true"><use href="#i-tablet" /></svg></span>
-              <h3><span data-l="en">iPad first, offline ready</span><span data-l="vi" lang="vi">Ưu tiên iPad, học cả khi mất mạng</span></h3>
-              <p><span data-l="en">An installable web app (PWA) designed for iPad. Published lessons keep working without a connection, and progress syncs when the device is back online.</span><span data-l="vi" lang="vi">Ứng dụng web cài được lên màn hình chính (PWA), thiết kế cho iPad. Bài đã xuất bản vẫn mở được khi mất mạng, tiến độ tự đồng bộ khi có mạng lại.</span></p>
+              <h3><span data-l="en">iPad first</span><span data-l="vi" lang="vi">Ưu tiên iPad</span></h3>
+              <p><span data-l="en">An installable web app designed for iPad; progress syncs across the family's devices.</span><span data-l="vi" lang="vi">Ứng dụng web cài được lên màn hình chính, thiết kế cho iPad; tiến độ đồng bộ giữa các thiết bị của gia đình.</span></p>
             </li>
             <li class="card">
               <span class="icon tone-green"><svg class="i" aria-hidden="true"><use href="#i-shield" /></svg></span>
-              <h3><span data-l="en">Reviewed before release</span><span data-l="vi" lang="vi">Kiểm duyệt trước khi phát hành</span></h3>
-              <p><span data-l="en">Every lesson gets an independent review against its source pages, for correct content and grade-level language, before it is published.</span><span data-l="vi" lang="vi">Mỗi bài được kiểm duyệt độc lập, đối chiếu với trang sách gốc để bảo đảm đúng kiến thức và ngôn từ hợp lứa tuổi, rồi mới xuất bản.</span></p>
+              <h3><span data-l="en">Checked against the textbook</span><span data-l="vi" lang="vi">Đối chiếu với sách gốc</span></h3>
+              <p><span data-l="en">Lessons are drafted with AI from the textbook pages, then checked against the source for accuracy and grade-level language before release.</span><span data-l="vi" lang="vi">Bài học được soạn với sự hỗ trợ của AI từ trang sách, rồi đối chiếu lại với sách gốc về độ chính xác và ngôn từ lớp 6 trước khi xuất bản.</span></p>
             </li>
           </ul>
           <p class="note">
-            <span data-l="en"><strong>Available now:</strong> Mathematics grade 6 (the “Kết nối tri thức với cuộc sống” textbook series). More grade 6 subjects are in preparation.</span><span data-l="vi" lang="vi"><strong>Hiện có:</strong> Toán 6 (bộ sách “Kết nối tri thức với cuộc sống”). Các môn lớp 6 khác đang được chuẩn bị.</span>
+            <span data-l="en"><strong>Available now:</strong> grade 6 Maths lessons (Kết nối tri thức series, chapters 1–4) and a first Literature lesson. More are on the way.</span><span data-l="vi" lang="vi"><strong>Hiện có:</strong> các bài Toán 6 (bộ Kết nối tri thức, chương 1–4) và bài Ngữ văn đầu tiên; bài mới đang được bổ sung.</span>
           </p>
         </div>
       </section>
@@ -180,15 +183,15 @@
           <ol class="steps">
             <li>
               <h3><span data-l="en">Pick a lesson</span><span data-l="vi" lang="vi">Chọn bài</span></h3>
-              <p><span data-l="en">The learner picks their profile, a subject and a lesson. The app remembers where they stopped.</span><span data-l="vi" lang="vi">Học sinh chọn hồ sơ, chọn môn và bài học. App nhớ chỗ các em đang dừng.</span></p>
+              <p><span data-l="en">The learner picks their profile, a subject and a lesson. The app remembers where they stopped.</span><span data-l="vi" lang="vi">Học sinh chọn hồ sơ, chọn môn và bài học. Ứng dụng nhớ chỗ các em đang dừng.</span></p>
             </li>
             <li>
               <h3><span data-l="en">Learn in short parts</span><span data-l="vi" lang="vi">Học từng phần ngắn</span></h3>
-              <p><span data-l="en">Each part runs an explanation, a quick check, practice and a picture recap, in 3 to 6 minutes.</span><span data-l="vi" lang="vi">Mỗi phần gồm giải thích, câu kiểm tra hiểu, luyện tập và nhắc lại bằng hình, trong 3–6 phút.</span></p>
+              <p><span data-l="en">Each 3–6 minute part moves from explanation to a quick check, then practice and a picture recap.</span><span data-l="vi" lang="vi">Mỗi phần gồm giải thích, câu kiểm tra hiểu, luyện tập và nhắc lại bằng hình, trong 3–6 phút.</span></p>
             </li>
             <li>
               <h3><span data-l="en">Review any time</span><span data-l="vi" lang="vi">Ôn bất cứ lúc nào</span></h3>
-              <p><span data-l="en">No forced schedule. Each lesson shows how many cards are fading; a review takes about five minutes.</span><span data-l="vi" lang="vi">Không có lịch ôn bắt buộc. Mỗi bài cho biết bao nhiêu thẻ sắp quên; một lượt ôn mất khoảng 5 phút.</span></p>
+              <p><span data-l="en">No forced schedule. Each lesson shows how many ideas are due for review; a review takes about five minutes.</span><span data-l="vi" lang="vi">Không có lịch ôn bắt buộc. Mỗi bài cho biết bao nhiêu ý đã đến lúc ôn; một lượt ôn mất khoảng 5 phút.</span></p>
             </li>
             <li>
               <h3><span data-l="en">Celebrate progress</span><span data-l="vi" lang="vi">Ghi nhận tiến bộ</span></h3>
@@ -208,7 +211,7 @@
               <ul class="ticks">
                 <li><span data-l="en">Grade 6 students following the Vietnamese curriculum, studying on their own at home.</span><span data-l="vi" lang="vi">Học sinh lớp 6 theo chương trình Việt Nam, tự học ở nhà.</span></li>
                 <li><span data-l="en">Children who learn better from pictures than from long text.</span><span data-l="vi" lang="vi">Các em hiểu bài qua hình ảnh dễ hơn qua đoạn văn dài.</span></li>
-                <li><span data-l="en">Learners who forget quickly and need short, frequent review.</span><span data-l="vi" lang="vi">Các em hay quên, cần ôn ngắn và thường xuyên.</span></li>
+                <li><span data-l="en">Learners who do better with short, frequent review.</span><span data-l="vi" lang="vi">Các em cần ôn ngắn, thường xuyên để nhớ lâu.</span></li>
               </ul>
             </article>
             <article class="card card-lg">
@@ -217,7 +220,7 @@
               <ul class="ticks">
                 <li><span data-l="en">Parents who cannot sit beside their child every day.</span><span data-l="vi" lang="vi">Phụ huynh không có thời gian kèm con học mỗi ngày.</span></li>
                 <li><span data-l="en">A PIN-protected parent page shows study days, time spent and the ideas a child keeps forgetting.</span><span data-l="vi" lang="vi">Trang phụ huynh có PIN riêng, cho xem ngày học, thời gian học và những ý con hay quên.</span></li>
-                <li><span data-l="en">One family code unlocks the app; a family can have several child profiles, and progress follows each child across devices.</span><span data-l="vi" lang="vi">Một mã gia đình mở app; mỗi gia đình có thể có nhiều hồ sơ con, tiến độ đi theo con trên mọi máy.</span></li>
+                <li><span data-l="en">One family code unlocks the app; a family can have several child profiles, and progress follows each child across devices.</span><span data-l="vi" lang="vi">Một mã gia đình mở ứng dụng; mỗi gia đình có thể có nhiều hồ sơ con, tiến độ đi theo con trên mọi máy.</span></li>
               </ul>
             </article>
           </div>
@@ -228,10 +231,10 @@
         <div class="wrap try-grid">
           <div>
             <h2 id="try-title"><span data-l="en">Try Owl Yeah</span><span data-l="vi" lang="vi">Dùng thử Owl Yeah</span></h2>
-            <p class="lead-sm"><span data-l="en">Use this public demo code to open the app. The app's interface and lessons are in Vietnamese.</span><span data-l="vi" lang="vi">Dùng mã dùng thử công khai này để mở app. Giao diện và bài học của app bằng tiếng Việt.</span></p>
+            <p class="lead-sm"><span data-l="en">Use this public demo code to open the app. The app's interface and lessons are in Vietnamese. Everyone shares this demo account, so profiles you create may be seen or reset by others.</span><span data-l="vi" lang="vi">Dùng mã dùng thử công khai này để mở ứng dụng. Giao diện và bài học bằng tiếng Việt. Mọi người dùng chung tài khoản thử này, hồ sơ bạn tạo có thể bị người khác thấy hoặc xoá.</span></p>
             <ol class="try-steps">
-              <li><span data-l="en">Copy the demo code.</span><span data-l="vi" lang="vi">Chép mã dùng thử.</span></li>
-              <li><span data-l="en">Open the app at app.toktiktak.click.</span><span data-l="vi" lang="vi">Mở app tại app.toktiktak.click.</span></li>
+              <li><span data-l="en">Copy the demo code.</span><span data-l="vi" lang="vi">Sao chép mã dùng thử.</span></li>
+              <li><span data-l="en">Open the app at app.toktiktak.click.</span><span data-l="vi" lang="vi">Mở ứng dụng tại app.toktiktak.click.</span></li>
               <li><span data-l="en">Paste the code and tap “Mở ứng dụng” (Open app).</span><span data-l="vi" lang="vi">Dán mã vào ô rồi bấm “Mở ứng dụng”.</span></li>
             </ol>
           </div>
@@ -242,8 +245,8 @@
               <button type="button" class="btn btn-copy" id="copy-btn">
                 <svg class="i icon-copy" aria-hidden="true"><use href="#i-copy" /></svg>
                 <svg class="i icon-done" aria-hidden="true"><use href="#i-check" /></svg>
-                <span class="copy-idle"><span data-l="en">Copy code</span><span data-l="vi" lang="vi">Chép mã</span></span>
-                <span class="copy-done"><span data-l="en">Copied</span><span data-l="vi" lang="vi">Đã chép</span></span>
+                <span class="copy-idle"><span data-l="en">Copy code</span><span data-l="vi" lang="vi">Sao chép mã</span></span>
+                <span class="copy-done"><span data-l="en">Copied</span><span data-l="vi" lang="vi">Đã sao chép</span></span>
               </button>
             </div>
             <p class="sr-only" id="copy-status" role="status" aria-live="polite"></p>
@@ -259,16 +262,16 @@
         <div class="wrap about-grid">
           <div>
             <h2 id="about-title"><span data-l="en">About toktiktak</span><span data-l="vi" lang="vi">Về toktiktak</span></h2>
-            <p><span data-l="en">toktiktak is the company that builds and operates Owl Yeah. We design the app, write and review its lessons, and run the service that delivers them to families.</span><span data-l="vi" lang="vi">toktiktak là công ty xây dựng và vận hành Owl Yeah. Chúng tôi thiết kế ứng dụng, biên soạn và kiểm duyệt bài học, và vận hành dịch vụ đưa bài học tới các gia đình.</span></p>
-            <p><span data-l="en">We started from one question: how can a child who learns slowly and forgets quickly study alone when parents cannot sit beside them every day? Owl Yeah is our answer, built on short lessons, visual explanations and review timed to memory.</span><span data-l="vi" lang="vi">Chúng tôi bắt đầu từ một câu hỏi: làm sao để một em học chậm, nhanh quên vẫn tự học được khi bố mẹ không thể ngồi kèm mỗi ngày? Owl Yeah là câu trả lời của chúng tôi, dựa trên bài học ngắn, giải thích bằng hình và ôn tập đúng lúc sắp quên.</span></p>
+            <p><span data-l="en">toktiktak is the team that builds and runs Owl Yeah. We design the app, prepare its lessons from the textbooks, and operate the service that delivers them to families.</span><span data-l="vi" lang="vi">toktiktak là nhóm xây dựng và vận hành Owl Yeah. Chúng tôi thiết kế ứng dụng, soạn bài học từ sách giáo khoa và vận hành dịch vụ đưa bài học tới các gia đình.</span></p>
+            <p><span data-l="en">We started from one question: how can a child keep up and remember what they learn when parents can't sit beside them every day? Owl Yeah is our answer, built on short lessons, visual explanations and review timed to memory.</span><span data-l="vi" lang="vi">Chúng tôi bắt đầu từ một câu hỏi: làm sao để con tự học và nhớ bài lâu khi bố mẹ không thể ngồi kèm mỗi ngày? Owl Yeah là câu trả lời của chúng tôi, dựa trên bài học ngắn, giải thích bằng hình và ôn tập đúng lúc sắp quên.</span></p>
             <ul class="ticks">
               <li><span data-l="en">Content follows the official Vietnamese textbooks.</span><span data-l="vi" lang="vi">Nội dung bám theo sách giáo khoa chính thức.</span></li>
               <li><span data-l="en">Calm, encouraging design made for children.</span><span data-l="vi" lang="vi">Thiết kế nhẹ nhàng, khích lệ, dành cho trẻ em.</span></li>
-              <li><span data-l="en">No ads, no leaderboards, no social feeds.</span><span data-l="vi" lang="vi">Không quảng cáo, không bảng xếp hạng, không mạng xã hội.</span></li>
+              <li><span data-l="en">No ads and no social features.</span><span data-l="vi" lang="vi">Không quảng cáo, không có tính năng mạng xã hội.</span></li>
             </ul>
           </div>
           <dl class="facts card">
-            <div><dt><span data-l="en">Company</span><span data-l="vi" lang="vi">Công ty</span></dt><dd>toktiktak</dd></div>
+            <div><dt><span data-l="en">Team</span><span data-l="vi" lang="vi">Nhóm</span></dt><dd>toktiktak</dd></div>
             <div><dt><span data-l="en">Product</span><span data-l="vi" lang="vi">Sản phẩm</span></dt><dd>Owl Yeah</dd></div>
             <div><dt><span data-l="en">Website</span><span data-l="vi" lang="vi">Trang web</span></dt><dd><a href="https://toktiktak.click/">toktiktak.click</a></dd></div>
             <div><dt><span data-l="en">App</span><span data-l="vi" lang="vi">Ứng dụng</span></dt><dd><a href="https://app.toktiktak.click/unlock">app.toktiktak.click</a></dd></div>
@@ -280,7 +283,7 @@
       <section class="section section-contact" id="contact" aria-labelledby="contact-title">
         <div class="wrap"><div class="contact-box">
           <h2 id="contact-title"><span data-l="en">Get in touch</span><span data-l="vi" lang="vi">Liên hệ</span></h2>
-          <p class="contact-text"><span data-l="en">Questions, partnerships, or access for your family: write to us.</span><span data-l="vi" lang="vi">Câu hỏi, hợp tác hay xin mã cho gia đình bạn: hãy viết cho chúng tôi.</span></p>
+          <p class="contact-text"><span data-l="en">Have a question, a partnership idea, or want your own family code? Email us.</span><span data-l="vi" lang="vi">Bạn có câu hỏi, muốn hợp tác hay cần mã riêng cho gia đình? Hãy gửi email cho chúng tôi.</span></p>
           <a class="btn btn-light" href="mailto:admin@toktiktak.click">
             <svg class="i" aria-hidden="true"><use href="#i-mail" /></svg>
             admin@toktiktak.click

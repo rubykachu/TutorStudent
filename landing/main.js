@@ -1,10 +1,10 @@
-// Language toggle (EN/VI) and the demo-code copy button. No other behaviour.
+// Language toggle (EN/VI), the mobile menu and the demo-code copy button. No other behaviour.
 const STORAGE_KEY = "lang";
 const TITLES = {
   en: "toktiktak | Owl Yeah, the self-study app for grade 6",
   vi: "toktiktak | Owl Yeah, ứng dụng tự học cho học sinh lớp 6",
 };
-const COPIED = { en: "Code copied", vi: "Đã chép mã" };
+const COPIED = { en: "Code copied", vi: "Đã sao chép mã" };
 
 const root = document.documentElement;
 const currentLang = () => (root.lang === "vi" ? "vi" : "en");
@@ -69,4 +69,29 @@ copyButton.addEventListener("click", async () => {
     copyButton.classList.remove("is-copied");
     status.textContent = "";
   }, 2000);
+});
+
+// Mobile menu: the nav is hidden below 1024px and this button reveals it.
+const menuButton = document.getElementById("menu-btn");
+const nav = document.getElementById("site-nav");
+
+function setMenu(open) {
+  menuButton.setAttribute("aria-expanded", String(open));
+  nav.classList.toggle("is-open", open);
+}
+
+menuButton.addEventListener("click", () =>
+  setMenu(menuButton.getAttribute("aria-expanded") !== "true"),
+);
+nav.addEventListener("click", (event) => {
+  if (event.target.closest("a")) setMenu(false);
+});
+document.addEventListener("keydown", (event) => {
+  if (
+    event.key !== "Escape" ||
+    menuButton.getAttribute("aria-expanded") !== "true"
+  )
+    return;
+  setMenu(false);
+  menuButton.focus();
 });

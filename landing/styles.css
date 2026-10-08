@@ -1,4 +1,4 @@
-/* Colours follow the Owl Yeah app tokens so the company site and the product read as one brand. */
+/* Colours follow the Owl Yeah app tokens so the landing site and the product read as one brand. */
 :root {
   --bg: #f8fafc;
   --surface: #ffffff;
@@ -213,9 +213,48 @@ svg {
   color: var(--fg);
 }
 
+.nav.is-open {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 8px var(--gutter) 12px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.menu-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: 2px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--fg);
+  cursor: pointer;
+}
+
 @media (min-width: 1024px) {
-  .nav {
+  .nav,
+  .nav.is-open {
     display: flex;
+    flex-direction: row;
+    position: static;
+    padding: 0;
+    background: none;
+    border: 0;
+    box-shadow: none;
+    margin-left: auto;
+  }
+
+  .menu-btn {
+    display: none;
   }
 }
 

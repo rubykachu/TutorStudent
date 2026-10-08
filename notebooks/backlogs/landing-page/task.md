@@ -1,12 +1,14 @@
-# Landing page: toktiktak company site
+# Landing page: toktiktak site
 
-Public company website for **toktiktak** (`https://toktiktak.click`) presenting its product Owl Yeah, needed for funding and startup-program applications. Contact: `admin@toktiktak.click`.
+Public website for the team **toktiktak** (`https://toktiktak.click`) presenting its product Owl Yeah, needed for funding and startup-program applications. Contact: `admin@toktiktak.click`.
 
 ## Built
 
-- `landing/`: static site, no framework, no build step. `index.html`, `styles.css`, `main.js` (language toggle and copy button only), `assets/` (owl, favicon, apple touch icon, share image copied from the app brand files).
+- `landing/`: static site, no framework, no build step. `index.html`, `styles.css`, `main.js` (language toggle, mobile menu and copy button), `assets/` (owl, favicon, apple touch icon, `share.png` built for the page: owl, "Owl Yeah" and "by toktiktak").
 - Bilingual EN/VI: every text has an `en` and a `vi` span; `<html lang>` picks one (default EN, choice saved in `localStorage` key `lang`).
 - Sections: header (wordmark, nav, language switch), hero, features, how a session works, who it is for, try it, about toktiktak, contact, footer.
+- No offline claim: production has offline disabled. Lessons are described as AI-drafted and checked against the textbook, never as independently reviewed.
+- Below 1024px the nav sits behind a menu button (aria-expanded, closes on link click and Escape).
 - Copy comes from `docs/spec.md` and `README.md`; no metrics, customers, team members or testimonials; nothing that identifies the learner described in `docs/learner.md`.
 - Checked with Playwright at 375, 768 and 1440 px in EN and VI: no horizontal scroll, no console errors, copy button puts the code on the clipboard, language survives a reload.
 
