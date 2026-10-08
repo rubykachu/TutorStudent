@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>toktiktak | Owl Yeah, the self-study app for grade 6</title>
+    <meta
+      name="description"
+      content="toktiktak builds Owl Yeah, an iPad-first self-study app that turns Vietnamese grade 6 textbooks into short interactive lessons with visual hints and spaced review."
+    />
+    <meta name="theme-color" content="#2563eb" />
+    <link rel="canonical" href="https://toktiktak.click/" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="toktiktak" />
+    <meta property="og:url" content="https://toktiktak.click/" />
+    <meta property="og:title" content="toktiktak | Owl Yeah, the self-study app for grade 6" />
+    <meta
+      property="og:description"
+      content="Owl Yeah by toktiktak: short interactive lessons from Vietnamese grade 6 textbooks, visual hints instead of red marks, and review timed to memory."
+    />
+    <meta property="og:image" content="https://toktiktak.click/assets/share.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="The Owl Yeah owl mascot in a night sky with planets" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="vi_VN" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script>
+      // Apply the saved language before first paint so the page does not flash English.
+      try {
+        if (localStorage.getItem("lang") === "vi") document.documentElement.lang = "vi";
+      } catch {}
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Be+Vietnam+Pro:wght@400;600&display=swap"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="main.js" defer></script>
+  </head>
+  <body>
+    <!-- Icon sprite (Lucide icon shapes), referenced with <use href="#i-name"> -->
+    <svg width="0" height="0" class="sprite" aria-hidden="true">
+      <symbol id="i-book" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" /><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" /></symbol>
+      <symbol id="i-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="m10 8 6 4-6 4z" /></symbol>
+      <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" /><path d="M9 18h6" /><path d="M10 22h4" /></symbol>
+      <symbol id="i-review" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" /><path d="M3 3v5h5" /></symbol>
+      <symbol id="i-tablet" viewBox="0 0 24 24"><rect width="16" height="20" x="4" y="2" rx="2" /><path d="M12 18h.01" /></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m9 12 2 2 4-4" /></symbol>
+      <symbol id="i-cap" viewBox="0 0 24 24"><path d="M21.42 10.92a1 1 0 0 0-.02-1.84L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.83l8.57 3.91a2 2 0 0 0 1.66 0z" /><path d="M22 10v6" /><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" /></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></symbol>
+      <symbol id="i-copy" viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" /></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></symbol>
+      <symbol id="i-external" viewBox="0 0 24 24"><path d="M15 3h6v6" /><path d="M10 14 21 3" /><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /></symbol>
+    </svg>
+
+    <a class="skip" href="#main"><span data-l="en">Skip to content</span><span data-l="vi" lang="vi">Bỏ qua tới nội dung</span></a>
+
+    <header class="site-header">
+      <div class="wrap header-row">
+        <a class="wordmark" href="#top" aria-label="toktiktak">
+          <img src="assets/favicon.svg" alt="" width="36" height="36" />
+          <span>toktiktak</span>
+        </a>
+        <nav class="nav" data-aria-en="Main" data-aria-vi="Chính">
+          <a href="#product"><span data-l="en">Product</span><span data-l="vi" lang="vi">Sản phẩm</span></a>
+          <a href="#how"><span data-l="en">How it works</span><span data-l="vi" lang="vi">Cách học</span></a>
+          <a href="#audience"><span data-l="en">Who it's for</span><span data-l="vi" lang="vi">Dành cho ai</span></a>
+          <a href="#about"><span data-l="en">About</span><span data-l="vi" lang="vi">Về chúng tôi</span></a>
+          <a href="#contact"><span data-l="en">Contact</span><span data-l="vi" lang="vi">Liên hệ</span></a>
+        </nav>
+        <fieldset class="lang-switch">
+          <legend class="sr-only"><span data-l="en">Language</span><span data-l="vi" lang="vi">Ngôn ngữ</span></legend>
+          <button type="button" data-set-lang="en" lang="en">EN</button>
+          <button type="button" data-set-lang="vi" lang="vi">VI</button>
+        </fieldset>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top">
+        <div class="wrap hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">
+              <span data-l="en">Owl Yeah, a product of toktiktak</span><span data-l="vi" lang="vi">Owl Yeah, sản phẩm của toktiktak</span>
+            </p>
+            <h1>
+              <span data-l="en">Self-study that sticks, for grade 6 learners</span><span data-l="vi" lang="vi">Tự học mà nhớ lâu, cho học sinh lớp 6</span>
+            </h1>
+            <p class="lead">
+              <span data-l="en">Owl Yeah turns Vietnamese grade 6 textbooks into short, interactive lessons: animations that explain, exercises that hint instead of scold, and review that brings back what is about to be forgotten. Made for iPad, works on phones.</span><span data-l="vi" lang="vi">Owl Yeah biến sách giáo khoa lớp 6 thành những bài học ngắn, tương tác: animation giải thích, bài tập gợi ý thay vì trách lỗi, và phần ôn đưa lại đúng những gì sắp quên. Dùng tốt nhất trên iPad, chạy được trên điện thoại.</span>
+            </p>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="#try">
+                <span data-l="en">Try the demo</span><span data-l="vi" lang="vi">Dùng thử ngay</span>
+                <svg class="i" aria-hidden="true"><use href="#i-arrow" /></svg>
+              </a>
+              <a class="btn btn-secondary" href="https://app.toktiktak.click/unlock">
+                <span data-l="en">Open the app</span><span data-l="vi" lang="vi">Mở ứng dụng</span>
+                <svg class="i" aria-hidden="true"><use href="#i-external" /></svg>
+              </a>
+            </div>
+            <ul class="chips">
+              <li><span data-l="en">8 exercise types</span><span data-l="vi" lang="vi">8 dạng bài tập</span></li>
+              <li><span data-l="en">3-step hints</span><span data-l="vi" lang="vi">Gợi ý 3 nấc</span></li>
+              <li><span data-l="en">Works offline</span><span data-l="vi" lang="vi">Học được khi mất mạng</span></li>
+            </ul>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <svg class="sky" aria-hidden="true" viewBox="0 0 400 360" preserveAspectRatio="xMidYMid slice">
+              <circle cx="330" cy="70" r="34" fill="#c2410c" opacity="0.9" />
+              <ellipse cx="330" cy="70" rx="62" ry="14" fill="none" stroke="#f59e0b" stroke-width="5" transform="rotate(-14 330 70)" />
+              <circle cx="60" cy="300" r="26" fill="#7c3aed" />
+              <circle cx="360" cy="300" r="40" fill="#0f766e" />
+              <path d="M320 292h80M322 308h78" stroke="#5eead4" stroke-width="5" opacity="0.5" />
+              <g fill="#fff">
+                <circle cx="40" cy="50" r="2" /><circle cx="120" cy="30" r="1.5" /><circle cx="220" cy="60" r="1.5" />
+                <circle cx="90" cy="150" r="1.5" /><circle cx="270" cy="170" r="2" /><circle cx="180" cy="320" r="1.5" />
+                <circle cx="20" cy="220" r="1.5" /><circle cx="380" cy="180" r="1.5" />
+              </g>
+            </svg>
+            <img class="owl" src="assets/owl.svg" alt="" width="240" height="240" />
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="product" aria-labelledby="product-title">
+        <div class="wrap">
+          <h2 id="product-title"><span data-l="en">What makes Owl Yeah different</span><span data-l="vi" lang="vi">Điểm khác biệt của Owl Yeah</span></h2>
+          <ul class="card-grid">
+            <li class="card">
+              <span class="icon tone-blue"><svg class="i" aria-hidden="true"><use href="#i-book" /></svg></span>
+              <h3><span data-l="en">Built from the textbook</span><span data-l="vi" lang="vi">Soạn từ sách giáo khoa</span></h3>
+              <p><span data-l="en">Each lesson is rebuilt from the official grade 6 textbook and workbook pages, then split into parts of 3 to 6 minutes.</span><span data-l="vi" lang="vi">Mỗi bài được dựng lại từ trang sách giáo khoa và sách bài tập lớp 6, rồi chia thành các phần dài 3–6 phút.</span></p>
+            </li>
+            <li class="card">
+              <span class="icon tone-violet"><svg class="i" aria-hidden="true"><use href="#i-play" /></svg></span>
+              <h3><span data-l="en">Pictures before words</span><span data-l="vi" lang="vi">Hình trước, chữ sau</span></h3>
+              <p><span data-l="en">Interactive animations and short narrated videos in Vietnamese explain each idea. Text stays at two sentences per block.</span><span data-l="vi" lang="vi">Animation tương tác và video ngắn có giọng đọc tiếng Việt giải thích từng ý. Mỗi khối chữ không quá hai câu.</span></p>
+            </li>
+            <li class="card">
+              <span class="icon tone-amber"><svg class="i" aria-hidden="true"><use href="#i-bulb" /></svg></span>
+              <h3><span data-l="en">Mistakes are safe</span><span data-l="vi" lang="vi">Sai không đáng sợ</span></h3>
+              <p><span data-l="en">A wrong answer gets encouragement first, then a visual hint, then a worked solution. No red marks, no countdowns, no leaderboards.</span><span data-l="vi" lang="vi">Trả lời sai thì được động viên trước, rồi gợi ý bằng hình, rồi xem lời giải. Không chữ đỏ, không đồng hồ đếm ngược, không bảng xếp hạng.</span></p>
+            </li>
+            <li class="card">
+              <span class="icon tone-teal"><svg class="i" aria-hidden="true"><use href="#i-review" /></svg></span>
+              <h3><span data-l="en">Review what is fading</span><span data-l="vi" lang="vi">Ôn đúng chỗ sắp quên</span></h3>
+              <p><span data-l="en">A spaced-repetition model (FSRS) estimates how well each idea is remembered. One tap on “Review this lesson” asks up to ten ideas that are slipping most.</span><span data-l="vi" lang="vi">Thuật toán ôn cách quãng FSRS ước lượng mức nhớ của từng ý. Bấm “Ôn bài này” là app hỏi lại tối đa 10 ý đang dễ quên nhất.</span></p>
+            </li>
+            <li class="card">
+              <span class="icon tone-sky"><svg class="i" aria-hidden="true"><use href="#i-tablet" /></svg></span>
+              <h3><span data-l="en">iPad first, offline ready</span><span data-l="vi" lang="vi">Ưu tiên iPad, học cả khi mất mạng</span></h3>
+              <p><span data-l="en">An installable web app (PWA) designed for iPad. Published lessons keep working without a connection, and progress syncs when the device is back online.</span><span data-l="vi" lang="vi">Ứng dụng web cài được lên màn hình chính (PWA), thiết kế cho iPad. Bài đã xuất bản vẫn mở được khi mất mạng, tiến độ tự đồng bộ khi có mạng lại.</span></p>
+            </li>
+            <li class="card">
+              <span class="icon tone-green"><svg class="i" aria-hidden="true"><use href="#i-shield" /></svg></span>
+              <h3><span data-l="en">Reviewed before release</span><span data-l="vi" lang="vi">Kiểm duyệt trước khi phát hành</span></h3>
+              <p><span data-l="en">Every lesson gets an independent review against its source pages, for correct content and grade-level language, before it is published.</span><span data-l="vi" lang="vi">Mỗi bài được kiểm duyệt độc lập, đối chiếu với trang sách gốc để bảo đảm đúng kiến thức và ngôn từ hợp lứa tuổi, rồi mới xuất bản.</span></p>
+            </li>
+          </ul>
+          <p class="note">
+            <span data-l="en"><strong>Available now:</strong> Mathematics grade 6 (the “Kết nối tri thức với cuộc sống” textbook series). More grade 6 subjects are in preparation.</span><span data-l="vi" lang="vi"><strong>Hiện có:</strong> Toán 6 (bộ sách “Kết nối tri thức với cuộc sống”). Các môn lớp 6 khác đang được chuẩn bị.</span>
+          </p>
+        </div>
+      </section>
+
+      <section class="section section-alt" id="how" aria-labelledby="how-title">
+        <div class="wrap">
+          <h2 id="how-title"><span data-l="en">How a study session works</span><span data-l="vi" lang="vi">Một buổi học diễn ra thế nào</span></h2>
+          <ol class="steps">
+            <li>
+              <h3><span data-l="en">Pick a lesson</span><span data-l="vi" lang="vi">Chọn bài</span></h3>
+              <p><span data-l="en">The learner picks their profile, a subject and a lesson. The app remembers where they stopped.</span><span data-l="vi" lang="vi">Học sinh chọn hồ sơ, chọn môn và bài học. App nhớ chỗ các em đang dừng.</span></p>
+            </li>
+            <li>
+              <h3><span data-l="en">Learn in short parts</span><span data-l="vi" lang="vi">Học từng phần ngắn</span></h3>
+              <p><span data-l="en">Each part runs an explanation, a quick check, practice and a picture recap, in 3 to 6 minutes.</span><span data-l="vi" lang="vi">Mỗi phần gồm giải thích, câu kiểm tra hiểu, luyện tập và nhắc lại bằng hình, trong 3–6 phút.</span></p>
+            </li>
+            <li>
+              <h3><span data-l="en">Review any time</span><span data-l="vi" lang="vi">Ôn bất cứ lúc nào</span></h3>
+              <p><span data-l="en">No forced schedule. Each lesson shows how many cards are fading; a review takes about five minutes.</span><span data-l="vi" lang="vi">Không có lịch ôn bắt buộc. Mỗi bài cho biết bao nhiêu thẻ sắp quên; một lượt ôn mất khoảng 5 phút.</span></p>
+            </li>
+            <li>
+              <h3><span data-l="en">Celebrate progress</span><span data-l="vi" lang="vi">Ghi nhận tiến bộ</span></h3>
+              <p><span data-l="en">Finishing a lesson earns a sticker for the learner's collection.</span><span data-l="vi" lang="vi">Học xong một bài, học sinh nhận một sticker vào bộ sưu tập của mình.</span></p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="section" id="audience" aria-labelledby="audience-title">
+        <div class="wrap">
+          <h2 id="audience-title"><span data-l="en">Who it is for</span><span data-l="vi" lang="vi">Dành cho ai</span></h2>
+          <div class="two-col">
+            <article class="card card-lg">
+              <span class="icon tone-blue"><svg class="i" aria-hidden="true"><use href="#i-cap" /></svg></span>
+              <h3><span data-l="en">Learners</span><span data-l="vi" lang="vi">Học sinh</span></h3>
+              <ul class="ticks">
+                <li><span data-l="en">Grade 6 students following the Vietnamese curriculum, studying on their own at home.</span><span data-l="vi" lang="vi">Học sinh lớp 6 theo chương trình Việt Nam, tự học ở nhà.</span></li>
+                <li><span data-l="en">Children who learn better from pictures than from long text.</span><span data-l="vi" lang="vi">Các em hiểu bài qua hình ảnh dễ hơn qua đoạn văn dài.</span></li>
+                <li><span data-l="en">Learners who forget quickly and need short, frequent review.</span><span data-l="vi" lang="vi">Các em hay quên, cần ôn ngắn và thường xuyên.</span></li>
+              </ul>
+            </article>
+            <article class="card card-lg">
+              <span class="icon tone-amber"><svg class="i" aria-hidden="true"><use href="#i-users" /></svg></span>
+              <h3><span data-l="en">Parents</span><span data-l="vi" lang="vi">Phụ huynh</span></h3>
+              <ul class="ticks">
+                <li><span data-l="en">Parents who cannot sit beside their child every day.</span><span data-l="vi" lang="vi">Phụ huynh không có thời gian kèm con học mỗi ngày.</span></li>
+                <li><span data-l="en">A PIN-protected parent page shows study days, time spent and the ideas a child keeps forgetting.</span><span data-l="vi" lang="vi">Trang phụ huynh có PIN riêng, cho xem ngày học, thời gian học và những ý con hay quên.</span></li>
+                <li><span data-l="en">One family code unlocks the app; a family can have several child profiles, and progress follows each child across devices.</span><span data-l="vi" lang="vi">Một mã gia đình mở app; mỗi gia đình có thể có nhiều hồ sơ con, tiến độ đi theo con trên mọi máy.</span></li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-try" id="try" aria-labelledby="try-title">
+        <div class="wrap try-grid">
+          <div>
+            <h2 id="try-title"><span data-l="en">Try Owl Yeah</span><span data-l="vi" lang="vi">Dùng thử Owl Yeah</span></h2>
+            <p class="lead-sm"><span data-l="en">Use this public demo code to open the app. The app's interface and lessons are in Vietnamese.</span><span data-l="vi" lang="vi">Dùng mã dùng thử công khai này để mở app. Giao diện và bài học của app bằng tiếng Việt.</span></p>
+            <ol class="try-steps">
+              <li><span data-l="en">Copy the demo code.</span><span data-l="vi" lang="vi">Chép mã dùng thử.</span></li>
+              <li><span data-l="en">Open the app at app.toktiktak.click.</span><span data-l="vi" lang="vi">Mở app tại app.toktiktak.click.</span></li>
+              <li><span data-l="en">Paste the code and tap “Mở ứng dụng” (Open app).</span><span data-l="vi" lang="vi">Dán mã vào ô rồi bấm “Mở ứng dụng”.</span></li>
+            </ol>
+          </div>
+          <div class="code-card">
+            <p class="code-label" id="code-label"><span data-l="en">Demo code</span><span data-l="vi" lang="vi">Mã dùng thử</span></p>
+            <div class="code-row">
+              <code id="demo-code">OWLTQVWC-4KH5KJYX</code>
+              <button type="button" class="btn btn-copy" id="copy-btn">
+                <svg class="i icon-copy" aria-hidden="true"><use href="#i-copy" /></svg>
+                <svg class="i icon-done" aria-hidden="true"><use href="#i-check" /></svg>
+                <span class="copy-idle"><span data-l="en">Copy code</span><span data-l="vi" lang="vi">Chép mã</span></span>
+                <span class="copy-done"><span data-l="en">Copied</span><span data-l="vi" lang="vi">Đã chép</span></span>
+              </button>
+            </div>
+            <p class="sr-only" id="copy-status" role="status" aria-live="polite"></p>
+            <a class="btn btn-primary btn-block" href="https://app.toktiktak.click/unlock">
+              <span data-l="en">Open the app</span><span data-l="vi" lang="vi">Mở ứng dụng</span>
+              <svg class="i" aria-hidden="true"><use href="#i-external" /></svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="about" aria-labelledby="about-title">
+        <div class="wrap about-grid">
+          <div>
+            <h2 id="about-title"><span data-l="en">About toktiktak</span><span data-l="vi" lang="vi">Về toktiktak</span></h2>
+            <p><span data-l="en">toktiktak is the company that builds and operates Owl Yeah. We design the app, write and review its lessons, and run the service that delivers them to families.</span><span data-l="vi" lang="vi">toktiktak là công ty xây dựng và vận hành Owl Yeah. Chúng tôi thiết kế ứng dụng, biên soạn và kiểm duyệt bài học, và vận hành dịch vụ đưa bài học tới các gia đình.</span></p>
+            <p><span data-l="en">We started from one question: how can a child who learns slowly and forgets quickly study alone when parents cannot sit beside them every day? Owl Yeah is our answer, built on short lessons, visual explanations and review timed to memory.</span><span data-l="vi" lang="vi">Chúng tôi bắt đầu từ một câu hỏi: làm sao để một em học chậm, nhanh quên vẫn tự học được khi bố mẹ không thể ngồi kèm mỗi ngày? Owl Yeah là câu trả lời của chúng tôi, dựa trên bài học ngắn, giải thích bằng hình và ôn tập đúng lúc sắp quên.</span></p>
+            <ul class="ticks">
+              <li><span data-l="en">Content follows the official Vietnamese textbooks.</span><span data-l="vi" lang="vi">Nội dung bám theo sách giáo khoa chính thức.</span></li>
+              <li><span data-l="en">Calm, encouraging design made for children.</span><span data-l="vi" lang="vi">Thiết kế nhẹ nhàng, khích lệ, dành cho trẻ em.</span></li>
+              <li><span data-l="en">No ads, no leaderboards, no social feeds.</span><span data-l="vi" lang="vi">Không quảng cáo, không bảng xếp hạng, không mạng xã hội.</span></li>
+            </ul>
+          </div>
+          <dl class="facts card">
+            <div><dt><span data-l="en">Company</span><span data-l="vi" lang="vi">Công ty</span></dt><dd>toktiktak</dd></div>
+            <div><dt><span data-l="en">Product</span><span data-l="vi" lang="vi">Sản phẩm</span></dt><dd>Owl Yeah</dd></div>
+            <div><dt><span data-l="en">Website</span><span data-l="vi" lang="vi">Trang web</span></dt><dd><a href="https://toktiktak.click/">toktiktak.click</a></dd></div>
+            <div><dt><span data-l="en">App</span><span data-l="vi" lang="vi">Ứng dụng</span></dt><dd><a href="https://app.toktiktak.click/unlock">app.toktiktak.click</a></dd></div>
+            <div><dt>Email</dt><dd><a href="mailto:admin@toktiktak.click">admin@toktiktak.click</a></dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="section section-contact" id="contact" aria-labelledby="contact-title">
+        <div class="wrap"><div class="contact-box">
+          <h2 id="contact-title"><span data-l="en">Get in touch</span><span data-l="vi" lang="vi">Liên hệ</span></h2>
+          <p class="contact-text"><span data-l="en">Questions, partnerships, or access for your family: write to us.</span><span data-l="vi" lang="vi">Câu hỏi, hợp tác hay xin mã cho gia đình bạn: hãy viết cho chúng tôi.</span></p>
+          <a class="btn btn-light" href="mailto:admin@toktiktak.click">
+            <svg class="i" aria-hidden="true"><use href="#i-mail" /></svg>
+            admin@toktiktak.click
+          </a>
+        </div></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap footer-row">
+        <p>© 2026 toktiktak. <span data-l="en">Owl Yeah is a product of toktiktak.</span><span data-l="vi" lang="vi">Owl Yeah là sản phẩm của toktiktak.</span></p>
+        <a class="footer-link" href="mailto:admin@toktiktak.click">admin@toktiktak.click</a>
+      </div>
+    </footer>
+  </body>
+</html>
