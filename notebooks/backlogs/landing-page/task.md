@@ -1,12 +1,14 @@
-# Landing page: toktiktak site
+# Landing page: Owl Yeah site
 
-Public website for the team **toktiktak** (`https://toktiktak.click`) presenting its product Owl Yeah, needed for funding and startup-program applications. Contact: `admin@toktiktak.click`.
+Public website (`https://toktiktak.click`) promoting the product **Owl Yeah**; the team toktiktak is only a secondary credit ("By toktiktak" chip, one sentence in About, copyright line). Needed for funding and startup-program applications.
+
+Branding and contacts: the header, `<title>` and OG tags lead with Owl Yeah. The footer carries the contacts: support `support@toktiktak.click`, app `app.toktiktak.click`, team `admin@toktiktak.click`. The Contact section button uses `support@`. The About section has no info card.
 
 ## Built
 
 - `landing/`: static site, no framework, no build step. `index.html`, `styles.css`, `main.js` (language toggle, mobile menu and copy button), `assets/` (owl, favicon, apple touch icon, `share.png` built for the page: owl, "Owl Yeah" and "by toktiktak").
 - Bilingual EN/VI: every text has an `en` and a `vi` span; `<html lang>` picks one (default EN, choice saved in `localStorage` key `lang`).
-- Sections: header (wordmark, nav, language switch), hero, features, how a session works, who it is for, try it, about toktiktak, contact, footer.
+- Sections: header (wordmark, nav, language switch), hero, features, how a session works, who it is for, try it, about Owl Yeah, contact, footer.
 - No offline claim: production has offline disabled. Lessons are described as AI-drafted and checked against the textbook, never as independently reviewed.
 - Below 1024px the nav sits behind a menu button (aria-expanded, closes on link click and Escape).
 - Copy comes from `docs/spec.md` and `README.md`; no metrics, customers, team members or testimonials; nothing that identifies the learner described in `docs/learner.md`.
@@ -21,6 +23,10 @@ Public website for the team **toktiktak** (`https://toktiktak.click`) presenting
 1. Create a separate Vercel project from this repo with **Root Directory** `landing/`, framework preset "Other", no build command, output directory `.` (the folder is served as is).
 2. Add the domain `toktiktak.click` (and `www.toktiktak.click` redirecting to it) to that project and set the DNS records Vercel shows.
 3. Open the site, check the share preview (`og:image` is `https://toktiktak.click/assets/share.png`).
+
+## Open item: support mailbox (owner, not done)
+
+Create the `support@toktiktak.click` mailbox or forward before launch; the Contact button and the footer point at it.
 
 ## Open item (not done)
 

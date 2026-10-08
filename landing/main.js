@@ -1,8 +1,8 @@
 // Language toggle (EN/VI), the mobile menu and the demo-code copy button. No other behaviour.
 const STORAGE_KEY = "lang";
 const TITLES = {
-  en: "toktiktak | Owl Yeah, the self-study app for grade 6",
-  vi: "toktiktak | Owl Yeah, ứng dụng tự học cho học sinh lớp 6",
+  en: "Owl Yeah | Self-study app for grade 6",
+  vi: "Owl Yeah | Ứng dụng tự học cho học sinh lớp 6",
 };
 const COPIED = { en: "Code copied", vi: "Đã sao chép mã" };
 
