@@ -1,33 +1,41 @@
-/* Colours follow the Owl Yeah app tokens so the landing site and the product read as one brand. */
+/*
+ * Night-sky ("cosmos") theme. Shapes and accent hues follow the Owl Yeah app's cosmos background
+ * (src/components/cosmos-background.tsx: violet and blue nebulae, ringed violet planet, banded teal
+ * planet, amber and pink moons) and the share image, on a dark sky instead of the app's light one.
+ * Text colours are chosen for WCAG AA on --bg and on the translucent card surfaces.
+ */
 :root {
-  --bg: #f8fafc;
-  --surface: #ffffff;
-  --fg: #1e293b;
-  --muted: #f1f5f9;
-  --muted-fg: #475569;
-  --border: #e2e8f0;
+  --bg: #0b1026;
+  --bg-deep: #070b1c;
+  --surface: rgb(255 255 255 / 0.06);
+  --surface-strong: #161c40;
+  --border: rgb(255 255 255 / 0.12);
+  --border-strong: rgb(255 255 255 / 0.24);
+  --fg: #f1f5f9;
+  --muted-fg: #cbd5e1;
+  --subtle-fg: #94a3b8;
   --primary: #2563eb;
   --primary-hover: #1d4ed8;
-  --primary-soft: #eff6ff;
-  --night: #1e293b;
-  --night-2: #312e81;
-  --amber: #b45309;
-  --amber-soft: #fff7ed;
-  --violet: #7c3aed;
-  --violet-soft: #f5f3ff;
-  --teal: #0f766e;
-  --teal-soft: #f0fdfa;
-  --sky: #0369a1;
-  --sky-soft: #f0f9ff;
-  --green: #15803d;
-  --green-soft: #f0fdf4;
+  --link: #93c5fd;
+  /* Accent hues: the app's concept colours, as brighter tones for planets and light tones for icons on dark. */
+  --violet: #8b5cf6;
+  --teal: #14b8a6;
+  --amber: #f59e0b;
+  --blue-light: #93c5fd;
+  --violet-light: #c4b5fd;
+  --amber-light: #fcd34d;
+  --teal-light: #5eead4;
+  --sky-light: #7dd3fc;
+  --green-light: #86efac;
   --radius-sm: 12px;
   --radius: 20px;
   --radius-lg: 28px;
-  --shadow: 0 2px 8px rgb(15 23 42 / 0.08);
+  --shadow: 0 8px 32px rgb(2 6 23 / 0.45);
+  --blur: blur(14px);
   --font-head: "Baloo 2", system-ui, sans-serif;
   --font-body: "Be Vietnam Pro", system-ui, sans-serif;
   --gutter: 16px;
+  color-scheme: dark;
 }
 
 @media (min-width: 768px) {
@@ -61,6 +69,7 @@ body {
   font-size: 18px;
   line-height: 1.6;
   overflow-x: hidden;
+  position: relative;
 }
 
 h1,
@@ -93,7 +102,7 @@ p {
 }
 
 a {
-  color: var(--primary);
+  color: var(--link);
 }
 
 img,
@@ -103,7 +112,7 @@ svg {
 }
 
 :focus-visible {
-  outline: 3px solid var(--primary);
+  outline: 3px solid var(--link);
   outline-offset: 2px;
   border-radius: 6px;
 }
@@ -137,6 +146,7 @@ svg {
 }
 
 .wrap {
+  position: relative;
   width: 100%;
   max-width: 1120px;
   margin: 0 auto;
@@ -154,13 +164,64 @@ svg {
   flex: none;
 }
 
+/* Night sky behind the whole page: three nebula glows plus a static and a twinkling star tile. */
+.cosmos {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      60vmax 48vmax at 100% 0%,
+      rgb(124 58 237 / 0.3),
+      transparent 70%
+    ),
+    radial-gradient(
+      50vmax 40vmax at 0% 45%,
+      rgb(37 99 235 / 0.16),
+      transparent 70%
+    ),
+    radial-gradient(
+      55vmax 44vmax at 100% 80%,
+      rgb(124 58 237 / 0.14),
+      transparent 70%
+    ),
+    linear-gradient(180deg, #1a1b4b, var(--bg) 1200px);
+}
+
+.cosmos::before,
+.cosmos::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.cosmos::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='360' fill='%23fff'%3E%3Ccircle cx='24' cy='40' r='1.2' opacity='.6'/%3E%3Ccircle cx='96' cy='14' r='.8' opacity='.5'/%3E%3Ccircle cx='150' cy='88' r='1.4' opacity='.7'/%3E%3Ccircle cx='212' cy='30' r='.9' opacity='.5'/%3E%3Ccircle cx='300' cy='62' r='1.1' opacity='.6'/%3E%3Ccircle cx='336' cy='140' r='.8' opacity='.5'/%3E%3Ccircle cx='60' cy='150' r='.9' opacity='.5'/%3E%3Ccircle cx='118' cy='210' r='1.3' opacity='.6'/%3E%3Ccircle cx='190' cy='164' r='.8' opacity='.5'/%3E%3Ccircle cx='262' cy='226' r='1.2' opacity='.6'/%3E%3Ccircle cx='330' cy='296' r='.9' opacity='.5'/%3E%3Ccircle cx='30' cy='262' r='1.1' opacity='.6'/%3E%3Ccircle cx='92' cy='330' r='.8' opacity='.5'/%3E%3Ccircle cx='176' cy='300' r='1.2' opacity='.6'/%3E%3Ccircle cx='240' cy='340' r='.8' opacity='.5'/%3E%3C/svg%3E");
+}
+
+.cosmos::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='540' height='540' fill='%23fff'%3E%3Ccircle cx='70' cy='110' r='1.8'/%3E%3Ccircle cx='410' cy='60' r='1.6'/%3E%3Ccircle cx='260' cy='250' r='1.9'/%3E%3Ccircle cx='480' cy='380' r='1.5'/%3E%3Ccircle cx='140' cy='450' r='1.7'/%3E%3Ccircle cx='330' cy='500' r='1.4'/%3E%3C/svg%3E");
+  animation: twinkle 5s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  from {
+    opacity: 0.35;
+  }
+  to {
+    opacity: 0.9;
+  }
+}
+
 /* Header */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 10;
-  background: rgb(248 250 252 / 0.92);
-  backdrop-filter: blur(8px);
+  background: rgb(11 16 38 / 0.78);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
   border-bottom: 1px solid var(--border);
 }
 
@@ -209,7 +270,7 @@ svg {
 }
 
 .nav a:hover {
-  background: var(--muted);
+  background: rgb(255 255 255 / 0.08);
   color: var(--fg);
 }
 
@@ -222,7 +283,7 @@ svg {
   right: 0;
   margin: 0;
   padding: 8px var(--gutter) 12px;
-  background: var(--surface);
+  background: var(--surface-strong);
   border-bottom: 1px solid var(--border);
   box-shadow: var(--shadow);
 }
@@ -233,7 +294,7 @@ svg {
   justify-content: center;
   width: 48px;
   height: 48px;
-  border: 2px solid var(--border);
+  border: 1px solid var(--border-strong);
   border-radius: 999px;
   background: var(--surface);
   color: var(--fg);
@@ -263,7 +324,7 @@ svg {
   min-width: 0;
   margin-left: auto;
   padding: 3px;
-  border: 2px solid var(--border);
+  border: 1px solid var(--border-strong);
   border-radius: 999px;
   background: var(--surface);
 }
@@ -301,7 +362,7 @@ svg {
   gap: 10px;
   min-height: 56px;
   padding: 0 24px;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
   border-radius: var(--radius);
   font: 600 1.0625rem var(--font-body);
   text-decoration: none;
@@ -319,6 +380,7 @@ svg {
 .btn-primary {
   background: var(--primary);
   color: #fff;
+  box-shadow: 0 6px 24px rgb(37 99 235 / 0.4);
 }
 
 .btn-primary:hover {
@@ -327,12 +389,14 @@ svg {
 
 .btn-secondary {
   background: var(--surface);
-  border-color: var(--border);
+  border-color: var(--border-strong);
   color: var(--fg);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
 }
 
 .btn-secondary:hover {
-  border-color: var(--primary);
+  border-color: var(--link);
 }
 
 .btn-light {
@@ -341,7 +405,7 @@ svg {
 }
 
 .btn-light:hover {
-  background: var(--primary-soft);
+  background: #eff6ff;
 }
 
 .btn-block {
@@ -351,9 +415,6 @@ svg {
 /* Hero */
 .hero {
   padding: 40px 0 56px;
-  background:
-    radial-gradient(60% 60% at 100% 0%, rgb(124 58 237 / 0.08), transparent 70%),
-    radial-gradient(50% 50% at 0% 100%, rgb(37 99 235 / 0.08), transparent 70%);
 }
 
 .hero-grid {
@@ -377,9 +438,10 @@ svg {
   display: inline-block;
   margin-bottom: 16px;
   padding: 6px 14px;
+  border: 1px solid rgb(147 197 253 / 0.3);
   border-radius: 999px;
-  background: var(--primary-soft);
-  color: #1e40af;
+  background: rgb(147 197 253 / 0.1);
+  color: #bfdbfe;
   font-weight: 600;
   font-size: 0.9375rem;
 }
@@ -414,7 +476,7 @@ svg {
 
 .chips li {
   padding: 6px 14px;
-  border: 2px solid var(--border);
+  border: 1px solid var(--border);
   border-radius: 999px;
   background: var(--surface);
   color: var(--muted-fg);
@@ -428,16 +490,15 @@ svg {
   max-width: 480px;
   width: 100%;
   margin: 0 auto;
+  border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   overflow: hidden;
   background:
-    radial-gradient(
-      55% 55% at 50% 45%,
-      rgb(148 163 184 / 0.35),
-      transparent 70%
-    ),
-    linear-gradient(160deg, var(--night-2), var(--night) 70%);
-  box-shadow: var(--shadow);
+    radial-gradient(55% 55% at 50% 45%, rgb(148 163 184 / 0.3), transparent 70%),
+    linear-gradient(160deg, #312e81, #1e293b 70%);
+  box-shadow:
+    var(--shadow),
+    0 0 80px rgb(124 58 237 / 0.25);
 }
 
 .hero-art .sky {
@@ -463,24 +524,9 @@ svg {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  .hero-art .owl {
-    animation: none;
-  }
-
-  .btn,
-  .nav a,
-  .lang-switch button {
-    transition: none;
-  }
-}
-
 /* Sections */
 .section {
+  position: relative;
   padding: 56px 0;
   scroll-margin-top: 64px;
 }
@@ -492,8 +538,53 @@ svg {
 }
 
 .section-alt {
-  background: var(--surface);
-  border-block: 1px solid var(--border);
+  background: rgb(255 255 255 / 0.025);
+  border-block: 1px solid rgb(255 255 255 / 0.06);
+}
+
+/* Planets half out of a section corner; the section clips them and content sits above. */
+.section:has(.deco) {
+  overflow: hidden;
+}
+
+.deco {
+  position: absolute;
+  pointer-events: none;
+  animation: drift 9s ease-in-out infinite alternate;
+}
+
+.deco-ringed {
+  top: 24px;
+  right: -80px;
+  width: clamp(200px, 26vw, 320px);
+  color: var(--violet);
+}
+
+.deco-banded {
+  bottom: 16px;
+  left: -80px;
+  width: 300px;
+  color: var(--teal);
+}
+
+/* Below 1200px the cards reach the section edge, so this planet would sit behind them. */
+@media (max-width: 1199px) {
+  .deco-banded {
+    display: none;
+  }
+}
+
+/* On phones the section heading spans the full width and would run into the ringed planet. */
+@media (max-width: 767px) {
+  .deco-ringed {
+    display: none;
+  }
+}
+
+@keyframes drift {
+  to {
+    transform: translateY(12px);
+  }
 }
 
 .card-grid {
@@ -517,11 +608,18 @@ svg {
   }
 }
 
-.card {
+.card,
+.steps li {
   padding: 24px;
-  border: 2px solid var(--border);
+  border: 1px solid var(--border);
   border-radius: var(--radius);
-  background: var(--surface);
+  background: linear-gradient(
+    160deg,
+    rgb(255 255 255 / 0.09),
+    rgb(255 255 255 / 0.03)
+  );
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
   box-shadow: var(--shadow);
 }
 
@@ -542,6 +640,8 @@ svg {
   height: 48px;
   margin-bottom: 16px;
   border-radius: var(--radius-sm);
+  background: color-mix(in srgb, currentColor 16%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, currentColor 30%, transparent);
 }
 
 .icon .i {
@@ -550,41 +650,40 @@ svg {
 }
 
 .tone-blue {
-  background: var(--primary-soft);
-  color: var(--primary);
+  color: var(--blue-light);
 }
 
 .tone-violet {
-  background: var(--violet-soft);
-  color: var(--violet);
+  color: var(--violet-light);
 }
 
 .tone-amber {
-  background: var(--amber-soft);
-  color: var(--amber);
+  color: var(--amber-light);
 }
 
 .tone-teal {
-  background: var(--teal-soft);
-  color: var(--teal);
+  color: var(--teal-light);
 }
 
 .tone-sky {
-  background: var(--sky-soft);
-  color: var(--sky);
+  color: var(--sky-light);
 }
 
 .tone-green {
-  background: var(--green-soft);
-  color: var(--green);
+  color: var(--green-light);
 }
 
 .note {
   margin: 28px 0 0;
   padding: 16px 20px;
-  border-left: 4px solid var(--primary);
+  border-left: 4px solid var(--link);
   border-radius: var(--radius-sm);
-  background: var(--primary-soft);
+  background: rgb(147 197 253 / 0.1);
+  color: var(--muted-fg);
+}
+
+.note strong {
+  color: var(--fg);
 }
 
 /* Steps */
@@ -612,10 +711,6 @@ svg {
 
 .steps li {
   counter-increment: step;
-  padding: 24px;
-  border-radius: var(--radius);
-  background: var(--bg);
-  border: 2px solid var(--border);
 }
 
 .steps li::before {
@@ -627,7 +722,8 @@ svg {
   height: 44px;
   margin-bottom: 16px;
   border-radius: 999px;
-  background: var(--primary);
+  background: linear-gradient(140deg, var(--primary), #6d28d9);
+  box-shadow: 0 0 20px rgb(124 58 237 / 0.45);
   color: #fff;
   font: 700 1.375rem var(--font-head);
 }
@@ -672,15 +768,17 @@ svg {
   height: 20px;
   border-radius: 999px;
   background:
-    var(--green-soft)
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2315803d' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E")
+    rgb(134 239 172 / 0.15)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2386efac' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E")
     center / 13px no-repeat;
 }
 
 /* Try it */
 .section-try {
-  background: linear-gradient(160deg, var(--night-2), var(--night) 75%);
-  color: #fff;
+  background:
+    radial-gradient(70% 90% at 85% 50%, rgb(124 58 237 / 0.3), transparent 70%),
+    linear-gradient(160deg, rgb(49 46 129 / 0.6), rgb(15 23 42 / 0.4) 75%);
+  border-block: 1px solid rgb(255 255 255 / 0.06);
 }
 
 .try-grid {
@@ -697,7 +795,7 @@ svg {
 }
 
 .lead-sm {
-  color: #cbd5e1;
+  color: var(--muted-fg);
 }
 
 .try-steps {
@@ -712,10 +810,14 @@ svg {
 
 .code-card {
   padding: 24px;
+  border: 1px solid var(--border-strong);
   border-radius: var(--radius-lg);
-  background: var(--surface);
-  color: var(--fg);
-  box-shadow: 0 8px 24px rgb(15 23 42 / 0.3);
+  background: rgb(22 28 64 / 0.75);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  box-shadow:
+    var(--shadow),
+    0 0 60px rgb(37 99 235 / 0.2);
 }
 
 .code-label {
@@ -740,10 +842,10 @@ svg {
   justify-content: center;
   min-height: 56px;
   padding: 8px 16px;
-  border: 2px dashed var(--primary);
+  border: 2px dashed var(--link);
   border-radius: var(--radius-sm);
-  background: var(--primary-soft);
-  color: #1e3a8a;
+  background: rgb(147 197 253 / 0.1);
+  color: #dbeafe;
   font:
     600 clamp(1.125rem, 4.6vw, 1.375rem) / 1.2 ui-monospace,
     "SF Mono",
@@ -756,13 +858,13 @@ svg {
 
 .btn-copy {
   flex: 1 1 100%;
-  background: var(--muted);
-  border-color: var(--border);
+  background: var(--surface);
+  border-color: var(--border-strong);
   color: var(--fg);
 }
 
 .btn-copy:hover {
-  border-color: var(--primary);
+  border-color: var(--link);
 }
 
 .icon-done,
@@ -773,9 +875,9 @@ svg {
 }
 
 .btn-copy.is-copied {
-  border-color: var(--green);
-  background: var(--green-soft);
-  color: #166534;
+  border-color: var(--green-light);
+  background: rgb(134 239 172 / 0.12);
+  color: #bbf7d0;
 }
 
 .btn-copy.is-copied .icon-done,
@@ -798,15 +900,21 @@ svg {
 }
 
 .contact-box {
+  position: relative;
+  overflow: hidden;
   padding: 40px 20px;
+  border: 1px solid var(--border-strong);
   border-radius: var(--radius-lg);
-  background: var(--primary);
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='160' fill='%23fff'%3E%3Ccircle cx='20' cy='30' r='1.2' opacity='.6'/%3E%3Ccircle cx='120' cy='18' r='1' opacity='.5'/%3E%3Ccircle cx='200' cy='70' r='1.4' opacity='.6'/%3E%3Ccircle cx='70' cy='120' r='1' opacity='.5'/%3E%3Ccircle cx='170' cy='140' r='1.2' opacity='.5'/%3E%3C/svg%3E"),
+    linear-gradient(135deg, var(--primary), #5b21b6);
   color: #fff;
   text-align: center;
+  box-shadow: 0 0 80px rgb(91 33 182 / 0.35);
 }
 
 .contact-text {
-  color: #dbeafe;
+  color: #eef2ff;
 }
 
 @media (min-width: 768px) {
@@ -817,26 +925,71 @@ svg {
 
 /* Footer */
 .site-footer {
-  border-top: 1px solid var(--border);
-  background: var(--surface);
+  background: linear-gradient(180deg, transparent, var(--bg-deep) 160px);
   color: var(--muted-fg);
   font-size: 1rem;
 }
 
-.footer-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px 24px;
-  padding-block: 24px;
+.horizon {
+  width: 100%;
+  height: 112px;
+  color: var(--violet);
 }
 
-.footer-row p {
+@media (min-width: 768px) {
+  .horizon {
+    height: 144px;
+  }
+}
+
+.horizon-moon {
+  color: var(--amber);
+}
+
+.horizon-banded {
+  color: var(--teal);
+}
+
+.footer-grid {
+  display: grid;
+  gap: 32px;
+  padding-block: 32px 28px;
+}
+
+@media (min-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr auto;
+    gap: 48px;
+    padding-block: 40px 32px;
+  }
+}
+
+.footer-brand .wordmark {
+  display: inline-flex;
+  margin-bottom: 8px;
+}
+
+.footer-tagline {
+  margin: 0 0 4px;
+  color: var(--fg);
+  max-width: 28em;
+}
+
+.footer-credit {
   margin: 0;
+  color: var(--subtle-fg);
+  font-size: 0.9375rem;
 }
 
-.footer-contacts {
+.footer-heading {
+  margin: 0 0 12px;
+  color: var(--subtle-fg);
+  font: 600 0.8125rem / 1.4 var(--font-body);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.footer-links {
   display: grid;
   gap: 4px;
   margin: 0;
@@ -844,15 +997,92 @@ svg {
   list-style: none;
 }
 
-.footer-contacts a {
+.footer-links a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 52px;
+  padding: 4px 8px 4px 4px;
+  margin-left: -4px;
+  border-radius: var(--radius-sm);
+  color: var(--fg);
+  text-decoration: none;
+  transition: background-color 150ms ease-out;
+}
+
+.footer-links a:hover {
+  background: rgb(255 255 255 / 0.06);
+}
+
+.fl-icon {
   display: inline-flex;
   align-items: center;
-  min-height: 44px;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--link);
+  flex: none;
+}
+
+.fl-icon .i {
+  width: 20px;
+  height: 20px;
+}
+
+.fl-text {
+  display: grid;
+  line-height: 1.35;
+  min-width: 0;
+}
+
+.fl-label {
+  color: var(--subtle-fg);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.fl-value {
+  color: var(--link);
+  font-weight: 600;
   overflow-wrap: anywhere;
 }
 
-@media (min-width: 768px) {
-  .footer-contacts {
-    text-align: right;
+.footer-links a:hover .fl-value,
+.footer-links a:focus-visible .fl-value {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.footer-bottom {
+  padding-bottom: 24px;
+  color: var(--subtle-fg);
+  font-size: 0.875rem;
+}
+
+.footer-bottom p {
+  margin: 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .hero-art .owl,
+  .cosmos::after,
+  .deco {
+    animation: none;
+  }
+
+  .btn,
+  .nav a,
+  .lang-switch button,
+  .footer-links a {
+    transition: none;
   }
 }

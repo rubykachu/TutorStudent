@@ -12,6 +12,8 @@ Branding and contacts: the header, `<title>` and OG tags lead with Owl Yeah. The
 - No offline claim: production has offline disabled. Lessons are described as AI-drafted and checked against the textbook, never as independently reviewed.
 - Below 1024px the nav sits behind a menu button (aria-expanded, closes on link click and Escape).
 - Copy comes from `docs/spec.md` and `README.md`; no metrics, customers, team members or testimonials; nothing that identifies the learner described in `docs/learner.md`.
+- Cosmos look: dark night sky (nebula glows, static and twinkling star tiles, ringed and banded planets from `src/components/cosmos-background.tsx`, glass cards), text checked for WCAG AA on the darkest and lightest surfaces; twinkle, planet drift and owl bob stop under `prefers-reduced-motion`. Planets hide where they would sit behind content (ringed below 768px, banded below 1200px).
+- Footer: owl wordmark, tagline and team credit on the left; Support, App and Team links with icons on the right; copyright bar at the bottom; stacks left-aligned on phones.
 - Checked with Playwright at 375, 768 and 1440 px in EN and VI: no horizontal scroll, no console errors, copy button puts the code on the clipboard, language survives a reload.
 
 ## Public demo code
